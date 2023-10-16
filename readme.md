@@ -14,3 +14,18 @@ Con esta tienda se apunta a llegar a un público joven-adulto, brindando los má
 ## Conoce al equipo IT
 Somos Nahuel, Joaquín, Trinidad, Alejandra, un grupo de cuatro desarrolladores novatos con muchas ganas de aplicar lo que vamos aprendiendo, para brindarle un mejor servicio a nuestro cliente **DH Venture Capitals**.
 
+## Páginas de referencia
+- [Personal y Flow](https://www.personal.com.ar/)
+    Elegida por: Diseño de la página y su paleta de colores.
+- [Movistar](https://www.movistar.com.ar/)
+    Elegida por: Diseño del carrusel de productos y los íconos del menú.
+- [AMD](https://www.amd.com/es.html)
+    Elegida por: Diseño del carrusel de productos y su diseño minimalista.
+- [Apple](https://www.apple.com/)
+    Elegida por: Efectos en el despliegue de opciones del menú y su diseño minimalista.
+- [Samsung](https://www.samsung.com/ar/)
+    Elegida por: Disposición de elementos en la pantalla.
+- [Tienda del cafe](https://latiendadelcafe.co/)
+    Elegida por: Animaciones de la página y su originalidad.
+- [CompraGamer](https://compragamer.com/)
+    Elegidad por: Formulario del login y registro.
