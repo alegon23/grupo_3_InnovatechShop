@@ -1,0 +1,3 @@
+#00994D -> verde
+#007FFF -> azul
+#9E8FFF -> lila
