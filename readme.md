@@ -29,3 +29,6 @@ Somos Nahuel, Joaquín, Trinidad, Alejandra, un grupo de cuatro desarrolladores 
     Elegida por: Animaciones de la página y su originalidad.
 - [CompraGamer](https://compragamer.com/)
     Elegidad por: Formulario del login y registro.
+
+## Link al trello
+- [Trello](https://trello.com/b/WljNDTT4/sprintsgrupo-3)
