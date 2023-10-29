@@ -2,3 +2,236 @@
     font-family: 'Gabarito';
     box-sizing: border-box;
 }
+
+/* ! --------- HOME --------- */
+
+/* --------- HEADER --------- */
+header{
+    padding-bottom: 15px;
+}
+
+.navbar-superior{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#logo{
+    min-width: 70px;
+}
+
+#caja-busqueda{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 28px;
+}
+
+#barra-busqueda{
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px 0px;
+    font-size: 12px;
+}
+
+.boton-busqueda{
+    border-radius: 100px;
+    border-color: transparent;
+    padding: 3px;
+    background-color: white;
+    position: relative;
+    right: 28px;
+}
+
+#boton-cuenta, #boton-carrito{
+    display: none;
+}
+
+#boton-cuenta-movil, #boton-carrito-movil{
+    border: #9E8FFF 1px solid;
+    max-width: 150px;
+    border-radius: 100px;
+    text-align: center;
+    margin: 5px;
+    background-color: #9E8FFF;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.navbar-inferior{
+    display: none;
+}
+
+#menu-hamburguesa{
+    padding: 6px;
+    background-color: #9E8FFF;
+    color: black;
+    border-radius: 3px;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    max-width: 40px;
+    margin: auto;
+}
+
+/* --------- BANNER --------- */
+
+#banner{
+    width: 100%;
+}
+
+/* --------- MAIN --------- */
+.titulo-section{
+    margin: 0;
+    padding: 15px;
+    background: rgb(133,247,255);
+    background: radial-gradient(circle, rgba(133,247,255,1) 0%, rgba(158,143,255,1) 100%);
+    text-align: center;
+    font-size: 20px;
+}
+
+.lista-redes{
+    display: flex;
+    justify-content: center;
+}
+
+.lista-redes a{
+    font-size: 30px;
+    color: black;
+    margin: 20px;
+}
+
+/* --------- FOOTER --------- */
+
+footer{
+    background-color: #9E8FFF;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#copyright-creditos p{
+    margin: 0;
+}
+
+/* --------- MEDIA QUERIES --------- */
+@media (min-width: 480px) {
+    #logo{
+        min-width: 130px;
+    }
+
+    #boton-cuenta, #boton-carrito{
+        display: inline;
+        margin-right: 5px;
+        border: #9E8FFF 1px solid;
+        border-radius: 100px;
+        text-align: center;
+        background-color: #9E8FFF;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        width: 40%;
+        font-size: 12px;
+        min-width: 80px;
+    }
+    
+    #boton-cuenta-movil, #boton-carrito-movil{
+        display: none;
+    }
+}
+
+@media (min-width: 768px){
+    #logo{
+        min-width: 150px;
+    }
+
+    /*#caja-busqueda{
+        margin-left: 0;
+    }*/
+
+    #barra-busqueda{
+        font-size: 14px;
+    }
+
+    #boton-cuenta, #boton-carrito{
+        width: 30%;
+        font-size: 14px;
+    }
+
+    #menu-hamburguesa{
+        display: none;
+    }
+
+    .navbar-inferior{
+        display: inline;
+    }
+
+    .navbar-inferior ul{
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        padding: 10px 0;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #ded9fa;
+    }
+
+    .navbar-inferior a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .titulo-section{
+        padding: 20px;
+        text-align: center;
+        font-size: 25px;
+    }
+    
+    .lista-redes a{
+        font-size: 50px;
+        color: black;
+        margin: 30px;
+    }
+
+    footer{
+        background-color: #9E8FFF;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media (min-width: 992px){
+    #barra-busqueda{
+        font-size: 15px;
+    }
+
+    #boton-cuenta, #boton-carrito{
+        width: 20%;
+        font-size: 15px;
+    }
+
+    .navbar-superior, .navbar-inferior ul{
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .titulo-section{
+        padding: 30px;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .lista-redes a{
+        font-size: 70px;
+        color: black;
+        margin: 50px;
+    }
+}

@@ -9,43 +9,51 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/styles.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <title>Innovatech Shop - Home</title>
 </head>
 <body>
     <!--  !HEADER  -->
     <header>
         <div class="navbar-superior">
-            <p>Logo</p>
-            <p>Barra de busqueda + icono lupa</p>
-            <p>Boton: Mi cuenta</p>
-            <p>Boton: Carrito</p>
+            <img src="/images/Logo.png" alt="Logo" id="logo">
+            <div id="caja-busqueda">
+                <input type="text" id="barra-busqueda" placeholder="Buscar productos...">
+                <button class="boton-busqueda"><i class="bi bi-search icono-busqueda"></i></button>
+            </div>
+            
+            <a href="#" id="boton-cuenta-movil"><i class="bi bi-person"></i></a>
+            <a href="#" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
+
+            <a href="#" id="boton-cuenta"><i class="bi bi-person"></i> Ingresar</a>
+            <a href="#" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>
         </div>
-        <div class="navbar-inferior">
-            <nav>
-                <ul>
-                    <li><a href="#">Celulares</a></li>
-                    <li><a href="#">Monitores & TVs</a></li>
-                    <li><a href="#">Tablets</a></li>
-                    <li><a href="#">Notebooks</a></li>
-                    <li><a href="#">Hardware</a></li>
-                    <li><a href="#">Accesorios</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="navbar-inferior">
+            <ul>
+                <li><a href="#">Celulares <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Monitores & TVs <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Tablets <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Notebooks <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Hardware <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Accesorios <i class="bi bi-caret-down"></i></a></li>
+            </ul>
+        </nav>
+        <a href="#" id="menu-hamburguesa"><i class="bi bi-list"></i></a>
     </header>
     <!-- * FIN HEADER -->
 
     <!-- TODO: BANNER DIVIDIDO EN 4 IMAGENES  -->
-    <p>Banner</p>
+    <img src="/images/Banner_de_prueba.webp" alt="Banner" id="banner">
 
     <!--!  MAIN  -->
     <main>
         <!--  * CARRUSEL  -->
         <section>
-            <h2>Promociones y descuentos</h2>
+            <h2 class="titulo-section">Promociones y descuentos</h2>
 
             <div>
-                <p>Boton para ir a la izquierda</p>
+                <p><i class="bi bi-chevron-left"></i></p>
             </div>
             
             <!--  !CUIDADO👀  -->
@@ -60,7 +68,7 @@
                         <p>Nombre producto</p>
                         <p>Precio original</p>
                         <p>Precio con descuento</p>
-                        <p>Envío gratis + icono camión</p>
+                        <p>Envío gratis <i class="bi bi-truck"></i></p>
                     </div>
                     <a href="#">Comprar</a>
                 </article>
@@ -75,7 +83,7 @@
                         <p>Nombre producto</p>
                         <p>Precio original</p>
                         <p>Precio con descuento</p>
-                        <p>Envío gratis + icono camión</p>
+                        <p>Envío gratis <i class="bi bi-truck"></i></p>
                     </div>
                     <a href="#">Comprar</a>
                 </article>
@@ -90,7 +98,7 @@
                         <p>Nombre producto</p>
                         <p>Precio original</p>
                         <p>Precio con descuento</p>
-                        <p>Envío gratis + icono camión</p>
+                        <p>Envío gratis <i class="bi bi-truck"></i></p>
                     </div>
                     <a href="#">Comprar</a>
                 </article>
@@ -99,7 +107,7 @@
             </div>
             <!-- * FIN DIV LISTA-PRODUCTOS -->
             <div>
-                <p>Boton para ir a la derecha</p>
+                <i class="bi bi-chevron-right"></i>
             </div>
 
         </section>
@@ -107,10 +115,10 @@
 
         <!--  * CARRUSEL  -->
         <section>
-            <h2>Productos destacados/nuevos</h2>
+            <h2 class="titulo-section">Productos destacados/nuevos</h2>
 
             <div>
-                <p>Boton para ir a la izquierda</p>
+                <i class="bi bi-chevron-left"></i>
             </div>
             
             <!--  !CUIDADO👀  -->
@@ -122,7 +130,7 @@
                     <div>
                         <p>Nombre producto</p>
                         <p>Precio</p>
-                        <p>Retiralo HOY! + icono cajita</p>
+                        <p>Retiralo HOY! <i class="bi bi-box2-heart"></i></p>
                     </div>
                     <a href="#">Comprar</a>
                 </article>
@@ -134,7 +142,7 @@
                     <div>
                         <p>Nombre producto</p>
                         <p>Precio</p>
-                        <p>Retiralo HOY! + icono cajita</p>
+                        <p>Retiralo HOY! <i class="bi bi-box2-heart"></i></p>
                     </div>
                     <a href="#">Comprar</a>
                 </article>
@@ -146,7 +154,7 @@
                     <div>
                         <p>Nombre producto</p>
                         <p>Precio</p>
-                        <p>Retiralo HOY! + icono cajita</p>
+                        <p>Retiralo HOY! <i class="bi bi-box2-heart"></i></p>
                     </div>
                     <a href="#">Comprar</a>
                 </article>
@@ -155,18 +163,18 @@
             </div>
             <!-- * FIN DIV LISTA-PRODUCTOS -->
             <div>
-                <p>Boton para ir a la derecha</p>
+                <i class="bi bi-chevron-right"></i>
             </div>
         </section>
         <!-- * FIN SEGUNDA SECCION -->
 
         <!-- * CONTACTO -->
         <section>
-            <h2>Seguinos en nuestras redes</h2>
-            <div>
-                <a href="#">Icono Facebook</a>
-                <a href="#">Icono Instagram</a>
-                <a href="#">Icono X/Twitter</a>
+            <h2 class="titulo-section">Seguinos en nuestras redes</h2>
+            <div class="lista-redes">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
             </div>
         </section>
         <!-- * FIN TERCERA SECCION -->
@@ -180,7 +188,7 @@
             <nav>
                 <ul>
                     <li><a href="#">Acerca de nosotros</a></li>
-                    <li>Contactanos <a href="#">Icono mail</a> <a href="#">Icono WhatsApp</a></li>
+                    <li>Contactanos <a href="#"><i class="bi bi-envelope"></i></a> <a href="#"><i class="bi bi-whatsapp"></i></a></li>
                     <li><a href="#">¿Necesitas ayuda?</a></li>
                 </ul>
             </nav>
@@ -191,10 +199,12 @@
             <p>Próximamente envíos internacionales</p>
         </section>
 
-        <p>Copyright © 2023</p>
+        <section id="copyright-creditos">
+            <p>Copyright © 2023</p>
 
-        <!-- TODO: agregar creditos de recursos usados -->
-        <p>Creditos</p>
+            <!-- TODO: agregar creditos de recursos usados -->
+            <p>Creditos</p>
+        </section>
     </footer>
     <!-- * FIN FOOTER -->
 </body>
