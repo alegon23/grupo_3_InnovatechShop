@@ -18,10 +18,10 @@
     <header>
         <div class="navbar-superior">
             <img src="/images/Logo.png" alt="Logo" id="logo">
-            <div id="caja-busqueda">
+            <form id="caja-busqueda">
                 <input type="text" id="barra-busqueda" placeholder="Buscar productos...">
                 <button class="boton-busqueda"><i class="bi bi-search icono-busqueda"></i></button>
-            </div>
+            </form>
             
             <a href="#" id="boton-cuenta-movil"><i class="bi bi-person"></i></a>
             <a href="#" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
@@ -52,12 +52,12 @@
         <section>
             <h2 class="titulo-section">Promociones y descuentos</h2>
 
-            <div>
-                <p><i class="bi bi-chevron-left"></i></p>
-            </div>
-            
             <!--  !CUIDADO👀  -->
             <div class="lista-promociones">
+                <div>
+                    <p><i class="bi bi-chevron-left"></i></p>
+                </div>
+
                 <!--  PRIMER ARTICULO  -->
                 <article class="tarjeta-promocion">
                     <div>
@@ -74,7 +74,7 @@
                 </article>
 
                 <!--  SEGUNDO ARTICULO  -->
-                <article class="tarjeta-articulo">
+                <article class="tarjeta-promocion">
                     <div>
                         <p>Imagen producto</p>
                         <p>50% OFF</p>
@@ -89,7 +89,7 @@
                 </article>
 
                 <!--  TERCER ARTICULO  -->
-                <article class="tarjeta-articulo">
+                <article class="tarjeta-promocion">
                     <div>
                         <p>Imagen producto</p>
                         <p>50% OFF</p>
@@ -104,11 +104,11 @@
                 </article>
 
                 <!--  TODO: MAS ARTICULOS  -->
+                <div>
+                    <i class="bi bi-chevron-right"></i>
+                </div>
             </div>
             <!-- * FIN DIV LISTA-PRODUCTOS -->
-            <div>
-                <i class="bi bi-chevron-right"></i>
-            </div>
 
         </section>
         <!-- * FIN PRIMERA SECCION -->
@@ -117,54 +117,53 @@
         <section>
             <h2 class="titulo-section">Productos destacados/nuevos</h2>
 
-            <div>
-                <i class="bi bi-chevron-left"></i>
-            </div>
-            
             <!--  !CUIDADO👀  -->
             <div class="lista-productos">
+                <div>
+                    <i class="bi bi-chevron-left icono-flecha-izquierda"></i>
+                </div>
                 <!--  PRIMER ARTICULO  -->
                 <article class="tarjeta-articulo">
-                    <p>Imagen producto</p>
+                    <img src="/images/celular-motorola.png" alt="Imagen Producto" class="imagen-producto">
 
-                    <div>
-                        <p>Nombre producto</p>
-                        <p>Precio</p>
-                        <p>Retiralo HOY! <i class="bi bi-box2-heart"></i></p>
+                    <div class="caja-precio">
+                        <h3>Celular Motorola 1</h3>
+                        <h4>$200.00</h4>
+                        <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
                     </div>
-                    <a href="#">Comprar</a>
+                    <a href="#" class="boton-compra">Comprar</a>
                 </article>
 
                 <!--  SEGUNDO ARTICULO  -->
                 <article class="tarjeta-articulo">
-                    <p>Imagen producto</p>
+                    <img src="/images/celular-motorola.png" alt="Imagen Producto" class="imagen-producto">
 
-                    <div>
-                        <p>Nombre producto</p>
-                        <p>Precio</p>
-                        <p>Retiralo HOY! <i class="bi bi-box2-heart"></i></p>
+                    <div class="caja-precio">
+                        <h3>Celular Motorola 2</h3>
+                        <h4>$200.00</h4>
+                        <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
                     </div>
-                    <a href="#">Comprar</a>
+                    <a href="#" class="boton-compra">Comprar</a>
                 </article>
 
                 <!--  TERCER ARTICULO  -->
                 <article class="tarjeta-articulo">
-                    <p>Imagen producto</p>
+                    <img src="/images/celular-motorola.png" alt="Imagen Producto" class="imagen-producto">
 
-                    <div>
-                        <p>Nombre producto</p>
-                        <p>Precio</p>
-                        <p>Retiralo HOY! <i class="bi bi-box2-heart"></i></p>
+                    <div class="caja-precio">
+                        <h3>Celular Motorola 3</h3>
+                        <h4>$200.00</h4>
+                        <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
                     </div>
-                    <a href="#">Comprar</a>
+                    <a href="#" class="boton-compra">Comprar</a>
                 </article>
 
                 <!--  TODO: MAS ARTICULOS  -->
+                <div>
+                    <i class="bi bi-chevron-right icono-flecha-derecha"></i>
+                </div>
             </div>
             <!-- * FIN DIV LISTA-PRODUCTOS -->
-            <div>
-                <i class="bi bi-chevron-right"></i>
-            </div>
         </section>
         <!-- * FIN SEGUNDA SECCION -->
 
