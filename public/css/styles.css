@@ -102,7 +102,7 @@ header{
     font-size: 20px;
 }
 
-.lista-productos{
+.lista-productos, .lista-promociones{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,7 +110,7 @@ header{
     padding: 20px 0;
 }
 
-.tarjeta-articulo{
+.tarjeta-articulo, .tarjeta-promocion{
     border: 2px solid black;
     border-radius: 10px;
     width: 70%;
@@ -126,7 +126,7 @@ header{
 }
 
 .imagen-producto{
-    width: 50%;
+    width: 80%;
 }
 
 .caja-precio h4, .caja-precio h5{
@@ -227,12 +227,12 @@ footer{
         display: none;
     }
 
-    .lista-productos{
+    .lista-productos, .lista-promociones{
         flex-direction: row;
         flex-wrap: wrap;
     }
     
-    .tarjeta-articulo{
+    .tarjeta-articulo, .tarjeta-promocion{
         width: 40%;
         margin: 10px 20px 20px 20px;
     }
@@ -290,7 +290,7 @@ footer{
         font-size: 25px;
     }
     
-    .tarjeta-articulo{
+    .tarjeta-articulo, .tarjeta-promocion{
         width: 25%;
     }
 
@@ -386,18 +386,19 @@ footer{
         margin: 0 10px 0 0;
     }
 
-    .lista-productos{
+    .lista-productos, .lista-promociones{
         justify-content: space-between;
     }
 
-    .boton-compra:active{
+    .boton-compra:active, #boton-cuenta:active, #boton-carrito:active{
+        border: solid 1px #85f7ff;
         color: black;
         background-color: #85f7ff;
     }
 }
 
 @media (min-width: 1200px){
-    .navbar-superior, .navbar-inferior ul, .lista-productos{
+    .navbar-superior, .navbar-inferior ul, .lista-productos, .lista-promociones{
         max-width: 1200px;
         margin: auto;
     }
