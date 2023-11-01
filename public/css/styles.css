@@ -192,8 +192,68 @@ footer{
     align-items: center;
 }
 
-#copyright-creditos p{
+footer img {
+    margin-left:  5px;
+}
+
+.section-footer{
+    width: 100%;
+    text-align: center;
+}
+
+.section-footer-copy {
+    width: 100%;
+    text-align: center;
+}
+
+.section-footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.section-footer p{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.section-footer nav ul a{
+    text-decoration: none;
+    color: black;
+}
+
+.section-footer h3{
+    margin-bottom: 0;
+}
+
+.caja-mercadoPago{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mercadoPago{
     margin: 0;
+}
+
+.icono-mercadoPago{
+    width: 22px;
+}
+
+.Copyright{
+    font-style: italic;
+    color: #222222
+}
+
+.boton-creditos{
+    text-decoration: none;
+    color: black;
+    padding: 10px 40px;
+    border-radius: 50px;
+    background-color: #85f7ff;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 /* --------- MEDIA QUERIES --------- */
@@ -394,6 +454,15 @@ footer{
         border: solid 1px #85f7ff;
         color: black;
         background-color: #85f7ff;
+    }
+    footer{
+        padding: 20px;
+    }
+    .section-footer-copy {
+        text-align: end;
+    }
+    .Copyright{
+        margin-right: 11px;
     }
 }
 
