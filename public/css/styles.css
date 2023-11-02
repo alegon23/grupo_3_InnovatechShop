@@ -125,8 +125,36 @@ header{
     display: none;
 }
 
+.caja-imagen-descuento{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px 20px 0 20px;
+}
+
+.descuento{
+    margin: 0;
+    background-color: #9E8FFF;
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top: -25px;
+    right: -25px;
+}
+
+.precio-original{
+    text-decoration: line-through;
+    color: gray;
+}
+
 .imagen-producto{
     width: 80%;
+    border-radius: 5px;
 }
 
 .caja-precio h4, .caja-precio h5{
@@ -296,6 +324,10 @@ footer img {
         width: 40%;
         margin: 10px 20px 20px 20px;
     }
+
+    .descuento{
+        font-size: 16px;
+    }
 }
 
 @media (min-width: 768px){
@@ -455,6 +487,11 @@ footer img {
         color: black;
         background-color: #85f7ff;
     }
+
+    .descuento{
+        font-size: 18px;
+    }
+
     footer{
         padding: 20px;
     }
@@ -463,6 +500,11 @@ footer img {
     }
     .Copyright{
         margin-right: 11px;
+    }
+
+    .boton-creditos:hover{
+        background-color: black;
+        color: white;
     }
 }
 
