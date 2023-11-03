@@ -18,9 +18,7 @@ header{
     padding: 10px;
 }
 
-#logo{
-    min-width: 70px;
-}
+
 
 #caja-busqueda{
     width: 100%;
@@ -90,6 +88,7 @@ header{
 
 #banner{
     width: 100%;
+    margin-bottom: 10px;
 }
 
 /* --------- MAIN --------- */
@@ -202,14 +201,20 @@ header{
 .lista-redes{
     display: flex;
     justify-content: center;
+    max-height: 180.5px;
 }
 
 .lista-redes a{
     font-size: 30px;
     color: black;
     margin: 20px;
+    transition: all 450ms;
 }
 
+.lista-redes a:hover {
+    font-size: 90px;
+    color: #9E8FFF;
+}
 /* --------- FOOTER --------- */
 
 footer{
@@ -249,6 +254,14 @@ footer img {
 .section-footer nav ul a{
     text-decoration: none;
     color: black;
+}
+
+.section-footer nav ul a:hover {
+    text-decoration: underline;
+}
+
+.section-footer nav ul a i:hover {
+    text-decoration: underline;
 }
 
 .section-footer h3{
@@ -325,6 +338,14 @@ footer img {
         margin: 10px 20px 20px 20px;
     }
 
+    .tarjeta-promocion{
+        min-height: 398px;
+    }
+
+    .tarjeta-articulo{
+        min-height: 407px;
+    }
+
     .descuento{
         font-size: 16px;
     }
@@ -340,7 +361,7 @@ footer img {
     }
 
     #barra-busqueda:hover{
-        box-shadow: 0px 0px 10px #ded9fa;
+        box-shadow: 0px 0px 30px #d1cbf7;
     }
 
     #boton-cuenta, #boton-carrito{
@@ -364,7 +385,7 @@ footer img {
         margin: 0 10px;
         padding: 10px 0;
         border-radius: 10px;
-        box-shadow: 0px 0px 10px #ded9fa;
+        box-shadow: 0px 0px 10px #d1cbf7;
     }
 
     .navbar-inferior a{
@@ -384,6 +405,14 @@ footer img {
     
     .tarjeta-articulo, .tarjeta-promocion{
         width: 25%;
+    }
+
+    .tarjeta-promocion{
+        min-height: 410px;
+    }
+
+    .tarjeta-articulo{
+        min-height: 396px;
     }
 
     section div i.icono-flecha-izquierda, section div i.icono-flecha-derecha{
@@ -424,6 +453,12 @@ footer img {
         font-size: 50px;
         color: black;
         margin: 30px;
+        transition: all 450ms;
+    }
+    
+    .lista-redes a:hover {
+        font-size: 90px;
+        color: #9E8FFF;
     }
 
     footer{
@@ -505,6 +540,9 @@ footer img {
     .boton-creditos:hover{
         background-color: black;
         color: white;
+    }
+    .tarjeta-articulo{
+        min-height: 400px;
     }
 }
 
