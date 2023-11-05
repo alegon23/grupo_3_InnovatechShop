@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- copio del index (home) los links de las letras/iconos etc-->
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+
+    <!-- cambio "/css/styles/.css" por registro.css-->
+    <link rel="stylesheet" href="/css/registro.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
     <title>Innovatech Shop - Registrarse</title>
 </head>
+
 <body>
     
+    <div class="signupFrm">
+        <img src="/images/Logo.png" alt="Logo" class="logo">
+        <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
+        y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
+        <form action="/registro" method='POST' class="form">
+
+            <h1 class="title"> ¡Bienvenido! </h1>
+
+            <p class="subtitle">Ingresá tus datos para crear tu cuenta</p>
+
+            <div class="contenedor-email">
+                <label for="email" class="label">Correo*</label>
+                <input type="email" name="email" class="input" placeholder="su@correo.com*">
+            </div>
+
+            <div class="datos-restantes">
+                <div class="datos">
+                    <label for="nombre" class="label">Nombre*</label>
+                    <input type="text" name="nombre" class="input" placeholder="Nombre*">
+                </div>
+
+                <div class="datos">
+                    <label for="apellido" class="label">Apellido*</label>
+                    <input type="text" name="apellido" class="input" placeholder="Apellido*">
+                </div>
+
+                <div class="datos">
+                    <label for="dni" class="label">DNI*</label>
+                    <input type="text" name="dni" class="input" placeholder="DNI*">
+                </div>
+
+                <div class="datos">
+                    <label for="fecha">Fecha de nacimiento*</label>
+                    <input type="date" name="fecha" placeholder="DD/MM/AAAA">
+                </div>
+
+
+                <div class="datos">
+                    <label for="telefono-fijo" class="label">Telefono fijo*</label>
+                    <input type="text" name="telefono-fijo" class="input" placeholder="Telefono fijo*">
+                </div>
+
+
+                <div class="datos">
+                    <label for="cod-area" class="label">Cod. Area/Movil*</label>
+                    <input type="text" name="cod-area" class="input" placeholder="Codigo* Movil/WhatsApp*">
+                </div>
+
+
+            </div>
+
+            <!-- agrego el boton registrarne-->
+            <div class="boton">
+                <input type="submit" class='botonenviar' value="Registrarme">
+            </div>
+            <!-- <a href> es para indicar que es un hipervinculo/enlace-->
+            <p class="pregunta">¿Ya tenés cuenta? Iniciá sesión <a href="#">aquí</a></p>
+
+            <div class="pie-formulario">
+                <div> <p class="ayuda"><i class="bi bi-question-circle"></i>¿Necesitas ayuda?</p>
+                </div>
+                <p class="copyright">Copyright 2023</p>
+            </div>
+        </form>
+        
+   
+
+    </div>
+
 </body>
+
 </html>
