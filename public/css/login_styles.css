@@ -1,0 +1,234 @@
+body {
+  background: rgb(133, 247, 255);
+  background: radial-gradient(
+    circle,
+    rgba(133, 247, 255, 1) 0%,
+    rgba(158, 143, 255, 0.5) 100%
+  );
+}
+
+#main-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  min-height: 640px;
+}
+
+.logo-login {
+  position: absolute;
+  width: 120px;
+  top: -50px;
+  transition: transform 500ms;
+}
+
+.logo-login:hover {
+  transform: rotateY(360deg);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 5px black;
+  border-radius: 60px;
+  width: 90%;
+  padding: 30px;
+  background-color: white;
+  position: relative;
+}
+
+.caja-formulario {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+}
+
+.caja-formulario h2 {
+  font-size: 23px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+form input[type="email"], form input[type="password"]{
+  border: none;
+  border-bottom: solid 1px black;
+  margin: 5px 0 25px 0;
+  text-align: center;
+}
+
+form input:focus {
+  outline: none;
+  border-bottom: solid 2px #9e8fff;
+}
+
+form input:focus::placeholder {
+  color: transparent;
+}
+
+form button {
+  border: none;
+  border-radius: 100px;
+  text-align: center;
+  background-color: #9e8fff;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 15px;
+}
+
+form button:hover {
+    background-color: black;
+    color: white;
+}
+
+form button:active {
+    background-color: #85f7ff;
+    color: black;
+}
+
+.recordar-usuario{
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.recordar-usuario input{
+    accent-color: #9e8fff;
+}
+
+.recordar-usuario label {
+    margin: 2px 0 0 5px;
+}
+
+.olvido-password{
+    font-size: 12px;
+    text-decoration: none;
+    color:#007fff;
+    margin: 5px;
+}
+
+.olvido-password:hover{
+    text-decoration: underline;
+}
+
+.crear-cuenta{
+    font-size: 12px;
+    margin: 10px;
+}
+
+.crear-cuenta p{
+    margin: 0 0 2px 0;
+}
+
+.link-registro{
+    text-decoration: none;
+    color:#007fff;
+}
+
+.link-registro:hover{
+    text-decoration: underline;
+}
+
+hr {
+  width: 100%;
+}
+
+.footer-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.footer-form a {
+  text-decoration: none;
+  color: #007fff;
+}
+
+.footer-form a:hover {
+  text-decoration: underline;
+}
+
+.footer-form p {
+  margin: 0;
+  color: gray;
+  font-style: italic;
+}
+
+@media (min-width: 480px) {
+    .crear-cuenta{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .crear-cuenta p{
+        margin: 0 3px 0 0;
+    }
+
+    .recordar-usuario, .olvido-password{
+        font-size: 14px;
+    }
+    
+    .footer-form {
+      font-size: 13px;
+    }
+}
+
+@media (min-width: 768px){
+    .container {
+        width: 60%;
+        padding: 30px 50px;
+      }
+}
+
+@media (min-width: 992px){
+    .container {
+        width: 50%;
+      }
+
+    .caja-formulario{
+        font-size: 17px;
+    }
+
+    .recordar-usuario, .olvido-password, .crear-cuenta{
+        font-size: 16px;
+    }
+    
+    .footer-form {
+      font-size: 15px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container{
+        padding: 30px 80px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .caja-formulario{
+        font-size: 18px;
+    }
+
+    .recordar-usuario, .olvido-password, .crear-cuenta{
+        font-size: 17px;
+    }
+    
+    .footer-form {
+      font-size: 16px;
+    }
+}

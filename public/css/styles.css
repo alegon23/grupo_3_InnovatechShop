@@ -6,16 +6,17 @@
 /* ! --------- HOME --------- */
 
 /* --------- HEADER --------- */
-header{
-    padding-bottom: 15px;
-}
-
 .navbar-superior{
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    justify-content: space-between;
+}
+
+.menu-y-logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
 }
 
 #logo{
@@ -26,30 +27,28 @@ header{
     width: 100px;
 }
 
-
 #caja-busqueda{
-    width: 100%;
+    display: none;
+}
+
+.iconos-movil{
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 28px;
+    justify-content: flex-end;
+    width: 40%;
 }
 
-#barra-busqueda{
-    width: 100%;
-    border-radius: 10px;
-    text-align: center;
-    padding: 8px 0px;
-    font-size: 12px;
-}
-
-.boton-busqueda{
+#icono-busqueda{
+    border: #9E8FFF 1px solid;
+    max-width: 150px;
     border-radius: 100px;
-    border-color: transparent;
-    padding: 3px;
-    background-color: white;
-    position: relative;
-    right: 28px;
+    text-align: center;
+    margin: 5px;
+    background-color: #9E8FFF;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
 }
 
 #boton-cuenta, #boton-carrito{
@@ -69,7 +68,7 @@ header{
     font-size: 18px;
 }
 
-#boton-cuenta-movil:active, #boton-carrito-movil:active{
+#icono-busqueda:active, #boton-cuenta-movil:active, #boton-carrito-movil:active{
     border: 1px solid #85f7ff;
     color: black;
     background-color: #85f7ff;
@@ -86,9 +85,8 @@ header{
     border-radius: 3px;
     font-size: 20px;
     text-align: center;
-    display: block;
     max-width: 40px;
-    margin: auto;
+    margin: 5px;
 }
 
 /* --------- BANNER --------- */
@@ -306,35 +304,6 @@ footer img {
 
 /* --------- MEDIA QUERIES --------- */
 @media (min-width: 480px) {
-    #logo{
-        min-width: 130px;
-    }
-
-    #boton-cuenta, #boton-carrito{
-        display: inline;
-        margin-right: 5px;
-        border: #9E8FFF 1px solid;
-        border-radius: 100px;
-        text-align: center;
-        background-color: #9E8FFF;
-        padding: 10px;
-        text-decoration: none;
-        color: black;
-        width: 40%;
-        font-size: 12px;
-        min-width: 80px;
-    }
-
-    #boton-cuenta:active, #boton-carrito:active{
-        border: 1px solid #85f7ff;
-        color: black;
-        background-color: #85f7ff;
-    }
-    
-    #boton-cuenta-movil, #boton-carrito-movil{
-        display: none;
-    }
-
     .lista-productos, .lista-promociones{
         flex-direction: row;
         flex-wrap: wrap;
@@ -359,16 +328,29 @@ footer img {
 }
 
 @media (min-width: 768px){
-    #logo-letras{
-        display: none;
-    }
-    
-    #logo{
-        display: inline;
-        min-width: 150px;
+    header{
+        padding-bottom: 15px;
     }
 
+    .navbar-superior{
+        flex-wrap: nowrap;
+        padding: 10px;
+    }
+
+    #caja-busqueda{
+        display: block;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 28px;
+    }
+    
     #barra-busqueda{
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        padding: 8px 0px;
         font-size: 14px;
     }
 
@@ -376,13 +358,43 @@ footer img {
         box-shadow: 0px 0px 30px #d1cbf7;
     }
 
-    #boton-cuenta, #boton-carrito{
-        width: 30%;
-        font-size: 14px;
+    .boton-busqueda{
+        border-radius: 100px;
+        border-color: transparent;
+        padding: 3px;
+        background-color: white;
+        position: relative;
+        right: 28px;
     }
 
-    #menu-hamburguesa{
+    .iconos-movil, .menu-y-logo, #menu-hamburguesa, #logo-letras{
         display: none;
+    }
+    
+    #logo{
+        display: inline;
+        min-width: 100px;
+    }
+
+    #boton-cuenta, #boton-carrito{
+        display: inline;
+        margin-right: 5px;
+        border: #9E8FFF 1px solid;
+        border-radius: 100px;
+        text-align: center;
+        background-color: #9E8FFF;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        width: 30%;
+        font-size: 14px;
+        min-width: 80px;
+    }
+
+    #boton-cuenta:active, #boton-carrito:active{
+        border: 1px solid #85f7ff;
+        color: black;
+        background-color: #85f7ff;
     }
 
     .navbar-inferior{
