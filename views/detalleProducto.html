@@ -8,6 +8,7 @@
     
         <link rel="stylesheet" href="/css/normalize.css">
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/detalleProducto.css">
     
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
@@ -16,30 +17,114 @@
 <body>
     <!--  !HEADER  -->
     <header>
+        <div class="navbar-superior">
 
+            <div class="menu-y-logo">
+                <a href="#" id="menu-hamburguesa"><i class="bi bi-list"></i></a>
+                <img src="/images/Logo-letras.png" alt="Logo" id="logo-letras">
+            </div>
+            
+            <img src="/images/Logo.png" alt="Logo" id="logo">
+            
+            <form id="caja-busqueda" action="/" method="get">
+                <input type="text" id="barra-busqueda" placeholder="Buscar productos...">
+                <button class="boton-busqueda"><i class="bi bi-search icono-busqueda"></i></button>
+            </form>
+
+            <div class="iconos-movil">
+                <a href="#" id="icono-busqueda"><i class="bi bi-search icono-busqueda"></i></a>
+            
+                <a href="/login" id="boton-cuenta-movil"><i class="bi bi-person"></i></a>
+                <a href="/carrito" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
+            </div>
+
+            <a href="/login" id="boton-cuenta"><i class="bi bi-person"></i> Ingresar</a>
+            <a href="/carrito" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>
+        </div>
+        <nav class="navbar-inferior">
+            <ul>
+                <li><a href="#">Celulares <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Monitores & TVs <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Tablets <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Notebooks <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Hardware <i class="bi bi-caret-down"></i></a></li>
+                <li><a href="#">Accesorios <i class="bi bi-caret-down"></i></a></li>
+            </ul>
+        </nav>
     </header>
     <!-- * FIN HEADER -->
 
-    <!--!  MAIN  -->
-    <main>
-        <div class="foto-producto">
+    <!-- ! MAIN  -->
+    <main id="main-detalle">
 
+        <div class="breadcrums">
+            <h4>Home</h4>
+            <i class="bi bi-chevron-right"></i>
+            <h4>Monitores & TVs</h4>
+            <i class="bi bi-chevron-right"></i>
+            <h4>Samsung</h4>
         </div>
 
-        <div class="detalle-producto">
+        <h2 id="nombre-producto">Smart TV 65 Samsung 4K AU7000</h2>
 
+        <div class="info-principal">
+            <div class="fotos-producto">
+                fotos
+            </div>
+
+            <div class="detalle-producto">
+                <h4>Smart TV 65 Samsung 4K AU7000</h4>
+                <h4>450.000</h4>
+                <p><i class="bi bi-truck"></i> Ver los medios de pago</p>
+                <p><i class="bi bi-shield-fill-check"></i> Garantia de 12 meses</p>
+                <p><i class="bi bi-check2"></i> Stock disponible</p>
+                <p>Envios a todo el país</p>
+                <a href="/carrito">Comprar ahora</a>
+                <a href="#">Agregar al carrito</a>
+            </div>
         </div>
 
         <hr>
 
         <div class="caracteristicas-producto">
-
+            <h3>Características de Smart TV 65 Samsung 4K AU7000</h3>
+            <div>
+                <div class="caracteristicas-arriba">
+                    <p><i class="bi bi-pip"></i> Resolución: 4K</p>
+                    <p><i class="bi bi-tv"></i> Tipo de pantalla: LED</p>
+                </div>
+                <div class="caracteristicas-abajo">
+                    <p class="descripcion-corta"><i class="bi bi-google-play"></i> Aplicaciones integradas</p>
+                    <p class="descripcion-larga"><i class="bi bi-google-play"></i> Aplicaciones integradas: Web browser, Gallery, Netflix, Prime Video, Apple TV, YouTube</p>
+                    <p><i class="bi bi-hdmi"></i> Cantidad de puertos HDMI: 3</p>
+                </div>
+                
+            </div>
         </div>
 
         <hr>
 
-        <div class="descripcion">
+        <div class="descripcion-producto">
+            <h3>Descripción</h3>
+            <section>
+                <h4>Viví en 4K</h4>
+                <p>La cantidad de pixeles que ofrece es 4 veces mayor que la Full HD, ¿el resultado? Escenas mucho más realistas y con un nivel de detalle increíble. Ahora vas a conocer una aventura de inmersión que no va a dejar de sorprenderte.</p>
+            </section>
 
+            <section>
+                <h4>Más allá de ver televisión</h4>
+                <p>Su función Screen Share permite duplicar la pantalla de tu smartphone, tablet o PC para que aparezca en la TV. De esta forma vas a poder visualizar todo tipo de contenido: material audiovisual, documentos de trabajo, correos electrónicos y más.</p>
+            </section>
+            
+            <section>
+                <h4>Conexión invisible</h4>
+                <p>Este modelo está pensado para que puedas despejar tu campo visual. El sector donde coloques el televisor se verá mucho más prolijo porque los cables estarán ocultos, ordenados y organizados, ¡vas a notar la diferencia!</p>
+            </section>
+
+            <section>
+                <h4>Un sonido que te envuelve</h4>
+                <p>Vas a sentir que proviene desde todas las direcciones posibles, lo cual enriquece la percepción del mismo. Los diálogos de tus series de fin de semana o la música de tus cantantes preferidos van a cobrar otro significado.</p>
+            </section>
         </div>
 
     </main>
