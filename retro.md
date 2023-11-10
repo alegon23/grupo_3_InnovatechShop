@@ -1,6 +1,8 @@
 # Retrospectiva
 La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar"
+<br>
 <img src="https://choice.ar/wp-content/uploads/2021/07/choice-redes_abrilestrella-800x800.png" alt="retrospectiva de la estrella de mar" width=450px>
+<br>
 Esta metodología plantea las siguientes cuestiones:
 
 ### Comenzar a hacer: 
