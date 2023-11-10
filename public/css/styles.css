@@ -352,10 +352,19 @@ footer img {
         text-align: center;
         padding: 8px 0px;
         font-size: 14px;
+        border: solid 2px #9E8FFF;
     }
 
-    #barra-busqueda:hover{
+    #barra-busqueda:hover, #barra-busqueda:focus{
         box-shadow: 0px 0px 30px #d1cbf7;
+    }
+
+    #barra-busqueda:focus{
+        outline: none;
+    }
+
+    #barra-busqueda:focus::placeholder{
+        color: transparent;
     }
 
     .boton-busqueda{
@@ -365,6 +374,7 @@ footer img {
         background-color: white;
         position: relative;
         right: 28px;
+        color: gray;
     }
 
     .iconos-movil, .menu-y-logo, #menu-hamburguesa, #logo-letras{

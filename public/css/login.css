@@ -57,10 +57,14 @@ form {
   width: 100%;
 }
 
+.label-password {
+  margin: 25px 0 0 0;
+}
+
 form input[type="email"], form input[type="password"]{
   border: none;
   border-bottom: solid 1px black;
-  margin: 5px 0 25px 0;
+  margin: 5px 0;
   text-align: center;
 }
 
@@ -73,6 +77,21 @@ form input:focus::placeholder {
   color: transparent;
 }
 
+/* PARA FEEDBACK NEGATIVO */
+input[type="email"]:invalid, input[type="password"]:invalid{
+  border-bottom: solid 2px rgba(255, 0, 0, 0.8);
+}
+
+span.feedback-negativo{
+  display: none;
+  color: rgba(255, 0, 0, 0.8);
+  font-size: 11px;
+}
+
+input[type="email"]:invalid + .feedback-negativo, input[type="password"]:invalid + .feedback-negativo{
+  display: block;
+}
+
 form button {
   border: none;
   border-radius: 100px;
@@ -81,7 +100,7 @@ form button {
   padding: 10px;
   text-decoration: none;
   color: black;
-  margin-bottom: 15px;
+  margin: 25px 0 15px 0;
 }
 
 form button:hover {
@@ -193,6 +212,12 @@ hr {
         width: 60%;
         padding: 30px 50px;
       }
+
+    span.feedback-negativo{
+      display: none;
+      color: rgba(255, 0, 0, 0.8);
+      font-size: 12px;
+    }
 }
 
 @media (min-width: 992px){
