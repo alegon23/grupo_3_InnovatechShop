@@ -22,75 +22,63 @@
 </head>
 
 <body>
-    
-    <div class="signupFrm">
-        <img src="/images/Logo.png" alt="Logo" class="logo">
-        <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
-        y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
-        <form action="/registro" method='POST' class="form">
+    <main class="main-registro">
+        <div class="contenedor-form">
+            <img src="/images/Logo.png" alt="Logo" class="logo">
 
-            <h1 class="title"> ¡Bienvenido! </h1>
-
-            <p class="subtitle">Ingresá tus datos para crear tu cuenta</p>
-
-            <div class="contenedor-email">
-                <label for="email" class="label">Correo*</label>
-                <input type="email" name="email" class="input" placeholder="su@correo.com*">
-            </div>
-
-            <div class="datos-restantes">
-                <div class="datos">
-                    <label for="nombre" class="label">Nombre*</label>
-                    <input type="text" name="nombre" class="input" placeholder="Nombre*">
+            <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
+            y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
+            <div class="form">
+                <div>
+                    <h1 class="title"> ¡Bienvenido! </h1>
+                    <p class="subtitle">Ingresá tus datos para crear tu cuenta</p>
                 </div>
+                
+                <form action="/" method='POST' class="contenedor-registro">
+                        <div class="contenedor-datos">
+                            <label for="nombre" class="label">Nombre</label>
+                            <input type="text" name="nombre" class="input" placeholder="Nombre">
 
-                <div class="datos">
-                    <label for="apellido" class="label">Apellido*</label>
-                    <input type="text" name="apellido" class="input" placeholder="Apellido*">
+                            <label for="apellido" class="label">Apellido</label>
+                            <input type="text" name="apellido" class="input" placeholder="Apellido">
+                        </div>
+                        
+                        <div class="contenedor-datos">
+                            <label for="email" class="label">Correo</label>
+                            <input type="email" name="email" class="input" placeholder="su@correo.com*">
+
+                            <label for="fecha">Fecha de nacimiento</label>
+                            <input type="date" name="fecha" placeholder="DD/MM/AAAA">
+                         </div class="contenedor-datos">
+
+                         <div class="contenedor-datos">
+                            <label for="contraseña">Contraseña</label>
+                            <input type="password" name="contraseña" placeholder="••••••••••">
+                        
+                            <label for="confirmar-contraseña">Confirmar contraseña</label>
+                            <input type="password" name="confirmar-contraseña" placeholder="••••••••••">
+                        </div>
+                        <!-- agrego el boton registrarne-->
+                    
+                        <button type="submit" class="boton-registro">Registrarme</button>
+                        <!--<input type="submit" class='botonenviar' value="Registrarme">-->
+                </form>
+               
+                <div class="iniciar-sesion">
+                    <!-- <a href> es para indicar que es un hipervinculo/enlace-->
+                    <p>¿Ya tenés cuenta?</p>
+                    <a href="/login" class="link-aqui">Iniciá sesión aquí</a>
                 </div>
-
-                <div class="datos">
-                    <label for="dni" class="label">DNI*</label>
-                    <input type="text" name="dni" class="input" placeholder="DNI*">
+                
+                <hr>
+            
+                <div class="pie-formulario">
+                    <a href="#" class="ayuda"><i class="bi bi-question-circle"></i>¿Necesitas ayuda?</a>
+                    <p class="copyright">Copyright © 2023</p>
                 </div>
-
-                <div class="datos">
-                    <label for="fecha">Fecha de nacimiento*</label>
-                    <input type="date" name="fecha" placeholder="DD/MM/AAAA">
-                </div>
-
-
-                <div class="datos">
-                    <label for="telefono-fijo" class="label">Telefono fijo*</label>
-                    <input type="text" name="telefono-fijo" class="input" placeholder="Telefono fijo*">
-                </div>
-
-
-                <div class="datos">
-                    <label for="cod-area" class="label">Cod. Area/Movil*</label>
-                    <input type="text" name="cod-area" class="input" placeholder="Codigo* Movil/WhatsApp*">
-                </div>
-
-
-            </div>
-
-            <!-- agrego el boton registrarne-->
-            <div class="boton">
-                <input type="submit" class='botonenviar' value="Registrarme">
-            </div>
-            <!-- <a href> es para indicar que es un hipervinculo/enlace-->
-            <p class="pregunta">¿Ya tenés cuenta? Iniciá sesión <a href="#">aquí</a></p>
-
-            <div class="pie-formulario">
-                <div> <p class="ayuda"><i class="bi bi-question-circle"></i>¿Necesitas ayuda?</p>
-                </div>
-                <p class="copyright">Copyright 2023</p>
-            </div>
-        </form>
-        
-   
-
-    </div>
+            </div>             
+        </div>
+    </main>
 
 </body>
 
