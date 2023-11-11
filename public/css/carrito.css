@@ -285,7 +285,8 @@ hr {
 
 .caja-entrega input:focus {
     outline: none;
-    border-bottom: solid 2px #5d44fd;
+    border-bottom: solid 2px #9E8FFF;
+    opacity: 1;
 }
 
 .caja-entrega input:focus::placeholder{
