@@ -211,11 +211,9 @@ hr {
     .container {
         width: 60%;
         padding: 30px 50px;
-      }
+    }
 
     span.feedback-negativo{
-      display: none;
-      color: rgba(255, 0, 0, 0.8);
       font-size: 12px;
     }
 }

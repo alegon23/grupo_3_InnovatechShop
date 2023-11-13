@@ -35,33 +35,40 @@
                 </div>
                 
                 <form action="/" method='POST' class="contenedor-registro">
-                        <div class="contenedor-datos">
+                    <div class="datos">      
+                        <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre">
-
-                            <label for="apellido" class="label">Apellido</label>
-                            <input type="text" name="apellido" class="input" placeholder="Apellido">
-                        </div>
-                        
-                        <div class="contenedor-datos">
-                            <label for="email" class="label">Correo</label>
-                            <input type="email" name="email" class="input" placeholder="su@correo.com*">
+                            <input type="text" name="nombre" class="input" placeholder="Nombre" required>
+                            <span class="feedback-negativo">El nombre es demasiado corto</span>
 
                             <label for="fecha">Fecha de nacimiento</label>
-                            <input type="date" name="fecha" placeholder="DD/MM/AAAA">
-                         </div class="contenedor-datos">
-
-                         <div class="contenedor-datos">
+                            <input type="date" name="fecha" placeholder="DD/MM/AAAA" required>
+                            <span class="feedback-negativo">Ingrese una fecha válida</span>
+                        
                             <label for="contraseña">Contraseña</label>
-                            <input type="password" name="contraseña" placeholder="••••••••••">
+                            <input type="password" name="contraseña" placeholder="••••••••••" required>
+                            <span class="feedback-negativo">Ingrese una contraseña válida</span>
+                        </div>
+                        
+                        <div class="contenedor-datos2">
+                            <label for="apellido" class="label">Apellido</label>
+                            <input type="text" name="apellido" class="input" placeholder="Apellido" required>
+                            <span class="feedback-negativo">El apellido es demasiado corto</span>
+                    
+                            <label for="email" class="label">Correo</label>
+                            <input type="email" name="email" class="input" placeholder="su@correo.com*" required>
+                            <span class="feedback-negativo">Ingrese un mail válido</span>
                         
                             <label for="confirmar-contraseña">Confirmar contraseña</label>
-                            <input type="password" name="confirmar-contraseña" placeholder="••••••••••">
-                        </div>
-                        <!-- agrego el boton registrarne-->
-                    
+                            <input type="password" name="confirmar-contraseña" placeholder="••••••••••" required>
+                            <span class="feedback-negativo">Las contraseñas no coinciden</span>
+                        </div>  
+                    </div>
+
+                    <div>
                         <button type="submit" class="boton-registro">Registrarme</button>
-                        <!--<input type="submit" class='botonenviar' value="Registrarme">-->
+                    </div>
+                        
                 </form>
                
                 <div class="iniciar-sesion">
@@ -81,5 +88,4 @@
     </main>
 
 </body>
-
 </html>
