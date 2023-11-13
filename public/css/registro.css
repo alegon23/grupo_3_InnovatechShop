@@ -17,7 +17,7 @@ body {
     justify-content: center;
     height: 100vh;
     align-items: center;
-    min-height: 640px;
+    min-height: 900px;
 }
 
 .contenedor-form {
@@ -236,6 +236,10 @@ body {
         width: 60%;
     }
 
+    .contenedor-registro{
+        font-size: 17px;
+    }
+
     .iniciar-sesion {
         font-size: 16px;
     }
@@ -250,7 +254,7 @@ body {
         max-width: 1000px;
         margin: auto;
     }
-
+   
     .contenedor-datos1 {
         margin-right: 8px;
     }
@@ -263,7 +267,7 @@ body {
         width: 70%;
     }
 
-    .pie-formulario {
+    /*.pie-formulario {
         font-size: 16px;
-    }
+    }*/
 }

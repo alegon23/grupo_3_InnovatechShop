@@ -1,9 +1,11 @@
-# Retrospectiva
-La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar"
+# Retrospectivas
+La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que plantea 5 cuestiones:
 <br>
 <img src="https://choice.ar/wp-content/uploads/2021/07/choice-redes_abrilestrella-800x800.png" alt="retrospectiva de la estrella de mar" width=450px>
 <br>
-Esta metodología plantea las siguientes cuestiones:
+
+## Sprint 2
+Estas son las principales conclusiones con respecto al Sprint 2
 
 ### Comenzar a hacer: 
 - Establecer días y horarios fijos de reuniones los fines de semana y llevarlas a cabo aunque no todos los integrantes del grupo puedan. Al menos solo un día sería lo ideal que estemos todos para hacer una weekly.
