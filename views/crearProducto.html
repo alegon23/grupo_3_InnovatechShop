@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link href="https://fonts.googleapis.com/css2?family=Gabarito&display=swap" rel="stylesheet">
+    
+        <link rel="stylesheet" href="/css/normalize.css">
+        <link rel="stylesheet" href="/css/producto.css">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+        <title>Innovatech Shop - Crear Producto</title>
+    </head>
+<body>
+    <main class="main-registro">
+        <div class="contenedor-form">
+            <img src="/images/Logo.png" alt="Logo" class="logo">
+
+            <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
+            y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
+            <div class="form">
+                <h2 class="title">Crear Producto</h2>
+                
+                <form action="/" method='POST' class="contenedor-registro">
+                    <div class="datos">      
+                        <div class="contenedor-datos1">
+                            <label for="nombre" class="label">Nombre del producto</label>
+                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" required>
+                            <span class="feedback-negativo">El nombre es demasiado corto</span>
+
+                            <label for="categoria">Categoría</label>
+                            <select name="categoria">
+                                <option value="seleccionar" selected>Seleccionar Categoria</option>
+                                <option value="celulares">Celulares</option>
+                                <option value="monitores-tvs">Monitores & TVs</option>
+                                <option value="Celulares">Tablets</option>
+                                <option value="Celulares">Notebooks</option>
+                                <option value="Celulares">Hardware</option>
+                                <option value="Celulares">Accesorios</option>
+                            </select>                            
+                        
+                            <label for="precio">Precio</label>
+                            <input type="number" name="precio" placeholder="$00,00" required>
+
+                            
+                        </div>
+
+                        
+                        <div class="contenedor-datos2">
+                            <label for="imagen-producto" class="label">Imagen</label>
+                            <input type="file" name="imagen-producto" accept=".jpg, .jpeg, .png">
+                    
+                            <label for="marca" class="label">Marca del Producto</label>
+                            <input type="text" name="marca" class="input" placeholder="Marca del producto" required>
+
+                            <input type="checkbox" name="descuento" value="descuento">
+                        <label for="descuento">Descuento</label>
+
+                        <label for="porcentaje" class="label">Porcentaje de descuento</label>
+                        <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
+                        
+                            
+                        </div>  
+                    </div>
+
+                    <label for="descripcion">Descripción del Producto</label>
+                            <textarea name="descripcion" cols="30" rows="5"></textarea>
+
+                    <div>
+                        <button type="submit" class="boton-registro">Crear Producto</button>
+                    </div>
+                        
+                </form>
+               
+                
+                <hr>
+            
+                <div class="pie-formulario">
+                    <a href="#" class="ayuda"><i class="bi bi-question-circle"></i> ¿Necesitas ayuda?</a>
+                    <p class="copyright">Copyright © 2023</p>
+                </div>
+            </div>             
+        </div>
+    </main>
+</body>
+</html>

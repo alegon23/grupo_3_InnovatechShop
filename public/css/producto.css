@@ -1,0 +1,273 @@
+/* el * es para que se aplique a todo el regustro */
+* {
+    box-sizing: border-box;
+    font-family: 'Gabarito';
+}
+
+body {
+    background: radial-gradient(
+        circle,
+        rgba(133, 247, 255, 1) 0%,
+        rgba(158, 143, 255, 0.5) 100%
+    );
+}
+
+.main-registro {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    min-height: 900px;
+}
+
+.contenedor-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 5px black;
+    border-radius: 60px;
+    width: 90%;
+    padding: 30px;
+    background-color: white;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    width: 120px;
+    top: -50px;
+    transition: transform 500ms;
+}
+
+.logo:hover {
+    transform: rotateY(360deg);
+}
+
+.form {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+    font-size: 15px;
+}
+
+.title {
+    text-align: center;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #9E8FFF;
+    margin: 5px 0 12px 0;
+}
+
+.contenedor-registro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.datos {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.contenedor-datos1, .contenedor-datos2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.contenedor-datos1 label, .contenedor-datos2 label {
+    margin-top: 10px;
+}
+
+.feedback-negativo {
+    display: none;
+    color: rgba(255, 0, 0, 0.8);
+    font-size: 11px;;
+}
+
+.contenedor-datos1 input:invalid, .contenedor-datos2 input:invalid {
+    border-bottom: solid 2px rgba(255, 0, 0, 0.8);
+}
+
+.contenedor-datos1 input:invalid + .feedback-negativo {
+    display: block;
+}
+
+.contenedor-datos2 input:invalid + .feedback-negativo {
+    display: block;
+}
+
+.contenedor-datos1 input, .contenedor-datos2 input {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px black;
+    margin: 5px 0;
+}
+
+.contenedor-datos1 input:focus, .contenedor-datos2 input:focus {
+    outline: none;
+    border-bottom: solid 2px #9E8FFF;
+}
+
+.boton-registro {
+    border: none;
+    border-radius: 100px;
+    text-align: center;
+    background-color: #9e8fff;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    margin: 25px 0 15px 0;
+    width: 100%;
+}
+
+.boton-registro:hover {
+    background-color: black;
+    color: white;
+}
+
+.boton-registro:active {
+    color: black;
+    background-color: #85f7ff;
+}
+
+.iniciar-sesion {
+    font-size: 12px;
+    margin: 10px;
+}
+
+.iniciar-sesion p {
+    margin: 0 0 2px 0;
+}
+
+.link-aqui {
+    text-decoration: none;
+    color: #007fff;
+}
+
+.link-aqui:hover {
+    text-decoration: underline;
+}
+
+.pie-formulario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.pie-formulario a {
+    text-decoration: none;
+    color: #007fff;
+}
+
+.pie-formulario a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 0;
+    color: gray;
+    font-style: italic;
+}
+
+@media (min-width: 480px) {
+    .contenedor-form {
+        width: 80%;
+    }
+    
+    .iniciar-sesion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+    
+    .iniciar-sesion p {
+        margin: 0 3px 0 0;
+    }
+
+    .pie-formulario {
+        font-size: 13px;
+    }
+}
+
+@media(min-width: 768px) {
+    .contenedor-form {
+        width: 70%;
+        padding: 30px 30px;
+    }
+
+    .datos {
+        flex-direction: row;
+    }
+    
+    .contenedor-datos1 {
+        margin-right: 5px;
+    }
+    
+    .contenedor-datos2 {
+        margin-left: 5px;
+    }
+
+    .feedback-negativo {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 992px) {
+    .contenedor-form {
+        width: 60%
+    }
+
+    .boton-registro {
+        width: 60%;
+    }
+
+    .contenedor-registro{
+        font-size: 17px;
+    }
+
+    .iniciar-sesion {
+        font-size: 16px;
+    }
+
+    .pie-formulario {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .contenedor-form {
+        max-width: 1000px;
+        margin: auto;
+    }
+   
+    .contenedor-datos1 {
+        margin-right: 8px;
+    }
+    
+    .contenedor-datos2 {
+        margin-left: 8px;
+    }
+
+    .boton-registro {
+        width: 70%;
+    }
+
+    /*.pie-formulario {
+        font-size: 16px;
+    }*/
+}

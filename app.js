@@ -30,3 +30,7 @@ app.get('/carrito', (req, res) =>{
 app.get('/detalleProducto', (req, res) =>{
     res.sendFile(path.resolve(__dirname, './views/detalleProducto.html'))
 });
+
+app.get('/crearProducto', (req, res) =>{
+    res.sendFile(path.resolve(__dirname, './views/crearProducto.html'))
+});
