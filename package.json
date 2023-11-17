@@ -2,10 +2,10 @@
   "name": "grupo_3_innovatechshop",
   "version": "1.0.0",
   "description": "Venta de productos tecnológicos. Aquí podrás encontrar:\r - **Celulares**\r - **Tablets**\r - **Notebooks**\r - **PCs**\r - **Monitores & TVs**\r - **Accesorios**",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
