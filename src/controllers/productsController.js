@@ -2,13 +2,13 @@ const path = require('path');
 
 const productsController = {
     carrito: (req, res) =>{
-        res.sendFile(path.resolve('./', './src/views/products/carrito.html'));
+        res.render(path.resolve('./', './src/views/products/carrito'));
     },
     detalle: (req, res) =>{
-        res.sendFile(path.resolve('./', './src/views/products/detalleProducto.html'))
+        res.render(path.resolve('./', './src/views/products/detalleProducto'))
     },
     crear: (req, res) =>{
-        res.sendFile(path.resolve('./', './src/views/products/crearProducto.html'))
+        res.render(path.resolve('./', './src/views/products/crearProducto'))
     },
 }
 
