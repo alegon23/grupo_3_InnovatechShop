@@ -1,58 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <link href="https://fonts.googleapis.com/css2?family=Gabarito&display=swap" rel="stylesheet">
-    
-        <link rel="stylesheet" href="/css/normalize.css">
-        <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/detalleProducto.css">
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
-        <title>Innovatech Shop - Detalle Producto</title>
-    </head>
+
+<%- include('../partials/head', {title: "- Detalle Producto", cssFile: "detalleProducto", cssHome: "styles"}) %>
+
 <body>
     <!--  !HEADER  -->
-    <header>
-        <div class="navbar-superior">
-
-            <div class="menu-y-logo">
-                <a href="#" id="menu-hamburguesa"><i class="bi bi-list"></i></a>
-                <img src="/images/Logo-letras.png" alt="Logo" id="logo-letras">
-            </div>
-            
-            <img src="/images/Logo.png" alt="Logo" id="logo">
-            
-            <form id="caja-busqueda" action="/" method="get">
-                <input type="text" id="barra-busqueda" placeholder="Buscar productos...">
-                <button class="boton-busqueda"><i class="bi bi-search icono-busqueda"></i></button>
-            </form>
-
-            <div class="iconos-movil">
-                <a href="#" id="icono-busqueda"><i class="bi bi-search icono-busqueda"></i></a>
-            
-                <a href="../users/login" id="boton-cuenta-movil"><i class="bi bi-person"></i></a>
-                <a href="../products/carrito" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
-            </div>
-
-            <a href="../users/login" id="boton-cuenta"><i class="bi bi-person"></i> Ingresar</a>
-            <a href="../products/carrito" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>
-        </div>
-
-        <nav class="navbar-inferior">
-            <ul>
-                <li><a href="#">Celulares <i class="bi bi-caret-down"></i></a></li>
-                <li><a href="#">Monitores & TVs <i class="bi bi-caret-down"></i></a></li>
-                <li><a href="#">Tablets <i class="bi bi-caret-down"></i></a></li>
-                <li><a href="#">Notebooks <i class="bi bi-caret-down"></i></a></li>
-                <li><a href="#">Hardware <i class="bi bi-caret-down"></i></a></li>
-                <li><a href="#">Accesorios <i class="bi bi-caret-down"></i></a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('../partials/header') %>
     <!-- * FIN HEADER -->
 
     <!-- ! MAIN  -->
@@ -142,41 +95,7 @@
     </main>
 
     <!--  !FOOTER   -->
-    <footer>
-        <section class="section-footer">
-            <h3>LINKS DE INTERÉS</h3>
-
-            <nav>
-                <ul>
-                    <li><a href="#">Acerca de nosotros</a></li>
-                    <li> <a href="#">Contactanos</a></li>
-                    <li><a href="#">¿Necesitas ayuda?</a></li>
-                </ul>
-            </nav>
-        </section>
-
-        <section class="section-footer">
-            <h3>HACEMOS ENVÍOS A TODO EL PAÍS</h3>
-            <p>Próximamente envíos internacionales</p>
-        </section>
-
-        <section class="section-footer">
-            <h3>METODOS DE PAGO</h3>
-            <div class="caja-mercadoPago">
-                <p class="mercadoPago">Mercado pago </p>
-                <img src="/images/mercadoPago.png" alt="logo-mercadoPago" class="icono-mercadoPago">
-            </div>
-            <p>Tarjeta de crédito <i class="bi bi-credit-card"></i></p>
-            <p>Tarjeta de debito <i class="bi bi-credit-card-2-front"></i></p>
-            <p>Rapipago/pago facíl <i class="bi bi-cash-stack"></i></p>
-        </section>
-
-        <section  class="section-footer-copy">
-            <h4 class="Copyright">Copyright © 2023</h4>
-            <!-- TODO: agregar creditos de recursos usados -->
-            <a href="#" class="boton-creditos">Creditos</a>
-        </section>
-    </footer>
+    <%- include('../partials/footer') %>
     <!-- * FIN FOOTER -->
 </body>
 </html>
