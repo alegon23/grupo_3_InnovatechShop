@@ -125,6 +125,20 @@
     align-items: center;
 }
 
+.editar-producto{
+    text-decoration: none;
+    color: #9E8FFF;
+    font-size: 18px;
+}
+
+.editar-producto:hover{
+    color: black;
+}
+
+.editar-producto:active{
+    color: #85f7ff;
+}
+
 .icono-flecha-izquierda, .icono-flecha-derecha{
     display: none;
 }
@@ -220,6 +234,25 @@
     font-size: 90px;
     color: #9E8FFF;
 }
+
+.crear-producto{
+    position: fixed;
+    font-size: 50px;
+    text-decoration: none;
+    color: black;
+    bottom: 0;
+    right: 0;
+    margin: 0 15px 15px 0;
+}
+
+.crear-producto:hover{
+    color: #7d69ff;
+}
+
+.crear-producto:active{
+    color: #67f5ff;
+}
+
 /* --------- FOOTER --------- */
 
 footer{
@@ -324,6 +357,11 @@ footer img {
 
     .descuento{
         font-size: 16px;
+    }
+
+    .crear-producto{
+        font-size: 60px;
+        margin: 0 30px 20px 0;
     }
 }
 

@@ -13,6 +13,10 @@ const productsController = {
     crear: (req, res) =>{
         res.render(path.resolve('./', './src/views/products/crearProducto'))
     },
+    editar: (req, res) =>{
+        const productID = products.find(producto => producto.id == req.params.id);
+        res.render(path.resolve('./', './src/views/products/editarProducto'), {productID})
+    },
 }
 
 module.exports = productsController;
