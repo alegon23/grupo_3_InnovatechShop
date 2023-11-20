@@ -1,0 +1,80 @@
+[
+    {
+        "id": 1,
+        "nombre": "iPhone 13 PRO",
+        "imagen": "/images/iphone13.png",
+        "precioOriginal": "1600000",
+        "categoria": "Celulares",
+        "marca": "iPhone",
+        "enDescuento": true,
+        "descuento": "10",
+        "imagenes": ["/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"],
+        "caracteristicas": [{"titulo": "Titulo 1", "texto": "Caracteristica 1"}, {"titulo": "Titulo 2", "texto": "Caracteristica 2"}, {"titulo": "Titulo 3", "texto": "Caracteristica 3"}, {"titulo": "Titulo 4", "texto": "Caracteristica 4"}],
+        "descripcion": [{"titulo": "titulo 1", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}, {"titulo": "titulo 2", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}]
+    },
+    {
+        "id": 2,
+        "nombre": "Monitor Samsung 32\"",
+        "imagen": "/images/MS-32.png",
+        "precioOriginal": "350000",
+        "categoria": "Monitores & TVs",
+        "marca": "Samsung",
+        "enDescuento": true,
+        "descuento": "20",
+        "imagenes": ["/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"],
+        "caracteristicas": [{"titulo": "Titulo 1", "texto": "Caracteristica 1"}, {"titulo": "Titulo 2", "texto": "Caracteristica 2"}, {"titulo": "Titulo 3", "texto": "Caracteristica 3"}, {"titulo": "Titulo 4", "texto": "Caracteristica 4"}],
+        "descripcion": [{"titulo": "titulo 1", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}, {"titulo": "titulo 2", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}]
+    },
+    {
+        "id": 3,
+        "nombre": "Samsung Smart TV 65\"",
+        "imagen": "/images/S-TV65.png",
+        "precioOriginal": "1200000",
+        "categoria": "Monitores & TVs",
+        "marca": "Samsung",
+        "enDescuento": true,
+        "descuento": "5",
+        "imagenes": ["/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"],
+        "caracteristicas": [{"titulo": "Resolución", "texto": "4K"}, {"titulo": "Tipo de pantalla", "texto": "LED"}, {"titulo": "Aplicaciones integradas", "texto": "Web browser, Gallery, Netflix, Prime Video, Apple TV, YouTube"}, {"titulo": "Cantidad de puertos HDMI", "texto": "3"}],
+        "descripcion": [{"titulo": "Viví en 4K", "texto": "La cantidad de pixeles que ofrece es 4 veces mayor que la Full HD, ¿el resultado? Escenas mucho más realistas y con un nivel de detalle increíble. Ahora vas a conocer una aventura de inmersión que no va a dejar de sorprenderte."}, {"titulo": "Más allá de ver televisión", "texto": "Su función Screen Share permite duplicar la pantalla de tu smartphone, tablet o PC para que aparezca en la TV. De esta forma vas a poder visualizar todo tipo de contenido: material audiovisual, documentos de trabajo, correos electrónicos y más."}, {"titulo": "Conexión invisible", "texto": "Este modelo está pensado para que puedas despejar tu campo visual. El sector donde coloques el televisor se verá mucho más prolijo porque los cables estarán ocultos, ordenados y organizados, ¡vas a notar la diferencia!"}, {"titulo": "Un sonido que te envuelve", "texto": "Vas a sentir que proviene desde todas las direcciones posibles, lo cual enriquece la percepción del mismo. Los diálogos de tus series de fin de semana o la música de tus cantantes preferidos van a cobrar otro significado."}]
+    },
+    {
+        "id": 4,
+        "nombre": "Notebook Samsung Book3",
+        "imagen": "/images/S-Book3.png",
+        "precioOriginal": "$680.000",
+        "categoria": "Notebooks",
+        "marca": "Samsung",
+        "enDescuento": false,
+        "descuento": "0",
+        "imagenes": ["/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"],
+        "caracteristicas": [{"titulo": "Titulo 1", "texto": "Caracteristica 1"}, {"titulo": "Titulo 2", "texto": "Caracteristica 2"}, {"titulo": "Titulo 3", "texto": "Caracteristica 3"}, {"titulo": "Titulo 4", "texto": "Caracteristica 4"}],
+        "descripcion": [{"titulo": "titulo 1", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}, {"titulo": "titulo 2", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}]
+    },
+    {
+        "id": 5,
+        "nombre": "Samsung Tablet S8+",
+        "imagen": "/images/S-TabS8.png",
+        "precioOriginal": "$300.000",
+        "categoria": "Tablets",
+        "marca": "Samsung",
+        "enDescuento": false,
+        "descuento": "0",
+        "imagenes": ["/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"],
+        "caracteristicas": [{"titulo": "Titulo 1", "texto": "Caracteristica 1"}, {"titulo": "Titulo 2", "texto": "Caracteristica 2"}, {"titulo": "Titulo 3", "texto": "Caracteristica 3"}, {"titulo": "Titulo 4", "texto": "Caracteristica 4"}],
+        "descripcion": [{"titulo": "titulo 1", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}, {"titulo": "titulo 2", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}]
+    },
+    {
+        "id": 6,
+        "nombre": "TCL Smart TV 40",
+        "imagen": "/images/TCL-TV40.png",
+        "precioOriginal": "$260.000",
+        "categoria": "Monitores & TVs",
+        "marca": "TCL",
+        "enDescuento": false,
+        "descuento": "0",
+        "imagenes": ["/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png", "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"],
+        "caracteristicas": [{"titulo": "Titulo 1", "texto": "Caracteristica 1"}, {"titulo": "Titulo 2", "texto": "Caracteristica 2"}, {"titulo": "Titulo 3", "texto": "Caracteristica 3"}, {"titulo": "Titulo 4", "texto": "Caracteristica 4"}],
+        "descripcion": [{"titulo": "titulo 1", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}, {"titulo": "titulo 2", "texto": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sint temporibus quasi blanditiis similique reprehenderit vero ut quibusdam rerum rem quisquam delectus suscipit, alias necessitatibus sunt, dolores illo! Consectetur, omnis?"}]
+    }
+]

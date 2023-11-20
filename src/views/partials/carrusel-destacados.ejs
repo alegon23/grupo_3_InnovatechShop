@@ -1,0 +1,15 @@
+<% for (producto of productos) { %>
+    <% if (!producto.enDescuento) { %>
+      <article class="tarjeta-articulo">
+        <img src="<%= producto.imagen %>" alt="Imagen Producto" class="imagen-producto">
+  
+        <div class="caja-precio">
+            <h3><%= producto.nombre %></h3>
+            <h4><%= producto.precioOriginal %></h4>
+            <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
+        </div>
+        <a href="../products/detalleProducto/<%= producto.id %>" class="boton-compra">Comprar</a>
+    </article>
+    <% } %>
+<% } %>
+  

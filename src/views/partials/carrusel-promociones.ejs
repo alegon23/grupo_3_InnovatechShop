@@ -1,0 +1,19 @@
+<% for (producto of productos) { %>
+    <% if (producto.enDescuento) { %>
+      <% precioDescuento = calcularDescuento(parseInt(producto.precioOriginal), parseInt(producto.descuento))%>
+      <article class="tarjeta-promocion">
+        <div class="caja-imagen-descuento">
+          <img src="<%= producto.imagen %>" alt="Imagen Producto" class="imagen-producto" />
+          <p class="descuento"><%= producto.descuento + '%' %><br />OFF</p>
+        </div>
+        <div class="caja-precio">
+          <h3><%= producto.nombre %></h3>
+          <h4 class="precio-original"> <%= '$' + producto.precioOriginal %> </h4>
+          <h3><%= '$' + precioDescuento %></h3>
+          <h5>Envío gratis <i class="bi bi-truck"></i></h5>
+        </div>
+        <a href="../products/detalleProducto/<%= producto.id %>" class="boton-compra">Comprar</a>
+      </article>
+    <% } %>
+<% } %>
+  

@@ -14,31 +14,36 @@
         <div class="breadcrums">
             <h4>Home</h4>
             <i class="bi bi-chevron-right"></i>
-            <h4>Monitores & TVs</h4>
+            <h4><%= productID.categoria %></h4>
             <i class="bi bi-chevron-right"></i>
-            <h4>Samsung</h4>
+            <h4><%= productID.marca %></h4>
         </div>
 
-        <h2 id="nombre-producto">Smart TV 65 Samsung 4K AU7000</h2>
+        <h2 id="nombre-producto"><%= productID.nombre %></h2>
 
         <div class="info-principal">
             <div class="fotos-producto">
                 <div class="foto-producto-principal">
-                    <img src="/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-frente.png" class="foto-principal">
+                    <img src="<%= productID.imagen %>" class="foto-principal">
                 </div>
                 <div class="foto-producto-lateral">
-                    <img src="/images/Smart TV 65 Samsung 4K AU7000/TVSAM65.png" class="foto-lateral">
-                    <img src="/images/Smart TV 65 Samsung 4K AU7000/TVSAM65.png" class="foto-lateral">
-                    <img src="/images/Smart TV 65 Samsung 4K AU7000/TVSAM65.png" class="foto-lateral">
-                    <!---- aqui van mas fotos del articulo en caso de tenerlas -->
+                    <% for (imagen of productID.imagenes) {%>
+                        <img src="<%= imagen %>" class="foto-lateral">
+                    <% } %>
                 </div>
             </div>
 
             <hr class="linea-imagen">
 
             <div class="detalle-producto">
-                <h3>Smart TV 65 Samsung 4K AU7000</h3>
-                <h4>$450.000</h4>
+                <h3><%= productID.nombre %></h3>
+                <% if (productID.enDescuento) {%>
+                    <% precioDescuento = calcularDescuento(parseInt(productID.precioOriginal), parseInt(productID.descuento))%>
+                    <h4 class="precio-original"><%= "$" + productID.precioOriginal %></h4>
+                    <h4><%= "$" + precioDescuento %></h4>
+                <% } else { %>
+                    <h4><%= productID.precioOriginal %></h4>
+                <% } %>
                 <h5><a href="#">Ver los medios de pago</a></h5>
                 <p><i class="bi bi-shield-fill-check"></i> Garantia de 12 meses</p>
                 <p><i class="bi bi-check2"></i> Stock disponible</p>
@@ -52,8 +57,9 @@
 
         <hr>
 
+        <!--  !FALTA HACER  -->
         <div class="caracteristicas-producto">
-            <h3>Características de Smart TV 65 Samsung 4K AU7000</h3>
+            <h3>Características de <%= productID.nombre %></h3>
             <div>
                 <div class="caracteristicas-arriba">
                     <p><i class="bi bi-pip"></i> Resolución: 4K</p>
@@ -71,25 +77,12 @@
 
         <div class="descripcion-producto">
             <h2>Descripción</h2>
+            <% for (descripcion of productID.descripcion) {%>
             <section>
-                <h4>Viví en 4K</h4>
-                <p>La cantidad de pixeles que ofrece es 4 veces mayor que la Full HD, ¿el resultado? Escenas mucho más realistas y con un nivel de detalle increíble. Ahora vas a conocer una aventura de inmersión que no va a dejar de sorprenderte.</p>
+                <h4><%= descripcion.titulo %></h4>
+                <p><%= descripcion.texto %></p>
             </section>
-
-            <section>
-                <h4>Más allá de ver televisión</h4>
-                <p>Su función Screen Share permite duplicar la pantalla de tu smartphone, tablet o PC para que aparezca en la TV. De esta forma vas a poder visualizar todo tipo de contenido: material audiovisual, documentos de trabajo, correos electrónicos y más.</p>
-            </section>
-            
-            <section>
-                <h4>Conexión invisible</h4>
-                <p>Este modelo está pensado para que puedas despejar tu campo visual. El sector donde coloques el televisor se verá mucho más prolijo porque los cables estarán ocultos, ordenados y organizados, ¡vas a notar la diferencia!</p>
-            </section>
-
-            <section>
-                <h4>Un sonido que te envuelve</h4>
-                <p>Vas a sentir que proviene desde todas las direcciones posibles, lo cual enriquece la percepción del mismo. Los diálogos de tus series de fin de semana o la música de tus cantantes preferidos van a cobrar otro significado.</p>
-            </section>
+            <% } %>
         </div>
 
     </main>
