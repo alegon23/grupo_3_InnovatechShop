@@ -20,6 +20,9 @@
                             <input type="text" name="nombre" class="input" placeholder="Nombre del producto" required>
                             <span class="feedback-negativo">El nombre es demasiado corto</span>
 
+                            <label for="marca" class="label">Marca del Producto</label>
+                            <input type="text" name="marca" class="input" placeholder="Marca del producto" required>                           
+                        
                             <label for="categoria">Categoría</label>
                             <select name="categoria">
                                 <option value="seleccionar" selected>Seleccionar Categoria</option>
@@ -29,34 +32,35 @@
                                 <option value="Celulares">Notebooks</option>
                                 <option value="Celulares">Hardware</option>
                                 <option value="Celulares">Accesorios</option>
-                            </select>                            
-                        
-                            <label for="precio">Precio</label>
-                            <input type="number" name="precio" placeholder="$00,00" required>
-
+                            </select>
                             
                         </div>
 
                         
                         <div class="contenedor-datos2">
-                            <label for="imagen-producto" class="label">Imagen</label>
-                            <input type="file" name="imagen-producto" accept=".jpg, .jpeg, .png">
-                    
-                            <label for="marca" class="label">Marca del Producto</label>
-                            <input type="text" name="marca" class="input" placeholder="Marca del producto" required>
 
-                            <input type="checkbox" name="descuento" value="descuento">
-                        <label for="descuento">Descuento</label>
+                            <label for="precio">Precio</label>
+                            <input type="number" name="precio" placeholder="$00,00" required>
 
-                        <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                        <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
+                            <div class="contenedor-descuento">
+                                <label for="descuento">Descuento</label>
+                                <input type="checkbox" name="descuento" value="descuento">
+                            </div>
+                            
+                            <label for="porcentaje" class="label">Porcentaje de descuento</label>
+                            <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
                         
+                            <label for="imagen-producto">Imagen</label>
+                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png" multiple>
                             
                         </div>  
                     </div>
 
                     <label for="descripcion">Descripción del Producto</label>
-                            <textarea name="descripcion" cols="30" rows="5"></textarea>
+                    <textarea name="descripcion" cols="30" rows="5"></textarea>
+
+                    <label for="caracteristicas">Caracteristicas del producto</label>
+                    <textarea name="caracteristicas" cols="30" rows="5"></textarea>
 
                     <div>
                         <button type="submit" class="boton-registro">Crear Producto</button>
