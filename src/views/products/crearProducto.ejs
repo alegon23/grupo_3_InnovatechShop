@@ -28,10 +28,10 @@
                                 <option value="seleccionar" selected>Seleccionar Categoria</option>
                                 <option value="celulares">Celulares</option>
                                 <option value="monitores-tvs">Monitores & TVs</option>
-                                <option value="Celulares">Tablets</option>
-                                <option value="Celulares">Notebooks</option>
-                                <option value="Celulares">Hardware</option>
-                                <option value="Celulares">Accesorios</option>
+                                <option value="tablets">Tablets</option>
+                                <option value="notebooks">Notebooks</option>
+                                <option value="hardware">Hardware</option>
+                                <option value="accesorios">Accesorios</option>
                             </select>
                             
                         </div>
@@ -50,16 +50,19 @@
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
                             <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
                         
-                            <label for="imagen-producto">Imagen</label>
+                            <label for="imagen-producto">Imagen Principal</label>
+                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png">
+
+                            <label for="imagen-producto">Imagenes Extra</label>
                             <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png" multiple>
                             
                         </div>  
                     </div>
 
-                    <label for="descripcion">Descripción del Producto</label>
+                    <label class="textarea-label" for="descripcion">Descripción del Producto</label>
                     <textarea name="descripcion" cols="30" rows="5"></textarea>
 
-                    <label for="caracteristicas">Caracteristicas del producto</label>
+                    <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
                     <textarea name="caracteristicas" cols="30" rows="5"></textarea>
 
                     <div>

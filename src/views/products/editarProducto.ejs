@@ -19,19 +19,12 @@
                             <span class="feedback-negativo">El nombre es demasiado corto</span>
 
                             <label for="marca" class="label">Marca del Producto</label>
-                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%=productID.marca%>"required>                           
-                        
+                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%=productID.marca%>" required>
+                            
                             <label for="categoria">Categoría</label>
                             <select name="categoria">
-                                <option value="seleccionar" selected>Seleccionar Categoria</option>
-                                <option value="celulares">Celulares</option>
-                                <option value="monitores-tvs">Monitores & TVs</option>
-                                <option value="Celulares">Tablets</option>
-                                <option value="Celulares">Notebooks</option>
-                                <option value="Celulares">Hardware</option>
-                                <option value="Celulares">Accesorios</option>
+                                <%- include('../partials/categorias-productos') %>
                             </select>
-                            
                         </div>
 
                         
@@ -56,21 +49,24 @@
                                 <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
                             <% } %>
                             
-                        
-                            <label for="imagen-producto">Imagen</label>
+                            <!-- !ver como hacer para cargar las imagenes -->
+                            <label for="imagen-producto">Imagen Principal</label>
+                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png">
+
+                            <label for="imagen-producto">Imagenes Extras</label>
                             <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png" multiple>
                             
                         </div>  
                     </div>
 
-                    <label for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="5" value="<%=productID.descripcion%>"></textarea>
+                    <label class="textarea-label" for="descripcion">Descripción del Producto</label>
+                    <textarea name="descripcion" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.descripcion}) %></textarea>
 
-                    <label for="caracteristicas">Caracteristicas del producto</label>
-                    <textarea name="caracteristicas" cols="30" rows="5"></textarea>
+                    <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
+                    <textarea name="caracteristicas" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.caracteristicas}) %></textarea>
 
                     <div>
-                        <button type="submit" class="boton-registro">Editar Producto</button>
+                        <button type="submit" class="boton-registro">Guardar cambios</button>
                     </div>
                         
                 </form>

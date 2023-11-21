@@ -1,0 +1,59 @@
+<%# esto es para que se seleccione la categoria correspondiente segun a la que pertenece el producto seleccionado %>
+<% switch (productID.categoria) {
+    case 'Celulares': %>
+       <option value="celulares" selected>Celulares</option>
+       <option value="monitores-tvs">Monitores & TVs</option>
+       <option value="tablets">Tablets</option>
+       <option value="notebooks">Notebooks</option>
+       <option value="hardware">Hardware</option>
+       <option value="accesorios">Accesorios</option>
+       <% break
+    case 'Monitores & TVs': %>
+       <option value="celulares">Celulares</option>
+       <option value="monitores-tvs" selected>Monitores & TVs</option>
+       <option value="tablets">Tablets</option>
+       <option value="notebooks">Notebooks</option>
+       <option value="hardware">Hardware</option>
+       <option value="accesorios">Accesorios</option>
+       <% break
+    case 'Tablets': %>
+       <option value="celulares">Celulares</option>
+       <option value="monitores-tvs">Monitores & TVs</option>
+       <option value="tablets" selected>Tablets</option>
+       <option value="notebooks">Notebooks</option>
+       <option value="hardware">Hardware</option>
+       <option value="accesorios">Accesorios</option>
+       <% break
+    case 'Notebooks': %>
+       <option value="celulares">Celulares</option>
+       <option value="monitores-tvs">Monitores & TVs</option>
+       <option value="tablets">Tablets</option>
+       <option value="notebooks" selected>Notebooks</option>
+       <option value="hardware">Hardware</option>
+       <option value="accesorios">Accesorios</option>
+       <% break
+    case 'Hardware': %>
+       <option value="celulares">Celulares</option>
+       <option value="monitores-tvs">Monitores & TVs</option>
+       <option value="tablets">Tablets</option>
+       <option value="notebooks">Notebooks</option>
+       <option value="hardware" selected>Hardware</option>
+       <option value="accesorios">Accesorios</option>
+       <% break
+    case 'Accesorios': %>
+       <option value="celulares">Celulares</option>
+       <option value="monitores-tvs">Monitores & TVs</option>
+       <option value="tablets">Tablets</option>
+       <option value="notebooks">Notebooks</option>
+       <option value="hardware">Hardware</option>
+       <option value="accesorios" selected>Accesorios</option>
+       <% break
+    default: %>
+       <option value="seleccionar" selected>Seleccionar Categoria</option>
+       <option value="celulares">Celulares</option>
+       <option value="monitores-tvs">Monitores & TVs</option>
+       <option value="tablets">Tablets</option>
+       <option value="notebooks">Notebooks</option>
+       <option value="hardware">Hardware</option>
+       <option value="accesorios">Accesorios</option>
+<% } %>
