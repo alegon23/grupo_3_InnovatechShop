@@ -117,7 +117,7 @@ body {
     border-bottom: none;
 }
 
-.contenedor-datos2 input[type="file"]{
+.contenedor-datos2 input[type="file"]:focus{
     border-bottom: none;
 }
 

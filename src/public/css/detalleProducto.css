@@ -104,30 +104,31 @@
     margin-bottom: 10px;
 }
 
-.descripcion-larga{
-    display: none;
+.icono {
+    color: #9e8fff;
 }
 
 .caracteristicas-producto div{
-    margin: 20px 0;
-}
-
-.texto-derecha {
-    text-align: end;
-}
-
-.caracteristicas-producto div .caracteristicas-arriba, .caracteristicas-producto div .caracteristicas-abajo{
     display: flex;
-    height: 44px;
-    justify-content: center;
-    align-items: baseline
+    flex-direction: column;
+}
+
+
+.caracteristicas-producto div .caracteristicas-arriba {
+    display: flex;
+    flex-direction: column;
+}
+
+.caracteristicas-producto div .caracteristicas-abajo{
+    display: flex;
+    flex-direction: column;
 }
 
 .caracteristicas-producto div .caracteristicas-arriba p, .caracteristicas-producto div .caracteristicas-abajo p{
     width: 100%;
     text-align: baseline;
     font-size: 14px;
-    margin: 0 0 0 0;
+    margin: 10px 0;
     line-height: 22px;
 }
 
@@ -176,10 +177,6 @@
         display: flex;
         justify-content: space-around;
         padding: 5px;
-    }
-
-    .caracteristicas-producto div .caracteristicas-arriba, .caracteristicas-producto div .caracteristicas-abajo{
-        height: 48px;
     }
     
     .caracteristicas-producto div .caracteristicas-arriba p, .caracteristicas-producto div .caracteristicas-abajo p, .descripcion-producto p{
@@ -255,14 +252,14 @@
         margin-top: 0;
     }
 
-    .descripcion-larga{
-        display: block;
+    .texto-derecha {
+        text-align: end;
     }
 
-    .descripcion-corta{
-        display: none;
+    .caracteristicas-producto div .caracteristicas-arriba, .caracteristicas-producto div .caracteristicas-abajo {
+        flex-direction: row;
     }
-    
+
     .caracteristicas-producto div .caracteristicas-arriba p, .caracteristicas-producto div .caracteristicas-abajo p, .descripcion-producto p{
         font-size: 16px;
         line-height: 24px;

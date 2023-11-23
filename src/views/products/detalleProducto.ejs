@@ -62,13 +62,12 @@
             <h3>Características de <%= productID.nombre %></h3>
             <div>
                 <div class="caracteristicas-arriba">
-                    <p><i class="bi bi-pip"></i> Resolución: 4K</p>
-                    <p class="texto-derecha"><i class="bi bi-tv"></i> Tipo de pantalla: LED</p>
+                    <p> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[0].titulo + ": " + productID.caracteristicas[0].texto %> </p>
+                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[1].titulo + ": " + productID.caracteristicas[1].texto %> </p>
                 </div>
                 <div class="caracteristicas-abajo">
-                    <p class="descripcion-corta"><i class="bi bi-google-play"></i> Aplicaciones integradas</p>
-                    <p class="descripcion-larga"><i class="bi bi-google-play"></i> Aplicaciones integradas: Web browser, Gallery, Netflix, Prime Video, Apple TV, YouTube</p>
-                    <p class="texto-derecha"><i class="bi bi-hdmi"></i> Cantidad de puertos HDMI: 3</p>
+                    <p class="descripcion-larga"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[2].titulo + ": " + productID.caracteristicas[2].texto %> </p>
+                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[3].titulo + ": " + productID.caracteristicas[3].texto %> </p>
                 </div>
             </div>
         </div>
