@@ -57,7 +57,6 @@
 
         <hr>
 
-        <!--  !FALTA HACER  -->
         <div class="caracteristicas-producto">
             <h3>Características de <%= productID.nombre %></h3>
             <div>
@@ -78,8 +77,13 @@
             <h2>Descripción</h2>
             <% for (descripcion of productID.descripcion) {%>
             <section>
-                <h4><%= descripcion.titulo %></h4>
-                <p><%= descripcion.texto %></p>
+                <% if (descripcion.titulo != "") { %>
+                    <h4><%= descripcion.titulo %></h4>
+                    <p><%= descripcion.texto %></p>
+                <% } else { %>
+                    <br>
+                    <p><%= descripcion.texto %></p>
+                <% } %>
             </section>
             <% } %>
         </div>
