@@ -14,9 +14,9 @@
         <div class="breadcrums">
             <h4>Home</h4>
             <i class="bi bi-chevron-right"></i>
-            <h4><%= productID.categoria %></h4>
+            <h4><%= productID.category %></h4>
             <i class="bi bi-chevron-right"></i>
-            <h4><%= productID.marca %></h4>
+            <h4><%= productID.brand %></h4>
         </div>
 
         <h2 id="nombre-producto"><%= productID.nombre %></h2>
@@ -24,11 +24,11 @@
         <div class="info-principal">
             <div class="fotos-producto">
                 <div class="foto-producto-principal">
-                    <img src="<%= productID.imagen %>" class="foto-principal">
+                    <img src="<%= productID.image %>" class="foto-principal">
                 </div>
                 <div class="foto-producto-lateral">
-                    <% for (imagen of productID.imagenes) {%>
-                        <img src="<%= imagen %>" class="foto-lateral">
+                    <% for (image of productID.extraImages) {%>
+                        <img src="<%= image %>" class="foto-lateral">
                     <% } %>
                 </div>
             </div>
@@ -36,13 +36,13 @@
             <hr class="linea-imagen">
 
             <div class="detalle-producto">
-                <h3><%= productID.nombre %></h3>
-                <% if (productID.enDescuento) {%>
-                    <% precioDescuento = calcularDescuento(parseInt(productID.precioOriginal), parseInt(productID.descuento))%>
-                    <h4 class="precio-original"><%= "$" + productID.precioOriginal %></h4>
-                    <h4><%= "$" + precioDescuento %></h4>
+                <h3><%= productID.name %></h3>
+                <% if (productID.onDiscount) {%>
+                    <% precioDescuento = calcularDescuento(parseInt(productID.originalPrice), parseInt(productID.discount))%>
+                    <h4 class="precio-original"><%= "$" + calcularMiles(productID.originalPrice) %></h4>
+                    <h4><%= "$" + calcularMiles(precioDescuento) %></h4>
                 <% } else { %>
-                    <h4><%= productID.precioOriginal %></h4>
+                    <h4><%= "$" + calcularMiles(productID.originalPrice) %></h4>
                 <% } %>
                 <h5><a href="#">Ver los medios de pago</a></h5>
                 <p><i class="bi bi-shield-fill-check"></i> Garantia de 12 meses</p>
@@ -58,15 +58,15 @@
         <hr>
 
         <div class="caracteristicas-producto">
-            <h3>Características de <%= productID.nombre %></h3>
+            <h3>Características de <%= productID.name %></h3>
             <div>
                 <div class="caracteristicas-arriba">
-                    <p> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[0].titulo + ": " + productID.caracteristicas[0].texto %> </p>
-                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[1].titulo + ": " + productID.caracteristicas[1].texto %> </p>
+                    <p> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[0].title + ": " + productID.features[0].text %> </p>
+                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[1].title + ": " + productID.features[1].text %> </p>
                 </div>
                 <div class="caracteristicas-abajo">
-                    <p class="descripcion-larga"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[2].titulo + ": " + productID.caracteristicas[2].texto %> </p>
-                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.caracteristicas[3].titulo + ": " + productID.caracteristicas[3].texto %> </p>
+                    <p class="descripcion-larga"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[2].title + ": " + productID.features[2].text %> </p>
+                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[3].title + ": " + productID.features[3].text %> </p>
                 </div>
             </div>
         </div>
@@ -75,14 +75,14 @@
 
         <div class="descripcion-producto">
             <h2>Descripción</h2>
-            <% for (descripcion of productID.descripcion) {%>
+            <% for (description of productID.description) {%>
             <section>
-                <% if (descripcion.titulo != "") { %>
-                    <h4><%= descripcion.titulo %></h4>
-                    <p><%= descripcion.texto %></p>
+                <% if (description.title != "") { %>
+                    <h4><%= description.title %></h4>
+                    <p><%= description.text %></p>
                 <% } else { %>
                     <br>
-                    <p><%= descripcion.texto %></p>
+                    <p><%= description.text %></p>
                 <% } %>
             </section>
             <% } %>

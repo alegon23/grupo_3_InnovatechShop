@@ -1,15 +1,15 @@
 <% for (producto of productos) { %>
-    <% if (producto.enDescuento) { %>
-      <% precioDescuento = calcularDescuento(parseInt(producto.precioOriginal), parseInt(producto.descuento))%>
+    <% if (producto.onDiscount) { %>
+      <% precioDescuento = calcularDescuento(parseInt(producto.originalPrice), parseInt(producto.discount))%>
       <article class="tarjeta-promocion">
         <div class="caja-imagen-descuento">
-          <img src="<%= producto.imagen %>" alt="Imagen Producto" class="imagen-producto" />
-          <p class="descuento"><%= producto.descuento + '%' %><br />OFF</p>
+          <img src="<%= producto.image %>" alt="Imagen Producto" class="imagen-producto" />
+          <p class="descuento"><%= producto.discount + '%' %><br />OFF</p>
         </div>
         <div class="caja-precio">
-          <h3><%= producto.nombre %> <a href="../products/editarProducto/<%= producto.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
-          <h4 class="precio-original"> <%= '$' + producto.precioOriginal %> </h4>
-          <h3><%= '$' + precioDescuento %></h3>
+          <h3><%= producto.name %> <a href="../products/editarProducto/<%= producto.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+          <h4 class="precio-original"> <%= '$' + calcularMiles(producto.originalPrice) %> </h4>
+          <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
           <h5>Envío gratis <i class="bi bi-truck"></i></h5>
         </div>
         <a href="../products/detalleProducto/<%= producto.id %>" class="boton-compra">Comprar</a>

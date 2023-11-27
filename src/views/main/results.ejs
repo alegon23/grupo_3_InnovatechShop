@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', {title: "- Results", cssFile: "styles", cssHome: ""}) %>
+<body>
+    <!--  !HEADER  -->
+    <%- include('../partials/header.ejs') %>
+
+    <!-- !MAIN  -->
+  <main>
+    <section>
+      <h2 class="titulo-section">Resultados de la búsqueda: <%= "\"" + busqueda + "\"" %></h2>
+        <div class="lista-promociones">
+          <% for (resultado of resultados) { %>
+            <% if (!resultado.onDiscount) { %>
+              <article class="tarjeta-articulo">
+                <img src="<%= resultado.image %>" alt="Imagen Producto" class="imagen-producto">
+                  <div class="caja-precio">
+                    <h3><%= resultado.name %> <a href="../products/editarProducto/<%= resultado.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+                    <h4>$<%= calcularMiles(resultado.originalPrice) %></h4>
+                    <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
+                  </div>
+                  <a href="../products/detalleProducto/<%= resultado.id %>" class="boton-compra">Comprar</a>
+              </article>
+            <% } else {%>
+              <% precioDescuento = calcularDescuento(parseInt(resultado.originalPrice), parseInt(resultado.discount))%>
+                <article class="tarjeta-promocion">
+                  <div class="caja-imagen-descuento">
+                            <img src="<%= resultado.image %>" alt="Imagen Producto" class="imagen-producto" />
+                            <p class="descuento"><%= resultado.discount + '%' %><br />OFF</p>
+                          </div>
+                          <div class="caja-precio">
+                            <h3><%= resultado.name %> <a href="../products/editarProducto/<%= resultado.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+                            <h4 class="precio-original"> <%= '$' + calcularMiles(resultado.originalPrice) %> </h4>
+                            <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
+                            <h5>Envío gratis <i class="bi bi-truck"></i></h5>
+                          </div>
+                          <a href="../products/detalleProducto/<%= resultado.id %>" class="boton-compra">Comprar</a>
+                        </article>
+                <% }%>
+            <% } %>
+            </div>
+    </section>
+
+      <a href="../products/crearProducto" class="crear-producto">
+        <i class="bi bi-plus-square-fill"></i>
+      </a>
+  </main>
+
+    <!--  !FOOTER   -->
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

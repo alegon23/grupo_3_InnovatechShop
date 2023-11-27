@@ -1,11 +1,11 @@
 <% for (producto of productos) { %>
-    <% if (!producto.enDescuento) { %>
+    <% if (!producto.onDiscount) { %>
       <article class="tarjeta-articulo">
-        <img src="<%= producto.imagen %>" alt="Imagen Producto" class="imagen-producto">
+        <img src="<%= producto.image %>" alt="Imagen Producto" class="imagen-producto">
   
         <div class="caja-precio">
-            <h3><%= producto.nombre %> <a href="../products/editarProducto/<%= producto.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
-            <h4><%= producto.precioOriginal %></h4>
+            <h3><%= producto.name %> <a href="../products/editarProducto/<%= producto.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+            <h4>$<%= calcularMiles(producto.originalPrice) %></h4>
             <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
         </div>
         <a href="../products/detalleProducto/<%= producto.id %>" class="boton-compra">Comprar</a>
