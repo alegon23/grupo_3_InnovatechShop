@@ -13,7 +13,7 @@
             <div class="form">
                 <h2 class="title">Crear Producto</h2>
                 
-                <form action="/" method='POST' class="contenedor-registro">
+                <form action="/products" method='POST' class="contenedor-registro" enctype="multipart/form-data">
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre del producto</label>
@@ -24,7 +24,7 @@
                             <input type="text" name="marca" class="input" placeholder="Marca del producto" required>                           
                         
                             <label for="categoria">Categoría</label>
-                            <select name="categoria">
+                            <select name="categoria" required>
                                 <option value="seleccionar" selected>Seleccionar Categoria</option>
                                 <option value="celulares">Celulares</option>
                                 <option value="monitores-tvs">Monitores & TVs</option>
@@ -50,20 +50,29 @@
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
                             <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
                         
-                            <label for="imagen-producto">Imagen Principal</label>
-                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png">
+                            <label for="imagen-principal">Imagen Principal</label>
+                            <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png" required>
 
-                            <label for="imagen-producto">Imagenes Extra</label>
-                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png" multiple>
+                            <label for="imagenes-extra">Imagenes Extra</label>
+                            <input type="file" class="input-imagen" name="imagenes-extra" accept=".jpg, .jpeg, .png" multiple>
                             
                         </div>  
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="5"></textarea>
+                    <textarea name="descripcion" cols="30" rows="5" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"></textarea>
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
-                    <textarea name="caracteristicas" cols="30" rows="5"></textarea>
+                    <textarea name="caracteristicas" cols="30" rows="5" required>
+Titulo:
+Texto:
+Titulo:
+Texto:
+Titulo:
+Texto:
+Titulo:
+Texto:
+                    </textarea>
 
                     <div>
                         <button type="submit" class="boton-registro">Crear Producto</button>

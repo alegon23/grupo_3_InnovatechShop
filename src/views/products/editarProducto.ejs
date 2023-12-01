@@ -15,11 +15,11 @@
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre del producto</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=productID.nombre%>" required>
+                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=productID.name%>" required>
                             <span class="feedback-negativo">El nombre es demasiado corto</span>
 
                             <label for="marca" class="label">Marca del Producto</label>
-                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%=productID.marca%>" required>
+                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%=productID.brand%>" required>
                             
                             <label for="categoria">Categoría</label>
                             <select name="categoria">
@@ -31,15 +31,15 @@
                         <div class="contenedor-datos2">
 
                             <label for="precio">Precio</label>
-                            <input type="number" name="precio" placeholder="$00,00" value="<%=productID.precioOriginal%>" required>
+                            <input type="number" name="precio" placeholder="$00,00" value="<%=productID.originalPrice%>" required>
 
-                            <%if (productID.enDescuento) {%>
+                            <%if (productID.onDiscount) {%>
                                 <div class="contenedor-descuento">
                                     <label for="descuento">Descuento</label>
                                     <input type="checkbox" name="descuento" value="descuento" checked>
                                 </div>
                                 <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                                <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.descuento%>">
+                                <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.discount%>">
                             <% } else { %>
                                 <div class="contenedor-descuento">
                                     <label for="descuento">Descuento</label>
@@ -60,10 +60,10 @@
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.descripcion}) %></textarea>
+                    <textarea name="descripcion" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.description}) %></textarea>
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
-                    <textarea name="caracteristicas" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.caracteristicas}) %></textarea>
+                    <textarea name="caracteristicas" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.features}) %></textarea>
 
                     <div>
                         <button type="submit" class="boton-registro">Guardar cambios</button>

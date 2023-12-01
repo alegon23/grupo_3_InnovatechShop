@@ -11,7 +11,8 @@ const mainController = {
     search: (req, res) =>{
         const busqueda = req.query.keywords.toLowerCase();
 		const resultados = products.filter(product => product.name.toLowerCase().includes(busqueda));
-		res.render(path.resolve('./', './src/views/main/results'), {busqueda, resultados, calcularMiles});
+        const titulo = "Resultados de la búsqueda: \"" + busqueda + "\"";
+		res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     }
 }
 

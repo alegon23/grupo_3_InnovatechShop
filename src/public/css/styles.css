@@ -19,7 +19,7 @@
     width: 50%;
 }
 
-#logo{
+.navbar-superior .logo-navbar{
     display: none;
 }
 
@@ -419,9 +419,9 @@ footer img {
         display: none;
     }
     
-    #logo{
+    .navbar-superior .logo-navbar{
         display: inline;
-        min-width: 100px;
+        max-width: 100%;
     }
 
     #boton-cuenta, #boton-carrito{

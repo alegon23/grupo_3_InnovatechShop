@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head', {title: "- Results", cssFile: "styles", cssHome: ""}) %>
+<%- include('../partials/head', {title: "- " + titulo, cssFile: "styles", cssHome: ""}) %>
 <body>
     <!--  !HEADER  -->
     <%- include('../partials/header.ejs') %>
@@ -8,7 +8,7 @@
     <!-- !MAIN  -->
   <main>
     <section>
-      <h2 class="titulo-section">Resultados de la búsqueda: <%= "\"" + busqueda + "\"" %></h2>
+      <h2 class="titulo-section"><%= titulo %></h2>
         <div class="lista-promociones">
           <% for (resultado of resultados) { %>
             <% if (!resultado.onDiscount) { %>
