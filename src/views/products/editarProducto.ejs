@@ -32,22 +32,9 @@
 
                             <label for="precio">Precio</label>
                             <input type="number" name="precio" placeholder="$00,00" value="<%=productID.originalPrice%>" required>
-
-                            <%if (productID.onDiscount) {%>
-                                <div class="contenedor-descuento">
-                                    <label for="descuento">Descuento</label>
-                                    <input type="checkbox" name="descuento" value="descuento" checked>
-                                </div>
+                            
                                 <label for="porcentaje" class="label">Porcentaje de descuento</label>
                                 <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.discount%>">
-                            <% } else { %>
-                                <div class="contenedor-descuento">
-                                    <label for="descuento">Descuento</label>
-                                    <input type="checkbox" name="descuento" value="descuento">
-                                </div>
-                                <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                                <input type="number" name="porcentaje" placeholder="10% OFF" disabled>
-                            <% } %>
                             
                             <!-- !ver como hacer para cargar las imagenes -->
                             <label for="imagen-producto">Imagen Principal</label>
@@ -60,11 +47,37 @@
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.description}) %></textarea>
+                    <textarea name="descripcion" cols="30" rows="10"><%- include('../partials/listar-datos-productos', {datos: productID.description}) %></textarea>
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
-                    <textarea name="caracteristicas" cols="30" rows="5"><%- include('../partials/listar-datos-productos', {datos: productID.features}) %></textarea>
-
+                    
+                    <div>
+                        <div class="caja-caracteristicas">
+                            <label for="textarea-label">Caracteristica 1:</label><input type='text' name="caracteristicas" value="<%= productID.features[0].title %>"  placeholder="titulo de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Descripcion 1:</label><input name="caracteristicas" value="<%= productID.features[0].text %>" placeholder="descripcion de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                        </div>
+                        <div class="caja-caracteristicas">
+                            <label for="textarea-label">Caracteristica 2:</label><input type='text' name="caracteristicas" value="<%= productID.features[1].title %>" placeholder="titulo de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Descripcion 2:</label><input name="caracteristicas" value="<%= productID.features[1].text %>" placeholder="descripcion de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                        </div>
+                        <div class="caja-caracteristicas">
+                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristicas" value="<%= productID.features[2].title %>" placeholder="titulo de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Descripcion 3:</label><input name="caracteristicas" value="<%= productID.features[2].text %>" placeholder="descripcion de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                        </div>
+                        <div class="caja-caracteristicas">
+                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristicas" value="<%= productID.features[3].title %>" placeholder="titulo de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Descripcion 4:</label><input name="caracteristicas" value="<%= productID.features[3].text %>" placeholder="descripcion de la caracteristica" required>
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                        </div>
+                    </div>
+                    
                     <div>
                         <button type="submit" class="boton-registro">Guardar cambios</button>
                     </div>
@@ -76,6 +89,7 @@
             
                 <div class="pie-formulario">
                     <a href="#" class="ayuda"><i class="bi bi-question-circle"></i> ¿Necesitas ayuda?</a>
+                    <a href="/" class="volver-tienda">Volver a la tienda</i></a>
                     <p class="copyright">Copyright © 2023</p>
                 </div>
             </div>             

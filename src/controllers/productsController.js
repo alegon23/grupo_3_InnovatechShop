@@ -25,52 +25,36 @@ const productsController = {
     },
 
     guardar: (req, res) =>{
-        let { nombre, marca, categoria, precio, descripcion, caracteristicas } = req.body;
+        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
 
         //! aqui podemos cambiar la forma en la que se suban los datos
         const descripcionArray = descripcion.trim().split("\r\n");
-
         let description = [];
         let title = "";
         let text = "";
 
         for (let i = 0; i < descripcionArray.length; i += 2 ){
-            const elemArray1 = descripcionArray[i].split(':');
-            if(elemArray1[0].toLowerCase() === 'titulo'){
-                title = elemArray1[1].trim();
-            }
-
-            const elemArray2 = descripcionArray[i+1].split(':');
-
-            if(elemArray2[0].toLowerCase() === 'texto'){
-                text = elemArray2[1].trim();
-            }
+            
+            title = descripcionArray[i].trim();
+            text = descripcionArray[i+1].trim();
 
             description.push({title, text});
         }
 
         //! aqui podemos cambiar la forma en la que se suban los datos
-        const caracteristicasArray = caracteristicas.trim().split("\r\n");
-
+        console.log(req.body);
         let features = [];
         title = "";
         text = "";
-
-        for (let i = 0; i < caracteristicasArray.length; i += 2 ){
-            const elemArray1 = caracteristicasArray[i].split(':');
-            if(elemArray1[0].toLowerCase() === 'titulo'){
-                title = elemArray1[1].trim();
-            }
-
-            const elemArray2 = caracteristicasArray[i+1].split(':');
-
-            if(elemArray2[0].toLowerCase() === 'texto'){
-                text = elemArray2[1].trim();
-            }
+        
+        for (let i = 0; i < caracteristicas.length; i += 2 ){
+            
+            title = caracteristicas[i].trim();
+            text = caracteristicas[i+1].trim();
 
             features.push({title, text});
         }
-
+        console.log(features);
         //! documentacion:
         // https://github.com/expressjs/multer/blob/master/doc/README-es.md
         let imagesArray = [];
@@ -81,6 +65,8 @@ const productsController = {
             }
         }
 
+        const descuento = porcentaje == 0? false:true; 
+
         let nuevoProducto = {
             id: products.length + 1,
             name: nombre,
@@ -88,8 +74,8 @@ const productsController = {
             originalPrice: precio,
             category: categoria,
             brand: marca,
-            onDiscount: false,
-            discount: "0",
+            onDiscount: descuento,
+            discount: porcentaje,
             extraImages: imagesArray,
             features,
             description,

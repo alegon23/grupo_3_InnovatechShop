@@ -1,6 +1,6 @@
 <%# esto es para que se seleccione la categoria correspondiente segun a la que pertenece el producto seleccionado %>
 <% switch (productID.category) {
-    case 'Celulares': %>
+    case 'celulares': %>
        <option value="celulares" selected>Celulares</option>
        <option value="monitores-tvs">Monitores & TVs</option>
        <option value="tablets">Tablets</option>
@@ -8,7 +8,7 @@
        <option value="hardware">Hardware</option>
        <option value="accesorios">Accesorios</option>
        <% break
-    case 'Monitores & TVs': %>
+    case 'monitores-tvs': %>
        <option value="celulares">Celulares</option>
        <option value="monitores-tvs" selected>Monitores & TVs</option>
        <option value="tablets">Tablets</option>
@@ -16,7 +16,7 @@
        <option value="hardware">Hardware</option>
        <option value="accesorios">Accesorios</option>
        <% break
-    case 'Tablets': %>
+    case 'tablets': %>
        <option value="celulares">Celulares</option>
        <option value="monitores-tvs">Monitores & TVs</option>
        <option value="tablets" selected>Tablets</option>
@@ -24,7 +24,7 @@
        <option value="hardware">Hardware</option>
        <option value="accesorios">Accesorios</option>
        <% break
-    case 'Notebooks': %>
+    case 'notebooks': %>
        <option value="celulares">Celulares</option>
        <option value="monitores-tvs">Monitores & TVs</option>
        <option value="tablets">Tablets</option>
@@ -32,7 +32,7 @@
        <option value="hardware">Hardware</option>
        <option value="accesorios">Accesorios</option>
        <% break
-    case 'Hardware': %>
+    case 'hardware': %>
        <option value="celulares">Celulares</option>
        <option value="monitores-tvs">Monitores & TVs</option>
        <option value="tablets">Tablets</option>
@@ -40,7 +40,7 @@
        <option value="hardware" selected>Hardware</option>
        <option value="accesorios">Accesorios</option>
        <% break
-    case 'Accesorios': %>
+    case 'accesorios': %>
        <option value="celulares">Celulares</option>
        <option value="monitores-tvs">Monitores & TVs</option>
        <option value="tablets">Tablets</option>

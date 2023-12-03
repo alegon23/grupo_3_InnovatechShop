@@ -4,7 +4,7 @@
     "name": "iPhone 13 PRO",
     "image": "/images/iphone13/iphone13.png",
     "originalPrice": "1600000",
-    "category": "Celulares",
+    "category": "celulares",
     "brand": "iPhone",
     "onDiscount": true,
     "discount": "10",
@@ -14,10 +14,22 @@
       "/images/iphone13/I 13-lateral1 (3).png"
     ],
     "features": [
-      { "title": "Memoria interna", "text": "256 GB" },
-      { "title": "Cámara trasera principal", "text": "12 Mpx" },
-      { "title": "Cámara frontal principal", "text": "12 Mpx" },
-      { "title": "Desbloqueo", "text": "Reconocimiento facial" }
+      {
+        "title": "Memoria interna",
+        "text": "256 GB"
+      },
+      {
+        "title": "Cámara trasera principal",
+        "text": "12 Mpx"
+      },
+      {
+        "title": "Cámara frontal principal",
+        "text": "12 Mpx"
+      },
+      {
+        "title": "Desbloqueo",
+        "text": "Reconocimiento facial"
+      }
     ],
     "description": [
       {
@@ -39,7 +51,7 @@
     "name": "Monitor Samsung Odissey",
     "image": "/images/Monitor Samsung Odissey/MSAMO.png",
     "originalPrice": "350000",
-    "category": "Monitores & TVs",
+    "category": "monitores-tvs",
     "brand": "Samsung",
     "onDiscount": true,
     "discount": "20",
@@ -50,10 +62,22 @@
       "/images/Monitor Samsung Odissey/MSAMO -lateral (4).png"
     ],
     "features": [
-      { "title": "Tamaño de la pantalla", "text": "25\"" },
-      { "title": "Tipo de resolución", "text": "Full HD" },
-      { "title": "Es curvo", "text": "No" },
-      { "title": "Es reclinable", "text": "Sí" }
+      {
+        "title": "Tamaño de la pantalla",
+        "text": "25\""
+      },
+      {
+        "title": "Tipo de resolución",
+        "text": "Full HD"
+      },
+      {
+        "title": "Es curvo",
+        "text": "No"
+      },
+      {
+        "title": "Es reclinable",
+        "text": "Sí"
+      }
     ],
     "description": [
       {
@@ -79,7 +103,7 @@
     "name": "Samsung Smart TV 65\"",
     "image": "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-frente.png",
     "originalPrice": "1200000",
-    "category": "Monitores & TVs",
+    "category": "monitores-tvs",
     "brand": "Samsung",
     "onDiscount": true,
     "discount": "5",
@@ -87,13 +111,22 @@
       "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"
     ],
     "features": [
-      { "title": "Resolución", "text": "4K" },
-      { "title": "Tipo de pantalla", "text": "LED" },
+      {
+        "title": "Resolución",
+        "text": "4K"
+      },
+      {
+        "title": "Tipo de pantalla",
+        "text": "LED"
+      },
       {
         "title": "Aplicaciones integradas",
         "text": "Web browser, Gallery, Netflix, Prime Video, Apple TV, YouTube"
       },
-      { "title": "Cantidad de puertos HDMI", "text": "3" }
+      {
+        "title": "Cantidad de puertos HDMI",
+        "text": "3"
+      }
     ],
     "description": [
       {
@@ -119,7 +152,7 @@
     "name": "Notebook Samsung Book3",
     "image": "/images/Notebook Samsung book3/S-Book3.png",
     "originalPrice": "680000",
-    "category": "Notebooks",
+    "category": "notebooks",
     "brand": "Samsung",
     "onDiscount": false,
     "discount": "0",
@@ -132,10 +165,22 @@
       "/images/Notebook Samsung book3/NSAM-lateral (6).png"
     ],
     "features": [
-      { "title": "Memoria RAM", "text": "8 GB" },
-      { "title": "Tamaño de la pantalla", "text": "15.6\"" },
-      { "title": "Tipo de resolución", "text": "Full HD" },
-      { "title": "Pantalla táctil", "text": "Caracteristica 4" }
+      {
+        "title": "Memoria RAM",
+        "text": "8 GB"
+      },
+      {
+        "title": "Tamaño de la pantalla",
+        "text": "15.6\""
+      },
+      {
+        "title": "Tipo de resolución",
+        "text": "Full HD"
+      },
+      {
+        "title": "Pantalla táctil",
+        "text": "Caracteristica 4"
+      }
     ],
     "description": [
       {
@@ -161,7 +206,7 @@
     "name": "Motorola E13",
     "image": "/images/Motorola E13/M E13.png",
     "originalPrice": "73999",
-    "category": "Celulares",
+    "category": "celulares",
     "brand": "Motorola",
     "onDiscount": false,
     "discount": "0",
@@ -170,10 +215,22 @@
       "/images/Motorola E13/M E13-lateral (2).png"
     ],
     "features": [
-      { "title": "Memoria interna", "text": "64 GB" },
-      { "title": "Cámara trasera principal", "text": "13 MP" },
-      { "title": "Cámara frontal principal", "text": "5 MP" },
-      { "title": "Desbloqueo", "text": "Desbloqueo Facial" }
+      {
+        "title": "Memoria interna",
+        "text": "64 GB"
+      },
+      {
+        "title": "Cámara trasera principal",
+        "text": "13 MP"
+      },
+      {
+        "title": "Cámara frontal principal",
+        "text": "5 MP"
+      },
+      {
+        "title": "Desbloqueo",
+        "text": "Desbloqueo Facial"
+      }
     ],
     "description": [
       {
@@ -199,7 +256,7 @@
     "name": "Smart TV TCL 50\"",
     "image": "/images/Smart TV 50 TCL/TVTCL50.png",
     "originalPrice": "419999",
-    "category": "Monitores & TVs",
+    "category": "monitores-tvs",
     "brand": "TCL",
     "onDiscount": false,
     "discount": "0",
@@ -208,10 +265,22 @@
       "/images/Smart TV 50 TCL/TVTCL50-lateral (2).png"
     ],
     "features": [
-      { "title": "Tamaño de la pantalla", "text": "50\"" },
-      { "title": "Resolución", "text": "4K" },
-      { "title": "Es smart", "text": "Sí" },
-      { "title": "Tipo de pantalla", "text": "LED" }
+      {
+        "title": "Tamaño de la pantalla",
+        "text": "50\""
+      },
+      {
+        "title": "Resolución",
+        "text": "4K"
+      },
+      {
+        "title": "Es smart",
+        "text": "Sí"
+      },
+      {
+        "title": "Tipo de pantalla",
+        "text": "LED"
+      }
     ],
     "description": [
       {
