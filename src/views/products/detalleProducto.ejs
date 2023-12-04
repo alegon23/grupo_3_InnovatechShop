@@ -79,16 +79,8 @@
 
         <div class="descripcion-producto">
             <h2>Descripción</h2>
-            <% for (description of productID.description) {%>
-            <section>
-                <% if (description.title != "") { %>
-                    <h4><%= description.title %></h4>
-                    <p><%= description.text %></p>
-                <% } else { %>
-                    <br>
-                    <p><%= description.text %></p>
-                <% } %>
-            </section>
+            <% for (description of productID.description) { %>
+                <p> <%= description %> </p>
             <% } %>
         </div>
 

@@ -11,7 +11,7 @@
             <div class="form">
                 <h2 class="title">Editar Producto</h2>
                 
-                <form action="/" method='POST' class="contenedor-registro">
+                <form action="/products/editarProducto/<%= productID.id %>?_method=PUT" method='POST' class="contenedor-registro">
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre del producto</label>
@@ -42,12 +42,12 @@
 
                             <label for="imagen-producto">Imagenes Extras</label>
                             <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png" multiple>
-                            
                         </div>  
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="10"><%- include('../partials/listar-datos-productos', {datos: productID.description}) %></textarea>
+                    <textarea name="descripcion" cols="30" rows="10"> <% for (description of productID.description){%><%=description%>
+<%}%></textarea>    
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
                     

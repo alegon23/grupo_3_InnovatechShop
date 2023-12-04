@@ -14,14 +14,11 @@ const uploadImgs = uploadImg.fields([{ name: 'imagen-principal', maxCount: 1 }, 
 router.post('/', uploadImgs, productsController.guardar);
 
 router.get('/editarProducto/:id', productsController.editar);
+router.put('/editarProducto/:id', productsController.actualizar);
 
 
 
-/*
-/products (POST) → Acción de creación (a donde se envía el formulario)
-
-/products/ :id (PUT) → Acción de edición (a donde se envía el formulario):
-
+/*router.post('/products', productsController.actualizar)
 /products/ :id (DELETE) → Acción de borrado */
 
 module.exports = router;

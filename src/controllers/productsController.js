@@ -26,23 +26,9 @@ const productsController = {
 
     guardar: (req, res) =>{
         let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
-
-        //! aqui podemos cambiar la forma en la que se suban los datos
         const descripcionArray = descripcion.trim().split("\r\n");
-        let description = [];
-        let title = "";
-        let text = "";
-
-        for (let i = 0; i < descripcionArray.length; i += 2 ){
-            
-            title = descripcionArray[i].trim();
-            text = descripcionArray[i+1].trim();
-
-            description.push({title, text});
-        }
 
         //! aqui podemos cambiar la forma en la que se suban los datos
-        console.log(req.body);
         let features = [];
         title = "";
         text = "";
@@ -54,7 +40,7 @@ const productsController = {
 
             features.push({title, text});
         }
-        console.log(features);
+
         //! documentacion:
         // https://github.com/expressjs/multer/blob/master/doc/README-es.md
         let imagesArray = [];
@@ -78,7 +64,7 @@ const productsController = {
             discount: porcentaje,
             extraImages: imagesArray,
             features,
-            description,
+            description: descripcionArray,
         }
 
         products.push(nuevoProducto);
@@ -88,11 +74,49 @@ const productsController = {
         res.redirect('/products');
     },
 
-    editar: (req, res) =>{
+    editar: (req, res) => {
         const productID = products.find(producto => producto.id == req.params.id);
         res.render(path.resolve('./', './src/views/products/editarProducto'), {productID})
     },
-    
+
+    actualizar: (req, res) => {
+        let idProd = req.params.id;
+        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
+        let indexProducto = products.findIndex(prod => prod.id == idProd);
+        const descuento = porcentaje == 0? false:true;
+        const descripcionArray = descripcion.trim().split("\r\n");
+
+        //! aqui podemos cambiar la forma en la que se suban los datos
+        let features = [];
+        title = "";
+        text = "";
+        
+        for (let i = 0; i < caracteristicas.length; i += 2 ){
+            
+            title = caracteristicas[i].trim();
+            text = caracteristicas[i+1].trim();
+
+            features.push({title, text});
+        }
+
+        if (indexProducto != -1){
+            products[indexProducto].name = nombre;
+            products[indexProducto].originalPrice = precio;
+            products[indexProducto].category = categoria;
+            products[indexProducto].brand = marca;
+            products[indexProducto].onDiscount = descuento;
+            products[indexProducto].discount = porcentaje;
+            products[indexProducto].features = features;
+            products[indexProducto].description = descripcionArray;
+
+            fs.writeFileSync(productsJSON, JSON.stringify(products));
+            
+            res.redirect('/products');
+        } else {
+            console.log('no se encontro el producto');
+            res.send('Producto no encontrado');
+        }
+    }
 }
 
 module.exports = productsController;
