@@ -53,8 +53,15 @@
                 <p><i class="bi bi-check2"></i> Stock disponible</p>
                 <p><i class="bi bi-truck"></i> Envios a todo el país</p>
                 <div class="botones-detalle-producto">
-                    <a href="../products/carrito" class="boton-comprarAhora">Comprar ahora</a>
+                    <a href="/products/carrito" class="boton-comprarAhora">Comprar ahora</a>
                     <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
+                </div>
+                
+                <div class="form-detalle">
+                    <a href="/products/editarProducto/<%= productID.id %>" class="boton-editar">Editar producto</a>
+                    <form action="/products/<%= productID.id %>?_method=DELETE" method="POST" >
+                        <button type="submit" class="boton-borrar">Borrar producto</button>
+                    </form>
                 </div>    
             </div>
         </div>

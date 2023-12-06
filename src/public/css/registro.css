@@ -159,6 +159,11 @@ body {
     text-decoration: underline;
 }
 
+.pie-formulario .volver-tienda {
+    text-decoration: none;
+    color: #9e8fff;
+}  
+
 .pie-formulario {
     display: flex;
     justify-content: space-between;

@@ -82,6 +82,43 @@
     width: 100%;
 }
 
+.form-detalle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.form-detalle form {
+    width: 50%;
+    margin-left: 5px;
+}
+
+.boton-borrar {
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: red;
+    border: none;
+}
+
+.form-detalle .boton-editar {
+    width: 50%;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    margin-right: 5px;
+    background-color: #222222;
+}
+
 .botones-detalle-producto {
     display: flex;
     flex-direction: column;
@@ -240,7 +277,7 @@
         width: 35%;
         padding: 10px;
         border-radius: 5px;
-        height: 406px;
+        height: 446px;
 
     }
 

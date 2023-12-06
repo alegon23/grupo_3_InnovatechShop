@@ -2,7 +2,7 @@ const calcularDescuento = require('../data/calcularDescuento');
 const path = require('path');
 const fs = require('fs');
 const productsJSON = path.join(__dirname, '../data/products.json');;
-const products = require('../data/products');
+let products = require('../data/products');
 const calcularMiles = require('../data/calcularMiles');
 
 const productsController = {
@@ -51,10 +51,22 @@ const productsController = {
             }
         }
 
+        const generateId = () =>  {
+            let allUsers = JSON.parse(fs.readFileSync(productsJSON, {encoding: 'utf-8'}));
+            let lastUser = allUsers.pop();
+            if (lastUser) {
+                return lastUser.id + 1;
+            }
+    
+            return 1;
+        }
+
+        
+
         const descuento = porcentaje == 0? false:true; 
 
         let nuevoProducto = {
-            id: products.length + 1,
+            id: generateId(),
             name: nombre,
             image: "/images/products/" + req.files['imagen-principal'][0].filename,
             originalPrice: precio,
@@ -69,7 +81,7 @@ const productsController = {
 
         products.push(nuevoProducto);
         
-        fs.writeFileSync(productsJSON, JSON.stringify(products));
+        fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
 
         res.redirect('/products');
     },
@@ -99,23 +111,42 @@ const productsController = {
             features.push({title, text});
         }
 
+        //let imagesArray = [];
+
+        //if(req.files['imagenes-extra']){
+        //    for(let i = 0; i < req.files['imagenes-extra'].length; i++){
+        //        imagesArray.push("/images/products/" + req.files['imagenes-extra'][i].filename)
+        //    }
+        //}
+
         if (indexProducto != -1){
             products[indexProducto].name = nombre;
+            //products[indexProducto].image = "/images/products/" + req.files['imagen-principal'][0].filename;
             products[indexProducto].originalPrice = precio;
             products[indexProducto].category = categoria;
             products[indexProducto].brand = marca;
             products[indexProducto].onDiscount = descuento;
             products[indexProducto].discount = porcentaje;
+            //products[indexProducto].extraImages = imagesArray;
             products[indexProducto].features = features;
             products[indexProducto].description = descripcionArray;
 
-            fs.writeFileSync(productsJSON, JSON.stringify(products));
+            fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
             
             res.redirect('/products');
         } else {
             console.log('no se encontro el producto');
             res.send('Producto no encontrado');
         }
+    },
+    
+    borrar: (req, res) => {
+        const idProd = req.params.id;
+        products = products.filter(prod => prod.id != idProd);
+        
+        fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
+        
+        res.redirect('/products');
     }
 }
 

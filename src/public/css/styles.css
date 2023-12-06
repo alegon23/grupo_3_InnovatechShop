@@ -150,6 +150,7 @@
     align-items: center;
     position: relative;
     padding: 20px 20px 0 20px;
+    min-height: 225px;
 }
 
 .descuento{
