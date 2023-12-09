@@ -4,7 +4,7 @@
 <%- include('../partials/head', {title: "- Crear Producto", cssFile: "producto", cssHome: ""}) %>
 
 <body>
-    <main class="main-registro">
+    <main class="main-producto">
         <div class="contenedor-form">
             <img src="/images/Logo.png" alt="Logo" class="logo">
 
@@ -13,7 +13,7 @@
             <div class="form">
                 <h2 class="title">Crear Producto</h2>
                 
-                <form action="/products" method='POST' class="contenedor-registro" enctype="multipart/form-data">
+                <form action="/products" method='POST' class="contenedor-producto" enctype="multipart/form-data">
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre del producto</label>
@@ -90,7 +90,7 @@
                     </div>
 
                     <div>
-                        <button type="submit" class="boton-registro">Crear Producto</button>
+                        <button type="submit" class="boton-submit">Crear Producto</button>
                     </div>
                         
                 </form>
@@ -98,7 +98,7 @@
                 
                 <hr>
             
-                <div class="pie-formulario">
+                <div class="footer-form">
                     <a href="#" class="ayuda"><i class="bi bi-question-circle"></i> ¿Necesitas ayuda?</a>
                     <a href="/" class="volver-tienda">Volver a la tienda</i></a>
                     <p class="copyright">Copyright © 2023</p>

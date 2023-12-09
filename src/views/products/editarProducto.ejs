@@ -4,14 +4,14 @@
 <%- include('../partials/head', {title: "- Editar Producto", cssFile: "producto", cssHome: ""}) %>
 
 <body>
-    <main class="main-registro">
+    <main class="main-producto">
         <div class="contenedor-form">
             <img src="/images/Logo.png" alt="Logo" class="logo">
 
             <div class="form">
                 <h2 class="title">Editar Producto</h2>
                 
-                <form action="/products/editarProducto/<%= productID.id %>?_method=PUT" method='POST' class="contenedor-registro">
+                <form action="/products/editarProducto/<%= productID.id %>?_method=PUT" method='POST' enctype="multipart/form-data" class="contenedor-producto">
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre del producto</label>
@@ -37,17 +37,19 @@
                                 <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.discount%>">
                             
                             <!-- !ver como hacer para cargar las imagenes -->
-                            
+                            <% if (productID.image !== "") {%>
+                                <p>Tienes 1 imagen principal y <%=productID.extraImages.length%> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
+                            <% } %>
                             <label for="imagen-producto">Imagen Principal</label>
-                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png">
+                            <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png">
                             
                             <label for="imagen-producto">Imagenes Extras</label>
-                            <input type="file" class="input-imagen" name="imagen-producto" accept=".jpg, .jpeg, .png" multiple>
+                            <input type="file" class="input-imagen" name="imagenes-extra" accept=".jpg, .jpeg, .png" multiple>
                         </div>  
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="10"> <% for (description of productID.description){%><%=description%>
+                    <textarea name="descripcion" cols="30" rows="10"><% for (description of productID.description){%><%=description%>
 <%}%></textarea>    
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
@@ -80,7 +82,7 @@
                     </div>
                     
                     <div>
-                        <button type="submit" class="boton-registro">Guardar cambios</button>
+                        <button type="submit" class="boton-submit">Guardar cambios</button>
                     </div>
                         
                 </form>
@@ -88,7 +90,7 @@
                 
                 <hr>
             
-                <div class="pie-formulario">
+                <div class="footer-form">
                     <a href="#" class="ayuda"><i class="bi bi-question-circle"></i> ¿Necesitas ayuda?</a>
                     <a href="/" class="volver-tienda">Volver a la tienda</i></a>
                     <p class="copyright">Copyright © 2023</p>

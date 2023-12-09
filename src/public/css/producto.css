@@ -11,7 +11,7 @@ body {
     );
 }
 
-.main-registro {
+.main-producto {
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -56,14 +56,7 @@ body {
     margin-bottom: 0;
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 14px;
-    color: #9E8FFF;
-    margin: 5px 0 12px 0;
-}
-
-.contenedor-registro {
+.contenedor-producto {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,7 +69,7 @@ body {
     align-items: baseline;
 }
 
-.contenedor-registro label {
+.contenedor-producto label {
     font-weight: bold;
 }
 
@@ -151,7 +144,7 @@ body {
     outline: solid 2px #9e8fff;
 } 
 
-.contenedor-descuento {
+/*.contenedor-descuento {
     display: flex;
     align-items: flex-end;
 }
@@ -162,7 +155,7 @@ body {
 
 .contenedor-descuento input {
     accent-color: #9e8fff;
-}
+}*/
 
 .caja-caracteristicas {
     display: flex;
@@ -210,7 +203,7 @@ textarea:focus {
     outline: solid 2px #9e8fff;
 }
 
-.boton-registro {
+.boton-submit {
     border: none;
     border-radius: 100px;
     text-align: center;
@@ -222,35 +215,17 @@ textarea:focus {
     width: 100%;
 }
 
-.boton-registro:hover {
+.boton-submit:hover {
     background-color: black;
     color: white;
 }
 
-.boton-registro:active {
+.boton-submit:active {
     color: black;
     background-color: #85f7ff;
 }
 
-.iniciar-sesion {
-    font-size: 12px;
-    margin: 10px;
-}
-
-.iniciar-sesion p {
-    margin: 0 0 2px 0;
-}
-
-.link-aqui {
-    text-decoration: none;
-    color: #007fff;
-}
-
-.link-aqui:hover {
-    text-decoration: underline;
-}
-
-.pie-formulario {
+.footer-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -269,7 +244,7 @@ textarea:focus {
     color: #9e8fff;
 }
 
-.pie-formulario a:hover {
+.footer-form a:hover {
     text-decoration: underline;
 }
 
@@ -283,19 +258,8 @@ textarea:focus {
     .contenedor-form {
         width: 80%;
     }
-    
-    .iniciar-sesion {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-    }
-    
-    .iniciar-sesion p {
-        margin: 0 3px 0 0;
-    }
 
-    .pie-formulario {
+    .footer-form {
         font-size: 13px;
     }
 }
@@ -336,20 +300,15 @@ textarea:focus {
         width: 60%
     }
 
-    .boton-registro {
+    .boton-submit {
         width: 60%;
     }
 
-    .contenedor-registro{
+    .contenedor-producto{
         font-size: 17px;
     }
 
-    .iniciar-sesion {
-        font-size: 16px;
-    }
-    
-
-    .pie-formulario {
+    .footer-form {
         font-size: 15px;
     }
 }
@@ -368,11 +327,7 @@ textarea:focus {
         margin-left: 8px;
     }
 
-    .boton-registro {
+    .boton-submit {
         width: 70%;
     }
-
-    /*.pie-formulario {
-        font-size: 16px;
-    }*/
 }

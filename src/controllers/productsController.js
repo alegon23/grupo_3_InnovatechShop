@@ -11,6 +11,42 @@ const productsController = {
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: products, calcularMiles});
     },
 
+    listadoCelulares: (req, res) =>{
+        const titulo = "Celulares";
+        const resultados = products.filter(producto => producto.category == 'celulares');
+        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+    },
+
+    listadoMonitoresTVs: (req, res) =>{
+        const titulo = "Monitores & TVs";
+        const resultados = products.filter(producto => producto.category == 'monitores-tvs');
+        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+    },
+
+    listadoTablets: (req, res) =>{
+        const titulo = "Tablets";
+        const resultados = products.filter(producto => producto.category == 'tablets');
+        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+    },
+
+    listadoNotebooks: (req, res) =>{
+        const titulo = "Notebooks";
+        const resultados = products.filter(producto => producto.category == 'notebooks');
+        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+    },
+
+    listadoHardware: (req, res) =>{
+        const titulo = "Hardware";
+        const resultados = products.filter(producto => producto.category == 'hardware');
+        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+    },
+
+    listadoAccesorios: (req, res) =>{
+        const titulo = "Accesorios";
+        const resultados = products.filter(producto => producto.category == 'accesorios');
+        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+    },
+
     carrito: (req, res) =>{
         res.render(path.resolve('./', './src/views/products/carrito'));
     },
@@ -28,10 +64,9 @@ const productsController = {
         let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
         const descripcionArray = descripcion.trim().split("\r\n");
 
-        //! aqui podemos cambiar la forma en la que se suban los datos
         let features = [];
-        title = "";
-        text = "";
+        let title = "";
+        let text = "";
         
         for (let i = 0; i < caracteristicas.length; i += 2 ){
             
@@ -41,8 +76,7 @@ const productsController = {
             features.push({title, text});
         }
 
-        //! documentacion:
-        // https://github.com/expressjs/multer/blob/master/doc/README-es.md
+        //* documentacion: https://github.com/expressjs/multer/blob/master/doc/README-es.md
         let imagesArray = [];
 
         if(req.files['imagenes-extra']){
@@ -57,13 +91,10 @@ const productsController = {
             if (lastUser) {
                 return lastUser.id + 1;
             }
-    
             return 1;
         }
 
-        
-
-        const descuento = porcentaje == 0? false:true; 
+        const descuento = porcentaje == 0 ? false : true; 
 
         let nuevoProducto = {
             id: generateId(),
@@ -95,39 +126,47 @@ const productsController = {
         let idProd = req.params.id;
         let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
         let indexProducto = products.findIndex(prod => prod.id == idProd);
-        const descuento = porcentaje == 0? false:true;
+        const descuento = porcentaje == 0 ? false : true;
         const descripcionArray = descripcion.trim().split("\r\n");
 
-        //! aqui podemos cambiar la forma en la que se suban los datos
         let features = [];
-        title = "";
-        text = "";
+        let title = "";
+        let text = "";
         
         for (let i = 0; i < caracteristicas.length; i += 2 ){
-            
             title = caracteristicas[i].trim();
             text = caracteristicas[i+1].trim();
-
             features.push({title, text});
         }
 
-        //let imagesArray = [];
-
-        //if(req.files['imagenes-extra']){
-        //    for(let i = 0; i < req.files['imagenes-extra'].length; i++){
-        //        imagesArray.push("/images/products/" + req.files['imagenes-extra'][i].filename)
-        //    }
-        //}
+        //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
+        let newImagenPrincipal = "";
+        let imagesArray = [];
+        if(Object.keys(req.files).length){
+            if (req.files['imagen-principal']){
+                newImagenPrincipal = "/images/products/" + req.files['imagen-principal'][0].filename;
+            }
+        
+            if (req.files['imagenes-extra']){
+                for(let i = 0; i < req.files['imagenes-extra'].length; i++){
+                    imagesArray.push("/images/products/" + req.files['imagenes-extra'][i].filename)
+                }
+            }
+        }
 
         if (indexProducto != -1){
             products[indexProducto].name = nombre;
-            //products[indexProducto].image = "/images/products/" + req.files['imagen-principal'][0].filename;
+            if (newImagenPrincipal) {
+                products[indexProducto].image = newImagenPrincipal;
+            }
             products[indexProducto].originalPrice = precio;
             products[indexProducto].category = categoria;
             products[indexProducto].brand = marca;
             products[indexProducto].onDiscount = descuento;
             products[indexProducto].discount = porcentaje;
-            //products[indexProducto].extraImages = imagesArray;
+            if (imagesArray.length) {
+                products[indexProducto].extraImages = imagesArray;
+            }
             products[indexProducto].features = features;
             products[indexProducto].description = descripcionArray;
 
@@ -135,7 +174,6 @@ const productsController = {
             
             res.redirect('/products');
         } else {
-            console.log('no se encontro el producto');
             res.send('Producto no encontrado');
         }
     },

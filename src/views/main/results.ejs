@@ -9,13 +9,15 @@
   <main>
     <section>
       <h2 class="titulo-section"><%= titulo %></h2>
+
+      <% if (resultados.length) { %>
         <div class="lista-promociones">
           <% for (resultado of resultados) { %>
             <% if (!resultado.onDiscount) { %>
               <article class="tarjeta-articulo">
                 <img src="<%= resultado.image %>" alt="Imagen Producto" class="imagen-producto">
                   <div class="caja-precio">
-                    <h3><%= resultado.name %> <a href="../products/editarProducto/<%= resultado.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+                    <h3><%= resultado.name %></h3>
                     <h4>$<%= calcularMiles(resultado.originalPrice) %></h4>
                     <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
                   </div>
@@ -29,7 +31,7 @@
                             <p class="descuento"><%= resultado.discount + '%' %><br />OFF</p>
                           </div>
                           <div class="caja-precio">
-                            <h3><%= resultado.name %> <a href="../products/editarProducto/<%= resultado.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+                            <h3><%= resultado.name %></h3>
                             <h4 class="precio-original"> <%= '$' + calcularMiles(resultado.originalPrice) %> </h4>
                             <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
                             <h5>Envío gratis <i class="bi bi-truck"></i></h5>
@@ -39,7 +41,10 @@
                 <% }%>
             <% } %>
             </div>
-    </section>
+        </section>
+      <% } else {%>
+        <h2> No hay productos para mostrar. Intenta con otra categoría </h2>
+      <% } %>
 
       <a href="../products/crearProducto" class="crear-producto">
         <i class="bi bi-plus-square-fill"></i>

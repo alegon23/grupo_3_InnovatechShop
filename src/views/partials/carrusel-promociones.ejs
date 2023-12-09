@@ -7,7 +7,7 @@
           <p class="descuento"><%= producto.discount + '%' %><br />OFF</p>
         </div>
         <div class="caja-precio">
-          <h3><%= producto.name %> <a href="../products/editarProducto/<%= producto.id %>" class="editar-producto"><i class="bi bi-pencil-square"></i></a></h3>
+          <h3><%= producto.name %></h3>
           <h4 class="precio-original"> <%= '$' + calcularMiles(producto.originalPrice) %> </h4>
           <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
           <h5>Envío gratis <i class="bi bi-truck"></i></h5>
