@@ -1,5 +1,5 @@
 <% for (producto of productos) { %>
-    <% if (!producto.onDiscount) { %>
+    <% if (producto.mainProduct) { %>
       <article class="tarjeta-articulo">
         <img src="<%= producto.image %>" alt="Imagen Producto" class="imagen-producto">
   

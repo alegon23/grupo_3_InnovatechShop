@@ -592,6 +592,7 @@ footer img {
 
     .lista-productos, .lista-promociones{
         justify-content: space-between;
+        /*justify-content: space-evenly;*/
     }
 
     .boton-compra:active, #boton-cuenta:active, #boton-carrito:active{

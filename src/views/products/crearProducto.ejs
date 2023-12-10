@@ -48,6 +48,13 @@
                             <input type="number" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" required>
                             <span class="feedback-negativo">El porcentaje es obligatorio</span>
 
+                            <label for="esDestacado">¿Es un producto destacado?</label>
+                            <select name="esDestacado" required>
+                                <option value="" selected>Seleccionar Opcion</option>
+                                <option value="true">Si</option>
+                                <option value="false">No</option>
+                            </select>
+
                             <label for="imagen-principal">Imagen Principal</label>
                             <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png" required>
 

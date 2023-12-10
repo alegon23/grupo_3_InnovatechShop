@@ -131,7 +131,7 @@ body {
     border-bottom: solid 2px #9E8FFF;
 }
 
-.contenedor-datos1 select {
+.contenedor-datos1 select, .contenedor-datos2 select {
     background-color: white;
     border: solid 1px #222222;
     border-radius: 5px;
@@ -139,10 +139,15 @@ body {
     margin-top: 5px;
 }
 
-.contenedor-datos1 select:focus {
+.contenedor-datos1 select:focus, .contenedor-datos2 select:focus {
     border: none;
     outline: solid 2px #9e8fff;
 } 
+
+.texto-datos-imagenes {
+    margin-bottom: 0;
+    font-style: italic;
+}
 
 /*.contenedor-descuento {
     display: flex;

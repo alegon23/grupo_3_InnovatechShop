@@ -33,12 +33,18 @@
                             <label for="precio">Precio</label>
                             <input type="number" name="precio" placeholder="$00,00" value="<%=productID.originalPrice%>" required>
                             
-                                <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                                <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.discount%>">
+                            <label for="porcentaje" class="label">Porcentaje de descuento</label>
+                            <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.discount%>">
+
+                            <label for="esDestacado">¿Es un producto destacado?</label>
+                            <select name="esDestacado" required>
+                                <option value="true" <%= productID.mainProduct ? 'selected' : ''%>>Si</option>
+                                <option value="false" <%= productID.mainProduct ? '' : 'selected'%>>No</option>
+                            </select>
                             
                             <!-- !ver como hacer para cargar las imagenes -->
                             <% if (productID.image !== "") {%>
-                                <p>Tienes 1 imagen principal y <%=productID.extraImages.length%> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
+                                <p class="texto-datos-imagenes">Tienes 1 imagen principal y <%=productID.extraImages.length%> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
                             <% } %>
                             <label for="imagen-producto">Imagen Principal</label>
                             <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png">

@@ -8,6 +8,7 @@
   "brand": "iPhone",
   "onDiscount": true,
   "discount": "10",
+  "mainProduct": false,
   "extraImages": [
    "/images/iphone13/I 13-lateral1 (1).png",
    "/images/iphone13/I 13-lateral1 (2).png",
@@ -50,6 +51,7 @@
   "brand": "Samsung",
   "onDiscount": true,
   "discount": "20",
+  "mainProduct": false,
   "extraImages": [
    "/images/Monitor Samsung Odissey/MSAMO -lateral (1).png",
    "/images/Monitor Samsung Odissey/MSAMO -lateral (2).png",
@@ -94,6 +96,7 @@
   "brand": "Samsung",
   "onDiscount": true,
   "discount": "5",
+  "mainProduct": false,
   "extraImages": [
    "/images/Smart TV 65 Samsung 4K AU7000/TVSAM65-lateral.png"
   ],
@@ -135,6 +138,7 @@
   "brand": "Samsung",
   "onDiscount": false,
   "discount": "0",
+  "mainProduct": true,
   "extraImages": [
    "/images/Notebook Samsung book3/NSAM-lateral (1).png",
    "/images/Notebook Samsung book3/NSAM-lateral (2).png",
@@ -181,6 +185,7 @@
   "brand": "Motorola",
   "onDiscount": false,
   "discount": "0",
+  "mainProduct": true,
   "extraImages": [
    "/images/Motorola E13/M E13-lateral (1).png",
    "/images/Motorola E13/M E13-lateral (2).png"
@@ -223,6 +228,7 @@
   "brand": "TCL",
   "onDiscount": false,
   "discount": "0",
+  "mainProduct": true,
   "extraImages": [
    "/images/Smart TV 50 TCL/TVTCL50-lateral (1).png",
    "/images/Smart TV 50 TCL/TVTCL50-lateral (2).png"

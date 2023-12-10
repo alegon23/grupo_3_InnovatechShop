@@ -61,7 +61,7 @@ const productsController = {
     },
 
     guardar: (req, res) =>{
-        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
+        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje, esDestacado} = req.body;
         const descripcionArray = descripcion.trim().split("\r\n");
 
         let features = [];
@@ -105,6 +105,7 @@ const productsController = {
             brand: marca,
             onDiscount: descuento,
             discount: porcentaje,
+            mainProduct: esDestacado === 'true',
             extraImages: imagesArray,
             features,
             description: descripcionArray,
@@ -124,7 +125,7 @@ const productsController = {
 
     actualizar: (req, res) => {
         let idProd = req.params.id;
-        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje } = req.body;
+        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje, esDestacado } = req.body;
         let indexProducto = products.findIndex(prod => prod.id == idProd);
         const descuento = porcentaje == 0 ? false : true;
         const descripcionArray = descripcion.trim().split("\r\n");
@@ -164,6 +165,7 @@ const productsController = {
             products[indexProducto].brand = marca;
             products[indexProducto].onDiscount = descuento;
             products[indexProducto].discount = porcentaje;
+            products[indexProducto].mainProduct = esDestacado === 'true';
             if (imagesArray.length) {
                 products[indexProducto].extraImages = imagesArray;
             }
