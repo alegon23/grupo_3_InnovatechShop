@@ -14,42 +14,46 @@
                 <h2 class="title">Crear Producto</h2>
                 
                 <form action="/products" method='POST' class="contenedor-producto" enctype="multipart/form-data">
-                    <div class="datos">      
-                        <div class="contenedor-datos1">
+                    <div class="contenedor-datos">      
                             <label for="nombre" class="label">Nombre del producto</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" required>
-                            <span class="feedback-negativo">El nombre es obligatorio</span>
+                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%= locals.oldData && oldData.nombre %>">
+                            <% if(locals.errors && errors.nombre) { %>
+                                <span style="color: red"><%= errors.nombre.msg %></span>
+                            <% } %> 
+                            
 
                             <label for="marca" class="label">Marca del Producto</label>
-                            <input type="text" name="marca" class="input" placeholder="Marca del producto" required>
-                            <span class="feedback-negativo">La marca es obligatoria</span>                           
+                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%= locals.oldData && oldData.marca %>">
+                            <% if(locals.errors && errors.marca) { %>
+                                <span style="color: red"><%= errors.marca.msg %></span> 
+                            <% } %>
+                                                      
                         
                             <label for="categoria">Categoría</label>
-                            <select name="categoria" required>
-                                <option value="seleccionar" selected>Seleccionar Categoria</option>
-                                <option value="celulares">Celulares</option>
-                                <option value="monitores-tvs">Monitores & TVs</option>
-                                <option value="tablets">Tablets</option>
-                                <option value="notebooks">Notebooks</option>
-                                <option value="hardware">Hardware</option>
-                                <option value="accesorios">Accesorios</option>
+
+                            <select name="categoria">
+                                <option value="">Seleccionar Categoria</option>
+                                <% const options = ['Celulares', 'Monitores & TVs', 'Tablets', 'Notebooks', 'Hardware', 'Accesorios']; %>
+                                <% for (const option of options) { %>
+                                    <option value="<%= option %>" <%= locals.oldData && (oldData.categoria == option) ? 'selected' : '' %>><%= option %></option>
+                                  <% } %>
                             </select>
+                            <% if(locals.errors && errors.categoria) { %>
+                                <span style="color: red"><%= errors.categoria.msg %></span> 
+                            <% } %>
                             
-                        </div>
 
-                        
-                        <div class="contenedor-datos2">
-
+                            <!--! faltan probar validaciones -->
                             <label for="precio">Precio</label>
-                            <input type="number" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400" required>
+                            <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400">
                             <span class="feedback-negativo">El precio es obligatorio</span>
                             
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                            <input type="number" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" required>
+                            <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0">
                             <span class="feedback-negativo">El porcentaje es obligatorio</span>
 
                             <label for="esDestacado">¿Es un producto destacado?</label>
-                            <select name="esDestacado" required>
+                            <select name="esDestacado">
                                 <option value="" selected>Seleccionar Opcion</option>
                                 <option value="true">Si</option>
                                 <option value="false">No</option>
@@ -61,7 +65,6 @@
                             <label for="imagenes-extra">Imagenes Extra</label>
                             <input type="file" class="input-imagen" name="imagenes-extra" accept=".jpg, .jpeg, .png" multiple>
                             
-                        </div>  
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
@@ -71,27 +74,27 @@
                     
                     <div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 1:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica" required>
+                            <label for="textarea-label">Caracteristica 1:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
                             <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 1:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                        </div>
-                        <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 2:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 2:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica" required>
+                            <label for="textarea-label">Descripcion 1:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
                             <span class="feedback-negativo">Este campo es obligatorio</span>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica" required>
+                            <label for="textarea-label">Caracteristica 2:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
                             <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 3:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica" required>
+                            <label for="textarea-label">Descripcion 2:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
                             <span class="feedback-negativo">Este campo es obligatorio</span>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica" required>
+                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
                             <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 4:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica" required>
+                            <label for="textarea-label">Descripcion 3:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                        </div>
+                        <div class="caja-caracteristicas">
+                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
+                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Descripcion 4:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
                             <span class="feedback-negativo">Este campo es obligatorio</span>
                         </div>
                     </div>

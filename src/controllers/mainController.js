@@ -1,7 +1,7 @@
-const calcularDescuento = require('../data/calcularDescuento');
+const calcularDescuento = require('../public/js/calcularDescuento');
 const path = require('path');
 const products = require('../data/products');
-const calcularMiles = require('../data/calcularMiles');
+const calcularMiles = require('../public/js/calcularMiles');
 
 const mainController = {
     index: (req, res) =>{

@@ -1,9 +1,10 @@
-const calcularDescuento = require('../data/calcularDescuento');
+const calcularDescuento = require('../public/js/calcularDescuento');
 const path = require('path');
 const fs = require('fs');
 const productsJSON = path.join(__dirname, '../data/products.json');;
 let products = require('../data/products');
-const calcularMiles = require('../data/calcularMiles');
+const calcularMiles = require('../public/js/calcularMiles');
+const { validationResult } = require("express-validator");
 
 const productsController = {
     listado: (req, res) =>{
@@ -61,7 +62,13 @@ const productsController = {
     },
 
     guardar: (req, res) =>{
-        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje, esDestacado} = req.body;
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body});
+        }
+
+        /*let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje, esDestacado} = req.body;
         const descripcionArray = descripcion.trim().split("\r\n");
 
         let features = [];
@@ -86,10 +93,10 @@ const productsController = {
         }
 
         const generateId = () =>  {
-            let allUsers = JSON.parse(fs.readFileSync(productsJSON, {encoding: 'utf-8'}));
-            let lastUser = allUsers.pop();
-            if (lastUser) {
-                return lastUser.id + 1;
+            let allProducts = JSON.parse(fs.readFileSync(productsJSON, {encoding: 'utf-8'}));
+            let lastProduct = allProducts.pop();
+            if (lastProduct) {
+                return lastProduct.id + 1;
             }
             return 1;
         }
@@ -115,7 +122,7 @@ const productsController = {
         
         fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
 
-        res.redirect('/products');
+        res.redirect('/products');*/
     },
 
     editar: (req, res) => {

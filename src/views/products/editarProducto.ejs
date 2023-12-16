@@ -12,8 +12,7 @@
                 <h2 class="title">Editar Producto</h2>
                 
                 <form action="/products/editarProducto/<%= productID.id %>?_method=PUT" method='POST' enctype="multipart/form-data" class="contenedor-producto">
-                    <div class="datos">      
-                        <div class="contenedor-datos1">
+                    <div class="contenedor-datos">      
                             <label for="nombre" class="label">Nombre del producto</label>
                             <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=productID.name%>" required>
                             <span class="feedback-negativo">El nombre es demasiado corto</span>
@@ -25,10 +24,8 @@
                             <select name="categoria">
                                 <%- include('../partials/categorias-productos') %>
                             </select>
-                        </div>
 
                         
-                        <div class="contenedor-datos2">
 
                             <label for="precio">Precio</label>
                             <input type="number" name="precio" placeholder="$00,00" value="<%=productID.originalPrice%>" required>
@@ -51,7 +48,6 @@
                             
                             <label for="imagen-producto">Imagenes Extras</label>
                             <input type="file" class="input-imagen" name="imagenes-extra" accept=".jpg, .jpeg, .png" multiple>
-                        </div>  
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>

@@ -4,6 +4,26 @@ La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que pla
 <img src="https://choice.ar/wp-content/uploads/2021/07/choice-redes_abrilestrella-800x800.png" alt="retrospectiva de la estrella de mar" width=450px>
 <br>
 
+## Sprint 5
+
+### Comenzar a hacer:
+- División de tareas
+
+### Seguir haciendo:
+- Comunicación por el grupo
+- Comentar avances y dudas
+
+### Más de:
+- Hacer preguntas cuando no entendamos.
+- Ayudarnos mutuamente.
+- Participación en trello.
+- Mayor participación en las reuniones.
+
+### Menos de & Dejar de hacer:
+- Ídem retrospectiva del sprint 3. Creo que debemos seguir como estamos, ya que de esta forma nos parece que podremos seguir avanzando con el proyecto.
+
+<hr>
+
 ## Sprint 4
 
 ### Comenzar a hacer:
@@ -18,9 +38,8 @@ La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que pla
 - Si hay reuniones de partes del grupo comentar avances por el grupo de wpp.
 - Ayudarnos mutuamente.
 
-
 ### Menos de & Dejar de hacer:
-- Ídem retrospectiva del sprint 3. Creo que debemos seguir como estamos, ya que de esta forma nos parece que podremos seguir avanzando con el proyecto.
+- Ídem retrospectiva del sprint 2. Creo que debemos seguir como estamos, ya que de esta forma nos parece que podremos seguir avanzando con el proyecto.
 
 <hr>
 
@@ -38,12 +57,12 @@ La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que pla
 - Hacer consultas entre compañeros sobre dudas de la programación en sí.
 
 ### Menos de & Dejar de hacer:
-- Ídem retrospectiva del sprint 2. Creo que debemos seguir como estamos, ya que de esta forma nos parece que podremos seguir avanzando con el proyecto.
+- Ídem retrospectiva del sprint 1. Creo que debemos seguir como estamos, ya que de esta forma nos parece que podremos seguir avanzando con el proyecto.
 
 <hr>
 
 ## Sprint 2
-Estas son las principales conclusiones con respecto al Sprint 2
+Estas son las principales conclusiones con respecto al Sprint 1
 
 ### Comenzar a hacer: 
 - Establecer días y horarios fijos de reuniones los fines de semana y llevarlas a cabo aunque no todos los integrantes del grupo puedan. Al menos solo un día sería lo ideal que estemos todos para hacer una weekly.

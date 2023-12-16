@@ -63,17 +63,17 @@ body {
     width: 100%;
 }
 
-.datos {
+/*.contenedor-datos {
     display: flex;
     flex-direction: column;
     align-items: baseline;
-}
+}*/
 
 .contenedor-producto label {
     font-weight: bold;
 }
 
-.contenedor-datos1, .contenedor-datos2 {
+.contenedor-datos {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -81,7 +81,7 @@ body {
     width: 100%;
 }
 
-.contenedor-datos1 label, .contenedor-datos2 label {
+.contenedor-datos label {
     margin-top: 10px;
 }
 
@@ -91,15 +91,11 @@ body {
     font-size: 11px;;
 }
 
-.contenedor-datos1 input:invalid, .contenedor-datos2 input:invalid {
+.contenedor-datos input:invalid {
     border-bottom: solid 2px rgba(255, 0, 0, 0.8);
 }
 
-.contenedor-datos1 input:invalid + .feedback-negativo {
-    display: block;
-}
-
-.contenedor-datos2 input:invalid + .feedback-negativo {
+.contenedor-datos input:invalid + .feedback-negativo {
     display: block;
 }
 
@@ -111,27 +107,27 @@ body {
     display: block;
 }
 
-.contenedor-datos1 input, .contenedor-datos2 input {
+.contenedor-datos input {
     width: 100%;
     border: none;
     border-bottom: solid 1px black;
     margin: 5px 0;
 }
 
-.contenedor-datos2 input[type="file"]{
+.contenedor-datos input[type="file"]{
     border-bottom: none;
 }
 
-.contenedor-datos2 input[type="file"]:focus{
+.contenedor-datos input[type="file"]:focus{
     border-bottom: none;
 }
 
-.contenedor-datos1 input:focus, .contenedor-datos2 input:focus {
+.contenedor-datos input:focus {
     outline: none;
     border-bottom: solid 2px #9E8FFF;
 }
 
-.contenedor-datos1 select, .contenedor-datos2 select {
+.contenedor-datos select {
     background-color: white;
     border: solid 1px #222222;
     border-radius: 5px;
@@ -139,7 +135,7 @@ body {
     margin-top: 5px;
 }
 
-.contenedor-datos1 select:focus, .contenedor-datos2 select:focus {
+.contenedor-datos select:focus {
     border: none;
     outline: solid 2px #9e8fff;
 } 
@@ -275,24 +271,20 @@ textarea:focus {
         padding: 30px 30px;
     }
 
-    .caja-caracteristicas {
+    /*.caja-caracteristicas {
         margin-left: 8px;
-    }
+    }*/
 
-    .textarea-label {
+    /*.textarea-label {
         margin-left: 8px;
-    }
+    }*/
     
-    textarea {
+    /*textarea {
         margin-left: 8px;
-    }
+    }*/
 
-    .contenedor-datos1 {
+    .contenedor-datos {
         margin-right: 5px;
-    }
-    
-    .contenedor-datos2 {
-        margin-left: 5px;
     }
 
     .feedback-negativo {
@@ -324,14 +316,10 @@ textarea:focus {
         margin: auto;
     }
    
-    .contenedor-datos1 {
+    .contenedor-datos {
         margin-right: 8px;
     }
     
-    .contenedor-datos2 {
-        margin-left: 8px;
-    }
-
     .boton-submit {
         width: 70%;
     }
