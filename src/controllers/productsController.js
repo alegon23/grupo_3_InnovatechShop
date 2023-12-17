@@ -14,37 +14,37 @@ const productsController = {
 
     listadoCelulares: (req, res) =>{
         const titulo = "Celulares";
-        const resultados = products.filter(producto => producto.category == 'celulares');
+        const resultados = products.filter(producto => producto.category == 'Celulares');
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
     listadoMonitoresTVs: (req, res) =>{
         const titulo = "Monitores & TVs";
-        const resultados = products.filter(producto => producto.category == 'monitores-tvs');
+        const resultados = products.filter(producto => producto.category == 'Monitores & TVs');
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
     listadoTablets: (req, res) =>{
         const titulo = "Tablets";
-        const resultados = products.filter(producto => producto.category == 'tablets');
+        const resultados = products.filter(producto => producto.category == 'Tablets');
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
     listadoNotebooks: (req, res) =>{
         const titulo = "Notebooks";
-        const resultados = products.filter(producto => producto.category == 'notebooks');
+        const resultados = products.filter(producto => producto.category == 'Notebooks');
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
     listadoHardware: (req, res) =>{
         const titulo = "Hardware";
-        const resultados = products.filter(producto => producto.category == 'hardware');
+        const resultados = products.filter(producto => producto.category == 'Hardware');
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
     listadoAccesorios: (req, res) =>{
         const titulo = "Accesorios";
-        const resultados = products.filter(producto => producto.category == 'accesorios');
+        const resultados = products.filter(producto => producto.category == 'Accesorios');
         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
@@ -68,12 +68,13 @@ const productsController = {
             return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body});
         }
 
-        /*let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje, esDestacado} = req.body;
+        let { nombre, marca, categoria, precio, descripcion, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4, descripcion1, descripcion2, descripcion3, descripcion4} = req.body;
         const descripcionArray = descripcion.trim().split("\r\n");
 
         let features = [];
         let title = "";
         let text = "";
+        const caracteristicas = [caracteristica1, descripcion1, caracteristica2, descripcion2, caracteristica3, descripcion3, caracteristica4, descripcion4];
         
         for (let i = 0; i < caracteristicas.length; i += 2 ){
             
@@ -122,7 +123,7 @@ const productsController = {
         
         fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
 
-        res.redirect('/products');*/
+        res.redirect('/products');
     },
 
     editar: (req, res) => {
@@ -131,8 +132,15 @@ const productsController = {
     },
 
     actualizar: (req, res) => {
+        const productID = products.find(producto => producto.id == req.params.id);
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID});
+        }
+
         let idProd = req.params.id;
-        let { nombre, marca, categoria, precio, descripcion, caracteristicas, porcentaje, esDestacado } = req.body;
+        let { nombre, marca, categoria, precio, descripcion, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4, descripcion1, descripcion2, descripcion3, descripcion4 } = req.body;
         let indexProducto = products.findIndex(prod => prod.id == idProd);
         const descuento = porcentaje == 0 ? false : true;
         const descripcionArray = descripcion.trim().split("\r\n");
@@ -140,6 +148,7 @@ const productsController = {
         let features = [];
         let title = "";
         let text = "";
+        const caracteristicas = [caracteristica1, descripcion1, caracteristica2, descripcion2, caracteristica3, descripcion3, caracteristica4, descripcion4];
         
         for (let i = 0; i < caracteristicas.length; i += 2 ){
             title = caracteristicas[i].trim();

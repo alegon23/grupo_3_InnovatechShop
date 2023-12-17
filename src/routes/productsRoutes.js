@@ -28,7 +28,7 @@ router.post('/', uploadImgs, validacionesProducto, productsController.guardar);
 
 //Editar productos
 router.get('/editarProducto/:id', productsController.editar);
-router.put('/editarProducto/:id', uploadImgs, productsController.actualizar);
+router.put('/editarProducto/:id', uploadImgs, validacionesProducto, productsController.actualizar);
 
 //Borrar productos
 router.delete('/:id', productsController.borrar)

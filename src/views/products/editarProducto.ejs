@@ -14,32 +14,61 @@
                 <form action="/products/editarProducto/<%= productID.id %>?_method=PUT" method='POST' enctype="multipart/form-data" class="contenedor-producto">
                     <div class="contenedor-datos">      
                             <label for="nombre" class="label">Nombre del producto</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=productID.name%>" required>
-                            <span class="feedback-negativo">El nombre es demasiado corto</span>
+                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=locals.oldData && oldData.nombre ? oldData.nombre : productID.name%>">
+                            <% if(locals.errors && errors.nombre) { %>
+                                <span style="color: red"><%= errors.nombre.msg %></span>
+                            <% } %> 
 
                             <label for="marca" class="label">Marca del Producto</label>
-                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%=productID.brand%>" required>
-                            
+                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%=locals.oldData && oldData.marca ? oldData.marca : productID.brand %>">
+                            <% if(locals.errors && errors.marca) { %>
+                                <span style="color: red"><%= errors.marca.msg %></span> 
+                            <% } %>
+
+
                             <label for="categoria">Categoría</label>
                             <select name="categoria">
-                                <%- include('../partials/categorias-productos') %>
+                                <% const options = ['Celulares', 'Monitores & TVs', 'Tablets', 'Notebooks', 'Hardware', 'Accesorios']; %>
+                                <% for (const option of options) { %>
+                                    <% if (locals.oldData && oldData.categoria && oldData.categoria != productID.category) { %>
+                                        <option value="<%= option %>" <%= (oldData.categoria == option) ? 'selected' : '' %>><%= option %></option>
+                                    <% } else {%>
+                                        <option value="<%= option %>" <%= (productID.category == option) ? 'selected' : '' %>><%= option %></option>
+                                    <% } %>
+                                <% } %>
                             </select>
 
                         
 
                             <label for="precio">Precio</label>
-                            <input type="number" name="precio" placeholder="$00,00" value="<%=productID.originalPrice%>" required>
+                            <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400" value="<%=locals.oldData && oldData.precio ? oldData.precio : productID.originalPrice %>">
+                            <% if(locals.errors && errors.precio) { %>
+                                <span style="color: red"><%= errors.precio.msg %></span>
+                            <% } %>
                             
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                            <input type="number" name="porcentaje" placeholder="10% OFF" value="<%=productID.discount%>">
+                            <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" value="<%=locals.oldData && oldData.porcentaje ? oldData.porcentaje : productID.discount%>">
 
                             <label for="esDestacado">¿Es un producto destacado?</label>
-                            <select name="esDestacado" required>
-                                <option value="true" <%= productID.mainProduct ? 'selected' : ''%>>Si</option>
-                                <option value="false" <%= productID.mainProduct ? '' : 'selected'%>>No</option>
+                            <select name="esDestacado">
+                                <% const esDestacadoOpciones = ['true', 'false']; %>
+                                    <% if (locals.oldData && oldData.esDestacado) { %>
+                                        <% const esVerdadero = (oldData.esDestacado === 'true'); %>
+                                        <% if (esVerdadero != productID.mainProduct) { %>
+                                            <% for (const option of esDestacadoOpciones) { %>
+                                                <option value="<%= option %>" <%= locals.oldData && (oldData.esDestacado == option) ? 'selected' : '' %>><%= option == 'true' ? 'Si' : 'No' %></option>
+                                            <% } %>
+                                        <% } %>
+                                    <% } else {%>
+                                        <option value="true" <%= productID.mainProduct ? 'selected' : ''%>>Si</option>
+                                        <option value="false" <%= productID.mainProduct ? '' : 'selected'%>>No</option>
+                                <% } %>
                             </select>
+                            <% if(locals.errors && errors.esDestacado) { %>
+                                <span style="color: red"><%= errors.esDestacado.msg %></span>
+                            <% } %>
                             
-                            <!-- !ver como hacer para cargar las imagenes -->
+                            <!--! FALTA VALIDAR IMAGENES-->
                             <% if (productID.image !== "") {%>
                                 <p class="texto-datos-imagenes">Tienes 1 imagen principal y <%=productID.extraImages.length%> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
                             <% } %>
@@ -51,35 +80,55 @@
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="10"><% for (description of productID.description){%><%=description%>
-<%}%></textarea>    
+                    <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente">
+<%if(locals.oldData && oldData.descripcion) {%><%=oldData.descripcion%><%} else {%><%for (description of productID.description){%><%=description + '\n'%><%}%><%}%></textarea>    
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
                     
                     <div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 1:</label><input type='text' name="caracteristicas" value="<%= productID.features[0].title %>"  placeholder="titulo de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 1:</label><input name="caracteristicas" value="<%= productID.features[0].text %>" placeholder="descripcion de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 1:</label>
+                            <input type='text' name="caracteristica1" value="<%= locals.oldData && oldData.caracteristica1 ? oldData.caracteristica1 : productID.features[0].title %>"  placeholder="titulo de la caracteristica">
+                            <% if(locals.errors && errors.caracteristica1) { %>
+                                <span style="color: red"><%= errors.caracteristica1.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 1:</label><input name="descripcion1" value="<%= locals.oldData && oldData.descripcion1 ? oldData.descripcion1 : productID.features[0].text %>" placeholder="descripcion de la caracteristica">
+                            <% if(locals.errors && errors.descripcion1) { %>
+                                <span style="color: red"><%= errors.descripcion1.msg %></span>
+                            <% } %>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 2:</label><input type='text' name="caracteristicas" value="<%= productID.features[1].title %>" placeholder="titulo de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 2:</label><input name="caracteristicas" value="<%= productID.features[1].text %>" placeholder="descripcion de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 2:</label>
+                            <input type='text' name="caracteristica2" value="<%= locals.oldData && oldData.caracteristica2 ? oldData.caracteristica2 : productID.features[1].title %>"  placeholder="titulo de la caracteristica">
+                            <% if(locals.errors && errors.caracteristica2) { %>
+                                <span style="color: red"><%= errors.caracteristica2.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 2:</label><input name="descripcion2" value="<%= locals.oldData && oldData.descripcion2 ? oldData.descripcion2 : productID.features[1].text %>" placeholder="descripcion de la caracteristica">
+                            <% if(locals.errors && errors.descripcion2) { %>
+                                <span style="color: red"><%= errors.descripcion2.msg %></span>
+                            <% } %>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristicas" value="<%= productID.features[2].title %>" placeholder="titulo de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 3:</label><input name="caracteristicas" value="<%= productID.features[2].text %>" placeholder="descripcion de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 3:</label>
+                            <input type='text' name="caracteristica3" value="<%= locals.oldData && oldData.caracteristica3 ? oldData.caracteristica3 : productID.features[2].title %>"  placeholder="titulo de la caracteristica">
+                            <% if(locals.errors && errors.caracteristica3) { %>
+                                <span style="color: red"><%= errors.caracteristica3.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 3:</label><input name="descripcion3" value="<%= locals.oldData && oldData.descripcion3 ? oldData.descripcion3 : productID.features[2].text %>" placeholder="descripcion de la caracteristica">
+                            <% if(locals.errors && errors.descripcion3) { %>
+                                <span style="color: red"><%= errors.descripcion3.msg %></span>
+                            <% } %>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristicas" value="<%= productID.features[3].title %>" placeholder="titulo de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 4:</label><input name="caracteristicas" value="<%= productID.features[3].text %>" placeholder="descripcion de la caracteristica" required>
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 4:</label>
+                            <input type='text' name="caracteristica4" value="<%= locals.oldData && oldData.caracteristica4 ? oldData.caracteristica4 : productID.features[3].title %>"  placeholder="titulo de la caracteristica">
+                            <% if(locals.errors && errors.caracteristica4) { %>
+                                <span style="color: red"><%= errors.caracteristica4.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 4:</label><input name="descripcion4" value="<%= locals.oldData && oldData.descripcion4 ? oldData.descripcion4 : productID.features[3].text %>" placeholder="descripcion de la caracteristica">
+                            <% if(locals.errors && errors.descripcion4) { %>
+                                <span style="color: red"><%= errors.descripcion4.msg %></span>
+                            <% } %>
                         </div>
                     </div>
                     

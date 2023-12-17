@@ -8,8 +8,6 @@
         <div class="contenedor-form">
             <img src="/images/Logo.png" alt="Logo" class="logo">
 
-            <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
-            y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
             <div class="form">
                 <h2 class="title">Crear Producto</h2>
                 
@@ -43,22 +41,31 @@
                             <% } %>
                             
 
-                            <!--! faltan probar validaciones -->
                             <label for="precio">Precio</label>
-                            <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400">
-                            <span class="feedback-negativo">El precio es obligatorio</span>
+                            <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400" value="<%= locals.oldData && oldData.precio %>">
+                            <% if(locals.errors && errors.precio) { %>
+                                <span style="color: red"><%= errors.precio.msg %></span>
+                            <% } %>
                             
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
-                            <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0">
-                            <span class="feedback-negativo">El porcentaje es obligatorio</span>
+                            <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" value="<%= locals.oldData && oldData.porcentaje %>">
+                            <% if(locals.errors && errors.porcentaje) { %>
+                                <span style="color: red"><%= errors.porcentaje.msg %></span>
+                            <% } %>
 
                             <label for="esDestacado">¿Es un producto destacado?</label>
                             <select name="esDestacado">
-                                <option value="" selected>Seleccionar Opcion</option>
-                                <option value="true">Si</option>
-                                <option value="false">No</option>
+                                <option value="">Seleccionar Opcion</option>
+                                <% const esDestacadoOpciones = ['true', 'false']; %>
+                                <% for (const option of esDestacadoOpciones) { %>
+                                    <option value="<%= option %>" <%= locals.oldData && (oldData.esDestacado == option) ? 'selected' : '' %>><%= option == 'true' ? 'Si' : 'No' %></option>
+                                  <% } %>
                             </select>
+                            <% if(locals.errors && errors.esDestacado) { %>
+                                <span style="color: red"><%= errors.esDestacado.msg %></span>
+                            <% } %>
 
+                            <!--! FALTA VALIDAR IMAGENES-->
                             <label for="imagen-principal">Imagen Principal</label>
                             <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png" required>
 
@@ -68,34 +75,53 @@
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"></textarea>
+                    <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%=locals.oldData && oldData.descripcion%></textarea>
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
                     
                     <div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 1:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 1:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 1:</label>
+                            <input type='text' name="caracteristica1"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica1 %>">
+                            <% if(locals.errors && errors.caracteristica1) { %>
+                                <span style="color: red"><%= errors.caracteristica1.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 1:</label>
+                            <input name="descripcion1"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion1 %>">
+                            <% if(locals.errors && errors.descripcion1) { %>
+                                <span style="color: red"><%= errors.descripcion1.msg %></span>
+                            <% } %>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 2:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 2:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 2:</label>
+                            <input type='text' name="caracteristica2"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica2 %>">
+                            <% if(locals.errors && errors.caracteristica2) { %>
+                                <span style="color: red"><%= errors.caracteristica2.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 2:</label><input name="descripcion2"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion2 %>">
+                            <% if(locals.errors && errors.descripcion2) { %>
+                                <span style="color: red"><%= errors.descripcion2.msg %></span>
+                            <% } %>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 3:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristica3"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica3 %>">
+                             <% if(locals.errors && errors.caracteristica3) { %>
+                                <span style="color: red"><%= errors.caracteristica3.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 3:</label><input name="descripcion3"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion3 %>">
+                             <% if(locals.errors && errors.descripcion3) { %>
+                                <span style="color: red"><%= errors.descripcion3.msg %></span>
+                            <% } %>
                         </div>
                         <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristicas"  placeholder="titulo de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
-                            <label for="textarea-label">Descripcion 4:</label><input name="caracteristicas"  placeholder="descripcion de la caracteristica">
-                            <span class="feedback-negativo">Este campo es obligatorio</span>
+                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristica4"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica4 %>">
+                            <% if(locals.errors && errors.caracteristica4) { %>
+                                <span style="color: red"><%= errors.caracteristica4.msg %></span>
+                            <% } %>
+                            <label for="textarea-label">Descripcion 4:</label><input name="descripcion4"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion4 %>">
+                            <% if(locals.errors && errors.descripcion4) { %>
+                                <span style="color: red"><%= errors.descripcion4.msg %></span>
+                            <% } %>
                         </div>
                     </div>
 
