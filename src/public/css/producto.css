@@ -86,25 +86,8 @@ body {
 }
 
 .feedback-negativo {
-    display: none;
     color: rgba(255, 0, 0, 0.8);
-    font-size: 11px;;
-}
-
-.contenedor-datos input:invalid {
-    border-bottom: solid 2px rgba(255, 0, 0, 0.8);
-}
-
-.contenedor-datos input:invalid + .feedback-negativo {
-    display: block;
-}
-
-.caja-caracteristicas input:invalid {
-    border-bottom: solid 2px rgba(255, 0, 0, 0.8);
-}
-
-.caja-caracteristicas input:invalid + .feedback-negativo {
-    display: block;
+    font-size: 11px;
 }
 
 .contenedor-datos input {

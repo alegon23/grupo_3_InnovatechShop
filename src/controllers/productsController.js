@@ -181,7 +181,7 @@ const productsController = {
             products[indexProducto].brand = marca;
             products[indexProducto].onDiscount = descuento;
             products[indexProducto].discount = porcentaje;
-            products[indexProducto].mainProduct = esDestacado === 'true';
+            products[indexProducto].mainProduct = esDestacado == 'true';
             if (imagesArray.length) {
                 products[indexProducto].extraImages = imagesArray;
             }

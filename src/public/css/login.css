@@ -77,19 +77,9 @@ form input:focus::placeholder {
   color: transparent;
 }
 
-/* PARA FEEDBACK NEGATIVO */
-input[type="email"]:invalid, input[type="password"]:invalid{
-  border-bottom: solid 2px rgba(255, 0, 0, 0.8);
-}
-
 span.feedback-negativo{
-  display: none;
   color: rgba(255, 0, 0, 0.8);
   font-size: 11px;
-}
-
-input[type="email"]:invalid + .feedback-negativo, input[type="password"]:invalid + .feedback-negativo{
-  display: block;
 }
 
 form button {

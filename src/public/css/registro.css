@@ -90,21 +90,8 @@ body {
 }
 
 .feedback-negativo {
-    display: none;
     color: rgba(255, 0, 0, 0.8);
     font-size: 11px;;
-}
-
-.contenedor-datos1 input:invalid, .contenedor-datos2 input:invalid {
-    border-bottom: solid 2px rgba(255, 0, 0, 0.8);
-}
-
-.contenedor-datos1 input:invalid + .feedback-negativo {
-    display: block;
-}
-
-.contenedor-datos2 input:invalid + .feedback-negativo {
-    display: block;
 }
 
 .contenedor-datos1 input, .contenedor-datos2 input {
@@ -271,8 +258,4 @@ body {
     .boton-registro {
         width: 70%;
     }
-
-    /*.pie-formulario {
-        font-size: 16px;
-    }*/
 }

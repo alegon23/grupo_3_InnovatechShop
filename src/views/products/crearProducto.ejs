@@ -16,14 +16,14 @@
                             <label for="nombre" class="label">Nombre del producto</label>
                             <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%= locals.oldData && oldData.nombre %>">
                             <% if(locals.errors && errors.nombre) { %>
-                                <span style="color: red"><%= errors.nombre.msg %></span>
+                                <span class="feedback-negativo"><%= errors.nombre.msg %></span>
                             <% } %> 
                             
 
                             <label for="marca" class="label">Marca del Producto</label>
                             <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%= locals.oldData && oldData.marca %>">
                             <% if(locals.errors && errors.marca) { %>
-                                <span style="color: red"><%= errors.marca.msg %></span> 
+                                <span class="feedback-negativo"><%= errors.marca.msg %></span> 
                             <% } %>
                                                       
                         
@@ -37,20 +37,20 @@
                                   <% } %>
                             </select>
                             <% if(locals.errors && errors.categoria) { %>
-                                <span style="color: red"><%= errors.categoria.msg %></span> 
+                                <span class="feedback-negativo"><%= errors.categoria.msg %></span> 
                             <% } %>
                             
 
                             <label for="precio">Precio</label>
                             <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400" value="<%= locals.oldData && oldData.precio %>">
                             <% if(locals.errors && errors.precio) { %>
-                                <span style="color: red"><%= errors.precio.msg %></span>
+                                <span class="feedback-negativo"><%= errors.precio.msg %></span>
                             <% } %>
                             
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
                             <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" value="<%= locals.oldData && oldData.porcentaje %>">
                             <% if(locals.errors && errors.porcentaje) { %>
-                                <span style="color: red"><%= errors.porcentaje.msg %></span>
+                                <span class="feedback-negativo"><%= errors.porcentaje.msg %></span>
                             <% } %>
 
                             <label for="esDestacado">¿Es un producto destacado?</label>
@@ -62,7 +62,7 @@
                                   <% } %>
                             </select>
                             <% if(locals.errors && errors.esDestacado) { %>
-                                <span style="color: red"><%= errors.esDestacado.msg %></span>
+                                <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
                             <% } %>
 
                             <!--! FALTA VALIDAR IMAGENES-->
@@ -84,43 +84,43 @@
                             <label for="textarea-label">Caracteristica 1:</label>
                             <input type='text' name="caracteristica1"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica1 %>">
                             <% if(locals.errors && errors.caracteristica1) { %>
-                                <span style="color: red"><%= errors.caracteristica1.msg %></span>
+                                <span class="feedback-negativo"><%= errors.caracteristica1.msg %></span>
                             <% } %>
                             <label for="textarea-label">Descripcion 1:</label>
                             <input name="descripcion1"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion1 %>">
                             <% if(locals.errors && errors.descripcion1) { %>
-                                <span style="color: red"><%= errors.descripcion1.msg %></span>
+                                <span class="feedback-negativo"><%= errors.descripcion1.msg %></span>
                             <% } %>
                         </div>
                         <div class="caja-caracteristicas">
                             <label for="textarea-label">Caracteristica 2:</label>
                             <input type='text' name="caracteristica2"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica2 %>">
                             <% if(locals.errors && errors.caracteristica2) { %>
-                                <span style="color: red"><%= errors.caracteristica2.msg %></span>
+                                <span class="feedback-negativo"><%= errors.caracteristica2.msg %></span>
                             <% } %>
                             <label for="textarea-label">Descripcion 2:</label><input name="descripcion2"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion2 %>">
                             <% if(locals.errors && errors.descripcion2) { %>
-                                <span style="color: red"><%= errors.descripcion2.msg %></span>
+                                <span class="feedback-negativo"><%= errors.descripcion2.msg %></span>
                             <% } %>
                         </div>
                         <div class="caja-caracteristicas">
                             <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristica3"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica3 %>">
                              <% if(locals.errors && errors.caracteristica3) { %>
-                                <span style="color: red"><%= errors.caracteristica3.msg %></span>
+                                <span class="feedback-negativo"><%= errors.caracteristica3.msg %></span>
                             <% } %>
                             <label for="textarea-label">Descripcion 3:</label><input name="descripcion3"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion3 %>">
                              <% if(locals.errors && errors.descripcion3) { %>
-                                <span style="color: red"><%= errors.descripcion3.msg %></span>
+                                <span class="feedback-negativo"><%= errors.descripcion3.msg %></span>
                             <% } %>
                         </div>
                         <div class="caja-caracteristicas">
                             <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristica4"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica4 %>">
                             <% if(locals.errors && errors.caracteristica4) { %>
-                                <span style="color: red"><%= errors.caracteristica4.msg %></span>
+                                <span class="feedback-negativo"><%= errors.caracteristica4.msg %></span>
                             <% } %>
                             <label for="textarea-label">Descripcion 4:</label><input name="descripcion4"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion4 %>">
                             <% if(locals.errors && errors.descripcion4) { %>
-                                <span style="color: red"><%= errors.descripcion4.msg %></span>
+                                <span class="feedback-negativo"><%= errors.descripcion4.msg %></span>
                             <% } %>
                         </div>
                     </div>

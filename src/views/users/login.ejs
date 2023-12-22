@@ -9,14 +9,18 @@
             <div class="caja-formulario">
                 <h2>Iniciar Sesión</h2>
 
-                <form action="/" method="post">
+                <form action="/users/login" method="POST">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" name="email" placeholder="ejemplo@ejemplo.com" required>
-                    <span class="feedback-negativo">Ingrese un mail válido</span>
+                    <input type="email" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                    <% if(locals.errors && errors.email) { %>
+                        <span class="feedback-negativo"><%= errors.email.msg %></span>
+                    <% } %>
 
-                    <label for="password" class="label-password">Contraseña</label>
-                    <input type="password" name="password" placeholder="••••••••••" required>
-                    <span class="feedback-negativo">Ingrese una contraseña válida</span>
+                    <label for="contrasenia" class="label-password">Contraseña</label>
+                    <input type="password" name="contrasenia" placeholder="••••••••••">
+                    <% if(locals.errors && errors.contrasenia) { %>
+                        <span class="feedback-negativo"><%= errors.contrasenia.msg %></span>
+                    <% } %>
 
                     <button type="submit">Ingresar</button>
 
