@@ -51,19 +51,14 @@
 
                             <label for="esDestacado">¿Es un producto destacado?</label>
                             <select name="esDestacado">
-                                <% const esDestacadoOpciones = ['true', 'false']; %>
-                                    <% if (locals.oldData && oldData.esDestacado) { %>
-                                        <% const esVerdadero = (oldData.esDestacado == 'true'); %>
-                                        <% if (esVerdadero != productID.mainProduct) { %>
-                                            <% for (const option of esDestacadoOpciones) { %>
-                                                <option value="<%= option %>" <%= locals.oldData && (oldData.esDestacado == option) ? 'selected' : '' %>><%= option == 'true' ? 'Si' : 'No' %></option>
-                                            <% } %>
-                                        <% } %>
-                                    <% } else {%>
-                                        <option value="">Seleccionar Categoria</option>
-                                        <option value="true" <%= productID.mainProduct ? 'selected' : ''%>>Si</option>
-                                        <option value="false" <%= productID.mainProduct ? '' : 'selected'%>>No</option>
-                                    <% } %>
+                                <% if (locals.oldData && oldData.esDestacado) { %>
+                                    <% const esDestacadoBool = (oldData.esDestacado == "true"); %>
+                                    <option value="true" <%= esDestacadoBool ? "selected" : "" %>>Si</option>
+                                    <option value="false" <%= esDestacadoBool ? "" : "selected" %>>No</option>
+                                <% } else {%>
+                                    <option value="true" <%= productID.mainProduct ? "selected" : ""%>>Si</option>
+                                    <option value="false" <%= productID.mainProduct ? "" : "selected"%>>No</option>
+                                <% } %>
                             </select>
                             <% if(locals.errors && errors.esDestacado) { %>
                                 <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>

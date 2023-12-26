@@ -61,18 +61,10 @@ const usersController = {
         for (let index = 0; index < allUsers.length; index++) {
             if (req.body.email == allUsers[index].email && bcryptjs.compareSync(req.body.contrasenia, allUsers[index].password)) {
                 res.redirect('/');
-            } else {
-
             }
         }
 
-        return res.render(path.resolve('./', './src/views/users/login'), {
-            errors: {
-                email: {
-                    msg: 'Las credenciales son inválidas',
-                }
-            }
-        })
+        return res.render(path.resolve('./', './src/views/users/login'), {errors: {email: {msg: 'Las credenciales son inválidas'}}, oldData: {email: req.body.email}})
     }
 }
 
