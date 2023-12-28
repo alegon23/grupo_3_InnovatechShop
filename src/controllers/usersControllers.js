@@ -31,6 +31,20 @@ const usersController = {
             return 1;
         }
 
+        let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
+        let foundUser = allUsers.find(user => user['email'] === req.body.email);
+    
+        if (foundUser) {
+            return res.render(path.resolve('./', './src/views/users/registro'), {
+                errors: {
+                    email: {
+                        msg: 'Este email ya está registrado'
+                    }
+                },
+                oldData: req.body
+            });
+        }
+
         let nuevoUsuario = {
             id: generateId(),
             firstName: nombre,
@@ -45,7 +59,7 @@ const usersController = {
 
         fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
 
-        res.redirect('/');
+        res.redirect('/login');
 
     },
 
@@ -57,16 +71,52 @@ const usersController = {
         }
 
         let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
-        
-        for (let index = 0; index < allUsers.length; index++) {
-            if (req.body.email == allUsers[index].email && bcryptjs.compareSync(req.body.contrasenia, allUsers[index].password)) {
-                res.redirect('/');
+        let foundUser = allUsers.find(user => user['email'] === req.body.email);
+
+        if (foundUser) {
+            let isPassOK = bcryptjs.compareSync(req.body.contrasenia, foundUser.password);
+            if (isPassOK){
+                delete foundUser.password;
+                req.session.usuario = foundUser;
+
+                return res.redirect('/');
             }
+            return res.render(path.resolve('./', './src/views/users/login'), {
+                errors: {
+                    email: {
+                        msg: 'Las credenciales son inválidas',
+                    }
+                },
+                oldData: {email: req.body.email}
+            });
         }
 
-        return res.render(path.resolve('./', './src/views/users/login'), {errors: {email: {msg: 'Las credenciales son inválidas'}}, oldData: {email: req.body.email}})
+        return res.render(path.resolve('./', './src/views/users/login'), {
+            errors: {
+                email: {
+                    msg: 'El email no esta conectado a una cuenta existente. Registresé'
+                }
+            },
+            oldData: {email: req.body.email}
+        });
+    },
+
+    mostrarPerfil: (req, res) =>{
+        res.render(path.resolve('./', './src/views/users/perfil'), {usuario: req.session.usuario})
+    },
+
+    registroAdmin: (req, res) =>{
+
+    },
+
+    procesarAdmin: (req, res) =>{
+
+    },
+
+    logout: (req, res) =>{
+        req.session.destroy();
+        return res.redirect('/');
     }
 }
-
 
 module.exports = usersController;

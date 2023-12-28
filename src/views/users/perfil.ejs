@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head', {title: "- Perfil", cssFile: "perfil", cssHome: "styles"}) %>
+
+<body>
+    <!--  !HEADER  -->
+    <%- include('../partials/header') %>
+    <!-- * FIN HEADER -->
+
+    <!-- ! MAIN  -->
+    <main id="main-perfil">
+
+        <div class="info-principal">
+                <div class="foto-perfil">
+                    <img src="<%= usuario.avatar %>" >
+                </div>
+
+            <hr class="linea-imagen">
+
+            <div class="datos-usuario">
+                <h2><%= usuario.firstName.charAt(0).toUpperCase() + usuario.firstName.slice(1)  + ' ' + usuario.lastName.charAt(0).toUpperCase() + usuario.lastName.slice(1) %></h2>
+                <h3><i class="bi bi-envelope-at"></i> <%= usuario.email %></h3>
+                <h3><i class="bi bi-calendar3"></i> <%= usuario.birthdate %></h3>
+                <div class="botones-datos-usuario">
+                    <a href="#" class="boton-editarPerfil">Editar Perfil</a>
+                    <a href="/users/logout" class="boton-cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--  !FOOTER   -->
+    <%- include('../partials/footer') %>
+    <!-- * FIN FOOTER -->
+</body>
+</html>

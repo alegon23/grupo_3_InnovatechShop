@@ -1,0 +1,128 @@
+#main-perfil{
+    width: 90%;
+    margin: auto;
+}
+
+.info-principal {
+    margin-top: 15px;
+}
+
+.foto-perfil {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.foto-perfil img {
+    max-width: 200px;
+}
+
+.datos-usuario h3 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.datos-usuario h2 {
+    text-align: center;
+    margin-top: 18px;
+    margin-bottom: 10px;
+} 
+
+.botones-datos-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.boton-editarPerfil {
+    background-color: #9E8FFF;
+}
+
+.boton-cerrarSesion {
+    background: white;
+    border: solid 1px red;
+}
+
+.boton-cerrarSesion:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+    border: none;
+}
+
+.boton-editarPerfil:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+.datos-usuario a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+@media(min-width: 480px){
+    
+    .foto-perfil img {
+        max-width: 300px;
+    }
+
+    .boton-editarPerfil, .boton-cerrarSesion {
+        max-width: 432px;
+    }
+}
+
+@media (min-width: 768px){    
+
+    #main-perfil {
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .info-principal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .linea-imagen {
+        display: none;
+    }
+
+    .foto-perfil {
+        margin: 0 60px 0 0;
+        display: flex;
+    }
+
+    .foto-perfil img {
+        max-width: 300px;
+    }
+
+    .datos-usuario {
+        width: 50%;
+        padding: 10px;
+        border-radius: 5px;
+        min-width: 300px;
+    }
+
+    .datos-usuario h3, .datos-usuario h2 {
+        text-align: start;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+}
+
+@media(min-width: 1200px){
+    #main-perfil{
+        max-width: 1200px;
+        margin: auto;
+    }
+}

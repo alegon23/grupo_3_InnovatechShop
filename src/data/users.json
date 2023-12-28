@@ -101,22 +101,12 @@
  },
  {
   "id": 11,
-  "firstName": "trinidad",
-  "lastName": "Mayuncalde",
-  "email": "mayuncaldetrini@gmail.com",
-  "password": "$2a$10$/Y9iAl.jtHqc7fEIyBM8MO93euGb1AR92Zf5nX45zOQFnk3JTDmW2",
-  "birthdate": "1998-02-09",
+  "firstName": "nahuel",
+  "lastName": "banco",
+  "email": "nahuel@gmail.com",
+  "password": "$2a$10$xbm40QXyhfqhbfnhTqjTMu9j6i5qEBCNEKDo3uHyXKu9PpMNuD7Hy",
+  "birthdate": "2000-07-19",
   "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 12,
-  "firstName": "Mario",
-  "lastName": "Gomez",
-  "email": "mayuncaldetrini@gmail.comr",
-  "password": "$2a$10$slciZ4P5SSgJc75RkuI29.NVY840sLOSB.Vs8a2la/1uMWX3MBonG",
-  "birthdate": "1997-02-09",
-  "avatar": "/images/users/img-54145.jpeg",
   "role": "user"
  }
 ]

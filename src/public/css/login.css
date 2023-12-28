@@ -61,7 +61,7 @@ form {
   margin: 25px 0 0 0;
 }
 
-form input[type="email"], form input[type="password"]{
+form input[type="text"], form input[type="password"]{
   border: none;
   border-bottom: solid 1px black;
   margin: 5px 0;

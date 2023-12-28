@@ -1,7 +1,7 @@
 const calcularDescuento = require('../public/js/calcularDescuento');
 const path = require('path');
 const fs = require('fs');
-const productsJSON = path.join(__dirname, '../data/products.json');;
+const productsJSON = path.join(__dirname, '../data/products.json');
 let products = require('../data/products');
 const calcularMiles = require('../public/js/calcularMiles');
 const { validationResult } = require("express-validator");

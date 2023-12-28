@@ -11,7 +11,7 @@
 
                 <form action="/users/login" method="POST">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                    <input type="text" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
                     <% if(locals.errors && errors.email) { %>
                         <span class="feedback-negativo"><%= errors.email.msg %></span>
                     <% } %>
