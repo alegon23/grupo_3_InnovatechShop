@@ -108,5 +108,15 @@
   "birthdate": "2000-07-19",
   "avatar": "/images/users/default.png",
   "role": "user"
+ },
+ {
+  "id": 12,
+  "firstName": "Alejandra",
+  "lastName": "Gonzalez",
+  "email": "ale@mail.com",
+  "password": "$2a$10$fqH.0GEMmXhzfg3XqnefjebG5/C.4a5.Bx..T46vDOj5J2yAoC3ue",
+  "birthdate": "1995-06-23",
+  "avatar": "/images/users/default.png",
+  "role": "admin"
  }
 ]

@@ -106,6 +106,11 @@ body {
     border-bottom: solid 2px #9E8FFF;
 }
 
+.label-avatar{
+    text-align: start;
+    margin: 10px 0px;
+}
+
 .boton-registro {
     border: none;
     border-radius: 100px;
@@ -126,6 +131,10 @@ body {
 .boton-registro:active {
     color: black;
     background-color: #85f7ff;
+}
+
+.mensaje-alta-admin{
+    color: #9E8FFF;
 }
 
 .iniciar-sesion {

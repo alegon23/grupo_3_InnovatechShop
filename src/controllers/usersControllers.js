@@ -59,7 +59,7 @@ const usersController = {
 
         fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
 
-        res.redirect('/login');
+        res.redirect('/users/login');
 
     },
 
@@ -106,11 +106,56 @@ const usersController = {
     },
 
     registroAdmin: (req, res) =>{
-
+        res.render(path.resolve('./', './src/views/users/registroAdmin'))
     },
 
     procesarAdmin: (req, res) =>{
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
+        }
 
+        let {nombre, apellido, contrasenia, email} = req.body;
+        
+        const generateId = () => {
+            let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}));
+            let lastUser = allUsers.pop();
+            if (lastUser) {
+                return lastUser.id + 1;
+            }
+            return 1;
+        }
+
+        let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
+        let foundUser = allUsers.find(user => user['email'] === req.body.email);
+    
+        if (foundUser) {
+            res.render(path.resolve('./', './src/views/users/registroAdmin'), {
+                errors: {
+                    email: {
+                        msg: 'Este email ya está registrado'
+                    }
+                },
+                oldData: req.body
+            });
+        }
+
+        let nuevoUsuario = {
+            id: generateId(),
+            firstName: nombre,
+            lastName: apellido,
+            email: email,
+            password: contrasenia ? bcryptjs.hashSync(contrasenia, 10) : bcryptjs.hashSync("Admin123", 10),
+            birthdate: "2000-01-01",
+            avatar: "/images/users/default.png",
+            role: "admin"
+        }
+        users.push(nuevoUsuario);
+
+        fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
+
+        res.render(path.resolve('./', './src/views/users/registroAdmin'), {mensaje: nombre + " " + apellido + " ha sido dado de alta con éxito!"});
     },
 
     logout: (req, res) =>{

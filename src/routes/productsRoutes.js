@@ -3,6 +3,8 @@ const router = express.Router();
 const productsController = require('../controllers/productsController');
 const uploadImg = require("../middleware/multer");
 const validacionesProducto = require('../middleware/validatorProd');
+const guestAdminMiddleware = require('../middleware/guestAdminMiddleware')
+const authAdminMiddleware = require('../middleware/authAdminMiddleware')
 
 const uploadImgs = uploadImg.fields([{ name: 'imagen-principal', maxCount: 1 }, { name: 'imagenes-extra' }])
 
@@ -16,21 +18,21 @@ router.get('/hardware', productsController.listadoHardware);
 router.get('/accesorios', productsController.listadoAccesorios);
 
 //Carrito
-router.get('/carrito', productsController.carrito);
+router.get('/carrito', guestAdminMiddleware, productsController.carrito);
 
 //Muestra el detalle
 router.get('/detalleProducto/:id', productsController.detalle);
 
 //Creacion de productos
-router.get('/crearProducto', productsController.crear);
+router.get('/crearProducto', authAdminMiddleware, productsController.crear);
 
 router.post('/', uploadImgs, validacionesProducto, productsController.guardar);
 
 //Editar productos
-router.get('/editarProducto/:id', productsController.editar);
+router.get('/editarProducto/:id', authAdminMiddleware, productsController.editar);
 router.put('/editarProducto/:id', uploadImgs, validacionesProducto, productsController.actualizar);
 
 //Borrar productos
-router.delete('/:id', productsController.borrar)
+router.delete('/:id', authAdminMiddleware, productsController.borrar)
 
 module.exports = router;

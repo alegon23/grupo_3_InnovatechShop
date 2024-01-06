@@ -1,7 +1,5 @@
 const { body } = require('express-validator');
 
-//!validar que el mail no exista
-
 const validacionesUsuario = [
     body('nombre').notEmpty().withMessage("Debes ingresar tu nombre"),
     body('apellido').notEmpty().withMessage("Debes ingresar tu apellido"),
