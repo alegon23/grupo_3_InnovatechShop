@@ -1,122 +1,122 @@
 [
- {
-  "id": 1,
-  "firstName": "Krystyna",
-  "lastName": "Brownsey",
-  "email": "kbrownsey0@cargocollective.com",
-  "password": "eT1}}7?%`Y",
-  "birthdate": "10/28/2002",
-  "avatar": "/images/users/default.png",
-  "role": "admin"
- },
- {
-  "id": 2,
-  "firstName": "Oneida",
-  "lastName": "Larmor",
-  "email": "olarmor1@independent.co.uk",
-  "password": "sY9}cr&J",
-  "birthdate": "03/08/1980",
-  "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 3,
-  "firstName": "Dionysus",
-  "lastName": "Bage",
-  "email": "dbage2@blogger.com",
-  "password": "jV3@m\\N2YZC3iO",
-  "birthdate": "09/29/1972",
-  "avatar": "/images/users/default.png",
-  "role": "admin"
- },
- {
-  "id": 4,
-  "firstName": "Marty",
-  "lastName": "Barson",
-  "email": "mbarson3@theguardian.com",
-  "password": "tI7}A5Xg",
-  "birthdate": "12/01/1976",
-  "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 5,
-  "firstName": "Rakel",
-  "lastName": "Hrihorovich",
-  "email": "rhrihorovich4@tamu.edu",
-  "password": "gX2>/(p){",
-  "birthdate": "07/30/1993",
-  "avatar": "/images/users/default.png",
-  "role": "admin"
- },
- {
-  "id": 6,
-  "firstName": "Gregory",
-  "lastName": "Laird",
-  "email": "glaird5@theguardian.com",
-  "password": "bI0%'%cV&XtyIS#",
-  "birthdate": "09/01/2000",
-  "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 7,
-  "firstName": "Hyman",
-  "lastName": "Zoephel",
-  "email": "hzoephel6@bloglines.com",
-  "password": "wY7?ifQ+mZysO",
-  "birthdate": "10/17/1983",
-  "avatar": "/images/users/default.png",
-  "role": "admin"
- },
- {
-  "id": 8,
-  "firstName": "Nathaniel",
-  "lastName": "Dilke",
-  "email": "ndilke7@geocities.jp",
-  "password": "nJ8@F9ixR@l,",
-  "birthdate": "09/30/1983",
-  "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 9,
-  "firstName": "Angelo",
-  "lastName": "Laver",
-  "email": "alaver8@naver.com",
-  "password": "sP3,,)vH\\",
-  "birthdate": "09/10/1997",
-  "avatar": "/images/users/default.png",
-  "role": "admin"
- },
- {
-  "id": 10,
-  "firstName": "Theobald",
-  "lastName": "Simkins",
-  "email": "tsimkins9@studiopress.com",
-  "password": "qW0$}2QZ80f9L",
-  "birthdate": "10/13/1992",
-  "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 11,
-  "firstName": "nahuel",
-  "lastName": "banco",
-  "email": "nahuel@gmail.com",
-  "password": "$2a$10$xbm40QXyhfqhbfnhTqjTMu9j6i5qEBCNEKDo3uHyXKu9PpMNuD7Hy",
-  "birthdate": "2000-07-19",
-  "avatar": "/images/users/default.png",
-  "role": "user"
- },
- {
-  "id": 12,
-  "firstName": "Alejandra",
-  "lastName": "Gonzalez",
-  "email": "ale@mail.com",
-  "password": "$2a$10$fqH.0GEMmXhzfg3XqnefjebG5/C.4a5.Bx..T46vDOj5J2yAoC3ue",
-  "birthdate": "1995-06-23",
-  "avatar": "/images/users/default.png",
-  "role": "admin"
- }
+  {
+    "id": 1,
+    "firstName": "Krystyna",
+    "lastName": "Brownsey",
+    "email": "kbrownsey0@cargocollective.com",
+    "password": "eT1}}7?%`Y",
+    "birthdate": "10/28/2002",
+    "avatar": "/images/users/default.png",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "firstName": "Oneida",
+    "lastName": "Larmor",
+    "email": "olarmor1@independent.co.uk",
+    "password": "sY9}cr&J",
+    "birthdate": "03/08/1980",
+    "avatar": "/images/users/default.png",
+    "role": "user"
+  },
+  {
+    "id": 3,
+    "firstName": "Dionysus",
+    "lastName": "Bage",
+    "email": "dbage2@blogger.com",
+    "password": "jV3@m\\N2YZC3iO",
+    "birthdate": "09/29/1972",
+    "avatar": "/images/users/default.png",
+    "role": "admin"
+  },
+  {
+    "id": 4,
+    "firstName": "Marty",
+    "lastName": "Barson",
+    "email": "mbarson3@theguardian.com",
+    "password": "tI7}A5Xg",
+    "birthdate": "12/01/1976",
+    "avatar": "/images/users/default.png",
+    "role": "user"
+  },
+  {
+    "id": 5,
+    "firstName": "Rakel",
+    "lastName": "Hrihorovich",
+    "email": "rhrihorovich4@tamu.edu",
+    "password": "gX2>/(p){",
+    "birthdate": "07/30/1993",
+    "avatar": "/images/users/default.png",
+    "role": "admin"
+  },
+  {
+    "id": 6,
+    "firstName": "Gregory",
+    "lastName": "Laird",
+    "email": "glaird5@theguardian.com",
+    "password": "bI0%'%cV&XtyIS#",
+    "birthdate": "09/01/2000",
+    "avatar": "/images/users/default.png",
+    "role": "user"
+  },
+  {
+    "id": 7,
+    "firstName": "Hyman",
+    "lastName": "Zoephel",
+    "email": "hzoephel6@bloglines.com",
+    "password": "wY7?ifQ+mZysO",
+    "birthdate": "10/17/1983",
+    "avatar": "/images/users/default.png",
+    "role": "admin"
+  },
+  {
+    "id": 8,
+    "firstName": "Nathaniel",
+    "lastName": "Dilke",
+    "email": "ndilke7@geocities.jp",
+    "password": "nJ8@F9ixR@l,",
+    "birthdate": "09/30/1983",
+    "avatar": "/images/users/default.png",
+    "role": "user"
+  },
+  {
+    "id": 9,
+    "firstName": "Angelo",
+    "lastName": "Laver",
+    "email": "alaver8@naver.com",
+    "password": "sP3,,)vH\\",
+    "birthdate": "09/10/1997",
+    "avatar": "/images/users/default.png",
+    "role": "admin"
+  },
+  {
+    "id": 10,
+    "firstName": "Theobald",
+    "lastName": "Simkins",
+    "email": "tsimkins9@studiopress.com",
+    "password": "qW0$}2QZ80f9L",
+    "birthdate": "10/13/1992",
+    "avatar": "/images/users/default.png",
+    "role": "user"
+  },
+  {
+    "id": 11,
+    "firstName": "nahuel",
+    "lastName": "banco",
+    "email": "nahuel@gmail.com",
+    "password": "$2a$10$xbm40QXyhfqhbfnhTqjTMu9j6i5qEBCNEKDo3uHyXKu9PpMNuD7Hy",
+    "birthdate": "2000-07-19",
+    "avatar": "/images/users/default.png",
+    "role": "user"
+  },
+  {
+    "id": 12,
+    "firstName": "Alejandra",
+    "lastName": "Gonzalez",
+    "email": "ale@mail.com",
+    "password": "$2a$10$fqH.0GEMmXhzfg3XqnefjebG5/C.4a5.Bx..T46vDOj5J2yAoC3ue",
+    "birthdate": "1995-06-23",
+    "avatar": "/images/users/default.png",
+    "role": "admin"
+  }
 ]

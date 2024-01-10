@@ -78,7 +78,10 @@ const usersController = {
             if (isPassOK){
                 delete foundUser.password;
                 req.session.usuario = foundUser;
-
+                
+                if (req.body.recuerdame){
+                    res.cookie('usuarioEmail', req.body.email, { maxAge: (1000 * 60) * 60});
+                }
                 return res.redirect('/');
             }
             return res.render(path.resolve('./', './src/views/users/login'), {
@@ -160,6 +163,7 @@ const usersController = {
 
     logout: (req, res) =>{
         req.session.destroy();
+        res.clearCookie('usuarioEmail')
         return res.redirect('/');
     }
 }
