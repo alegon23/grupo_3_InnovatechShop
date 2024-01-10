@@ -65,12 +65,18 @@
                                 <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
                             <% } %>
 
-                            <!--! FALTA VALIDAR IMAGENES-->
-                            <label for="imagen-principal">Imagen Principal</label>
-                            <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png" required>
+                            <label for="imagenPrincipal">Imagen Principal</label>
+                            <input type="file" class="input-imagen" name="imagenPrincipal">
+                            <% if(locals.errors && errors.imagenPrincipal) { %>
+                                <span class="feedback-negativo"><%= errors.imagenPrincipal.msg %></span>
+                            <% } %>
 
-                            <label for="imagenes-extra">Imagenes Extra</label>
-                            <input type="file" class="input-imagen" name="imagenes-extra" accept=".jpg, .jpeg, .png" multiple>
+                            <label for="imagenesExtra">Imagenes Extra</label>
+                            <input type="file" class="input-imagen" name="imagenesExtra" multiple>
+                            <% if(locals.errors && errors.imagenesExtra) { %>
+                                <span class="feedback-negativo"><%= errors.imagenesExtra.msg %></span>
+                            <% } %>
+
                             
                     </div>
 

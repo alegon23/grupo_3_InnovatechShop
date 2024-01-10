@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const path = require('path');
 
 const validacionesUsuario = [
     body('nombre').notEmpty().withMessage("Debes ingresar tu nombre"),
@@ -25,9 +26,20 @@ const validacionesUsuario = [
         }
         
         return true;
+    }),
+    body('avatar').custom((value, {req}) => {
+        const file = req.file;
+        const acceptedExtensions = ['.jpg', '.jpeg', '.png'];
+        
+        if(file){
+            const fileExtension = path.extname(file.originalname);
+            if (!acceptedExtensions.includes(fileExtension)) {
+                throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+            }
+        }
+        
+        return true;
     })
 ];
-
-//! Faltan validar la imagen de perfil
 
 module.exports = validacionesUsuario;

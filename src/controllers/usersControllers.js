@@ -113,7 +113,7 @@ const usersController = {
         const errors = validationResult(req);
         
         if (!errors.isEmpty()) {
-            res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
+            return res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
         }
 
         let {nombre, apellido, contrasenia, email} = req.body;
@@ -131,7 +131,7 @@ const usersController = {
         let foundUser = allUsers.find(user => user['email'] === req.body.email);
     
         if (foundUser) {
-            res.render(path.resolve('./', './src/views/users/registroAdmin'), {
+           return res.render(path.resolve('./', './src/views/users/registroAdmin'), {
                 errors: {
                     email: {
                         msg: 'Este email ya está registrado'
@@ -155,7 +155,7 @@ const usersController = {
 
         fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
 
-        res.render(path.resolve('./', './src/views/users/registroAdmin'), {mensaje: nombre + " " + apellido + " ha sido dado de alta con éxito!"});
+        return res.render(path.resolve('./', './src/views/users/registroAdmin'), {mensaje: nombre + " " + apellido + " ha sido dado de alta con éxito!"});
     },
 
     logout: (req, res) =>{

@@ -64,15 +64,20 @@
                                 <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
                             <% } %>
                             
-                            <!--! FALTA VALIDAR IMAGENES-->
                             <% if (productID.image !== "") {%>
                                 <p class="texto-datos-imagenes">Tienes 1 imagen principal y <%=productID.extraImages.length%> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
                             <% } %>
-                            <label for="imagen-producto">Imagen Principal</label>
-                            <input type="file" class="input-imagen" name="imagen-principal" accept=".jpg, .jpeg, .png">
+                            <label for="imagenPrincipal">Imagen Principal</label>
+                            <input type="file" class="input-imagen" name="imagenPrincipal">
+                            <% if(locals.errors && errors.imagenPrincipal) { %>
+                                <span class="feedback-negativo"><%= errors.imagenPrincipal.msg %></span>
+                            <% } %>
                             
-                            <label for="imagen-producto">Imagenes Extras</label>
-                            <input type="file" class="input-imagen" name="imagenes-extra" accept=".jpg, .jpeg, .png" multiple>
+                            <label for="imagenesExtra">Imagenes Extras</label>
+                            <input type="file" class="input-imagen" name="imagenesExtra" multiple>
+                            <% if(locals.errors && errors.imagenesExtra) { %>
+                                <span class="feedback-negativo"><%= errors.imagenesExtra.msg %></span>
+                            <% } %>
                     </div>
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>

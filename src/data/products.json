@@ -1,47 +1,47 @@
 [
- {
-  "id": 1,
-  "name": "iPhone 13 PRO",
-  "image": "/images/iphone13/iphone13.png",
-  "originalPrice": "1600000",
-  "category": "Celulares",
-  "brand": "iPhone",
-  "onDiscount": true,
-  "discount": "10",
-  "mainProduct": false,
-  "extraImages": [
-   "/images/iphone13/I 13-lateral1 (1).png",
-   "/images/iphone13/I 13-lateral1 (2).png",
-   "/images/iphone13/I 13-lateral1 (3).png"
-  ],
-  "features": [
-   {
-    "title": "Memoria interna",
-    "text": "256 GB"
+{
+    "id": 1,
+    "name": "iPhone 13 PRO",
+    "image": "/images/iphone13/iphone13.png",
+    "originalPrice": "1600000",
+    "category": "Celulares",
+    "brand": "iPhone",
+    "onDiscount": true,
+    "discount": "10",
+    "mainProduct": false,
+    "extraImages": [
+     "/images/iphone13/I 13-lateral1 (1).png",
+     "/images/iphone13/I 13-lateral1 (2).png",
+     "/images/iphone13/I 13-lateral1 (3).png"
+    ],
+    "features": [
+     {
+      "title": "Memoria interna",
+      "text": "256 GB"
+     },
+     {
+      "title": "Cámara trasera principal",
+      "text": "12 Mpx"
+     },
+     {
+      "title": "Cámara frontal principal",
+      "text": "12 Mpx"
+     },
+     {
+      "title": "Desbloqueo",
+      "text": "Reconocimiento facial"
+     }
+    ],
+    "description": [
+     "Rendimiento",
+     "El iPhone 13 Pro Max posee la versión más reciente de sistema operativo iOS 15. Cuenta con una memoria interna de 256 gigabytes de memoria y una RAM de 6 ",
+     "gigabytes brindando un desempeño increíble. Obtendrás más potencia para jugar, stremear y usar las funciones avanzadas de cámara, además de un funcionamiento más eficiente que consume menos batería.",
+     "Pantalla",
+     "Su pantalla OLED y Super Retina XDR con ProMotion de 6.7 pulgadas y una resolución de 2778 x 1284 pixeles tu entretenimiento favorito cobrará vida. Disfrutarás de una visión con tonos oscuros profundos y colores más brillantes acompañados de imágenes súper nítidas. Tiene esquinas redondeadas que siguen el elegante diseño curvo del teléfono, y las esquinas se encuentran dentro de un rectángulo estándar.",
+     "Cámara",
+     "Gracias a su sistema de cámaras Pro de 12 MP con teleobjetivo, gran angular y ultra gran angular, lograrás retratar cada momento con una gran calidad, capturar tomas amplias increíbles y acercamientos detallados en cualquier condición de luz y desde cualquier ángulo."
+    ]
    },
-   {
-    "title": "Cámara trasera principal",
-    "text": "12 Mpx"
-   },
-   {
-    "title": "Cámara frontal principal",
-    "text": "12 Mpx"
-   },
-   {
-    "title": "Desbloqueo",
-    "text": "Reconocimiento facial"
-   }
-  ],
-  "description": [
-   "Rendimiento",
-   "El iPhone 13 Pro Max posee la versión más reciente de sistema operativo iOS 15. Cuenta con una memoria interna de 256 gigabytes de memoria y una RAM de 6 ",
-   "gigabytes brindando un desempeño increíble. Obtendrás más potencia para jugar, stremear y usar las funciones avanzadas de cámara, además de un funcionamiento más eficiente que consume menos batería.",
-   "Pantalla",
-   "Su pantalla OLED y Super Retina XDR con ProMotion de 6.7 pulgadas y una resolución de 2778 x 1284 pixeles tu entretenimiento favorito cobrará vida. Disfrutarás de una visión con tonos oscuros profundos y colores más brillantes acompañados de imágenes súper nítidas. Tiene esquinas redondeadas que siguen el elegante diseño curvo del teléfono, y las esquinas se encuentran dentro de un rectángulo estándar.",
-   "Cámara",
-   "Gracias a su sistema de cámaras Pro de 12 MP con teleobjetivo, gran angular y ultra gran angular, lograrás retratar cada momento con una gran calidad, capturar tomas amplias increíbles y acercamientos detallados en cualquier condición de luz y desde cualquier ángulo."
-  ]
- },
  {
   "id": 2,
   "name": "Monitor Samsung Odissey",

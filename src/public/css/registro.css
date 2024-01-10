@@ -90,8 +90,9 @@ body {
 }
 
 .feedback-negativo {
+    text-align: left;
     color: rgba(255, 0, 0, 0.8);
-    font-size: 11px;;
+    font-size: 11px;
 }
 
 .contenedor-datos1 input, .contenedor-datos2 input {
@@ -109,6 +110,15 @@ body {
 .label-avatar{
     text-align: start;
     margin: 10px 0px;
+}
+
+.contenedor-avatar{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-avatar input {
+    margin-bottom: 5px;
 }
 
 .boton-registro {

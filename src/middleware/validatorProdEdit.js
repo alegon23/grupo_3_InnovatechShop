@@ -1,7 +1,7 @@
 const { body } = require('express-validator');
 const path = require('path');
 
-const validacionesProducto = [
+const validacionesProductoEditar = [
     body('nombre').notEmpty().withMessage("Debes ingresar el nombre del producto"),
     body('marca').notEmpty().withMessage("Debes ingresar la marca del producto"),
     body('categoria').notEmpty().withMessage("Debes seleccionar una categoría"),
@@ -20,9 +20,7 @@ const validacionesProducto = [
     body('imagenPrincipal').custom((value, {req}) => {
         const { imagenPrincipal } = req.files;
         
-        if(!imagenPrincipal){
-            throw new Error('Debes subir una imagen');
-        } else {
+        if(imagenPrincipal) {
             const file = imagenPrincipal[0];
             const acceptedExtensions = ['.jpg', '.jpeg', '.png'];
             const fileExtension = path.extname(file.originalname);
@@ -58,6 +56,4 @@ const validacionesProducto = [
     body('descripcion4').notEmpty().withMessage("Debes ingresar la descripcion de la caracteristica"),
 ];
 
-//! Faltan validar las imagenes
-
-module.exports = validacionesProducto;
+module.exports = validacionesProductoEditar;

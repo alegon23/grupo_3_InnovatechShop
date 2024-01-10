@@ -87,9 +87,9 @@ const productsController = {
         //* documentacion: https://github.com/expressjs/multer/blob/master/doc/README-es.md
         let imagesArray = [];
 
-        if(req.files['imagenes-extra']){
-            for(let i = 0; i < req.files['imagenes-extra'].length; i++){
-                imagesArray.push("/images/products/" + req.files['imagenes-extra'][i].filename)
+        if(req.files['imagenesExtra']){
+            for(let i = 0; i < req.files['imagenesExtra'].length; i++){
+                imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename)
             }
         }
 
@@ -107,7 +107,7 @@ const productsController = {
         let nuevoProducto = {
             id: generateId(),
             name: nombre,
-            image: "/images/products/" + req.files['imagen-principal'][0].filename,
+            image: "/images/products/" + req.files['imagenPrincipal'][0].filename,
             originalPrice: precio,
             category: categoria,
             brand: marca,
@@ -160,13 +160,13 @@ const productsController = {
         let newImagenPrincipal = "";
         let imagesArray = [];
         if(Object.keys(req.files).length){
-            if (req.files['imagen-principal']){
-                newImagenPrincipal = "/images/products/" + req.files['imagen-principal'][0].filename;
+            if (req.files['imagenPrincipal']){
+                newImagenPrincipal = "/images/products/" + req.files['imagenPrincipal'][0].filename;
             }
         
-            if (req.files['imagenes-extra']){
-                for(let i = 0; i < req.files['imagenes-extra'].length; i++){
-                    imagesArray.push("/images/products/" + req.files['imagenes-extra'][i].filename)
+            if (req.files['imagenesExtra']){
+                for(let i = 0; i < req.files['imagenesExtra'].length; i++){
+                    imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename)
                 }
             }
         }

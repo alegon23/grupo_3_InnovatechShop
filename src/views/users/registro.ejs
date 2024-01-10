@@ -18,7 +18,7 @@
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre" value="<%= locals.oldData && oldData.nombre %>">
+                            <input type="text" name="nombre" placeholder="Nombre" value="<%= locals.oldData && oldData.nombre %>">
                             <% if(locals.errors && errors.nombre) { %>
                                 <span class="feedback-negativo"><%= errors.nombre.msg %></span>
                             <% } %> 
@@ -38,14 +38,14 @@
                         
                         <div class="contenedor-datos2">
                             <label for="apellido" class="label">Apellido</label>
-                            <input type="text" name="apellido" class="input" placeholder="Apellido" value="<%= locals.oldData && oldData.apellido %>">
+                            <input type="text" name="apellido" placeholder="Apellido" value="<%= locals.oldData && oldData.apellido %>">
                             <% if(locals.errors && errors.apellido) { %>
                                 <span class="feedback-negativo"><%= errors.apellido.msg %></span>
                             <% } %> 
             
                     
                             <label for="email" class="label">Correo</label>
-                            <input type="text" name="email" class="input" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                            <input type="text" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
                             <% if(locals.errors && errors.email) { %>
                                 <span class="feedback-negativo"><%= errors.email.msg %></span>
                             <% } %> 
@@ -55,12 +55,18 @@
                             <% if(locals.errors && errors.confirmarContrasenia) { %>
                                 <span class="feedback-negativo"><%= errors.confirmarContrasenia.msg %></span>
                             <% } %> 
-                        </div>  
+                        </div>
                        
-            <!-- poner el estilo en css TRINI-->
                     </div>
-                    <label class="label-avatar" for="avatar">Foto de perfil</label>
-                    <input type="file" name="avatar" class="input">
+
+                    <div class="contenedor-avatar">
+                        <label class="label-avatar" for="avatar">Foto de perfil</label>
+                        <input type="file" name="avatar">
+                        <% if(locals.errors && errors.avatar) { %>
+                            <span class="feedback-negativo"><%= errors.avatar.msg %></span>
+                        <% } %>
+                    </div>
+
                     <div>
                         <button type="submit" class="boton-registro">Registrarme</button>
                     </div>
