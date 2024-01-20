@@ -118,5 +118,15 @@
   "birthdate": "1995-06-23",
   "avatar": "/images/users/default.png",
   "role": "admin"
+ },
+ {
+  "id": 13,
+  "firstName": "Mirian",
+  "lastName": "Baigorria",
+  "email": "miriam@gmail.com",
+  "password": "$2a$10$l0fc3WF3WPbjoR3d.UTjZeqhunMVk.7ivLKfddtZUpfEcxMtGAA4G",
+  "birthdate": "2000-01-01",
+  "avatar": "/images/users/default.png",
+  "role": "admin"
  }
 ]
