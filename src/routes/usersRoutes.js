@@ -3,6 +3,7 @@ const router = express.Router();
 const usersController = require('../controllers/usersControllers');
 const uploadImg = require("../middleware/userMulter");
 const validacionesUsuario = require('../middleware/validatorUsers')
+const validacionesPerfil = require('../middleware/validatorProfile')
 const validacionesLogin = require('../middleware/validatorLogin')
 const validacionesAdministrador = require('../middleware/validatorAdmin')
 const guestMiddleware = require('../middleware/guestMiddleware')
@@ -19,6 +20,10 @@ router.post('/', uploadImg.single('avatar'), validacionesUsuario, usersControlle
 
 //Perfil
 router.get('/perfil/:id', authMiddleware, usersController.mostrarPerfil);
+
+//Editar perfil
+router.get('/editar-perfil/:id', authMiddleware, usersController.editarPerfil)
+router.put('/editar-perfil/:id', uploadImg.single('avatar'), validacionesPerfil, usersController.actualizarPerfil)
 
 //Registro administradores
 router.get('/registro-admin', authAdminMiddleware, usersController.registroAdmin);

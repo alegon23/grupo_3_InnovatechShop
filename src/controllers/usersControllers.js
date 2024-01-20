@@ -108,6 +108,78 @@ const usersController = {
         res.render(path.resolve('./', './src/views/users/perfil'), {usuario: req.session.usuario})
     },
 
+    editarPerfil: (req, res) =>{ 
+        const userId = users.find(user => user.id == req.params.id);
+        res.render(path.resolve('./', './src/views/users/editarPerfil'), {userId})
+    },
+
+    actualizarPerfil: (req, res) =>{ 
+        const userId = users.find(user => user.id == req.params.id);
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {errors: errors.mapped(), oldData: req.body, userId});
+        }
+
+        let {nombre, apellido, fecha, contraseniaActual, nuevaContrasenia, confirmarContrasenia} = req.body;
+        const indexUser = users.findIndex((user) => user.id == req.params.id)
+        let isPassOK = bcryptjs.compareSync(contraseniaActual, userId.password);
+        if (!isPassOK) {
+            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
+                errors: {
+                    contraseniaActual: {
+                        msg: 'Contraseña incorrecta',
+                    }
+                },
+                oldData: req.body,
+                userId
+            });
+        }
+
+        if (nuevaContrasenia) {
+            if (!confirmarContrasenia) {
+                return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
+                    errors: {
+                        confirmarContrasenia: {
+                            msg: 'Debes confirmar la contraseña nueva',
+                        },
+                    },
+                    oldData: req.body,
+                    userId
+                });
+            } else {
+                if (nuevaContrasenia != confirmarContrasenia) {
+                    return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
+                        errors: {
+                            nuevaContrasenia: {
+                                msg: 'Las contraseñas no coinciden',
+                            },
+                        },
+                        oldData: req.body,
+                        userId
+                    });
+                }
+            }
+        }
+        if (indexUser != -1) {
+            users[indexUser].firstName = nombre
+            users[indexUser].lastName = apellido
+            users[indexUser].birthdate = fecha
+            users[indexUser].avatar = !req.file ? userId.avatar : "/images/users/" + req.file.filename
+            users[indexUser].password = nuevaContrasenia ? bcryptjs.hashSync(nuevaContrasenia, 10) : bcryptjs.hashSync(contraseniaActual, 10)
+
+            fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
+
+            req.session.destroy();
+            res.clearCookie('usuarioEmail')
+
+            res.redirect('/users/login')
+        } else {
+            res.send('Usuario no encontrado');
+        }
+    },
+
     registroAdmin: (req, res) =>{
         res.render(path.resolve('./', './src/views/users/registroAdmin'))
     },
@@ -137,7 +209,7 @@ const usersController = {
            return res.render(path.resolve('./', './src/views/users/registroAdmin'), {
                 errors: {
                     email: {
-                        msg: 'Este email ya está registrado'
+                        msg: 'Este email ya está registrado como usuario'
                     }
                 },
                 oldData: req.body

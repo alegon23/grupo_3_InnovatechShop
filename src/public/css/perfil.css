@@ -124,5 +124,6 @@
     #main-perfil{
         max-width: 1200px;
         margin: auto;
+        min-height: 63vh;
     }
 }
