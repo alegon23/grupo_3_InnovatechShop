@@ -4,6 +4,22 @@ La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que pla
 <img src="https://choice.ar/wp-content/uploads/2021/07/choice-redes_abrilestrella-800x800.png" alt="retrospectiva de la estrella de mar" width=450px>
 <br>
 
+## Sprint 6
+
+### Seguir haciendo:
+- Comunicación por el grupo
+- Comentar avances y dudas
+
+### Más de:
+- Participación en trello
+- Mayor participación en las reuniones
+- División de tareas
+
+### Menos de & Dejar de hacer:
+- Ídem retrospectiva del sprint 3. Creo que debemos seguir como estamos, ya que de esta forma nos parece que podremos seguir avanzando con el proyecto.
+
+<hr>
+
 ## Sprint 5
 
 ### Comenzar a hacer:
