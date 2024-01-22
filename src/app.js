@@ -10,7 +10,7 @@ const session = require('express-session');
 const cookies = require('cookie-parser');
 const userLoggedMiddleware = require('./middleware/userLoggedMiddleware')
 
-const PORT = 8080
+const PORT = process.env.PORT || 3001;
 
 const app = express()
 const publicPath = path.resolve(__dirname, './public');
