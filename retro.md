@@ -1,7 +1,7 @@
 # Retrospectivas
 La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que plantea 5 cuestiones:
 <br>
-<img src="https://choice.ar/wp-content/uploads/2021/07/choice-redes_abrilestrella-800x800.png" alt="retrospectiva de la estrella de mar" width=450px>
+<img src="https://gustavoveliz.files.wordpress.com/2009/05/startechnique1.gif" alt="retrospectiva de la estrella de mar" width=338px>
 <br>
 
 ## Sprint 6
