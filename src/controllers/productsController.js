@@ -5,6 +5,7 @@ const productsJSON = path.join(__dirname, '../data/products.json');
 let products = require('../data/products');
 const calcularMiles = require('../public/js/calcularMiles');
 const { validationResult } = require("express-validator");
+const db = require('../database/models');
 
 const productsController = {
     listado: (req, res) =>{
