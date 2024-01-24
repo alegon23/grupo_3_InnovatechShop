@@ -10,7 +10,19 @@ const db = require('../database/models');
 const productsController = {
     listado: (req, res) =>{
         const titulo = "Todos los Productos";
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: products, calcularMiles});
+        db.Product.findByPk(1, {
+            include: ["features", "category", "brand", "images"],
+            attributes: {
+                exclude: ["idBrandFK", "idCategoryFK"]
+            }
+        })
+        .then(data => {
+            res.send(data)
+        })
+        .catch(error => {
+            res.send(error)
+        })
+        //res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: products, calcularMiles});
     },
 
     listadoCelulares: (req, res) =>{
