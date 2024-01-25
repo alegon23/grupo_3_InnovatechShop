@@ -9,17 +9,6 @@ const db = require('../database/models');
 
 const productsController = {
     listado: (req, res) =>{
-        db.User.findAll()
-        .then(data => {
-            res.send(data)
-        })
-        .catch(error => {
-            res.send(error)
-        })
-}
-    
-    
-    /*(req, res) =>{
         const titulo = "Todos los Productos";
         db.Product.findByPk(1, {
             include: ["features", "category", "brand", "images"],
@@ -34,8 +23,7 @@ const productsController = {
             res.send(error)
         })
         //res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: products, calcularMiles});
-    }*/,
-
+    },
     listadoCelulares: (req, res) =>{
         const titulo = "Celulares";
         const resultados = products.filter(producto => producto.category == 'Celulares');
