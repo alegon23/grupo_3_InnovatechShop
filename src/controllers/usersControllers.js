@@ -4,6 +4,7 @@ const users = require('../data/users');
 const fs = require('fs');
 const usersJSON = path.join(__dirname, '../data/users.json');
 const { validationResult } = require("express-validator");
+const db = require('../database/models');
 
 const usersController = {
     login: (req, res) =>{
@@ -14,76 +15,74 @@ const usersController = {
         res.render(path.resolve('./', './src/views/users/registro'))
     },
 
-    procesarRegistro: (req, res) =>{
-        const errors = validationResult(req);
+    procesarRegistro: async (req, res) =>{
+        try {
+            const errors = validationResult(req);
         
-        if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/users/registro'), {errors: errors.mapped(), oldData: req.body});
-        }
-
-        let {nombre, fecha, apellido, contrasenia, email} = req.body;
-        const generateId = () => {
-            let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}));
-            let lastUser = allUsers.pop();
-            if (lastUser) {
-                return lastUser.id + 1;
+            if (!errors.isEmpty()) {
+                return res.render(path.resolve('./', './src/views/users/registro'), {errors: errors.mapped(), oldData: req.body});
             }
-            return 1;
-        }
 
-        let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
-        let foundUser = allUsers.find(user => user['email'] === req.body.email);
+            let {nombre, fecha, apellido, contrasenia, email} = req.body;
+
+            const foundUser = await db.User.findOne({
+                where: {email: req.body.email},
+            })
+            
+            if (foundUser.length > 0) {
+                return res.render(path.resolve('./', './src/views/users/registro'), {
+                    errors: {
+                        email: {
+                            msg: 'Este email ya está registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
     
-        if (foundUser) {
-            return res.render(path.resolve('./', './src/views/users/registro'), {
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado'
-                    }
-                },
-                oldData: req.body
-            });
+            let nuevoUsuario = {
+                firstName: nombre,
+                lastName: apellido,
+                email: email,
+                password: bcryptjs.hashSync(contrasenia, 10),
+                birthdate: fecha,
+                avatar: !req.file ? "/images/users/default.png" : "/images/users/" + req.file.filename,
+                idRoleFK: 1,
+            }
+
+            await db.User.create(nuevoUsuario)
+    
+            res.redirect('/users/login');
+
+        } catch (error) {
+            res.send(error)
         }
-
-        let nuevoUsuario = {
-            id: generateId(),
-            firstName: nombre,
-            lastName: apellido,
-            email: email,
-            password: bcryptjs.hashSync(contrasenia, 10),
-            birthdate: fecha,
-            avatar: !req.file ? "/images/users/default.png" : "/images/users/" + req.file.filename,
-            role: "user"
-        }
-        users.push(nuevoUsuario);
-
-        fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
-
-        res.redirect('/users/login');
-
     },
 
-    procesarLogin: (req, res) =>{
-        const errors = validationResult(req);
+    procesarLogin: async (req, res) =>{
+        try {
+            const errors = validationResult(req);
         
-        if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/users/login'), {errors: errors.mapped(), oldData: req.body});
-        }
+            if (!errors.isEmpty()) {
+                return res.render(path.resolve('./', './src/views/users/login'), {errors: errors.mapped(), oldData: req.body});
+            }
 
-        let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
-        let foundUser = allUsers.find(user => user['email'] === req.body.email);
+            const foundUser = await db.User.findOne({
+                where: {email: req.body.email},
+            })
 
-        if (foundUser) {
-            let isPassOK = bcryptjs.compareSync(req.body.contrasenia, foundUser.password);
-            if (isPassOK){
-                delete foundUser.password;
-                req.session.usuario = foundUser;
-                
-                if (req.body.recuerdame){
-                    res.cookie('usuarioEmail', req.body.email, { maxAge: (1000 * 60) * 60});
-                }
+            if (foundUser) {
+                let isPassOK = bcryptjs.compareSync(req.body.contrasenia, foundUser.password);
+                if (isPassOK){
+                    delete foundUser.password;
+                    req.session.usuario = foundUser;
+                    if (req.body.recuerdame){
+                        res.cookie('usuarioEmail', req.body.email, { maxAge: (1000 * 60) * 60});
+                    }
+
                 return res.redirect('/');
             }
+            
             return res.render(path.resolve('./', './src/views/users/login'), {
                 errors: {
                     email: {
@@ -102,12 +101,17 @@ const usersController = {
             },
             oldData: {email: req.body.email}
         });
+        } catch (error) {
+            res.send(error)
+        }
+        
     },
 
     mostrarPerfil: (req, res) =>{
         res.render(path.resolve('./', './src/views/users/perfil'), {usuario: req.session.usuario})
     },
 
+    //! HASTA AQUI
     editarPerfil: (req, res) =>{ 
         const userId = users.find(user => user.id == req.params.id);
         res.render(path.resolve('./', './src/views/users/editarPerfil'), {userId})

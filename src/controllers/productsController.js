@@ -8,56 +8,103 @@ const { validationResult } = require("express-validator");
 const db = require('../database/models');
 
 const productsController = {
-    listado: (req, res) =>{
-        const titulo = "Todos los Productos";
-        db.Product.findByPk(1, {
-            include: ["features", "category", "brand", "images"],
-            attributes: {
-                exclude: ["idBrandFK", "idCategoryFK"]
-            }
+    listado: async (req, res) =>{
+        try {
+            const titulo = "Todos los Productos";
+            const data = await db.Product.findAll({
+                include: ["images"],
+            })
+
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+
+        } catch (error) {
+            res.send(error)
+        }
+        
+        
+    },
+    listadoCelulares: (req, res) =>{
+        const titulo = "Celulares";
+        db.Product.findAll({
+            where: {idCategoryFK: 1},
+            include: ["images"],
         })
         .then(data => {
-            res.send(data)
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
         })
         .catch(error => {
             res.send(error)
         })
-        //res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: products, calcularMiles});
-    },
-    listadoCelulares: (req, res) =>{
-        const titulo = "Celulares";
-        const resultados = products.filter(producto => producto.category == 'Celulares');
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
     },
 
     listadoMonitoresTVs: (req, res) =>{
         const titulo = "Monitores & TVs";
-        const resultados = products.filter(producto => producto.category == 'Monitores & TVs');
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+        db.Product.findAll({
+            where: {idCategoryFK: 2},
+            include: ["images"],
+        })
+        .then(data => {
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+        })
+        .catch(error => {
+            res.send(error)
+        })
     },
 
     listadoTablets: (req, res) =>{
         const titulo = "Tablets";
-        const resultados = products.filter(producto => producto.category == 'Tablets');
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+        db.Product.findAll({
+            where: {idCategoryFK: 3},
+            include: ["images"],
+        })
+        .then(data => {
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+        })
+        .catch(error => {
+            res.send(error)
+        })
     },
 
     listadoNotebooks: (req, res) =>{
         const titulo = "Notebooks";
-        const resultados = products.filter(producto => producto.category == 'Notebooks');
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+        db.Product.findAll({
+            where: {idCategoryFK: 4},
+            include: ["images"],
+        })
+        .then(data => {
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+        })
+        .catch(error => {
+            res.send(error)
+        })
     },
 
     listadoHardware: (req, res) =>{
         const titulo = "Hardware";
-        const resultados = products.filter(producto => producto.category == 'Hardware');
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+        db.Product.findAll({
+            where: {idCategoryFK: 5},
+            include: ["images"],
+        })
+        .then(data => {
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+        })
+        .catch(error => {
+            res.send(error)
+        })
     },
 
     listadoAccesorios: (req, res) =>{
         const titulo = "Accesorios";
-        const resultados = products.filter(producto => producto.category == 'Accesorios');
-        res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados, calcularMiles});
+        db.Product.findAll({
+            where: {idCategoryFK: 6},
+            include: ["images"],
+        })
+        .then(data => {
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+        })
+        .catch(error => {
+            res.send(error)
+        })
     },
 
     carrito: (req, res) =>{

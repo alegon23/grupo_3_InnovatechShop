@@ -9,33 +9,40 @@
   <main>
     <section>
     <h2 class="titulo-section"><%= titulo %></h2>
+    <% let imagenPrincipal = "" %>
     <% if (resultados.length) { %>
       <div class="lista-promociones" style= <%= resultados.length == 2 ? 'justify-content:' + 'space-evenly' : ''%> >
         <% for (resultado of resultados) { %>
+          <% for (imagen of resultado.images) { %>
+                <% if (imagen.mainImage) { 
+                  imagenPrincipal = imagen.url
+                 } %>
+                <% break; %>
+              <% } %>
           <% if (!resultado.onDiscount) { %>
             <article class="tarjeta-articulo">
-              <img src="<%= resultado.image %>" alt="Imagen Producto" class="imagen-producto">
+              <img src="<%= imagenPrincipal %>" alt="Imagen Producto" class="imagen-producto">
               <div class="caja-precio">
-                <h3><%= resultado.name %></h3>
+                <h3><%= resultado.productName %></h3>
                 <h4>$<%= calcularMiles(resultado.originalPrice) %></h4>
                 <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
               </div>
-              <a href="../products/detalleProducto/<%= resultado.id %>" class="boton-compra">Comprar</a>
+              <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
             </article>
           <% } else {%>
-            <% precioDescuento = calcularDescuento(parseInt(resultado.originalPrice), parseInt(resultado.discount))%>
+            <% precioDescuento = calcularDescuento(resultado.originalPrice, resultado.discount)%>
             <article class="tarjeta-promocion">
               <div class="caja-imagen-descuento">
-                  <img src="<%= resultado.image %>" alt="Imagen Producto" class="imagen-producto" />
+                  <img src="<%= imagenPrincipal %>" alt="Imagen Producto" class="imagen-producto" />
                   <p class="descuento"><%= resultado.discount + '%' %><br />OFF</p>
               </div>
               <div class="caja-precio">
-                <h3><%= resultado.name %></h3>
+                <h3><%= resultado.productName %></h3>
                 <h4 class="precio-original"> <%= '$' + calcularMiles(resultado.originalPrice) %> </h4>
                 <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
                 <h5>Envío gratis <i class="bi bi-truck"></i></h5>
               </div>
-              <a href="../products/detalleProducto/<%= resultado.id %>" class="boton-compra">Comprar</a>
+              <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
             </article>
           <% }%>
         <% } %>

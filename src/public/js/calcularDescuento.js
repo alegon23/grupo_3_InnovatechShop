@@ -1,5 +1,5 @@
 calcularDescuento = (precioOriginal, porcentaje) => {
-    return Math.round(precioOriginal - ((precioOriginal * porcentaje) / 100));
+    return precioOriginal - ((precioOriginal * porcentaje) / 100);
 };
 
 module.exports = calcularDescuento;

@@ -58,7 +58,7 @@ Su pantalla FHD PLS de 15.6" y FHD de resolución te brindará colores más vivo
 Eficiencia a tu alcance
 Su procesador Intel I5, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar.
 Un procesador exclusivo para los gráficos
-Su placa de video Intel Iris Xe convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.',20,3,2);
+Su placa de video Intel Iris Xe convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.',20,2,2);
 INSERT INTO products(productName,originalPrice,onDiscount,discount,mainProduct,description,stock,idCategoryFK,idBrandFK) VALUES ('Samsung Smart TV 65"',1200000,1,5,0,'Viví en 4K
 La cantidad de pixeles que ofrece es 4 veces mayor que la Full HD, ¿el resultado? Escenas mucho más realistas y con un nivel de detalle increíble. Ahora vas a conocer una aventura de inmersión que no va a dejar de sorprenderte.
 Más allá de ver televisión
@@ -66,14 +66,14 @@ Su función Screen Share permite duplicar la pantalla de tu smartphone, tablet o
 Conexión invisible
 Este modelo está pensado para que puedas despejar tu campo visual. El sector donde coloques el televisor se verá mucho más prolijo porque los cables estarán ocultos, ordenados y organizados, ¡vas a notar la diferencia!
 Un sonido que te envuelve
-Vas a sentir que proviene desde todas las direcciones posibles, lo cual enriquece la percepción del mismo. Los diálogos de tus series de fin de semana o la música de tus cantantes preferidos van a cobrar otro significado.',20,3,2);
+Vas a sentir que proviene desde todas las direcciones posibles, lo cual enriquece la percepción del mismo. Los diálogos de tus series de fin de semana o la música de tus cantantes preferidos van a cobrar otro significado.',20,2,2);
 INSERT INTO products(productName,originalPrice,onDiscount,discount,mainProduct,description,stock,idCategoryFK,idBrandFK) VALUES ('Notebook Samsung Book3',680000,0,0,1,'La notebook Samsung Premium Galaxy Book3 es una solución tanto para trabajar y estudiar como para entretenerte. Al ser portátil, el escritorio dejará de ser tu único espacio de uso para abrirte las puertas a otros ambientes ya sea en tu casa o en la oficina.
 Pantalla con gran impacto visual
 Su pantalla FHD PLS de 15.6" y FHD de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.
 Eficiencia a tu alcance
 Su procesador Intel I5, te permitirá ejecutar programas variados y procesos indispensables para desenvolverte en el día a día, ya sea en tu trabajo o en los momentos de ocio en tu hogar.
 Un procesador exclusivo para los gráficos
-Su placa de video Intel Iris Xe convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.',20,5,2);
+Su placa de video Intel Iris Xe convierte a este dispositivo en una gran herramienta de trabajo para cualquier profesional del diseño. Te permitirá lograr una gran performance en todos tus juegos y en otras tareas cotidianas que impliquen procesamiento gráfico.',20,4,2);
 
 INSERT INTO products(productName,originalPrice,onDiscount,discount,mainProduct,description,stock,idCategoryFK,idBrandFK) VALUES ('Motorola E13',73999,0,0,1,'No te quedes sin batería
 Con su batería de 5000 mAh lograrás trabajar y jugar por hasta por 40 horas sin interrupciones.

@@ -17,12 +17,12 @@
             <a href="#" id="icono-busqueda"><i class="bi bi-search icono-busqueda"></i></a>
         
             <% if (locals.usuarioLog) { %>
-                <a href="../../users/perfil/<%= locals.usuarioLog.id %>" class="boton-cuenta-movil"><i class="bi bi-person-check"></i></a>
+                <a href="../../users/perfil/<%= locals.usuarioLog.idUser %>" class="boton-cuenta-movil"><i class="bi bi-person-check"></i></a>
             <% } else {%>
                 <a href="../../users/login" class="boton-cuenta-movil"><i class="bi bi-person"></i></a>
             <% } %>
 
-            <% if (locals.usuarioLog && locals.usuarioLog.role == "admin") { %>
+            <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
                 <a href="../../users/registro-admin" class="boton-cuenta-movil"><i class="bi bi-person-plus"></i></a>
             <% } else{%>
                 <a href="../../products/carrito" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
@@ -30,12 +30,12 @@
         </div>
 
         <% if (locals.usuarioLog) { %>
-            <a href="../../users/perfil/<%= locals.usuarioLog.id %>" class="boton-cuenta"><i class="bi bi-person-check"></i> Hola <%= locals.usuarioLog.firstName.charAt(0).toUpperCase() + locals.usuarioLog.firstName.slice(1) %>! </a>
+            <a href="../../users/perfil/<%= locals.usuarioLog.idUser %>" class="boton-cuenta"><i class="bi bi-person-check"></i> Hola <%= locals.usuarioLog.firstName.charAt(0).toUpperCase() + locals.usuarioLog.firstName.slice(1) %>! </a>
         <% } else { %>
             <a href="../../users/login" class="boton-cuenta"><i class="bi bi-person"></i> Ingresar</a>
         <% } %>
 
-        <% if (locals.usuarioLog && locals.usuarioLog.role == "admin") {%>
+        <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) {%>
             <a href="../../users/registro-admin" class="boton-cuenta"><i class="bi bi-person-plus"></i> Añadir Admin</a>
         <% } else{%>
             <a href="../../products/carrito" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>
