@@ -12,7 +12,7 @@ const mainController = {
             res.render(path.resolve('./', './src/views/main/index'), {productos: data, calcularDescuento: calcularDescuento, calcularMiles});
 
         } catch (error) {
-            res.send(error)
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
 
@@ -30,7 +30,7 @@ const mainController = {
             const titulo = "Resultados de la búsqueda: \"" + busqueda + "\"";
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
         } catch (error) {
-            res.send(error)
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     }
 }

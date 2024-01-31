@@ -336,6 +336,43 @@ footer img {
     text-align: center;
 }
 
+/* --------- ERROR --------- */
+.body-error{
+    background: rgb(133, 247, 255);
+  background: radial-gradient(
+    circle,
+    rgba(133, 247, 255, 1) 0%,
+    rgba(158, 143, 255, 0.5) 100%
+  );
+}
+
+.main-error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.main-error h1 {
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+.main-error h2 {
+    color: rgba(255, 0, 0, 0.8);
+    font-style: italic;
+}
+
+.main-error a {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.main-error a:hover {
+    text-decoration: underline;
+}
+
 /* --------- MEDIA QUERIES --------- */
 @media (min-width: 480px) {
     .lista-productos, .lista-promociones{

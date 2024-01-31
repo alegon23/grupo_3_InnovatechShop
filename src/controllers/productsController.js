@@ -18,93 +18,100 @@ const productsController = {
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
 
         } catch (error) {
-            res.send(error)
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
         
         
     },
-    listadoCelulares: (req, res) =>{
-        const titulo = "Celulares";
-        db.Product.findAll({
-            where: {idCategoryFK: 1},
-            include: ["images"],
-        })
-        .then(data => {
+    listadoCelulares: async (req, res) => {
+        try {
+            const titulo = "Celulares";
+            const data = await db.Product.findAll({
+                where: {idCategoryFK: 1},
+                include: ["images"],
+            });
+
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
-        })
-        .catch(error => {
-            res.send(error)
-        })
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
-    listadoMonitoresTVs: (req, res) =>{
-        const titulo = "Monitores & TVs";
-        db.Product.findAll({
-            where: {idCategoryFK: 2},
-            include: ["images"],
-        })
-        .then(data => {
+    listadoMonitoresTVs: async (req, res) => {
+        try {
+            const titulo = "Monitores & TVs";
+
+            const data = await db.Product.findAll({
+                where: {idCategoryFK: 2},
+                include: ["images"],
+            });
+            
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
-        })
-        .catch(error => {
-            res.send(error)
-        })
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
-    listadoTablets: (req, res) =>{
-        const titulo = "Tablets";
-        db.Product.findAll({
-            where: {idCategoryFK: 3},
-            include: ["images"],
-        })
-        .then(data => {
+    listadoTablets: async (req, res) => {
+        try {
+            const titulo = "Tablets";
+            const data = await db.Product.findAll({
+                where: {idCategoryFK: 3},
+                include: ["images"],
+            });
+
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
-        })
-        .catch(error => {
-            res.send(error)
-        })
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
-    listadoNotebooks: (req, res) =>{
-        const titulo = "Notebooks";
-        db.Product.findAll({
-            where: {idCategoryFK: 4},
-            include: ["images"],
-        })
-        .then(data => {
+    listadoNotebooks: async (req, res) => {
+        try {
+            const titulo = "Notebooks";
+            const data = await db.Product.findAll({
+                where: {idCategoryFK: 4},
+                include: ["images"],
+            });
+
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
-        })
-        .catch(error => {
-            res.send(error)
-        })
+            
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
-    listadoHardware: (req, res) =>{
-        const titulo = "Hardware";
-        db.Product.findAll({
-            where: {idCategoryFK: 5},
-            include: ["images"],
-        })
-        .then(data => {
+    listadoHardware: async (req, res) => {
+        try {
+            const titulo = "Hardware";
+            const data = await db.Product.findAll({
+                where: {idCategoryFK: 5},
+                include: ["images"],
+            });
+
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
-        })
-        .catch(error => {
-            res.send(error)
-        })
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
-    listadoAccesorios: (req, res) =>{
-        const titulo = "Accesorios";
-        db.Product.findAll({
-            where: {idCategoryFK: 6},
-            include: ["images"],
-        })
-        .then(data => {
+    listadoAccesorios: async (req, res) => {
+        try {
+            const titulo = "Accesorios";
+            const data = await db.Product.findAll({
+                where: {idCategoryFK: 6},
+                include: ["images"],
+            });
+            
             res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
-        })
-        .catch(error => {
-            res.send(error)
-        })
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
     carrito: (req, res) =>{

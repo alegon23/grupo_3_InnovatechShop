@@ -23,6 +23,7 @@ app.use(session({secret: 'InnovaTechShop', saveUninitialized: true, resave: fals
 app.use(cookies())
 app.use(userLoggedMiddleware);
 
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -35,3 +36,7 @@ app.use('/', mainRoutes)
 app.use('/users', usersRoutes);
 
 app.use('/products', productsRoutes);
+
+app.use((req,res,next) => {
+    res.status(404).render(path.resolve('./', './src/views/main/error'), {mensaje: "Error 404"})
+})
