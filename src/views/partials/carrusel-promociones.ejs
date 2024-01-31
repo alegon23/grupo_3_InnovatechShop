@@ -1,18 +1,24 @@
 <% for (producto of productos) { %>
+  <% for (imagen of producto.images) { %>
+    <% if (imagen.mainImage) { 
+      imagenPrincipal = imagen.url
+     } %>
+    <% break; %>
+  <% } %>
     <% if (producto.onDiscount) { %>
-      <% precioDescuento = calcularDescuento(parseInt(producto.originalPrice), parseInt(producto.discount))%>
+      <% precioDescuento = calcularDescuento(producto.originalPrice, producto.discount)%>
       <article class="tarjeta-promocion">
         <div class="caja-imagen-descuento">
-          <img src="<%= producto.image %>" alt="Imagen Producto" class="imagen-producto" />
+          <img src="<%= imagenPrincipal %>" alt="Imagen Producto" class="imagen-producto" />
           <p class="descuento"><%= producto.discount + '%' %><br />OFF</p>
         </div>
         <div class="caja-precio">
-          <h3><%= producto.name %></h3>
+          <h3><%= producto.productName %></h3>
           <h4 class="precio-original"> <%= '$' + calcularMiles(producto.originalPrice) %> </h4>
           <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
           <h5>Envío gratis <i class="bi bi-truck"></i></h5>
         </div>
-        <a href="../products/detalleProducto/<%= producto.id %>" class="boton-compra">Comprar</a>
+        <a href="../products/detalleProducto/<%= producto.idProduct %>" class="boton-compra">Comprar</a>
       </article>
     <% } %>
 <% } %>

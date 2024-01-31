@@ -1,14 +1,20 @@
 <% for (producto of productos) { %>
+    <% for (imagen of producto.images) { %>
+        <% if (imagen.mainImage) { 
+          imagenPrincipal = imagen.url
+         } %>
+        <% break; %>
+      <% } %>
     <% if (producto.mainProduct) { %>
       <article class="tarjeta-articulo">
-        <img src="<%= producto.image %>" alt="Imagen Producto" class="imagen-producto">
+        <img src="<%= imagenPrincipal %>" alt="Imagen Producto" class="imagen-producto">
   
         <div class="caja-precio">
-            <h3><%= producto.name %></h3>
+            <h3><%= producto.productName %></h3>
             <h4>$<%= calcularMiles(producto.originalPrice) %></h4>
             <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
         </div>
-        <a href="../products/detalleProducto/<%= producto.id %>" class="boton-compra">Comprar</a>
+        <a href="../products/detalleProducto/<%= producto.idProduct %>" class="boton-compra">Comprar</a>
     </article>
     <% } %>
 <% } %>
