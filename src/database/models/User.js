@@ -53,7 +53,6 @@ module.exports = (sequelize, dataTypes) => {
             as: 'role',
             foreignKey: 'idRoleFK'
         });
-      
     };
 
   

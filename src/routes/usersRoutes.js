@@ -25,6 +25,9 @@ router.get('/perfil/:id', authMiddleware, usersController.mostrarPerfil);
 router.get('/editar-perfil/:id', authMiddleware, usersController.editarPerfil)
 router.put('/editar-perfil/:id', uploadImg.single('avatar'), validacionesPerfil, usersController.actualizarPerfil)
 
+//Borrar perfil
+router.delete('/:id', usersController.eliminarPerfil)
+
 //Registro administradores
 router.get('/registro-admin', authAdminMiddleware, usersController.registroAdmin);
 router.post('/registro-admin', validacionesAdministrador, usersController.procesarAdmin);
