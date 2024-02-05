@@ -4,7 +4,7 @@
 <body>
     <main class="main-registro">
         <div class="contenedor-form">
-            <img src="<%= userId.avatar %>" alt="avatar" class="logo">
+            <img src="<%= foundUser.avatar %>" alt="avatar" class="logo">
 
             <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
             y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
@@ -14,17 +14,17 @@
                     <p class="subtitle">Completá el formulario para modificar tu perfil</p>
                 </div>
                 
-                <form action="/users/editar-perfil/<%= userId.id %>?_method=PUT" method='POST' class="contenedor-registro" enctype="multipart/form-data">
+                <form action="/users/editar-perfil/<%= foundUser.idUser %>?_method=PUT" method='POST' class="contenedor-registro" enctype="multipart/form-data">
                     <div class="datos">      
                         <div class="contenedor-datos1">
                             <label for="nombre" class="label">Nombre</label>
-                            <input type="text" name="nombre" placeholder="Nombre" value="<%=locals.oldData && oldData.nombre ? oldData.nombre : userId.firstName%>">
+                            <input type="text" name="nombre" placeholder="Nombre" value="<%=locals.oldData && oldData.nombre ? oldData.nombre : foundUser.firstName%>">
                             <% if(locals.errors && errors.nombre) { %>
                                 <span class="feedback-negativo"><%= errors.nombre.msg %></span>
                             <% } %> 
                             
                             <label for="fecha">Fecha de nacimiento</label>
-                            <input type="date" name="fecha" placeholder="DD/MM/AAAA" value="<%=locals.oldData && oldData.fecha ? oldData.fecha : userId.birthdate%>">
+                            <input type="date" name="fecha" placeholder="DD/MM/AAAA" value="<%=locals.oldData && oldData.fecha ? oldData.fecha : foundUser.birthdate%>">
                             <% if(locals.errors && errors.fecha) { %>
                                 <span class="feedback-negativo"><%= errors.fecha.msg %></span>
                             <% } %> 
@@ -38,7 +38,7 @@
                         
                         <div class="contenedor-datos2">
                             <label for="apellido" class="label">Apellido</label>
-                            <input type="text" name="apellido" placeholder="Apellido" value="<%=locals.oldData && oldData.apellido ? oldData.apellido : userId.lastName%>">
+                            <input type="text" name="apellido" placeholder="Apellido" value="<%=locals.oldData && oldData.apellido ? oldData.apellido : foundUser.lastName%>">
                             <% if(locals.errors && errors.apellido) { %>
                                 <span class="feedback-negativo"><%= errors.apellido.msg %></span>
                             <% } %> 
