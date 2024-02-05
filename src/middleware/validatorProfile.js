@@ -17,16 +17,6 @@ const validacionesPerfil = [
                 }),
     body('nuevaContrasenia').optional({ nullable: true, checkFalsy: true }).isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore:   false}).withMessage('La contraseña debe tener al menos 8 caracteres, contener una mayuscula y un numero').bail(),
     body('contraseniaActual').notEmpty().withMessage("Debes ingresar tu contraseña actual"),
-    /*body('confirmarContrasenia').optional({ nullable: true, checkFalsy: true }).custom((value, {req}) => {
-        const password = req.body.nuevaContrasenia;
-        const confirmPassword = req.body.confirmarContrasenia;
-
-        if(password != confirmPassword){
-            throw new Error('Las contraseñas deben ser iguales');
-        }
-        
-        return true;
-    }),*/
     body('avatar').custom((value, {req}) => {
         const file = req.file;
         const acceptedExtensions = ['.jpg', '.jpeg', '.png'];

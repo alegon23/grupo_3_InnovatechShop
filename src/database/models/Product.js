@@ -73,11 +73,6 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: 'idProductFK',
         });
 
-        //Product.belongsTo(models.ProductFeature, {
-        //    as: 'productFeature',
-        //    foreignKey: 'idProductFK'
-        //});
-
         Product.belongsToMany(models.Feature, {
             as: 'features',
             through: 'products_features',

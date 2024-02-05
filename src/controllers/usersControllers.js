@@ -1,8 +1,5 @@
 const path = require('path');
 const bcryptjs = require('bcryptjs');
-const users = require('../data/users');
-const fs = require('fs');
-const usersJSON = path.join(__dirname, '../data/users.json');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
 
@@ -55,7 +52,7 @@ const usersController = {
             res.redirect('/users/login');
 
         } catch (error) {
-            res.send(error)
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
 
@@ -102,7 +99,7 @@ const usersController = {
             oldData: {email: req.body.email}
         });
         } catch (error) {
-            res.send(error)
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
         
     },
@@ -144,10 +141,8 @@ const usersController = {
             res.render(path.resolve('./', './src/views/users/editarPerfil'), {foundUser})
             
         } catch (error) {
-            res.send(error);
-            
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
-       
     },
 
     actualizarPerfil:async (req, res) =>{ 

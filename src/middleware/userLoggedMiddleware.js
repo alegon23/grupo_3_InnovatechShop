@@ -1,16 +1,20 @@
 const path = require('path')
-const usersJSON = path.join(__dirname, '../data/users.json');
-const fs = require('fs');
+const db = require('../database/models');
 
 function userLoggedMiddleware (req, res, next) {
     res.locals.usuarioLog = false;
 
-    let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
-    let userCookie = allUsers.find(user => user['email'] === req.cookies.usuarioEmail);
-
-    if (userCookie) {
-        delete userCookie.password;
-        req.session.usuario = userCookie 
+    if (req.cookies && req.cookies.usuarioEmail) {
+        db.User.findOne({
+            where: {email: req.cookies.usuarioEmail},
+        }).then(userCookie => {
+            if (userCookie) {
+                delete userCookie.password;
+                req.session.usuario = userCookie 
+            }
+        }).catch(error => {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        })
     }
 
     if (req.session.usuario) {

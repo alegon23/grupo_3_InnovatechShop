@@ -25,7 +25,5 @@ module.exports = (sequelize, dataTypes) => {
 
     const ProductFeature = sequelize.define(alias, cols, config);
 
-    // REVISION.
-
     return ProductFeature;
 }

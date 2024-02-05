@@ -277,14 +277,23 @@ const productsController = {
     borrar: async (req, res) => {
         try {
             const idProd = req.params.id
+
+            await db.Image.destroy({
+                where: { idProductFK: idProd }
+            });
+
+            await db.ProductFeature.destroy({
+                where: { idProductFK: idProd }
+            });
+
             await db.Product.destroy({
                 where: { idProduct: idProd }
-            })
+            });
+            
             res.redirect('/')
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
-        //  NO FUNCIONA POR LA FORAING KEY  //
     },
 }
 
