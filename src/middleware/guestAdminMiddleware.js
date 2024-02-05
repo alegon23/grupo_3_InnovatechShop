@@ -1,5 +1,5 @@
 function guestAdminMiddleware (req, res, next) {
-    if (req.session.usuario && req.session.usuario.role == 2) {
+    if (req.session.usuario && req.session.usuario.idRoleFK == 2) {
         return res.redirect('/');
     }
 

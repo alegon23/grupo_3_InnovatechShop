@@ -115,7 +115,7 @@ const usersController = {
                 where: { idUser: idUser }
             })
             res.render(path.resolve('./', './src/views/users/perfil'), {user: data})
-            //res.json(data)
+         
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
@@ -135,14 +135,12 @@ const usersController = {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
-
-    //! HASTA AQUI
+    
     editarPerfil: async (req, res) =>{ 
+        const usuario = req.session.usuario
+        const idUser = usuario.idUser;
         try {
-            const foundUser = await db.User.findByPk( req.params.id
-                );
-            console.log('nombre: '+foundUser.firstName+' '+'ID: '+foundUser.idUser);
-                
+            const foundUser = await db.User.findByPk( idUser);      
             res.render(path.resolve('./', './src/views/users/editarPerfil'), {foundUser})
             
         } catch (error) {
@@ -153,19 +151,22 @@ const usersController = {
     },
 
     actualizarPerfil:async (req, res) =>{ 
+        const usuario = req.session.usuario
+        const idUser = usuario.idUser;
+        
         try {
             const foundUser = await db.User.findOne({
           
-                where: { idUser : req.params.id},
+                where: { idUser : idUser},
             })
 
             const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {errors: errors.mapped(), oldData: req.body, userId});
+            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {errors: errors.mapped(), oldData: req.body, foundUser});
         };
         let {nombre, apellido, fecha, contraseniaActual, nuevaContrasenia, confirmarContrasenia} = req.body;
-        //const indexUser = users.findIndex((user) => user.id == req.params.id)
+     
         let isPassOK = bcryptjs.compareSync(contraseniaActual, foundUser.password);
         if (!isPassOK) {
             return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
@@ -208,7 +209,7 @@ const usersController = {
                 firstName : nombre,
                 lastName : apellido,
                 birthdate : fecha,
-                avatar : !req.file ? userId.avatar : "/images/users/" + req.file.filename,
+                avatar : !req.file ? foundUser.avatar : "/images/users/" + req.file.filename,
                 password : nuevaContrasenia ? bcryptjs.hashSync(nuevaContrasenia, 10) : bcryptjs.hashSync(contraseniaActual, 10)
      
              },
@@ -227,7 +228,7 @@ const usersController = {
         }
 
         } catch (error) {
-            res.send(error);
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
             
         }},
 
@@ -244,13 +245,13 @@ const usersController = {
                  return res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
         }
 
-            let {nombre, fecha, apellido, contrasenia, email} = req.body;
+            let {nombre, apellido, contrasenia, email} = req.body;
 
             const foundUser = await db.User.findOne({
                 where: {email: req.body.email},
             })
 
-            if (foundUser.length > 0) {
+            if (foundUser!=null) {
                return res.render(path.resolve('./', './src/views/users/registroAdmin'), {
                     errors: {
                         email: {
@@ -267,7 +268,7 @@ const usersController = {
                 email: email,
                 password: contrasenia ? bcryptjs.hashSync(contrasenia, 10) : bcryptjs.hashSync("Admin123", 10),
                 birthdate: "2000-01-01",
-                avatar: !req.file ? "/images/users/default.png" : "/images/users/" + req.file.filename,
+                avatar: "/images/users/default.png" ,
                 idRoleFK: 2,
             }
 
@@ -276,58 +277,9 @@ const usersController = {
             return res.render(path.resolve('./', './src/views/users/registroAdmin'), {mensaje: nombre + " " + apellido + " ha sido dado de alta con éxito!"});
 
         } catch (error) {
-            res.send(error)
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
-
-   /* procesarAdmin: (req, res) =>{
-        const errors = validationResult(req);
-        
-        if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
-        }
-
-        let {nombre, apellido, contrasenia, email} = req.body;
-        
-        const generateId = () => {
-            let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}));
-            let lastUser = allUsers.pop();
-            if (lastUser) {
-                return lastUser.id + 1;
-            }
-            return 1;
-        }
-
-        let allUsers = JSON.parse(fs.readFileSync(usersJSON, {encoding: 'utf-8'}))
-        let foundUser = allUsers.find(user => user['email'] === req.body.email);
-    
-        if (foundUser) {
-           return res.render(path.resolve('./', './src/views/users/registroAdmin'), {
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado como usuario'
-                    }
-                },
-                oldData: req.body
-            });
-        }
-
-        let nuevoUsuario = {
-            id: generateId(),
-            firstName: nombre,
-            lastName: apellido,
-            email: email,
-            password: contrasenia ? bcryptjs.hashSync(contrasenia, 10) : bcryptjs.hashSync("Admin123", 10),
-            birthdate: "2000-01-01",
-            avatar: "/images/users/default.png",
-            role: "admin"
-        }
-        users.push(nuevoUsuario);
-
-        fs.writeFileSync(usersJSON, JSON.stringify(users, null, ' '));
-
-        return res.render(path.resolve('./', './src/views/users/registroAdmin'), {mensaje: nombre + " " + apellido + " ha sido dado de alta con éxito!"});
-    },*/
 
     logout: (req, res) =>{
         req.session.destroy();

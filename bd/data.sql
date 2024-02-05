@@ -41,7 +41,7 @@ INSERT INTO features(featureTitle,featureDescription) VALUES ('Es smart', 'Si');
 /*CARGANDO DATOS EN TABLA USERS*/
 INSERT INTO users(firstName,lastName,email,password,birthdate,avatar,idRoleFK) VALUES ('Nahuel','Banco','nahuel@gmail.com','$2a$10$xbm40QXyhfqhbfnhTqjTMu9j6i5qEBCNEKDo3uHyXKu9PpMNuD7Hy','2000-07-19','/images/users/default.png',2);
 INSERT INTO users(firstName,lastName,email,password,birthdate,avatar,idRoleFK) VALUES ('Alejandra', 'Gonzalez', 'ale@mail.com', '$2a$10$fqH.0GEMmXhzfg3XqnefjebG5/C.4a5.Bx..T46vDOj5J2yAoC3ue', '1995-06-23', '/images/users/default.png', 2);
-INSERT INTO users(firstName,lastName,email,password,birthdate,avatar,idRoleFK) VALUES ('Mirian', 'Baigorria', 'miriam@gmail.com', '$2a$10$l0fc3WF3WPbjoR3d.UTjZeqhunMVk.7ivLKfddtZUpfEcxMtGAA4G', '2000-01-01', '/images/users/default.png', 2);
+INSERT INTO users(firstName,lastName,email,password,birthdate,avatar,idRoleFK) VALUES ('Mirian', 'Baigorria', 'mirian@gmail.com', '$2a$10$l0fc3WF3WPbjoR3d.UTjZeqhunMVk.7ivLKfddtZUpfEcxMtGAA4G', '2000-01-01', '/images/users/default.png', 2);
 
 /*CARGANDO DATOS EN TABLA PRODUCTS*/
 INSERT INTO products(productName,originalPrice,onDiscount,discount,mainProduct,description,stock,idCategoryFK,idBrandFK) VALUES ('iPhone 13 PRO',1600000,1,10,0,
