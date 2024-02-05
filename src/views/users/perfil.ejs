@@ -13,18 +13,21 @@
 
         <div class="info-principal">
                 <div class="foto-perfil">
-                    <img src="<%= usuario.avatar %>" >
+                    <img src="<%= user.avatar %>" >
                 </div>
 
             <hr class="linea-imagen">
 
             <div class="datos-usuario">
-                <h2><%= usuario.firstName.charAt(0).toUpperCase() + usuario.firstName.slice(1)  + ' ' + usuario.lastName.charAt(0).toUpperCase() + usuario.lastName.slice(1) %></h2>
-                <h3><i class="bi bi-envelope-at"></i> <%= usuario.email %></h3>
-                <h3><i class="bi bi-calendar3"></i> <%= usuario.birthdate %></h3>
+                <h2><%= user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)  + ' ' + user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1) %></h2>
+                <h3><i class="bi bi-envelope-at"></i> <%= user.email %></h3>
+                <h3><i class="bi bi-calendar3"></i> <%= user.birthdate %></h3>
                 <div class="botones-datos-usuario">
-                    <a href="/users/editar-perfil/<%= locals.usuarioLog.id %>" class="boton-editarPerfil">Editar Perfil</a>
+                    <a href="/users/editar-perfil/<%= user.idUser %>" class="boton-editarPerfil">Editar Perfil</a>
                     <a href="/users/logout" class="boton-cerrarSesion">Cerrar Sesión</a>
+                    <form action="/users/<%= user.idUser %>?_method=DELETE" method="POST" >
+                        <button type="submit" class="boton-borrarPerfil">Eliminar Usuario</button>
+                    </form>
                 </div>
             </div>
         </div>

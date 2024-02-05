@@ -14,33 +14,44 @@
         <div class="breadcrums">
             <h4>Home</h4>
             <i class="bi bi-chevron-right"></i>
-            <h4><%= productID.category %></h4> 
+            <h4><%= producto.category.categoryName %></h4> 
             <i class="bi bi-chevron-right"></i>
-            <h4><%= productID.brand %></h4>
+            <h4><%= producto.brand.brandName %></h4>
         </div>
 
         <div class="info-principal">
+            
             <div class="fotos-producto">
                 <div class="foto-producto-principal">
-                    <img src="<%= productID.image %>" class="foto-principal">
-                </div>
-                <div class="foto-producto-lateral">
-                    <% for (image of productID.extraImages) {%>
-                        <img src="<%= image %>" class="foto-lateral">
+                    <% for (imagen of producto.images) { %>
+                        <% if (imagen.mainImage) { 
+                          imagenPrincipal = imagen.url
+                        } %>
+                        <% break; %>
                     <% } %>
+                    <img src="<%= imagenPrincipal %>" class="foto-principal">
+                </div>
+
+                <div class="foto-producto-lateral">
+                <% for (imagen of producto.images) {%>
+                    <% if (!imagen.mainImage) { %>
+                        <% imagenExtra = imagen.url %>
+                        <img src="<%= imagenExtra %>" class="foto-lateral">
+                    <% } %>
+                <% } %>
                 </div>
             </div>
 
             <hr class="linea-imagen">
 
             <div class="detalle-producto">
-                <h3><%= productID.name %></h3>
-                <% if (productID.onDiscount) {%>
-                    <% precioDescuento = calcularDescuento(parseInt(productID.originalPrice), parseInt(productID.discount))%>
-                    <h4 class="precio-original"><%= "$" + calcularMiles(productID.originalPrice) %></h4>
+                <h3><%= producto.productName %></h3>
+                <% if (producto.onDiscount) {%>
+                    <% precioDescuento = calcularDescuento(+producto.originalPrice, +producto.discount)%>
+                    <h4 class="precio-original"><%= "$" + calcularMiles(producto.originalPrice) %></h4>
                     <h4><%= "$" + calcularMiles(precioDescuento) %></h4>
                 <% } else { %>
-                    <h4><%= "$" + calcularMiles(productID.originalPrice) %></h4>
+                    <h4><%= "$" + calcularMiles(producto.originalPrice) %></h4>
                 <% } %>
                 <h5><a href="#">Ver los medios de pago</a></h5>
                 <p><i class="bi bi-shield-fill-check"></i> Garantia de 12 meses</p>
@@ -51,29 +62,31 @@
                     <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
                 </div>
                 
-                <% if (locals.usuarioLog && locals.usuarioLog.role == "admin") { %>
+            <!-- ? terminar la parte del borrar-->  
+                <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
                     <div class="form-detalle">
-                        <a href="/products/editarProducto/<%= productID.id %>" class="boton-editar">Editar producto</a>
-                        <form action="/products/<%= productID.id %>?_method=DELETE" method="POST" >
+                        <a href="/products/editarProducto/<%= producto.idProduct %>" class="boton-editar">Editar producto</a>
+                        <form action="/products/<%= producto.idProduct %>?_method=DELETE" method="POST" >
                             <button type="submit" class="boton-borrar">Borrar producto</button>
                         </form>
                     </div>
                 <% } %>
             </div>
+            <!-- ? terminar la parte del borrar-->  
         </div>
 
         <hr>
 
         <div class="caracteristicas-producto">
-            <h3>Características de <%= productID.name %></h3>
+            <h3>Características de <%= producto.productName %></h3>
             <div>
                 <div class="caracteristicas-arriba">
-                    <p> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[0].title + ": " + productID.features[0].text %> </p>
-                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[1].title + ": " + productID.features[1].text %> </p>
+                    <p> <i class="icono bi bi-check-circle-fill"></i> <%= producto.features[0].featureTitle + ": " + producto.features[0].featureDescription %> </p>
+                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= producto.features[1].featureTitle + ": " + producto.features[1].featureDescription %> </p>
                 </div>
                 <div class="caracteristicas-abajo">
-                    <p class="descripcion-larga"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[2].title + ": " + productID.features[2].text %> </p>
-                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= productID.features[3].title + ": " + productID.features[3].text %> </p>
+                    <p class="descripcion-larga"> <i class="icono bi bi-check-circle-fill"></i> <%= producto.features[2].featureTitle + ": " + producto.features[2].featureDescription %> </p>
+                    <p class="texto-derecha"> <i class="icono bi bi-check-circle-fill"></i> <%= producto.features[3].featureTitle + ": " + producto.features[3].featureDescription %> </p>
                 </div>
             </div>
         </div>
@@ -82,9 +95,7 @@
 
         <div class="descripcion-producto">
             <h2>Descripción</h2>
-            <% for (description of productID.description) { %>
-                <p> <%= description %> </p>
-            <% } %>
+            <p> <%= producto.description %> </p>
         </div>
 
     </main>

@@ -107,8 +107,33 @@ const usersController = {
         
     },
 
-    mostrarPerfil: (req, res) =>{
-        res.render(path.resolve('./', './src/views/users/perfil'), {usuario: req.session.usuario})
+    mostrarPerfil: async (req, res) =>{
+        const usuario = req.session.usuario
+        const idUser = usuario.idUser;
+        try {
+            const data = await db.User.findOne({
+                where: { idUser: idUser }
+            })
+            res.render(path.resolve('./', './src/views/users/perfil'), {user: data})
+            //res.json(data)
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    eliminarPerfil: async (req, res) =>{
+        const usuario = req.session.usuario
+        const idUser = usuario.idUser;
+        try {
+            await db.User.destroy({
+                where: { idUser: idUser }
+            })
+            req.session.destroy();
+            res.clearCookie('usuarioEmail')
+            res.redirect('/')
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
     //! HASTA AQUI

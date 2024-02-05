@@ -118,9 +118,21 @@ const productsController = {
         res.render(path.resolve('./', './src/views/products/carrito'));
     },
 
-    detalle: (req, res) =>{
-        const productID = products.find(producto => producto.id == req.params.id);
-        res.render(path.resolve('./', './src/views/products/detalleProducto'), {productID, calcularDescuento, calcularMiles})
+    detalle: async (req, res) =>{
+        try {
+            const data = await db.Product.findByPk(req.params.id, {
+                include: ["images", "category", "brand", "features"], 
+                //attributes: {association: ["features"], exclude: [ "products_features" ]}
+                
+                
+                //attributes: {exclude: [ 'updated_at' ]},
+                //include: [{association: 'movies', attributes: {exclude: [ 'updated_at', 'created_at', 'genre_id' ]}}]
+            })
+            res.render(path.resolve('./', './src/views/products/detalleProducto'), {producto: data, calcularDescuento, calcularMiles});
+            //res.json(data)
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
     crear: (req, res) =>{
@@ -262,14 +274,18 @@ const productsController = {
         }
     },
     
-    borrar: (req, res) => {
-        const idProd = req.params.id;
-        products = products.filter(prod => prod.id != idProd);
-        
-        fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
-        
-        res.redirect('/products');
-    }
+    borrar: async (req, res) => {
+        try {
+            const idProd = req.params.id
+            await db.Product.destroy({
+                where: { idProduct: idProd }
+            })
+            res.redirect('/')
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+        //  NO FUNCIONA POR LA FORAING KEY  //
+    },
 }
 
 module.exports = productsController;
