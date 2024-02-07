@@ -124,7 +124,7 @@ INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (1, 4);
 INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (2, 5);
 INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (2, 6);
 INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (2, 7);
-INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (2, 5);
+INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (2, 8);
 
 INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (3, 9);
 INSERT INTO products_features(idProductFK, idFeatureFK) VALUES (3, 10);

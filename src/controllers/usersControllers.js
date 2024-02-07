@@ -26,7 +26,7 @@ const usersController = {
                 where: {email: req.body.email},
             })
             
-            if (foundUser.length > 0) {
+            if (foundUser) {
                 return res.render(path.resolve('./', './src/views/users/registro'), {
                     errors: {
                         email: {
