@@ -204,74 +204,129 @@ const productsController = {
         res.redirect('/products');
     },
 
-    editar: (req, res) => {
-        const productID = products.find(producto => producto.id == req.params.id);
-        res.render(path.resolve('./', './src/views/products/editarProducto'), {productID})
+    editar: async (req, res) => {
+        try {
+            const data = await db.Product.findByPk(req.params.id, {
+                include: ["images", "category", "brand", "features"]
+            })
+
+            const categorias = await db.Category.findAll() 
+            const marcas = await db.Brand.findAll() 
+            
+            const caracteristicas = await db.Feature.findAll()
+            let titulos = []
+            for (let i = 0; i < caracteristicas.length; i++) {
+                titulos.push(caracteristicas[i].featureTitle)
+            }
+            const titulosFiltrados = titulos.filter(function(item, index, array) {
+                return array.indexOf(item) === index;
+            })
+
+            res.render(path.resolve('./', './src/views/products/editarProducto'), {productID: data, categorias, marcas, caracteristicas, titulosFiltrados});
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     },
 
-    actualizar: (req, res) => {
-        const productID = products.find(producto => producto.id == req.params.id);
-        const errors = validationResult(req);
-        
-        if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID});
-        }
+    actualizar: async (req, res) => {
 
-        let idProd = req.params.id;
-        let { nombre, marca, categoria, precio, descripcion, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4, descripcion1, descripcion2, descripcion3, descripcion4 } = req.body;
-        let indexProducto = products.findIndex(prod => prod.id == idProd);
-        const descuento = porcentaje == 0 ? false : true;
-        const descripcionArray = descripcion.trim().split("\r\n");
-
-        let features = [];
-        let title = "";
-        let text = "";
-        const caracteristicas = [caracteristica1, descripcion1, caracteristica2, descripcion2, caracteristica3, descripcion3, caracteristica4, descripcion4];
-        
-        for (let i = 0; i < caracteristicas.length; i += 2 ){
-            title = caracteristicas[i].trim();
-            text = caracteristicas[i+1].trim();
-            features.push({title, text});
-        }
-
-        //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
-        let newImagenPrincipal = "";
-        let imagesArray = [];
-        if(Object.keys(req.files).length){
-            if (req.files['imagenPrincipal']){
-                newImagenPrincipal = "/images/products/" + req.files['imagenPrincipal'][0].filename;
+        try {
+            
+            const data = await db.Product.findByPk(req.params.id, {
+                include: ["images", "category", "brand", "features"]
+            })
+            
+            const errors = validationResult(req);
+            
+            if (!errors.isEmpty()) {
+                return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID: data});
             }
+
+            let { nombre, marca, categoria, precio, descripcion, stock, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4, descripcion1, descripcion2, descripcion3, descripcion4 } = req.body;
+            const descuento = porcentaje == 0 ? 0 : 1;
+
+            
+            let productoEditado = {
+                productName: nombre,
+                originalPrice: precio,
+                onDiscount: descuento,
+                discount: porcentaje,
+                mainProduct: esDestacado === 'true'? 1 : 0,
+                description: descripcion,
+                stock: stock,
+                idCategoryFK: categoria,
+                idBrandFK: marca,
+            }
+            
+            await db.Product.update( productoEditado )
+            
+            //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
+            let newImagenPrincipal = '';
+            let imagesArray = [];
+            if(Object.keys(req.files).length){
+                if (req.files['imagenPrincipal']){
+                    newImagenPrincipal = "/images/products/" + req.files['imagenPrincipal'][0].filename;
+                }
         
-            if (req.files['imagenesExtra']){
-                for(let i = 0; i < req.files['imagenesExtra'].length; i++){
-                    imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename)
+                if (req.files['imagenesExtra']){
+                    for(let i = 0; i < req.files['imagenesExtra'].length; i++){
+                        imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename)
+                    }
                 }
             }
-        }
 
-        if (indexProducto != -1){
-            products[indexProducto].name = nombre;
-            if (newImagenPrincipal) {
-                products[indexProducto].image = newImagenPrincipal;
+            if (newImagenPrincipal != '') {
+                await db.Image.update({
+                    url: newImagenPrincipal,
+                    mainImage: 1,
+                    idProductFK: req.params.id
+                })
             }
-            products[indexProducto].originalPrice = precio;
-            products[indexProducto].category = categoria;
-            products[indexProducto].brand = marca;
-            products[indexProducto].onDiscount = descuento;
-            products[indexProducto].discount = porcentaje;
-            products[indexProducto].mainProduct = esDestacado == 'true';
-            if (imagesArray.length) {
-                products[indexProducto].extraImages = imagesArray;
-            }
-            products[indexProducto].features = features;
-            products[indexProducto].description = descripcionArray;
 
-            fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
+            if (imagesArray.length != 0) {
+                await db.Image.destroy({
+                    where: {
+                        idProductFK: req.params.id,
+                        mainImage: 0
+                    }
+                })
+
+                for (let i = 0; i < imagesArray.length; i++) {
+                    await db.Image.create({
+                        url: imagesArray[i],
+                        mainImage: 0,
+                        idProductFK: req.params.id
+                    })
+                }
+            }
+
+            /*const caracteristicas = await db.Feature.findAll() // trae las caracteristicas de la bd
+
+            const descripcionesCaracteristicas = [descripcion1, descripcion2, descripcion3, descripcion4] // descripciones de la caracteristica del req.body
             
+            
+
+            let descripciones = []
+            for (let i = 0; i < caracteristicas.length; i++) {
+                descripciones.push(caracteristicas[i].featureDescription)
+            }
+            const descripcionesFiltradas = descripciones.filter(function(item, index, array) { // descripciones unicas de la bd
+                return array.indexOf(item) === index;
+            })
+
+            for (let i = 0; i < descripcionesCaracteristicas.length; i++) {
+                if (!descripcionesFiltradas.includes(descripcionesCaracteristicas[i])) {
+                    await db.Feature.create({
+                        featureTitle: caracteristica1
+                    })
+                }
+            }*/
+
             res.redirect('/products');
-        } else {
-            res.send('Producto no encontrado');
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
+
     },
     
     borrar: async (req, res) => {
