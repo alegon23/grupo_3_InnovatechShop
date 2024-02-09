@@ -1,8 +1,8 @@
 const calcularDescuento = require('../public/js/calcularDescuento');
 const path = require('path');
-const fs = require('fs');
-const productsJSON = path.join(__dirname, '../data/products.json');
-let products = require('../data/products');
+//const fs = require('fs');
+//const productsJSON = path.join(__dirname, '../data/products.json');
+//let products = require('../data/products');
 const calcularMiles = require('../public/js/calcularMiles');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
@@ -135,34 +135,59 @@ const productsController = {
         }
     },
 
-    crear: (req, res) =>{
-        res.render(path.resolve('./', './src/views/products/crearProducto'))
+    crear: async (req, res) =>{
+        try {
+            const categorias = await db.Category.findAll();
+            const marcas = await db.Brand.findAll();
+            const caracteristicas = await db.Feature.findAll();
+            res.render(path.resolve('./', './src/views/products/crearProducto'), {categorias, marcas, caracteristicas})
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+        
     },
 
-    guardar: (req, res) =>{
+    guardar: async (req, res) =>{
         const errors = validationResult(req);
         
         if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body});
+            const categorias = await db.Category.findAll();
+            const marcas = await db.Brand.findAll();
+            const caracteristicas = await db.Feature.findAll();
+            return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body, categorias, marcas, caracteristicas});
         }
 
-        let { nombre, marca, categoria, precio, descripcion, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4, descripcion1, descripcion2, descripcion3, descripcion4} = req.body;
-        const descripcionArray = descripcion.trim().split("\r\n");
+        let { nombre, marca, categoria, precio, descripcion, porcentaje, esDestacado, stock, caracteristica1, caracteristica2, caracteristica3, caracteristica4} = req.body;
 
-        let features = [];
-        let title = "";
-        let text = "";
-        const caracteristicas = [caracteristica1, descripcion1, caracteristica2, descripcion2, caracteristica3, descripcion3, caracteristica4, descripcion4];
-        
-        for (let i = 0; i < caracteristicas.length; i += 2 ){
-            
-            title = caracteristicas[i].trim();
-            text = caracteristicas[i+1].trim();
-
-            features.push({title, text});
+        //se da de alta el producto
+        let nuevoProducto = {
+            productName: nombre,
+            originalPrice: precio,
+            onDiscount: porcentaje == 0 ? 0 : 1,
+            discount: porcentaje,
+            mainProduct: esDestacado === 'true' ? 1 : 0,
+            description: descripcion,
+            stock: stock,
+            idCategoryFK: categoria,
+            idBrandFK: marca,
+            //images: { url: "/images/products/" + req.files['imagenPrincipal'][0].filename, mainImage: 1},
         }
+
+        const productoBD = await db.Product.create(nuevoProducto);
+        /*, {
+            include: [{
+                association: db.Image,
+                as: 'images'
+            }, {
+                association: db.Feature,
+                as: 'features'
+            }]
+        });*/
+
+        //res.json(productoBD)
 
         //* documentacion: https://github.com/expressjs/multer/blob/master/doc/README-es.md
+        //se dan de alta las imagenes
         let imagesArray = [];
 
         if(req.files['imagenesExtra']){
@@ -171,35 +196,33 @@ const productsController = {
             }
         }
 
-        const generateId = () =>  {
-            let allProducts = JSON.parse(fs.readFileSync(productsJSON, {encoding: 'utf-8'}));
-            let lastProduct = allProducts.pop();
-            if (lastProduct) {
-                return lastProduct.id + 1;
+        const imagenPrincipal = "/images/products/" + req.files['imagenPrincipal'][0].filename;
+
+        await db.Image.create({
+            url: imagenPrincipal,
+            mainImage: 1,
+            idProductFK: productoBD.productID
+        })
+
+        if (imagesArray){
+            for(let i = 0; i < imagesArray.length; i++){
+                await db.Image.create({
+                    url: imagesArray[i],
+                    mainImage: 0,
+                    idProductFK: productoBD.productID
+                })
             }
-            return 1;
         }
-
-        const descuento = porcentaje == 0 ? false : true; 
-
-        let nuevoProducto = {
-            id: generateId(),
-            name: nombre,
-            image: "/images/products/" + req.files['imagenPrincipal'][0].filename,
-            originalPrice: precio,
-            category: categoria,
-            brand: marca,
-            onDiscount: descuento,
-            discount: porcentaje,
-            mainProduct: esDestacado === 'true',
-            extraImages: imagesArray,
-            features,
-            description: descripcionArray,
-        }
-
-        products.push(nuevoProducto);
         
-        fs.writeFileSync(productsJSON, JSON.stringify(products, null, ' '));
+
+        //se cargan los datos en la tabla pivot de productos-caracteristicas
+        const caracteristicas = [caracteristica1, caracteristica2, caracteristica3, caracteristica4];
+        for (let i = 0; i < caracteristicas.length; i++) {
+            await db.ProductFeature.create({
+                idProductFK: productoBD.productID,
+                idFeatureFK: caracteristicas[i]
+            })
+        }
 
         res.redirect('/products');
     },
@@ -216,7 +239,7 @@ const productsController = {
             const caracteristicas = await db.Feature.findAll()
             let titulos = []
             for (let i = 0; i < caracteristicas.length; i++) {
-                titulos.push(caracteristicas[i].featureTitle)
+                titulos.push(caracteristicas[i].feature)
             }
             const titulosFiltrados = titulos.filter(function(item, index, array) {
                 return array.indexOf(item) === index;
@@ -258,7 +281,12 @@ const productsController = {
                 idBrandFK: marca,
             }
             
-            await db.Product.update( productoEditado )
+            //! FALTABA EL WHERE ----------------------------------------------------
+            await db.Product.update(productoEditado, {
+                where: {
+                    idProduct: req.params.id
+                }
+            })
             
             //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
             let newImagenPrincipal = '';
@@ -275,11 +303,16 @@ const productsController = {
                 }
             }
 
+            //! FALTABA EL WHERE ----------------------------------------------------
             if (newImagenPrincipal != '') {
                 await db.Image.update({
                     url: newImagenPrincipal,
                     mainImage: 1,
                     idProductFK: req.params.id
+                },{
+                    where: {
+                        idProductFK: req.params.id
+                    }
                 })
             }
 
@@ -317,7 +350,7 @@ const productsController = {
             for (let i = 0; i < descripcionesCaracteristicas.length; i++) {
                 if (!descripcionesFiltradas.includes(descripcionesCaracteristicas[i])) {
                     await db.Feature.create({
-                        featureTitle: caracteristica1
+                        feature: caracteristica1
                     })
                 }
             }*/

@@ -19,22 +19,26 @@
                                 <span class="feedback-negativo"><%= errors.nombre.msg %></span>
                             <% } %> 
                             
-
                             <label for="marca" class="label">Marca del Producto</label>
-                            <input type="text" name="marca" class="input" placeholder="Marca del producto" value="<%= locals.oldData && oldData.marca %>">
+                            <select name="marca">
+                                <option value="">Seleccionar Marca</option>
+                                <% for (const marca of marcas) { %>
+                                    <option value="<%= marca.idBrand %>" <%= locals.oldData && (oldData.marca == marca.idBrand) ? 'selected' : '' %>><%= marca.brandName %></option>
+                                <% } %>
+                            </select>
                             <% if(locals.errors && errors.marca) { %>
-                                <span class="feedback-negativo"><%= errors.marca.msg %></span> 
+                                <span class="feedback-negativo"><%= errors.marca.msg %></span>
                             <% } %>
+                             
                                                       
                         
                             <label for="categoria">Categoría</label>
 
                             <select name="categoria">
                                 <option value="">Seleccionar Categoria</option>
-                                <% const options = ['Celulares', 'Monitores & TVs', 'Tablets', 'Notebooks', 'Hardware', 'Accesorios']; %>
-                                <% for (const option of options) { %>
-                                    <option value="<%= option %>" <%= locals.oldData && (oldData.categoria == option) ? 'selected' : '' %>><%= option %></option>
-                                  <% } %>
+                                <% for (const categoria of categorias) { %>
+                                    <option value="<%= categoria.idCategory %>" <%= locals.oldData && (oldData.categoria == categoria.idCategory) ? 'selected' : '' %>><%= categoria.categoryName %></option>
+                                <% } %>
                             </select>
                             <% if(locals.errors && errors.categoria) { %>
                                 <span class="feedback-negativo"><%= errors.categoria.msg %></span> 
@@ -65,6 +69,12 @@
                                 <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
                             <% } %>
 
+                            <label for="stock">Stock</label>
+                            <input type="number" name="stock" class="input" placeholder="Stock del producto" value="<%=locals.oldData && oldData.stock %>">
+                            <% if(locals.errors && errors.stock) { %>
+                                <span class="feedback-negativo"><%= errors.stock.msg %></span>
+                            <% } %>
+
                             <label for="imagenPrincipal">Imagen Principal</label>
                             <input type="file" class="input-imagen" name="imagenPrincipal">
                             <% if(locals.errors && errors.imagenPrincipal) { %>
@@ -84,53 +94,58 @@
                     <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%=locals.oldData && oldData.descripcion%></textarea>
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
-                    
-                    <div>
-                        <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 1:</label>
-                            <input type='text' name="caracteristica1"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica1 %>">
-                            <% if(locals.errors && errors.caracteristica1) { %>
-                                <span class="feedback-negativo"><%= errors.caracteristica1.msg %></span>
+                    <div class="caja-caracteristicas">
+                        <label for="textarea-label">Caracteristica 1:</label>
+                        <select name="caracteristica1">
+                            <option value="">Seleccionar Caracteristica</option>
+                            <% for (const caracteristica of caracteristicas) { %>
+                                <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica1 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
                             <% } %>
-                            <label for="textarea-label">Descripcion 1:</label>
-                            <input name="descripcion1"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion1 %>">
-                            <% if(locals.errors && errors.descripcion1) { %>
-                                <span class="feedback-negativo"><%= errors.descripcion1.msg %></span>
-                            <% } %>
-                        </div>
-                        <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 2:</label>
-                            <input type='text' name="caracteristica2"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica2 %>">
-                            <% if(locals.errors && errors.caracteristica2) { %>
-                                <span class="feedback-negativo"><%= errors.caracteristica2.msg %></span>
-                            <% } %>
-                            <label for="textarea-label">Descripcion 2:</label><input name="descripcion2"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion2 %>">
-                            <% if(locals.errors && errors.descripcion2) { %>
-                                <span class="feedback-negativo"><%= errors.descripcion2.msg %></span>
-                            <% } %>
-                        </div>
-                        <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 3:</label><input type='text' name="caracteristica3"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica3 %>">
-                             <% if(locals.errors && errors.caracteristica3) { %>
-                                <span class="feedback-negativo"><%= errors.caracteristica3.msg %></span>
-                            <% } %>
-                            <label for="textarea-label">Descripcion 3:</label><input name="descripcion3"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion3 %>">
-                             <% if(locals.errors && errors.descripcion3) { %>
-                                <span class="feedback-negativo"><%= errors.descripcion3.msg %></span>
-                            <% } %>
-                        </div>
-                        <div class="caja-caracteristicas">
-                            <label for="textarea-label">Caracteristica 4:</label><input type='text' name="caracteristica4"  placeholder="titulo de la caracteristica" value="<%= locals.oldData && oldData.caracteristica4 %>">
-                            <% if(locals.errors && errors.caracteristica4) { %>
-                                <span class="feedback-negativo"><%= errors.caracteristica4.msg %></span>
-                            <% } %>
-                            <label for="textarea-label">Descripcion 4:</label><input name="descripcion4"  placeholder="descripcion de la caracteristica" value="<%= locals.oldData && oldData.descripcion4 %>">
-                            <% if(locals.errors && errors.descripcion4) { %>
-                                <span class="feedback-negativo"><%= errors.descripcion4.msg %></span>
-                            <% } %>
-                        </div>
+                        </select>
+                        <% if(locals.errors && errors.caracteristica1) { %>
+                            <span class="feedback-negativo"><%= errors.caracteristica1.msg %></span>
+                        <% } %>
                     </div>
 
+                    <div class="caja-caracteristicas">
+                        <label for="textarea-label">Caracteristica 2:</label>
+                        <select name="caracteristica2">
+                            <option value="">Seleccionar Caracteristica</option>
+                            <% for (const caracteristica of caracteristicas) { %>
+                                <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica2 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
+                            <% } %>
+                        </select>
+                        <% if(locals.errors && errors.caracteristica2) { %>
+                            <span class="feedback-negativo"><%= errors.caracteristica2.msg %></span>
+                        <% } %>
+                    </div>
+
+                    <div class="caja-caracteristicas">
+                        <label for="textarea-label">Caracteristica 3:</label>
+                        <select name="caracteristica3">
+                            <option value="">Seleccionar Caracteristica</option>
+                            <% for (const caracteristica of caracteristicas) { %>
+                                <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica3 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
+                            <% } %>
+                        </select>
+                        <% if(locals.errors && errors.caracteristica3) { %>
+                            <span class="feedback-negativo"><%= errors.caracteristica3.msg %></span>
+                        <% } %>
+                    </div>
+
+                    <div class="caja-caracteristicas">
+                        <label for="textarea-label">Caracteristica 4:</label>
+                        <select name="caracteristica4">
+                            <option value="">Seleccionar Caracteristica</option>
+                            <% for (const caracteristica of caracteristicas) { %>
+                                <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica4 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
+                            <% } %>
+                        </select>
+                        <% if(locals.errors && errors.caracteristica4) { %>
+                            <span class="feedback-negativo"><%= errors.caracteristica4.msg %></span>
+                        <% } %>
+                    </div>
+                    
                     <div>
                         <button type="submit" class="boton-submit">Crear Producto</button>
                     </div>

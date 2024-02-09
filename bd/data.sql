@@ -17,26 +17,26 @@ INSERT INTO innovatechShop_db.brands (brandName) VALUES ('Motorola');
 INSERT INTO innovatechShop_db.brands (brandName) VALUES ('TCL');
 
 /*CARGANDO DATOS EN TABLA FEATURES*/
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Memoria interna','256 GB');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Cámara trasera principal', '12 Mpx');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Cámara frontal principal', '12 Mpx');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Desbloqueo', 'Reconocimiento facial');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Tamaño de pantalla', '25"');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Resolución', 'Full HD');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Es curvo', 'No');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Es reclinable', 'Si');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Resolución', '4K');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Tipo de pantalla', 'LED');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Aplicaciones integradas', 'Web browser, Gallery, Netflix, Prime Video, Apple TV, YouTube');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Cantidad de puertos HDMI', '3');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Memoria RAM', '8 GB');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Tamaño de pantalla', '15.6"');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Pantalla táctil', 'No');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Memoria interna', '64 GB');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Cámara trasera principal', '13 Mpx');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Cámara frontal principal', '5 Mpx');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Tamaño de pantalla', '50"');
-INSERT INTO features(featureTitle,featureDescription) VALUES ('Es smart', 'Si');
+INSERT INTO features(feature) VALUES ('Memoria interna: 256 GB');
+INSERT INTO features(feature) VALUES ('Cámara trasera principal: 12 Mpx');
+INSERT INTO features(feature) VALUES ('Cámara frontal principal: 12 Mpx');
+INSERT INTO features(feature) VALUES ('Desbloqueo: Reconocimiento facial');
+INSERT INTO features(feature) VALUES ('Tamaño de pantalla: 25"');
+INSERT INTO features(feature) VALUES ('Resolución: Full HD');
+INSERT INTO features(feature) VALUES ('Es curvo: No');
+INSERT INTO features(feature) VALUES ('Es reclinable: Si');
+INSERT INTO features(feature) VALUES ('Resolución: 4K');
+INSERT INTO features(feature) VALUES ('Tipo de pantalla: LED');
+INSERT INTO features(feature) VALUES ('Aplicaciones integradas: Web browser, Gallery, Netflix, Prime Video, Apple TV, YouTube');
+INSERT INTO features(feature) VALUES ('Cantidad de puertos HDMI: 3');
+INSERT INTO features(feature) VALUES ('Memoria RAM: 8 GB');
+INSERT INTO features(feature) VALUES ('Tamaño de pantalla: 15.6"');
+INSERT INTO features(feature) VALUES ('Pantalla táctil: No');
+INSERT INTO features(feature) VALUES ('Memoria interna: 64 GB');
+INSERT INTO features(feature) VALUES ('Cámara trasera principal: 13 Mpx');
+INSERT INTO features(feature) VALUES ('Cámara frontal principal: 5 Mpx');
+INSERT INTO features(feature) VALUES ('Tamaño de pantalla: 50"');
+INSERT INTO features(feature) VALUES ('Es smart: Si');
 
 /*CARGANDO DATOS EN TABLA USERS*/
 INSERT INTO users(firstName,lastName,email,password,birthdate,avatar,idRoleFK) VALUES ('Nahuel','Banco','nahuel@gmail.com','$2a$10$xbm40QXyhfqhbfnhTqjTMu9j6i5qEBCNEKDo3uHyXKu9PpMNuD7Hy','2000-07-19','/images/users/default.png',2);

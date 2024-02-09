@@ -8,14 +8,10 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             allowNull: false,
         },
-        featureTitle: {
-            type: dataTypes.STRING(50),
+        feature: {
+            type: dataTypes.STRING(150),
             allowNull: false,
         },
-        featureDescription: {
-            type: dataTypes.STRING(100),
-            allowNull: false,
-        }
     };
 
     let config = {

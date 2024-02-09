@@ -77,8 +77,7 @@ CREATE TABLE innovatechShop_db.purchases_products(
 
 CREATE TABLE innovatechShop_db.features(
 	idFeature INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    featureTitle VARCHAR(50) NOT NULL,
-    featureDescription VARCHAR(100) NOT NULL,
+    feature VARCHAR(150) NOT NULL,
     PRIMARY KEY (idFeature)
 );
 

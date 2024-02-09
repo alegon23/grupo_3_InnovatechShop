@@ -47,14 +47,10 @@ const validacionesProductoEditar = [
         
         return true;
     }),
-    body('caracteristica1').notEmpty().withMessage("Debes ingresar el titulo de la caracteristica"),
-    body('descripcion1').notEmpty().withMessage("Debes ingresar la descripcion de la caracteristica"),
-    body('caracteristica2').notEmpty().withMessage("Debes ingresar el titulo de la caracteristica"),
-    body('descripcion2').notEmpty().withMessage("Debes ingresar la descripcion de la caracteristica"),
-    body('caracteristica3').notEmpty().withMessage("Debes ingresar el titulo de la caracteristica"),
-    body('descripcion3').notEmpty().withMessage("Debes ingresar la descripcion de la caracteristica"),
-    body('caracteristica4').notEmpty().withMessage("Debes ingresar el titulo de la caracteristica"),
-    body('descripcion4').notEmpty().withMessage("Debes ingresar la descripcion de la caracteristica"),
+    body('caracteristica1').notEmpty().withMessage("Debes seleccionar una caracteristica"),
+    body('caracteristica2').notEmpty().withMessage("Debes seleccionar una caracteristica"),
+    body('caracteristica3').notEmpty().withMessage("Debes seleccionar una caracteristica"),
+    body('caracteristica4').notEmpty().withMessage("Debes seleccionar una caracteristica"),
 ];
 
 module.exports = validacionesProductoEditar;
