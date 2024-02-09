@@ -149,15 +149,44 @@ const productsController = {
 
     guardar: async (req, res) =>{
         const errors = validationResult(req);
+        const categorias = await db.Category.findAll();
+        const marcas = await db.Brand.findAll();
+        const caracteristicas = await db.Feature.findAll();
         
         if (!errors.isEmpty()) {
-            const categorias = await db.Category.findAll();
-            const marcas = await db.Brand.findAll();
-            const caracteristicas = await db.Feature.findAll();
             return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body, categorias, marcas, caracteristicas});
         }
 
         let { nombre, marca, categoria, precio, descripcion, porcentaje, esDestacado, stock, caracteristica1, caracteristica2, caracteristica3, caracteristica4} = req.body;
+
+        const caracteristicasBody = [parseInt(caracteristica1), parseInt(caracteristica2), parseInt(caracteristica3), parseInt(caracteristica4)];
+        
+        function tiene_repetidos(array){
+            return new Set(array).size!==array.length
+        }
+
+        if (tiene_repetidos(caracteristicasBody)) {
+            return res.render(path.resolve('./', './src/views/products/crearProducto'), {
+                errors: {
+                    caracteristica1: {
+                        msg: 'Las características deben ser diferentes entre sí'
+                    },
+                    caracteristica2: {
+                        msg: 'Las características deben ser diferentes entre sí'
+                    },
+                    caracteristica3: {
+                        msg: 'Las características deben ser diferentes entre sí'
+                    },
+                    caracteristica4: {
+                        msg: 'Las características deben ser diferentes entre sí'
+                    }
+                },
+                oldData: req.body,
+                categorias,
+                marcas,
+                caracteristicas
+            });
+        }
 
         //se da de alta el producto
         let nuevoProducto = {
@@ -170,21 +199,9 @@ const productsController = {
             stock: stock,
             idCategoryFK: categoria,
             idBrandFK: marca,
-            //images: { url: "/images/products/" + req.files['imagenPrincipal'][0].filename, mainImage: 1},
         }
 
         const productoBD = await db.Product.create(nuevoProducto);
-        /*, {
-            include: [{
-                association: db.Image,
-                as: 'images'
-            }, {
-                association: db.Feature,
-                as: 'features'
-            }]
-        });*/
-
-        //res.json(productoBD)
 
         //* documentacion: https://github.com/expressjs/multer/blob/master/doc/README-es.md
         //se dan de alta las imagenes
@@ -201,7 +218,7 @@ const productsController = {
         await db.Image.create({
             url: imagenPrincipal,
             mainImage: 1,
-            idProductFK: productoBD.productID
+            idProductFK: productoBD.idProduct
         })
 
         if (imagesArray){
@@ -209,18 +226,17 @@ const productsController = {
                 await db.Image.create({
                     url: imagesArray[i],
                     mainImage: 0,
-                    idProductFK: productoBD.productID
+                    idProductFK: productoBD.idProduct
                 })
             }
         }
         
 
         //se cargan los datos en la tabla pivot de productos-caracteristicas
-        const caracteristicas = [caracteristica1, caracteristica2, caracteristica3, caracteristica4];
-        for (let i = 0; i < caracteristicas.length; i++) {
+        for (let i = 0; i < caracteristicasBody.length; i++) {
             await db.ProductFeature.create({
-                idProductFK: productoBD.productID,
-                idFeatureFK: caracteristicas[i]
+                idProductFK: productoBD.idProduct,
+                idFeatureFK: caracteristicasBody[i]
             })
         }
 
@@ -233,19 +249,11 @@ const productsController = {
                 include: ["images", "category", "brand", "features"]
             })
 
-            const categorias = await db.Category.findAll() 
-            const marcas = await db.Brand.findAll() 
-            
-            const caracteristicas = await db.Feature.findAll()
-            let titulos = []
-            for (let i = 0; i < caracteristicas.length; i++) {
-                titulos.push(caracteristicas[i].feature)
-            }
-            const titulosFiltrados = titulos.filter(function(item, index, array) {
-                return array.indexOf(item) === index;
-            })
+            const categorias = await db.Category.findAll();
+            const marcas = await db.Brand.findAll();
+            const caracteristicas = await db.Feature.findAll();
 
-            res.render(path.resolve('./', './src/views/products/editarProducto'), {productID: data, categorias, marcas, caracteristicas, titulosFiltrados});
+            res.render(path.resolve('./', './src/views/products/editarProducto'), {productID: data, categorias, marcas, caracteristicas});
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
@@ -254,34 +262,67 @@ const productsController = {
     actualizar: async (req, res) => {
 
         try {
-            
+                      
+            const errors = validationResult(req);
+
             const data = await db.Product.findByPk(req.params.id, {
                 include: ["images", "category", "brand", "features"]
             })
-            
-            const errors = validationResult(req);
+
+            const categorias = await db.Category.findAll();
+            const marcas = await db.Brand.findAll();
+            const caracteristicas = await db.Feature.findAll();
             
             if (!errors.isEmpty()) {
-                return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID: data});
+                return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID: data, categorias, marcas, caracteristicas});
             }
 
-            let { nombre, marca, categoria, precio, descripcion, stock, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4, descripcion1, descripcion2, descripcion3, descripcion4 } = req.body;
-            const descuento = porcentaje == 0 ? 0 : 1;
+            let { nombre, marca, categoria, precio, descripcion, stock, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4 } = req.body;
+
+            const caracteristicasBody = [parseInt(caracteristica1), parseInt(caracteristica2), parseInt(caracteristica3), parseInt(caracteristica4)];
+
+            function tiene_repetidos(array){
+                return new Set(array).size!==array.length
+            }
+    
+            if (tiene_repetidos(caracteristicasBody)) {
+                return res.render(path.resolve('./', './src/views/products/editarProducto'), {
+                    errors: {
+                        caracteristica1: {
+                            msg: 'Las características deben ser diferentes entre sí'
+                        },
+                        caracteristica2: {
+                            msg: 'Las características deben ser diferentes entre sí'
+                        },
+                        caracteristica3: {
+                            msg: 'Las características deben ser diferentes entre sí'
+                        },
+                        caracteristica4: {
+                            msg: 'Las características deben ser diferentes entre sí'
+                        }
+                    },
+                    oldData: req.body,
+                    productID: data,
+                    categorias,
+                    marcas,
+                    caracteristicas
+                });
+            }
 
             
+            //se edita el producto
             let productoEditado = {
                 productName: nombre,
                 originalPrice: precio,
-                onDiscount: descuento,
+                onDiscount: porcentaje == 0 ? 0 : 1,
                 discount: porcentaje,
-                mainProduct: esDestacado === 'true'? 1 : 0,
+                mainProduct: esDestacado === 'true' ? 1 : 0,
                 description: descripcion,
                 stock: stock,
                 idCategoryFK: categoria,
                 idBrandFK: marca,
             }
             
-            //! FALTABA EL WHERE ----------------------------------------------------
             await db.Product.update(productoEditado, {
                 where: {
                     idProduct: req.params.id
@@ -289,6 +330,7 @@ const productsController = {
             })
             
             //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
+            //se editan imagenes si es que hay
             let newImagenPrincipal = '';
             let imagesArray = [];
             if(Object.keys(req.files).length){
@@ -303,7 +345,6 @@ const productsController = {
                 }
             }
 
-            //! FALTABA EL WHERE ----------------------------------------------------
             if (newImagenPrincipal != '') {
                 await db.Image.update({
                     url: newImagenPrincipal,
@@ -333,29 +374,32 @@ const productsController = {
                 }
             }
 
-            /*const caracteristicas = await db.Feature.findAll() // trae las caracteristicas de la bd
-
-            const descripcionesCaracteristicas = [descripcion1, descripcion2, descripcion3, descripcion4] // descripciones de la caracteristica del req.body
-            
-            
-
-            let descripciones = []
-            for (let i = 0; i < caracteristicas.length; i++) {
-                descripciones.push(caracteristicas[i].featureDescription)
+        //se editan las caracteristicas
+        const registros = await db.ProductFeature.findAll({
+            where: {
+                idProductFK: req.params.id
             }
-            const descripcionesFiltradas = descripciones.filter(function(item, index, array) { // descripciones unicas de la bd
-                return array.indexOf(item) === index;
-            })
+        })
+        let idProductsFeatures = []
+        for ( registro of registros ) {
+            idProductsFeatures.push(registro.idProductsFeatures)
+        }
 
-            for (let i = 0; i < descripcionesCaracteristicas.length; i++) {
-                if (!descripcionesFiltradas.includes(descripcionesCaracteristicas[i])) {
-                    await db.Feature.create({
-                        feature: caracteristica1
-                    })
-                }
-            }*/
+        for (let i = 0; i < caracteristicasBody.length; i++) {
+           
+            await db.ProductFeature.update({
+                idProductFK: req.params.id,
+                idFeatureFK: caracteristicasBody[i]
+            }, {where: {
+                idProductsFeatures: idProductsFeatures[i]
+            }
+        }
+            )
+
+        }
 
             res.redirect('/products');
+            
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }

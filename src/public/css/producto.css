@@ -110,7 +110,7 @@ body {
     border-bottom: solid 2px #9E8FFF;
 }
 
-.contenedor-datos select {
+.contenedor-datos select, .caja-caracteristicas select{
     background-color: white;
     border: solid 1px #222222;
     border-radius: 5px;
@@ -118,7 +118,11 @@ body {
     margin-top: 5px;
 }
 
-.contenedor-datos select:focus {
+.caja-caracteristicas select {
+    max-width: 100%;
+}
+
+.contenedor-datos select:focus, .caja-caracteristicas select:focus {
     border: none;
     outline: solid 2px #9e8fff;
 } 

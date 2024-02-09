@@ -5,7 +5,7 @@ const validacionesProductoEditar = [
     body('nombre').notEmpty().withMessage("Debes ingresar el nombre del producto"),
     body('marca').notEmpty().withMessage("Debes ingresar la marca del producto"),
     body('categoria').notEmpty().withMessage("Debes seleccionar una categoría"),
-    body('precio').notEmpty().withMessage("Debes ingresar el precio del producto").bail().isInt({min: 0}).withMessage('El precio debe ser un numero positivo'),
+    body('precio').notEmpty().withMessage("Debes ingresar el precio del producto").bail().isNumeric({min: 0}).withMessage('El precio debe ser un numero positivo'),
     body('stock').notEmpty().withMessage("Debes ingresar el stock del producto").bail().isInt({min: 0}).withMessage('El stock debe ser un numero positivo'),
     body('porcentaje').notEmpty().withMessage("Debes ingresar el porcentaje de descuento").bail().isInt({min: 0}).withMessage('El porcentaje debe ser un numero positivo o cero'),
     body('esDestacado').notEmpty().withMessage("Debes seleccionar una opcion").bail().custom((value, {req}) => {
