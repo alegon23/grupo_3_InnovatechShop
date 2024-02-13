@@ -35,10 +35,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER(11),
             allowNull: false,
         },
-        mainProduct: {
-            type: dataTypes.BOOLEAN,
-            allowNull: false,
-        },
         idCategoryFK: {
             type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: false,
