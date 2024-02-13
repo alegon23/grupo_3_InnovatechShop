@@ -5,13 +5,13 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('features', {
       idFeature: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER(10).UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
       feature: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(150),
         allowNull: false,
       },
     });

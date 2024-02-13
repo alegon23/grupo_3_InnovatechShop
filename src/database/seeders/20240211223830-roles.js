@@ -4,11 +4,11 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     const roles = [
       {
-        idRole: 1,
+       
         roleName: 'user'
       },
       {
-        idRole: 2,
+       
         roleName: 'admin'
       }
   ];

@@ -4,7 +4,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     const users = [
       {
-        idUser: 1,
+       
         firstName: 'Nahuel',
         lastName: 'Banco',
         email: 'nahuel@gmail.com',
@@ -14,7 +14,7 @@ module.exports = {
         idRoleFK: 2
       },
       {
-        idUser: 2,
+       
         firstName: 'Alejandra',
         lastName: 'Gonzalez',
         email: 'ale@mail.com',
@@ -24,7 +24,7 @@ module.exports = {
         idRoleFK: 2
       },
       {
-        idUser: 3,
+        
         firstName: 'Mirian',
         lastName: 'Baigorria',
         email: 'mirian@gmail.com',
