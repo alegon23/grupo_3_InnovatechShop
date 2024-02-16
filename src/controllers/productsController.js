@@ -1,8 +1,5 @@
 const calcularDescuento = require('../public/js/calcularDescuento');
 const path = require('path');
-//const fs = require('fs');
-//const productsJSON = path.join(__dirname, '../data/products.json');
-//let products = require('../data/products');
 const calcularMiles = require('../public/js/calcularMiles');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
@@ -375,27 +372,24 @@ const productsController = {
             }
 
         //se editan las caracteristicas
-        const registros = await db.ProductFeature.findAll({
+        const idsProductsFeatures = await db.ProductFeature.findAll({
             where: {
                 idProductFK: req.params.id
-            }
+            },
+            attributes: {exclude: [ 'idProductFK', 'idFeatureFK' ]},
         })
-        let idProductsFeatures = []
-        for ( registro of registros ) {
-            idProductsFeatures.push(registro.idProductsFeatures)
-        }
+
 
         for (let i = 0; i < caracteristicasBody.length; i++) {
            
             await db.ProductFeature.update({
                 idProductFK: req.params.id,
                 idFeatureFK: caracteristicasBody[i]
-            }, {where: {
-                idProductsFeatures: idProductsFeatures[i]
-            }
-        }
-            )
-
+            }, {
+                where: {
+                    idProductsFeatures: idsProductsFeatures[i].idProductsFeatures
+                }
+            })
         }
 
             res.redirect('/products');
