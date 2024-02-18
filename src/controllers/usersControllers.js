@@ -2,6 +2,7 @@ const path = require('path');
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
+const fs = require('fs')
 
 const usersController = {
     login: (req, res) =>{
@@ -17,6 +18,9 @@ const usersController = {
             const errors = validationResult(req);
         
             if (!errors.isEmpty()) {
+                if (req.file) {
+                    fs.unlinkSync(req.file.path)
+                }
                 return res.render(path.resolve('./', './src/views/users/registro'), {errors: errors.mapped(), oldData: req.body});
             }
 
@@ -120,14 +124,30 @@ const usersController = {
 
     eliminarPerfil: async (req, res) =>{
         const usuario = req.session.usuario
-        const idUser = usuario.idUser;
+        const idUser = req.params.id;
         try {
-            await db.User.destroy({
-                where: { idUser: idUser }
-            })
-            req.session.destroy();
-            res.clearCookie('usuarioEmail')
-            res.redirect('/')
+            if (idUser == usuario.idUser) {
+                const user = await db.User.findOne({
+                    where: {
+                        idUser: idUser
+                    }
+                })
+            
+                if (user.avatar != "/images/users/default.png") {
+                    const url = 'src\\public' + user.avatar.replace('/', '\\')
+                    fs.unlinkSync(url)
+                }
+
+                await db.User.destroy({
+                    where: { idUser: idUser }
+                })
+                req.session.destroy();
+                res.clearCookie('usuarioEmail')
+                res.redirect('/')
+            } else {
+                res.redirect('/')
+            }
+
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
@@ -136,10 +156,10 @@ const usersController = {
     editarPerfil: async (req, res) =>{ 
         const usuario = req.session.usuario
         const idUser = usuario.idUser;
+        
         try {
-            const foundUser = await db.User.findByPk( idUser);      
+            const foundUser = await db.User.findByPk(idUser);      
             res.render(path.resolve('./', './src/views/users/editarPerfil'), {foundUser})
-            
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
@@ -147,85 +167,94 @@ const usersController = {
 
     actualizarPerfil:async (req, res) =>{ 
         const usuario = req.session.usuario
-        const idUser = usuario.idUser;
+        const idUser = req.params.id;
         
         try {
-            const foundUser = await db.User.findOne({
-          
-                where: { idUser : idUser},
-            })
+            if (idUser == usuario.idUser) {
+                const foundUser = await db.User.findByPk(idUser)
 
-            const errors = validationResult(req);
+                const errors = validationResult(req);
 
-        if (!errors.isEmpty()) {
-            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {errors: errors.mapped(), oldData: req.body, foundUser});
-        };
-        let {nombre, apellido, fecha, contraseniaActual, nuevaContrasenia, confirmarContrasenia} = req.body;
-     
-        let isPassOK = bcryptjs.compareSync(contraseniaActual, foundUser.password);
-        if (!isPassOK) {
-            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
-                errors: {
-                    contraseniaActual: {
-                        msg: 'Contraseña incorrecta',
-                    }
-                },
-                oldData: req.body,
-                foundUser
-            });
-        };
-        if (nuevaContrasenia) {
-            if (!confirmarContrasenia) {
-                return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
-                    errors: {
-                        confirmarContrasenia: {
-                            msg: 'Debes confirmar la contraseña nueva',
-                        },
-                    },
-                    oldData: req.body,
-                    foundUser
-                });
-            } else {
-                if (nuevaContrasenia != confirmarContrasenia) {
+                if (!errors.isEmpty()) {
+                    if (req.file) {
+                        fs.unlinkSync(req.file.path)
+                    } 
+                    return res.render(path.resolve('./', './src/views/users/editarPerfil'), {errors: errors.mapped(), oldData: req.body, foundUser});
+                }
+
+                let {nombre, apellido, fecha, contraseniaActual, nuevaContrasenia, confirmarContrasenia} = req.body;
+            
+                let isPassOK = bcryptjs.compareSync(contraseniaActual, foundUser.password);
+                if (!isPassOK) {
                     return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
                         errors: {
-                            nuevaContrasenia: {
-                                msg: 'Las contraseñas no coinciden',
-                            },
+                            contraseniaActual: {
+                                msg: 'Contraseña incorrecta',
+                            }
                         },
                         oldData: req.body,
                         foundUser
                     });
                 }
+
+                if (nuevaContrasenia) {
+                    if (!confirmarContrasenia) {
+                        return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
+                            errors: {
+                                confirmarContrasenia: {
+                                    msg: 'Debes confirmar la contraseña nueva',
+                                },
+                            },
+                            oldData: req.body,
+                            foundUser
+                        });
+                    } else {
+                        if (nuevaContrasenia != confirmarContrasenia) {
+                            return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
+                                errors: {
+                                    nuevaContrasenia: {
+                                        msg: 'Las contraseñas no coinciden',
+                                    },
+                                },
+                                oldData: req.body,
+                                foundUser
+                            });
+                        }
+                    }
+                };
+
+                if(foundUser!=null){
+                    db.User.update({
+                        firstName : nombre,
+                        lastName : apellido,
+                        birthdate : fecha,
+                        avatar : !req.file ? foundUser.avatar : "/images/users/" + req.file.filename,
+                        password : nuevaContrasenia ? bcryptjs.hashSync(nuevaContrasenia, 10) : bcryptjs.hashSync(contraseniaActual, 10)
+            
+                    },
+                    {
+                        where: {idUser: foundUser.idUser }
+                    });
+
+                    req.session.destroy();
+                    res.clearCookie('usuarioEmail');
+            
+                    res.redirect('/users/login');
+
+                }else{
+                    res.send('Usuario no encontrado');
+
+                }
+
+            } else {
+                res.redirect('/')
             }
-        };
-        if(foundUser!=null){
-            db.User.update({
-                firstName : nombre,
-                lastName : apellido,
-                birthdate : fecha,
-                avatar : !req.file ? foundUser.avatar : "/images/users/" + req.file.filename,
-                password : nuevaContrasenia ? bcryptjs.hashSync(nuevaContrasenia, 10) : bcryptjs.hashSync(contraseniaActual, 10)
-     
-             },
-             {
-                 where: {idUser: foundUser.idUser }
-             });
-
-             req.session.destroy();
-             res.clearCookie('usuarioEmail');
-     
-            res.redirect('/users/login');
-
-        }else{
-            res.send('Usuario no encontrado');
-
-        }
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
             
-        }},
+        }
+    },
 
     registroAdmin: (req, res) =>{
         res.render(path.resolve('./', './src/views/users/registroAdmin'))
@@ -236,9 +265,8 @@ const usersController = {
             const errors = validationResult(req);
         
              if (!errors.isEmpty()) {
-
-                 return res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
-        }
+                return res.render(path.resolve('./', './src/views/users/registroAdmin'), {errors: errors.mapped(), oldData: req.body});
+            }
 
             let {nombre, apellido, contrasenia, email} = req.body;
 

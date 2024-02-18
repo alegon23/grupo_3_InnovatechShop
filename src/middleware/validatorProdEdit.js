@@ -2,12 +2,13 @@ const { body } = require('express-validator');
 const path = require('path');
 
 const validacionesProductoEditar = [
-    body('nombre').notEmpty().withMessage("Debes ingresar el nombre del producto"),
+    body('nombre').notEmpty().withMessage("Debes ingresar el nombre del producto").bail().isLength({ min:5 }).withMessage('El nombre debe tener al menos 5 caracteres'),
     body('marca').notEmpty().withMessage("Debes ingresar la marca del producto"),
     body('categoria').notEmpty().withMessage("Debes seleccionar una categoría"),
-    body('precio').notEmpty().withMessage("Debes ingresar el precio del producto").bail().isNumeric({min: 0}).withMessage('El precio debe ser un numero positivo'),
-    body('stock').notEmpty().withMessage("Debes ingresar el stock del producto").bail().isInt({min: 0}).withMessage('El stock debe ser un numero positivo'),
-    body('porcentaje').notEmpty().withMessage("Debes ingresar el porcentaje de descuento").bail().isInt({min: 0}).withMessage('El porcentaje debe ser un numero positivo o cero'),
+    body('precio').notEmpty().withMessage("Debes ingresar el precio del producto").bail().isNumeric({min: 1}).withMessage('El precio debe ser mayor a cero'),
+    body('stock').notEmpty().withMessage("Debes ingresar el stock del producto").bail().isInt({min: 0}).withMessage('El stock debe ser mayor o igual a cero'),
+    body('porcentaje').notEmpty().withMessage("Debes ingresar el porcentaje de descuento").bail().isInt({min: 0}).withMessage('El porcentaje debe ser mayor o igual a cero'),
+    body('descripcion').isLength({ min: 20 }).withMessage('La descripcion debe tener al menos 20 caracteres'),
     body('esDestacado').notEmpty().withMessage("Debes seleccionar una opcion").bail().custom((value, {req}) => {
         const porcentaje = req.body.porcentaje;
         const esDestacado = req.body.esDestacado;
@@ -23,7 +24,7 @@ const validacionesProductoEditar = [
         
         if(imagenPrincipal) {
             const file = imagenPrincipal[0];
-            const acceptedExtensions = ['.jpg', '.jpeg', '.png'];
+            const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
             const fileExtension = path.extname(file.originalname);
             if (!acceptedExtensions.includes(fileExtension)) {
                 throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
@@ -34,7 +35,7 @@ const validacionesProductoEditar = [
     }),
     body('imagenesExtra').custom((value, {req}) => {
         const { imagenesExtra } = req.files;
-        const acceptedExtensions = ['.jpg', '.jpeg', '.png'];
+        const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
         
         if(imagenesExtra){
            for(let i = 0; i < imagenesExtra.length; i++){

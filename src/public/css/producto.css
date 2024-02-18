@@ -116,6 +116,7 @@ body {
     border-radius: 5px;
     padding: 1px;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .caja-caracteristicas select {
@@ -131,19 +132,6 @@ body {
     margin-bottom: 0;
     font-style: italic;
 }
-
-/*.contenedor-descuento {
-    display: flex;
-    align-items: flex-end;
-}
-
-.contenedor-descuento label {
-    margin-right: 15px;
-}
-
-.contenedor-descuento input {
-    accent-color: #9e8fff;
-}*/
 
 .caja-caracteristicas {
     display: flex;
@@ -258,18 +246,6 @@ textarea:focus {
         padding: 30px 30px;
     }
 
-    /*.caja-caracteristicas {
-        margin-left: 8px;
-    }*/
-
-    /*.textarea-label {
-        margin-left: 8px;
-    }*/
-    
-    /*textarea {
-        margin-left: 8px;
-    }*/
-
     .contenedor-datos {
         margin-right: 5px;
     }
@@ -309,5 +285,8 @@ textarea:focus {
     
     .boton-submit {
         width: 70%;
+    }
+    .feedback-negativo {
+        font-size: 14px;
     }
 }

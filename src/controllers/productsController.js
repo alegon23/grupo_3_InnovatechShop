@@ -3,6 +3,7 @@ const path = require('path');
 const calcularMiles = require('../public/js/calcularMiles');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
+const fs = require('fs')
 
 const productsController = {
     listado: async (req, res) =>{
@@ -146,11 +147,23 @@ const productsController = {
 
     guardar: async (req, res) =>{
         const errors = validationResult(req);
-        const categorias = await db.Category.findAll();
-        const marcas = await db.Brand.findAll();
-        const caracteristicas = await db.Feature.findAll();
+        
         
         if (!errors.isEmpty()) {
+            const categorias = await db.Category.findAll();
+            const marcas = await db.Brand.findAll();
+            const caracteristicas = await db.Feature.findAll();
+            if(Object.keys(req.files).length){
+                if (req.files['imagenPrincipal']){
+                    fs.unlinkSync(req.files['imagenPrincipal'][0].path)
+                }
+        
+                if (req.files['imagenesExtra']){
+                    for(let i = 0; i < req.files['imagenesExtra'].length; i++){
+                        fs.unlinkSync(req.files['imagenesExtra'][i].path)
+                    }
+                }
+            }
             return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body, categorias, marcas, caracteristicas});
         }
 
@@ -266,11 +279,22 @@ const productsController = {
                 include: ["images", "category", "brand", "features"]
             })
 
-            const categorias = await db.Category.findAll();
-            const marcas = await db.Brand.findAll();
-            const caracteristicas = await db.Feature.findAll();
             
             if (!errors.isEmpty()) {
+                const categorias = await db.Category.findAll();
+                const marcas = await db.Brand.findAll();
+                const caracteristicas = await db.Feature.findAll();
+                if(Object.keys(req.files).length){
+                    if (req.files['imagenPrincipal']){
+                        fs.unlinkSync(req.files['imagenPrincipal'][0].path)
+                    }
+            
+                    if (req.files['imagenesExtra']){
+                        for(let i = 0; i < req.files['imagenesExtra'].length; i++){
+                            fs.unlinkSync(req.files['imagenesExtra'][i].path)
+                        }
+                    }
+                }
                 return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID: data, categorias, marcas, caracteristicas});
             }
 
@@ -403,6 +427,17 @@ const productsController = {
     borrar: async (req, res) => {
         try {
             const idProd = req.params.id
+
+            const imagenes = await db.Image.findAll({
+                where: {
+                    idProductFK: idProd
+                }
+            })
+            
+            for(let i = 0; i < imagenes.length; i++){
+                const url = 'src\\public' + imagenes[i].url.replace('/', '\\')
+                fs.unlinkSync(url)
+            }
 
             await db.Image.destroy({
                 where: { idProductFK: idProd }

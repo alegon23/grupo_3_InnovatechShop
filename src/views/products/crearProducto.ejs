@@ -92,6 +92,9 @@
 
                     <label class="textarea-label" for="descripcion">Descripción del Producto</label>
                     <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%=locals.oldData && oldData.descripcion%></textarea>
+                    <% if(locals.errors && errors.descripcion) { %>
+                        <span class="feedback-negativo" style="text-align: start;"><%= errors.descripcion.msg %></span>
+                    <% } %>
 
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
                     <div class="caja-caracteristicas">
