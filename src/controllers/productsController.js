@@ -126,8 +126,8 @@ const productsController = {
                 //attributes: {exclude: [ 'updated_at' ]},
                 //include: [{association: 'movies', attributes: {exclude: [ 'updated_at', 'created_at', 'genre_id' ]}}]
             })
+            
             res.render(path.resolve('./', './src/views/products/detalleProducto'), {producto: data, calcularDescuento, calcularMiles});
-            //res.json(data)
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
@@ -138,6 +138,7 @@ const productsController = {
             const categorias = await db.Category.findAll();
             const marcas = await db.Brand.findAll();
             const caracteristicas = await db.Feature.findAll();
+
             res.render(path.resolve('./', './src/views/products/crearProducto'), {categorias, marcas, caracteristicas})
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -147,12 +148,12 @@ const productsController = {
 
     guardar: async (req, res) =>{
         const errors = validationResult(req);
-        
+
+        const categorias = await db.Category.findAll();
+        const marcas = await db.Brand.findAll();
+        const caracteristicas = await db.Feature.findAll();
         
         if (!errors.isEmpty()) {
-            const categorias = await db.Category.findAll();
-            const marcas = await db.Brand.findAll();
-            const caracteristicas = await db.Feature.findAll();
             if(Object.keys(req.files).length){
                 if (req.files['imagenPrincipal']){
                     fs.unlinkSync(req.files['imagenPrincipal'][0].path)
@@ -164,6 +165,7 @@ const productsController = {
                     }
                 }
             }
+
             return res.render(path.resolve('./', './src/views/products/crearProducto'), {errors: errors.mapped(), oldData: req.body, categorias, marcas, caracteristicas});
         }
 
@@ -270,20 +272,18 @@ const productsController = {
     },
 
     actualizar: async (req, res) => {
-
         try {
-                      
             const errors = validationResult(req);
 
             const data = await db.Product.findByPk(req.params.id, {
                 include: ["images", "category", "brand", "features"]
             })
 
-            
+            const categorias = await db.Category.findAll();
+            const marcas = await db.Brand.findAll();
+            const caracteristicas = await db.Feature.findAll();
+
             if (!errors.isEmpty()) {
-                const categorias = await db.Category.findAll();
-                const marcas = await db.Brand.findAll();
-                const caracteristicas = await db.Feature.findAll();
                 if(Object.keys(req.files).length){
                     if (req.files['imagenPrincipal']){
                         fs.unlinkSync(req.files['imagenPrincipal'][0].path)
@@ -295,6 +295,7 @@ const productsController = {
                         }
                     }
                 }
+                
                 return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID: data, categorias, marcas, caracteristicas});
             }
 
@@ -355,26 +356,49 @@ const productsController = {
             let newImagenPrincipal = '';
             let imagesArray = [];
             if(Object.keys(req.files).length){
+                
+                const imagenes = await db.Image.findAll({
+                    where: {idProductFK: req.params.id}
+                })
+
                 if (req.files['imagenPrincipal']){
                     newImagenPrincipal = "/images/products/" + req.files['imagenPrincipal'][0].filename;
+
+                    for (const imagen of imagenes) {
+                        if (imagen.mainImage) {
+                            const url = 'src\\public' + imagen.url.replace('/', '\\')
+                            fs.unlinkSync(url)
+                            break;
+                        }
+                    }                   
                 }
         
                 if (req.files['imagenesExtra']){
                     for(let i = 0; i < req.files['imagenesExtra'].length; i++){
-                        imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename)
+                        imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename);
+                    }
+
+                    for (const imagen of imagenes) {
+                        if (!imagen.mainImage) {
+                            const url = 'src\\public' + imagen.url.replace('/', '\\')
+                            fs.unlinkSync(url)
+                        }
                     }
                 }
             }
 
             if (newImagenPrincipal != '') {
-                await db.Image.update({
+                await db.Image.destroy({
+                    where: {
+                        idProductFK: req.params.id,
+                        mainImage: 1
+                    }
+                })
+
+                await db.Image.create({
                     url: newImagenPrincipal,
                     mainImage: 1,
                     idProductFK: req.params.id
-                },{
-                    where: {
-                        idProductFK: req.params.id
-                    }
                 })
             }
 
@@ -429,13 +453,11 @@ const productsController = {
             const idProd = req.params.id
 
             const imagenes = await db.Image.findAll({
-                where: {
-                    idProductFK: idProd
-                }
+                where: { idProductFK: idProd }
             })
             
-            for(let i = 0; i < imagenes.length; i++){
-                const url = 'src\\public' + imagenes[i].url.replace('/', '\\')
+            for(const imagen of imagenes){
+                const url = 'src\\public' + imagen.url.replace('/', '\\')
                 fs.unlinkSync(url)
             }
 

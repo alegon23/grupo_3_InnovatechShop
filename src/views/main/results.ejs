@@ -16,8 +16,8 @@
           <% for (imagen of resultado.images) { %>
                 <% if (imagen.mainImage) { 
                   imagenPrincipal = imagen.url
+                  break;
                  } %>
-                <% break; %>
               <% } %>
           <% if (!resultado.onDiscount) { %>
             <article class="tarjeta-articulo">
@@ -26,8 +26,12 @@
                 <h3><%= resultado.productName %></h3>
                 <h4>$<%= calcularMiles(resultado.originalPrice) %></h4>
                 <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
-              </div>
-              <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
+              </div>              
+              <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
+                <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Ver</a>
+              <% } else {%>
+                <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
+              <% } %>
             </article>
           <% } else {%>
             <% precioDescuento = calcularDescuento(resultado.originalPrice, resultado.discount)%>
@@ -42,7 +46,11 @@
                 <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
                 <h5>Envío gratis <i class="bi bi-truck"></i></h5>
               </div>
-              <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
+              <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
+                <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Ver</a>
+              <% } else {%>
+                <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
+              <% } %>
             </article>
           <% }%>
         <% } %>

@@ -26,8 +26,8 @@
                     <% for (imagen of producto.images) { %>
                         <% if (imagen.mainImage) { 
                           imagenPrincipal = imagen.url
+                          break;
                         } %>
-                        <% break; %>
                     <% } %>
                     <img src="<%= imagenPrincipal %>" class="foto-principal">
                 </div>
@@ -57,10 +57,12 @@
                 <p><i class="bi bi-shield-fill-check"></i> Garantia de 12 meses</p>
                 <p><i class="bi bi-check2"></i> Stock disponible: <%= producto.stock %> unidades</p>
                 <p><i class="bi bi-truck"></i> Envios a todo el país</p>
-                <div class="botones-detalle-producto">
-                    <a href="/products/carrito" class="boton-comprarAhora">Comprar ahora</a>
-                    <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
-                </div>
+                <% if (!(locals.usuarioLog && locals.usuarioLog.idRoleFK == 2)) { %>
+                    <div class="botones-detalle-producto">
+                        <a href="/products/carrito" class="boton-comprarAhora">Comprar ahora</a>
+                        <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
+                    </div>
+                <% } %>
                 
             <!-- ? terminar la parte del borrar-->  
                 <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
