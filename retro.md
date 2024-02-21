@@ -4,6 +4,26 @@ La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que pla
 <img src="https://gustavoveliz.files.wordpress.com/2009/05/startechnique1.gif" alt="retrospectiva de la estrella de mar" width=338px>
 <br>
 
+## Sprint 7
+
+### Al comienzo del sprint 6, se realizó un reagrupamiento, por los siguientes motivos:
+- Una integrante se dió de baja.
+- Incorporación de nueva compañera. Pertenecía al grupo 8, pero sus compañeros se dieron de baja del curso.
+
+### Comenzar a hacer:
+- Dar la bienvenida + inducción a Mirian Baigorria.
+- Realizar comentarios en el código.
+
+### Seguir haciendo:
+- Comunicación por el grupo
+- Comentar avances y dudas
+- Reuniones cuando sean necesarias + organización de tareas.
+
+### Menos de & Dejar de hacer:
+- Ídem retrospectivas anteriores
+
+<hr>
+
 ## Sprint 6
 
 ### Seguir haciendo:

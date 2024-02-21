@@ -57,6 +57,16 @@ form {
   width: 100%;
 }
 
+.error-submit {
+  color: rgba(255, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
+
+.caja-login{
+  display: flex;
+  flex-direction: column;
+}
+
 .label-password {
   margin: 25px 0 0 0;
 }
@@ -249,4 +259,8 @@ hr {
     .footer-form {
       font-size: 16px;
     }
+
+    .feedback-negativo {
+      font-size: 14px;
+  }
 }

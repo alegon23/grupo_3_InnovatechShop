@@ -9,15 +9,22 @@
             <div class="caja-formulario">
                 <h2>Iniciar Sesión</h2>
 
-                <form action="/users/login" method="POST">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="text" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                <form action="/users/login" method="POST" class="login">
+                    <span class="errorSubmit"></span>
+                    <div class="caja-login">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="text" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                        <span class="error feedback-negativo"></span>
+                    </div>
                     <% if(locals.errors && errors.email) { %>
                         <span class="feedback-negativo"><%= errors.email.msg %></span>
                     <% } %>
 
-                    <label for="contrasenia" class="label-password">Contraseña</label>
-                    <input type="password" name="contrasenia" placeholder="••••••••••">
+                    <div class="caja-login">
+                        <label for="contrasenia" class="label-password">Contraseña</label>
+                        <input type="password" name="contrasenia" placeholder="••••••••••">
+                        <span class="error feedback-negativo"></span>
+                    </div>
                     <% if(locals.errors && errors.contrasenia) { %>
                         <span class="feedback-negativo"><%= errors.contrasenia.msg %></span>
                     <% } %>
@@ -48,5 +55,8 @@
             </div>
         </div>
     </main>
+
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="/js/validaciones/login.js"></script>
 </body>
 </html>

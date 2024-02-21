@@ -666,4 +666,8 @@ footer img {
         max-width: 1200px;
         margin: auto;
     }
+
+    .feedback-negativo {
+        font-size: 14px;
+    }
 }

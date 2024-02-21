@@ -223,7 +223,16 @@ const usersController = {
                     }
                 };
 
+
                 if(foundUser!=null){
+
+                    if (req.file && req.file != foundUser.avatar) {
+                        if (foundUser.avatar != "/images/users/default.png") {
+                            const url = 'src\\public' + foundUser.avatar.replace('/', '\\')
+                            fs.unlinkSync(url)
+                        }
+                    }
+
                     db.User.update({
                         firstName : nombre,
                         lastName : apellido,
@@ -235,6 +244,7 @@ const usersController = {
                     {
                         where: {idUser: foundUser.idUser }
                     });
+
 
                     req.session.destroy();
                     res.clearCookie('usuarioEmail');
@@ -308,6 +318,31 @@ const usersController = {
         req.session.destroy();
         res.clearCookie('usuarioEmail')
         return res.redirect('/');
+    },
+
+    validateEmail: async (req, res) => {
+
+        try {
+            const email = req.params.email;
+
+            const respuesta = await db.User.findOne({
+                where: {email: email}
+            })
+
+            if (respuesta) {
+                res.json({
+                    existe: true,
+                })
+            } else {
+                res.json({
+                    existe: false,
+                })
+            }
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+        
+
     }
 }
 

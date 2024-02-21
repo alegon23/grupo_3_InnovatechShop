@@ -35,4 +35,7 @@ router.post('/registro-admin', validacionesAdministrador, usersController.proces
 //Logout
 router.get('/logout', usersController.logout);
 
+//para validacion front
+router.get('/validate/:email', usersController.validateEmail)
+
 module.exports = router;

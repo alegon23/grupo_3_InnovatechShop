@@ -145,7 +145,7 @@ body {
 }
 
 .mensaje-alta-admin, .mensaje-perfil{
-    color: #9E8FFF;
+    color: rgba(255, 0, 0, 0.8);
 }
 
 .iniciar-sesion {

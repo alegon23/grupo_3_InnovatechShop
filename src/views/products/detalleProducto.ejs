@@ -63,8 +63,7 @@
                         <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
                     </div>
                 <% } %>
-                
-            <!-- ? terminar la parte del borrar-->  
+                 
                 <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
                     <div class="form-detalle">
                         <a href="/products/editarProducto/<%= producto.idProduct %>" class="boton-editar">Editar producto</a>
@@ -74,7 +73,6 @@
                     </div>
                 <% } %>
             </div>
-            <!-- ? terminar la parte del borrar-->  
         </div>
 
         <hr>

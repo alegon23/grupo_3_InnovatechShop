@@ -145,4 +145,8 @@ form {
         margin: auto;
         min-height: 63vh;
     }
+
+    .feedback-negativo {
+        font-size: 14px;
+    }
 }
