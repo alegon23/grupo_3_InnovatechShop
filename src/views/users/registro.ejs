@@ -6,52 +6,69 @@
         <div class="contenedor-form">
             <img src="/images/Logo.png" alt="Logo" class="logo">
 
-            <!-- el form me indica que es un formulario, action es donde se va a guardar el formulario
-            y el method es el metodo, get/post/put etc. Cuando aprieto enviar post envia a guardar-->
             <div class="form">
                 <div>
                     <h1 class="title"> ¡Bienvenido! </h1>
                     <p class="subtitle">Completá el formulario para crear tu cuenta</p>
+                    <span class="subtitle">* Estos campos son obligatorios</span>
                 </div>
                 
                 <form action="/users" method='POST' class="contenedor-registro" enctype="multipart/form-data">
+                    <span class="errorSubmit"></span>
                     <div class="datos">      
                         <div class="contenedor-datos1">
-                            <label for="nombre" class="label">Nombre</label>
-                            <input type="text" name="nombre" placeholder="Nombre" value="<%= locals.oldData && oldData.nombre %>">
+                            <div class="caja-registro">
+                                <label for="nombre" class="label">Nombre*</label>
+                                <input type="text" name="nombre" placeholder="Nombre" value="<%= locals.oldData && oldData.nombre %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.nombre) { %>
                                 <span class="feedback-negativo"><%= errors.nombre.msg %></span>
                             <% } %> 
                             
-                            <label for="fecha">Fecha de nacimiento</label>
-                            <input type="date" name="fecha" placeholder="DD/MM/AAAA" value="<%= locals.oldData && oldData.fecha %>">
+                            <div class="caja-registro">
+                                <label for="fecha">Fecha de nacimiento*</label>
+                                <input type="date" name="fecha" placeholder="DD/MM/AAAA" value="<%= locals.oldData && oldData.fecha %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.fecha) { %>
                                 <span class="feedback-negativo"><%= errors.fecha.msg %></span>
                             <% } %> 
                         
-                            <label for="contrasenia">Contraseña</label>
-                            <input type="password" name="contrasenia" placeholder="••••••••••">
+                            <div class="caja-registro">
+                                <label for="contrasenia">Contraseña*</label>
+                                <input type="password" name="contrasenia" placeholder="••••••••••">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.contrasenia) { %>
                                 <span class="feedback-negativo"><%= errors.contrasenia.msg %></span>
                             <% } %> 
                         </div>
                         
                         <div class="contenedor-datos2">
-                            <label for="apellido" class="label">Apellido</label>
-                            <input type="text" name="apellido" placeholder="Apellido" value="<%= locals.oldData && oldData.apellido %>">
+                            <div class="caja-registro">
+                                <label for="apellido" class="label">Apellido*</label>
+                                <input type="text" name="apellido" placeholder="Apellido" value="<%= locals.oldData && oldData.apellido %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.apellido) { %>
                                 <span class="feedback-negativo"><%= errors.apellido.msg %></span>
                             <% } %> 
             
-                    
-                            <label for="email" class="label">Correo</label>
-                            <input type="text" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                            <div class="caja-registro">
+                                <label for="email" class="label">Correo*</label>
+                                <input type="text" name="email" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.email) { %>
                                 <span class="feedback-negativo"><%= errors.email.msg %></span>
                             <% } %> 
                         
-                            <label for="confirmarContrasenia">Confirmar contraseña</label>
-                            <input type="password" name="confirmarContrasenia" placeholder="••••••••••">
+                            <div class="caja-registro">
+                                <label for="confirmarContrasenia">Confirmar contraseña*</label>
+                                <input type="password" name="confirmarContrasenia" placeholder="••••••••••">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.confirmarContrasenia) { %>
                                 <span class="feedback-negativo"><%= errors.confirmarContrasenia.msg %></span>
                             <% } %> 
@@ -60,8 +77,9 @@
                     </div>
 
                     <div class="contenedor-avatar">
-                        <label class="label-avatar" for="avatar">Foto de perfil</label>
+                        <label class="label-avatar" for="avatar">Elige una foto de perfil (opcional)</label>
                         <input type="file" name="avatar">
+                        <span class="error feedback-negativo"></span>
                         <% if(locals.errors && errors.avatar) { %>
                             <span class="feedback-negativo"><%= errors.avatar.msg %></span>
                         <% } %>
@@ -89,6 +107,7 @@
             </div>             
         </div>
     </main>
-
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="/js/validaciones/registroUsuarios.js"></script>
 </body>
 </html>
