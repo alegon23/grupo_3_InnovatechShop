@@ -11,14 +11,17 @@
             <div class="form">
                 <h2 class="title">Editar Producto</h2>
                 
-                <form action="/products/editarProducto/<%= productID.idProduct %>?_method=PUT" method='POST' enctype="multipart/form-data" class="contenedor-producto">
-                    <div class="contenedor-datos">      
+                <form action="/products/editarProducto/<%= productID.idProduct %>?_method=PUT" method='POST' enctype="multipart/form-data" class="producto">
+                    <div class="contenedor-datos">  
+                        <div class="caja-edit">
                             <label for="nombre" class="label">Nombre del producto</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=locals.oldData && oldData.nombre ? oldData.nombre : productID.productName%>">
-                            <% if(locals.errors && errors.nombre) { %>
-                                <span class="feedback-negativo"><%= errors.nombre.msg %></span>
-                            <% } %> 
-
+                            <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%=locals.oldData && oldData.nombre ? oldData.nombre : productID.productName%>">  
+                            <span class="error feedback-negativo"></span>
+                        </div>    
+                         <% if(locals.errors && errors.nombre) { %>
+                            <span class="feedback-negativo"><%= errors.nombre.msg %></span>
+                        <% } %> 
+                        <div class="caja-edit">
                             <label for="marca" class="label">Marca del Producto</label>
                             <select name="marca">
                                 <% for (const marca of marcas) { %>
@@ -29,7 +32,8 @@
                                     <% } %>
                                 <% } %>
                             </select>
-
+                        </div>
+                        <div class="caja-edit">
                             <label for="categoria">Categoría</label>
                             <select name="categoria">
                                 <% for (const categoria of categorias) { %>
@@ -40,18 +44,21 @@
                                     <% } %>
                                 <% } %>
                             </select>
-
-                        
-
+                        </div>
+                        <div class="caja-edit">
                             <label for="precio">Precio</label>
                             <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400" value="<%=locals.oldData && oldData.precio ? oldData.precio : productID.originalPrice %>">
-                            <% if(locals.errors && errors.precio) { %>
-                                <span class="feedback-negativo"><%= errors.precio.msg %></span>
-                            <% } %>
-                            
+                            <span class="error feedback-negativo"></span>
+                        </div>
+                        <% if(locals.errors && errors.precio) { %>
+                            <span class="feedback-negativo"><%= errors.precio.msg %></span>
+                        <% } %>
+                        <div class="caja-edit">
                             <label for="porcentaje" class="label">Porcentaje de descuento</label>
                             <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" value="<%=locals.oldData && oldData.porcentaje ? oldData.porcentaje : productID.discount%>">
-
+                            <span class="error feedback-negativo"></span>
+                        </div>
+                        <div class="caja-edit">
                             <label for="esDestacado">¿Es un producto destacado?</label>
                             <select name="esDestacado">
                                 <% if (locals.oldData && oldData.esDestacado) { %>
@@ -63,49 +70,60 @@
                                     <option value="false" <%= productID.mainProduct ? "" : "selected"%>>No</option>
                                 <% } %>
                             </select>
-                            <% if(locals.errors && errors.esDestacado) { %>
-                                <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
-                            <% } %>
-
+                            <span class="error feedback-negativo"></span>
+                        </div>
+                        <% if(locals.errors && errors.esDestacado) { %>
+                            <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
+                        <% } %>
+                        <div class="caja-edit">
                             <label for="stock">Stock</label>
-                            <input type="number" name="stock" class="input" placeholder="Stock del producto" value="<%=locals.oldData && oldData.stock ? oldData.stock : productID.stock %>">
-                            <% if(locals.errors && errors.stock) { %>
-                                <span class="feedback-negativo"><%= errors.stock.msg %></span>
-                            <% } %>
+                            <input type="text" name="stock" class="input" placeholder="Stock del producto" value="<%=locals.oldData && oldData.stock ? oldData.stock : productID.stock %>">
+                            <span class="error feedback-negativo"></span>
+                        </div>
+                         <% if(locals.errors && errors.stock) { %>
+                            <span class="feedback-negativo"><%= errors.stock.msg %></span>
+                        <% } %>
                           
-                            <% if (productID.images.length > 1) { %>
-                                <p class="texto-datos-imagenes">Tienes 1 imagen principal y <%= productID.images.length -1 %> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
-                            <% } else { %>
-                                <p class="texto-datos-imagenes">Tienes 1 imagen principal y no tienes imagenes extras cargadas. Para editarlas, carga las imágenes que deseas</p>
-                            <% } %>
-
+                        <% if (productID.images.length > 1) { %>
+                            <p class="texto-datos-imagenes">Tienes 1 imagen principal y <%= productID.images.length -1 %> imágenes extra cargadas. Para editarlas, carga las imágenes que deseas</p>
+                         <% } else { %>
+                            <p class="texto-datos-imagenes">Tienes 1 imagen principal y no tienes imagenes extras cargadas. Para editarlas, carga las imágenes que deseas</p>
+                        <% } %>
+                        <div class="caja-edit" >
                             <label for="imagenPrincipal">Imagen Principal</label>
                             <input type="file" class="input-imagen" name="imagenPrincipal">
-                            <% if(locals.errors && errors.imagenPrincipal) { %>
-                                <span class="feedback-negativo"><%= errors.imagenPrincipal.msg %></span>
-                            <% } %>
-
+                            <span class="error feedback-negativo"></span>
+                        </div>
+                        <% if(locals.errors && errors.imagenPrincipal) { %>
+                             <span class="feedback-negativo"><%= errors.imagenPrincipal.msg %></span>
+                         <% } %>
+                         <div class="caja-edit">
                             <label for="imagenesExtra">Imagenes Extras</label>
                             <input type="file" class="input-imagen" name="imagenesExtra" multiple>
-                            <% if(locals.errors && errors.imagenesExtra) { %>
-                                <span class="feedback-negativo"><%= errors.imagenesExtra.msg %></span>
-                            <% } %>
-                            
+                            <span class="error feedback-negativo"></span>
+                         </div>
+                        <% if(locals.errors && errors.imagenesExtra) { %>
+                            <span class="feedback-negativo"><%= errors.imagenesExtra.msg %></span>
+                        <% } %>
                     </div>
-
-                    <label class="textarea-label" for="descripcion">Descripción del Producto</label>
-                    <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%if(locals.oldData && oldData.descripcion) {%>
+                        <label class="textarea-label" for="descripcion">Descripción del Producto</label>
+                    <div class="edit-text">
+                        <textarea class="descrip" name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%if(locals.oldData && oldData.descripcion){%>
 <%=oldData.descripcion%>
 <%} else {%>
-<%= productID.description %> <% } %> </textarea> 
+<%= productID.description %> <% } %> 
+                        </textarea> 
+                        <span class="error feedback-negativo" style="text-align: start;"></span> 
+                    </div>
 <% if(locals.errors && errors.descripcion) { %>
     <span class="feedback-negativo" style="text-align: start;"><%= errors.descripcion.msg %></span>
 <% } %>
 
+
                     <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 1:</label>
-                        <select name="caracteristica1">
+                        <select name="caracteristica1" class="caracteristica">
                             <option value="">Seleccionar Caracteristica</option>
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica1 && oldData.caracteristica1 != productID.features[0].feature) { %>
@@ -115,14 +133,15 @@
                                 <% } %>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
+                        </div>
                         <% if(locals.errors && errors.caracteristica1) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica1.msg %></span>
                         <% } %>
-                    </div>
 
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 2:</label>
-                        <select name="caracteristica2">
+                        <select name="caracteristica2" class="caracteristica">
                             <option value="">Seleccionar Caracteristica</option>
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica2 && oldData.caracteristica2 != productID.features[1].feature) { %>
@@ -132,14 +151,16 @@
                                 <% } %>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
+                        </div>
                         <% if(locals.errors && errors.caracteristica2) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica2.msg %></span>
                         <% } %>
-                    </div>
+                    
 
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 3:</label>
-                        <select name="caracteristica3">
+                        <select name="caracteristica3" class="caracteristica">
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica3 && oldData.caracteristica3 != productID.features[2].feature) { %>
                                     <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica3 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
@@ -148,14 +169,16 @@
                                 <% } %>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
+                        </div>
                         <% if(locals.errors && errors.caracteristica3) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica3.msg %></span>
                         <% } %>
-                    </div>
+                 
 
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 4:</label>
-                        <select name="caracteristica4">
+                        <select name="caracteristica4" class="caracteristica">
                             <option value="">Seleccionar Caracteristica</option>
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica4 && oldData.caracteristica4 != productID.features[3].feature) { %>
@@ -165,10 +188,12 @@
                                 <% } %>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
+                        </div>
                         <% if(locals.errors && errors.caracteristica4) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica4.msg %></span>
                         <% } %>
-                    </div>
+                   
                     
                     <div>
                         <button type="submit" class="boton-submit">Guardar cambios</button>
@@ -176,9 +201,8 @@
                         
                 </form>
                
-                
                 <hr>
-            
+                
                 <div class="footer-form">
                     <a href="#" class="ayuda"><i class="bi bi-question-circle"></i> ¿Necesitas ayuda?</a>
                     <a href="/" class="volver-tienda">Volver a la tienda</i></a>
@@ -187,5 +211,7 @@
             </div>             
         </div>
     </main>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="/js/validaciones/editarProd.js"></script>
 </body>
 </html>

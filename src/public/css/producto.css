@@ -30,6 +30,7 @@ body {
     padding: 30px;
     background-color: white;
     position: relative;
+    
 }
 
 .logo {
@@ -289,4 +290,7 @@ textarea:focus {
     .feedback-negativo {
         font-size: 14px;
     }
+
 }
+
+
