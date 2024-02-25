@@ -60,9 +60,21 @@ body {
 
 .subtitle {
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     color: #9E8FFF;
-    margin: 5px 0 12px 0;
+    margin: 5px 0 5px 0;
+}
+
+.error-submit {
+    color: rgba(255, 0, 0, 0.8);
+    margin-bottom: 10px;
+}
+
+.caja-registro{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .contenedor-registro {
@@ -222,6 +234,7 @@ body {
         padding: 30px 30px;
     }
 
+    
     .datos {
         flex-direction: row;
     }
@@ -232,6 +245,10 @@ body {
     
     .contenedor-datos2 {
         margin-left: 5px;
+    }
+    
+    .caja-registro{
+        max-height: 75px;
     }
 
     .feedback-negativo {
