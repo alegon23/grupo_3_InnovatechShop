@@ -1,13 +1,3 @@
-const validacionExtension = (input) => {
-    const fileExtension = input.split(".")[1];
-    if (fileExtension) {
-        const acceptedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        return acceptedExtensions.includes(fileExtension)
-    } else{ 
-        return true
-    }
-}
-
 const inputValidations = [
     {
         inputName: "nombre",
@@ -64,53 +54,13 @@ const inputValidations = [
         type: ["keyup", "submit"],
         validations: [
             {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "La contraseña es obligatoria"
-            },
-            {
-                validator: (input) => validator.isLength(input, {min: 8}),
+                validator: (input) => input.length > 0 ? validator.isLength(input, {min: 8}) : true,
                 errorMsg: "La contraseña debe tener al menos 8 caracteres"
             },
             {
-                validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
+                validator: (input) => input.length > 0 ? validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }) : true,
                 errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
             }
-        ]
-    },
-    {
-        inputName: "fecha",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                //por ejemplo poner 31/02
-                validator: (input) => validator.isISO8601(input),
-                errorMsg: "La fecha no tiene formato valido"
-            },
-            {
-                //controla que no se pongan fechas mayores a las de hoy
-                validator: (input) => !validator.isAfter(input),
-                errorMsg: "La fecha no es valida"
-            },
-        ]
-    },
-    {
-        inputName: "confirmarContrasenia",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "Debes confirmar la contraseña"
-            },
-        ]
-    },
-    {
-        inputName: "avatar",
-        type: ["submit"],
-        validations: [
-            {
-                validator: (input) => validacionExtension(input),
-                errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
-            },
         ]
     },
 ]
@@ -127,6 +77,7 @@ window.addEventListener("load", function () {
             
             input.addEventListener("keyup", async function (e) {
                 for (const validation of inputToValidate.validations) {
+                    console.log(e.target.value)
     
                     const isValid = await validation.validator(e.target.value);
     
@@ -140,27 +91,6 @@ window.addEventListener("load", function () {
             })
         }
     });
-
-    //* valida que confirmar contraseña es igual a la contraseña
-    const inputConfirm = form["confirmarContrasenia"];
-    const inputConfirmContainer = inputConfirm.parentElement;
-    const inputPass = form["contrasenia"];
-
-    inputConfirm.addEventListener("keyup", function(e) {
-        if (inputPass.value != inputConfirm.value) {
-            inputConfirmContainer.querySelector(".error").innerHTML = "No coincide con la contraseña";
-        }
-    })
-
-    //* validacion de archivo onchange
-    const inputAvatar = form["avatar"];
-    const inputAvatarContainer = inputAvatar.parentElement;
-
-    inputAvatar.addEventListener("change", function(e) {
-        if (!validacionExtension(inputAvatar.value)) {
-            inputAvatarContainer.querySelector(".error").innerHTML = "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif";
-        }
-    })
 
     //* VALIDACION EN SUBMIT
     form.addEventListener("submit", function (e) {
