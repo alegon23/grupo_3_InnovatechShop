@@ -34,7 +34,7 @@ const inputValidations= [
     },
     {
         inputName: "esDestacado",
-        type: ["onTime", "submit"],
+        
         validations: [
             {
                 validator: (input) => !validator.isEmpty(input),
@@ -111,7 +111,7 @@ window.addEventListener("load", function () {
 
                 //se aplica el validador sobre el valor actual del input
                 const isValid = validation.validator(e.target.value);
-                //console.log(isValid)
+             
     
                 //si es invalido muestra error. Sino, no
                 if (!isValid) {
@@ -125,23 +125,41 @@ window.addEventListener("load", function () {
     });
 
 
-     //* valida si el producto es destacado no puede tener descuento
-     const porcentaje = form["porcentaje"];
-     const selectDestacado = form["esDestacado"]
- 
-     selectDestacado.addEventListener("change", function() {
-         const inputParent = selectDestacado.parentElement;
-         
-         if (selectDestacado.value == 'true' && porcentaje.value != 0) {
-             inputParent.querySelector('.error').innerHTML = 'Los productos con descuento no pueden destacarse'
-         } else {
-             if (selectDestacado.value == '') {
-                 inputParent.querySelector('.error').innerHTML = inputValidations[2].validations[0].errorMsg
-             } else {
-                 inputParent.querySelector('.error').innerHTML = ''
-             }
-         }
-     });
+    //* valida si el producto es destacado no puede tener descuento
+    const porcentaje = form["porcentaje"];
+    const selectDestacado = form["esDestacado"]
+
+    selectDestacado.addEventListener("change", function() {
+        const selectDestacadoParent = selectDestacado.parentElement;
+        const porcentajeParent = porcentaje.parentElement;
+
+        if (selectDestacado.value == 'true' && porcentaje.value != 0) {
+            selectDestacadoParent.querySelector('.error').innerHTML = 'Los productos con descuento no pueden ser destacados'
+        } else {
+            if (selectDestacado.value == '') {
+                selectDestacadoParent.querySelector('.error').innerHTML = inputValidations[2].validations[0].errorMsg
+            } else {
+                porcentajeParent.querySelector('.error').innerHTML = ''
+                selectDestacadoParent.querySelector('.error').innerHTML = ''
+            }
+        }
+    })
+
+    porcentaje.addEventListener("change", function(e) {
+        const selectDestacadoParent = selectDestacado.parentElement;
+        const porcentajeParent = porcentaje.parentElement;
+        
+        if (selectDestacado.value == 'true' && porcentaje.value != 0) {
+            porcentajeParent.querySelector('.error').innerHTML = 'Los productos con descuento no pueden ser destacados'
+        } else {
+            if (porcentajeParent.value == '') {
+                porcentajeParent.querySelector('.error').innerHTML = inputValidations[4].validations[0].errorMsg
+            } else {
+                selectDestacadoParent.querySelector('.error').innerHTML = ''
+                porcentajeParent.querySelector('.error').innerHTML = ''
+            }
+        }
+    })
 
     
  //funcion que valida  imagenes
@@ -224,6 +242,12 @@ selects.forEach((select)=>{
     
     });
 });
+
+//funcion que compara la cantidad de elementos distintos en el conjunto y en el array
+function tiene_repetidos(array){
+    return new Set(array).size!==array.length
+}
+
 //* VALIDACION EN SUBMIT
 form.addEventListener("submit", function (e) {
     //no se envia formulario
@@ -272,7 +296,6 @@ form.addEventListener("submit", function (e) {
         };
 
     }
-   
 
     //valido las imagenes extras
     const archivosSubidos = inputImagenesExtra.files;
@@ -287,6 +310,44 @@ form.addEventListener("submit", function (e) {
             conteiner.querySelector(".error").innerHTML = "";
         }
     };
+    
+//valido los select en el submit
+var selectValores=[];
+//obtengo todos los select con clase caracteristica
+var selects=document.querySelectorAll("select.caracteristica")
+const padreSelect=document.querySelector("div.caracteristicas-del-producto");
+selects.forEach((select)=>{
+     //meto los valores actuales de los select en el array selectValores
+    selects.forEach((select)=>{
+    selectValores.push(select.value)
+});    
+            //determino si el valor al que se cambio la caracteristica ya se encuntra seleccionado
+            const valido=tiene_repetidos(selectValores);
+            
+            if (valido) {
+                errores.push(1);
+                padreSelect.querySelector(".error").innerHTML ="Las caracteristicas no se pueden repetir";
+            } else {
+                padreSelect.querySelector(".error").innerHTML = "";
+                selectValores=[]
+         };
+        
+        });
+
+//validacion porcentaje
+        const porcentaje = form["porcentaje"];
+        const destacado = form["esDestacado"]
+        const porcentajeParent = porcentaje.parentElement;
+
+        if (porcentaje.value == '') {
+            porcentajeParent.querySelector('.error').innerHTML = inputValidations[4].validations[0].errorMsg
+        } else {
+            if (porcentaje.value != 0 && destacado.value === 'true') {
+                porcentajeParent.querySelector('.error').innerHTML = 'Un producto destacado no puede tener descuento'
+            } else {
+                porcentajeParent.querySelector('.error').innerHTML = ''
+            }
+        }
 
     //si no hay errores, envia el form. Si hay errores, muestra mensaje
     if (errores.length == 0) {
