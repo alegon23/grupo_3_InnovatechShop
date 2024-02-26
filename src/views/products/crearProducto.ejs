@@ -14,7 +14,8 @@
                 <form action="/products" method='POST' class="contenedor-producto" enctype="multipart/form-data">
                     <span class="errorSubmit"></span>
                     <div class="contenedor-datos"> 
-                        <label for="nombre" class="label">Nombre del producto</label>
+                        <span class="campos-obligatorios"> * Estos campos son obligatorios</span>
+                        <label for="nombre" class="label">Nombre del producto*</label>
                         <div class="caja-edit">
                             <input type="text" name="nombre" class="input" placeholder="Nombre del producto" value="<%= locals.oldData && oldData.nombre %>">
                             <span class="error feedback-negativo"></span>
@@ -23,10 +24,10 @@
                             <span class="feedback-negativo"><%= errors.nombre.msg %></span>
                         <% } %> 
                         
-                        <label for="marca" class="label">Marca del Producto</label>
+                        <label for="marca" class="label">Marca del Producto*</label>
                         <div class="caja-edit">
                             <select name="marca">
-                                <option value="">Seleccionar Marca</option>
+                                <option value="">Seleccionar Marca*</option>
                                 <% for (const marca of marcas) { %>
                                     <option value="<%= marca.idBrand %>" <%= locals.oldData && (oldData.marca == marca.idBrand) ? 'selected' : '' %>><%= marca.brandName %></option>
                                 <% } %>
@@ -37,7 +38,7 @@
                             <span class="feedback-negativo"><%= errors.marca.msg %></span>
                         <% } %>
                     
-                        <label for="categoria">Categoría</label>
+                        <label for="categoria">Categoría*</label>
                         <div class="caja-edit">
                             <select name="categoria">
                             <option value="">Seleccionar Categoria</option>
@@ -51,7 +52,7 @@
                             <span class="feedback-negativo"><%= errors.categoria.msg %></span> 
                         <% } %>
                         
-                        <label for="precio">Precio</label>
+                        <label for="precio">Precio*</label>
                         <div class="caja-edit">
                             <input type="text" name="precio" placeholder="Colocar los numeros sin comas ni puntos. Ej: 2400" value="<%= locals.oldData && oldData.precio %>">
                             <span class="error feedback-negativo"></span>
@@ -60,7 +61,7 @@
                             <span class="feedback-negativo"><%= errors.precio.msg %></span>
                         <% } %>
                         
-                        <label for="porcentaje" class="label">Porcentaje de descuento</label>
+                        <label for="porcentaje" class="label">Porcentaje de descuento*</label>
                         <div class="caja-edit">
                             <input type="text" name="porcentaje" placeholder="Si no tiene descuento colocar un cero. Ej: 0" value="<%= locals.oldData && oldData.porcentaje %>">
                             <span class="error feedback-negativo"></span>
@@ -69,7 +70,7 @@
                             <span class="feedback-negativo"><%= errors.porcentaje.msg %></span>
                         <% } %>
 
-                        <label for="esDestacado">¿Es un producto destacado?</label>
+                        <label for="esDestacado">¿Es un producto destacado?*</label>
                         <div class="caja-edit">
                             <select name="esDestacado">
                             <option value="">Seleccionar Opcion</option>
@@ -84,7 +85,7 @@
                             <span class="feedback-negativo"><%= errors.esDestacado.msg %></span>
                         <% } %>
 
-                        <label for="stock">Stock</label>
+                        <label for="stock">Stock*</label>
                         <div class="caja-edit">
                             <input type="number" name="stock" class="input" placeholder="Stock del producto" value="<%=locals.oldData && oldData.stock %>">
                             <span class="error feedback-negativo"></span>
@@ -93,7 +94,7 @@
                             <span class="feedback-negativo"><%= errors.stock.msg %></span>
                         <% } %>
 
-                        <label for="imagenPrincipal">Imagen Principal</label>
+                        <label for="imagenPrincipal">Imagen Principal*</label>
                         <div class="caja-edit">
                             <input type="file" class="input-imagen" name="imagenPrincipal">
                             <span class="error feedback-negativo"></span>
@@ -113,18 +114,18 @@
 
                     </div>
 
-                    <label class="textarea-label" for="descripcion">Descripción del Producto</label>
+                    <label class="textarea-label" for="descripcion">Descripción del Producto*</label>
                     <div class="edit-text">
                         <textarea name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%=locals.oldData && oldData.descripcion%></textarea>
-                        <span class="error feedback-negativo" style="text-align: start;"></span>
+                        <span class="error feedback-negativo"></span>
                     </div>
                     <% if(locals.errors && errors.descripcion) { %>
-                        <span class="feedback-negativo" style="text-align: start;"><%= errors.descripcion.msg %></span>
+                        <span class="feedback-negativo"><%= errors.descripcion.msg %></span>
                     <% } %>
 
-                    <div class="caracteristicas-del-producto" style="display: flex; flex-direction: column;">
-                        <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
-                        <span class="error feedback-negativo" style="text-align: start;"></span>
+                    <div class="caracteristicas-del-producto">
+                        <label class="textarea-label" for="caracteristicas">Caracteristicas del producto*</label>
+                        <span class="error feedback-negativo"></span>
                     </div>
 
                     <div class="caja-caracteristicas">
@@ -135,6 +136,7 @@
                                 <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica1 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
                         <% if(locals.errors && errors.caracteristica1) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica1.msg %></span>
                         <% } %>
@@ -148,6 +150,7 @@
                                 <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica2 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
                         <% if(locals.errors && errors.caracteristica2) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica2.msg %></span>
                         <% } %>
@@ -161,6 +164,7 @@
                                 <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica3 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
                         <% if(locals.errors && errors.caracteristica3) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica3.msg %></span>
                         <% } %>
@@ -174,6 +178,7 @@
                                 <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica4 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
                             <% } %>
                         </select>
+                        <span class="error feedback-negativo"></span>
                         <% if(locals.errors && errors.caracteristica4) { %>
                             <span class="feedback-negativo"><%= errors.caracteristica4.msg %></span>
                         <% } %>

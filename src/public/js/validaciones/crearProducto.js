@@ -196,10 +196,9 @@ window.addEventListener("load", function () {
 
     //* valida que las caracteristicas no vengan vacias y sean distintas
     //valido los select
-    var selectValores=[];
+    let selectValores=[];
     //obtengo todos los select con clase caracteristica
-    const selects=document.querySelectorAll("select.caracteristica")
-    const errorPadre = document.querySelector('div.caracteristicas-del-producto')
+    const selects = document.querySelectorAll("select.caracteristica")
 
     selects.forEach((select)=>{
         //meto los valores actuales de los select en el array selectValores
@@ -208,16 +207,17 @@ window.addEventListener("load", function () {
         });
 
         //obtengo el padre del select actual
-        
+        const padreError = select.parentElement
         //agrego un evento change que se dispare cuando cambie el valor de la caracteristica
         select.addEventListener("change", function (e) {
             //determino si el valor al que se cambio la caracteristica ya se encuntra seleccionado
             const valido= selectValores.includes(select.value);
             selectValores=[];
             if (valido) {
-                errorPadre.querySelector(".error").innerHTML ="Las caracteristicas deben ser diferentes";
+                padreError.querySelector(".error").innerHTML ="Las caracteristicas deben ser diferentes";
+                document.querySelector("div.caracteristicas-del-producto span.error").innerHTML = ""
             } else {
-                errorPadre.querySelector(".error").innerHTML = "";
+                padreError.querySelector(".error").innerHTML = "";
             }
             //meto los valores actuales de los select en el array selectValores
             selects.forEach((select)=>{
@@ -231,19 +231,38 @@ window.addEventListener("load", function () {
     const selectDestacado = form["esDestacado"]
 
     selectDestacado.addEventListener("change", function() {
-        const inputParent = selectDestacado.parentElement;
-        
+        const selectDestacadoParent = selectDestacado.parentElement;
+        const porcentajeParent = porcentaje.parentElement;
+
         if (selectDestacado.value == 'true' && porcentaje.value != 0) {
-            inputParent.querySelector('.error').innerHTML = 'Los prod con desc no pueden dest'
+            selectDestacadoParent.querySelector('.error').innerHTML = 'Los productos con descuento no pueden ser destacados'
         } else {
             if (selectDestacado.value == '') {
-                inputParent.querySelector('.error').innerHTML = inputValidations[5].validations[0].errorMsg
+                selectDestacadoParent.querySelector('.error').innerHTML = inputValidations[5].validations[0].errorMsg
             } else {
-                inputParent.querySelector('.error').innerHTML = ''
+                porcentajeParent.querySelector('.error').innerHTML = ''
+                selectDestacadoParent.querySelector('.error').innerHTML = ''
             }
         }
     })
 
+    porcentaje.addEventListener("change", function(e) {
+        const selectDestacadoParent = selectDestacado.parentElement;
+        const porcentajeParent = porcentaje.parentElement;
+        
+        if (selectDestacado.value == 'true' && porcentaje.value != 0) {
+            porcentajeParent.querySelector('.error').innerHTML = 'Los productos con descuento no pueden ser destacados'
+        } else {
+            if (porcentajeParent.value == '') {
+                porcentajeParent.querySelector('.error').innerHTML = inputValidations[4].validations[0].errorMsg
+            } else {
+                selectDestacadoParent.querySelector('.error').innerHTML = ''
+                porcentajeParent.querySelector('.error').innerHTML = ''
+            }
+        }
+    })
+
+    //* validacion de imagenes
     //funcion que valida  imagenes
     const extensiones=["jpg","jpeg","png","gif"];
     var isExtension=function(inputValue) {
@@ -262,14 +281,11 @@ window.addEventListener("load", function () {
 
         const valid = isExtension(inputImagenPrincipal.value);
         if (!inputImagenPrincipal.value) {
-            console.log('error');
             container.querySelector('.error').innerHTML = inputValidations[7].validations[1].errorMsg
         } else {
             if (!valid) {
-                console.log("error")
                 container.querySelector(".error").innerHTML = "Las extensiones permitidas son .jpg, .jpg, .png, .gif";
             }else{
-                console.log("muy bien")
                 container.querySelector(".error").innerHTML = "";
             }
         }
@@ -337,7 +353,22 @@ window.addEventListener("load", function () {
                 break
             }
         }
-        
+
+        //validacion del porcentaje y producto destacado
+        const porcentaje = form["porcentaje"];
+        const destacado = form["esDestacado"]
+        const porcentajeParent = porcentaje.parentElement;
+
+        if (porcentaje.value == '') {
+            porcentajeParent.querySelector('.error').innerHTML = inputValidations[4].validations[0].errorMsg
+        } else {
+            if (porcentaje.value != 0 && destacado.value === 'true') {
+                porcentajeParent.querySelector('.error').innerHTML = 'Un producto destacado no puede tener descuento'
+            } else {
+                porcentajeParent.querySelector('.error').innerHTML = ''
+            }
+        }
+
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
             form.submit();
