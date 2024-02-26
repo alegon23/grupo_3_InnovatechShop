@@ -30,6 +30,7 @@ body {
     padding: 30px;
     background-color: white;
     position: relative;
+    
 }
 
 .logo {
@@ -332,4 +333,7 @@ label {
     .feedback-negativo {
         font-size: 14px;
     }
+
 }
+
+

@@ -10,33 +10,47 @@
                 <div>
                     <h1 class="title"> Agregar nuevo administrador</h1>
                     <p class="subtitle">Completá el formulario para dar de alta</p>
+                    <span class="subtitle">* Estos campos son obligatorios</span>
                 </div>
                 
                 <form action="/users/registro-admin" method='POST' class="contenedor-registro">
+                    <span class="errorSubmit"></span>
                     <div class="datos">      
                         <div class="contenedor-datos1">
-                            <label for="nombre" class="label">Nombre</label>
-                            <input type="text" name="nombre" class="input" placeholder="Nombre" value="<%= locals.oldData && oldData.nombre %>">
+                            <div class="caja-registro">
+                                <label for="nombre" class="label">Nombre*</label>
+                                <input type="text" name="nombre" class="input" placeholder="Nombre" value="<%= locals.oldData && oldData.nombre %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.nombre) { %>
                                 <span class="feedback-negativo"><%= errors.nombre.msg %></span>
-                            <% } %> 
+                            <% } %>
 
-                            <label for="email" class="label">Correo</label>
-                            <input type="text" name="email" class="input" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                            <div class="caja-registro">
+                                <label for="email" class="label">Correo*</label>
+                                <input type="text" name="email" class="input" placeholder="ejemplo@ejemplo.com" value="<%= locals.oldData && oldData.email %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.email) { %>
                                 <span class="feedback-negativo"><%= errors.email.msg %></span>
                             <% } %> 
                         </div>
                         
                         <div class="contenedor-datos2">
-                            <label for="apellido" class="label">Apellido</label>
-                            <input type="text" name="apellido" class="input" placeholder="Apellido" value="<%= locals.oldData && oldData.apellido %>">
+                            <div class="caja-registro">
+                                <label for="apellido" class="label">Apellido*</label>
+                                <input type="text" name="apellido" class="input" placeholder="Apellido" value="<%= locals.oldData && oldData.apellido %>">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.apellido) { %>
                                 <span class="feedback-negativo"><%= errors.apellido.msg %></span>
                             <% } %> 
 
-                            <label for="contrasenia">Contraseña</label>
-                            <input type="password" name="contrasenia" placeholder="Admin123">
+                            <div class="caja-registro">
+                                <label for="contrasenia">Contraseña (opcional)</label>
+                                <input type="password" name="contrasenia" placeholder="Admin123">
+                                <span class="error feedback-negativo"></span>
+                            </div>
                             <% if(locals.errors && errors.contrasenia) { %>
                                 <span class="feedback-negativo"><%= errors.contrasenia.msg %></span>
                             <% } %> 
@@ -59,6 +73,7 @@
             </div>             
         </div>
     </main>
-
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="/js/validaciones/registroAdmin.js"></script>
 </body>
 </html>

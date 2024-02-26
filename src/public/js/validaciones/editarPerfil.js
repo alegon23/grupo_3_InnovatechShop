@@ -38,29 +38,7 @@ const inputValidations = [
         ]
     },
     {
-        inputName: "email",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "El email es obligatorio"
-            },
-            {
-                validator: (input) => validator.isEmail(input),
-                errorMsg: "El email tiene un formato incorrecto"
-            },
-            {
-                validator: async (input) => {
-                    const res = await fetch(`/users/validate/${input}`)
-                    const data = await res.json()
-                    return !data.existe
-                },
-                errorMsg: "El email ya existe"
-            }
-        ]
-    },
-    {
-        inputName: "contrasenia",
+        inputName: "contraseniaActual",
         type: ["keyup", "submit"],
         validations: [
             {
@@ -94,13 +72,17 @@ const inputValidations = [
         ]
     },
     {
-        inputName: "confirmarContrasenia",
+        inputName: "nuevaContrasenia",
         type: ["keyup", "submit"],
         validations: [
             {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "Debes confirmar la contraseña"
+                validator: (input) => input.length > 0 ? validator.isLength(input, {min: 8}) : true,
+                errorMsg: "La contraseña debe tener al menos 8 caracteres"
             },
+            {
+                validator: (input) => input.length > 0 ? validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }) : true,
+                errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
+            }
         ]
     },
     {
@@ -125,10 +107,10 @@ window.addEventListener("load", function () {
     
             const inputContainer = input.parentElement;
             
-            input.addEventListener("keyup", async function (e) {
+            input.addEventListener("keyup", function (e) {
                 for (const validation of inputToValidate.validations) {
     
-                    const isValid = await validation.validator(e.target.value);
+                    const isValid = validation.validator(e.target.value);
     
                     if (!isValid) {
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
@@ -141,14 +123,27 @@ window.addEventListener("load", function () {
         }
     });
 
-    //* valida que confirmar contraseña es igual a la contraseña
+    //* valida que confirmar contraseña es igual a la nueva contraseña
     const inputConfirm = form["confirmarContrasenia"];
     const inputConfirmContainer = inputConfirm.parentElement;
-    const inputPass = form["contrasenia"];
+    const inputNewPass = form["nuevaContrasenia"];
 
-    inputConfirm.addEventListener("keyup", function(e) {
-        if (inputPass.value != inputConfirm.value) {
+    inputConfirm.addEventListener("keyup", function() {
+        if (inputNewPass.value != inputConfirm.value) {
             inputConfirmContainer.querySelector(".error").innerHTML = "No coincide con la contraseña";
+        } else {
+            inputConfirmContainer.querySelector(".error").innerHTML = "";
+        }
+    })
+
+    //* valida que la nueva contraseña es distinta a la actual
+    const inputNewPassContainer = inputNewPass.parentElement;
+    const inputPass = form["contraseniaActual"]
+    inputNewPass.addEventListener("blur", function () {
+        if (inputNewPass.value == inputPass.value) {
+            inputNewPassContainer.querySelector(".error").innerHTML = "La nueva contraseña coincide con la actual";
+        } else {
+            inputNewPassContainer.querySelector(".error").innerHTML = "";
         }
     })
 
@@ -159,6 +154,8 @@ window.addEventListener("load", function () {
     inputAvatar.addEventListener("change", function(e) {
         if (!validacionExtension(inputAvatar.value)) {
             inputAvatarContainer.querySelector(".error").innerHTML = "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif";
+        } else {
+            inputAvatarContainer.querySelector(".error").innerHTML = ""
         }
     })
 
