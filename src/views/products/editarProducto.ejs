@@ -12,6 +12,7 @@
                 <h2 class="title">Editar Producto</h2>
                 
                 <form action="/products/editarProducto/<%= productID.idProduct %>?_method=PUT" method='POST' enctype="multipart/form-data" class="producto">
+                    <span class="errorSubmit"></span>
                     <div class="contenedor-datos">  
                         <div class="caja-edit">
                             <label for="nombre" class="label">Nombre del producto</label>
@@ -106,7 +107,7 @@
                             <span class="feedback-negativo"><%= errors.imagenesExtra.msg %></span>
                         <% } %>
                     </div>
-                        <label class="textarea-label" for="descripcion">Descripción del Producto</label>
+                        <label class="textarea-label" for="descripcion" style="display: flex; flex-direction: column;">Descripción del Producto</label>
                     <div class="edit-text">
                         <textarea class="descrip" name="descripcion" cols="30" rows="10" placeholder="Escribir titulo y separado con un enter la descripcion correspondiente"><%if(locals.oldData && oldData.descripcion){%>
 <%=oldData.descripcion%>
@@ -120,11 +121,10 @@
 <% } %>
 
 
-                    <label class="textarea-label" for="caracteristicas">Caracteristicas del producto</label>
+                    <label class="textarea-label" for="caracteristicas" style="display: flex; flex-direction: column;">Caracteristicas del producto</label>
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 1:</label>
                         <select name="caracteristica1" class="caracteristica">
-                            <option value="">Seleccionar Caracteristica</option>
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica1 && oldData.caracteristica1 != productID.features[0].feature) { %>
                                     <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica1 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
@@ -142,7 +142,6 @@
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 2:</label>
                         <select name="caracteristica2" class="caracteristica">
-                            <option value="">Seleccionar Caracteristica</option>
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica2 && oldData.caracteristica2 != productID.features[1].feature) { %>
                                     <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica2 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>
@@ -179,7 +178,6 @@
                     <div class="caja-caracteristicas">
                         <label for="textarea-label">Caracteristica 4:</label>
                         <select name="caracteristica4" class="caracteristica">
-                            <option value="">Seleccionar Caracteristica</option>
                             <% for (const caracteristica of caracteristicas) { %>
                                 <% if (locals.oldData && oldData.caracteristica4 && oldData.caracteristica4 != productID.features[3].feature) { %>
                                     <option value="<%= caracteristica.idFeature %>" <%= locals.oldData && (oldData.caracteristica4 == caracteristica.idFeature) ? 'selected' : '' %>><%= caracteristica.feature %></option>

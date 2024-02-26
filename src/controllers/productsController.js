@@ -306,12 +306,15 @@ const productsController = {
             function tiene_repetidos(array){
                 return new Set(array).size!==array.length
             }
-    
+
+
             if (tiene_repetidos(caracteristicasBody)) {
+                
                 return res.render(path.resolve('./', './src/views/products/editarProducto'), {
                     errors: {
                         caracteristica1: {
                             msg: 'Las características deben ser diferentes entre sí'
+                            
                         },
                         caracteristica2: {
                             msg: 'Las características deben ser diferentes entre sí'

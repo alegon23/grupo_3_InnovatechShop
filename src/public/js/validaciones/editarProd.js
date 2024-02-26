@@ -32,6 +32,16 @@ const inputValidations= [
             },
         ]
     },
+    {
+        inputName: "esDestacado",
+        type: ["onTime", "submit"],
+        validations: [
+            {
+                validator: (input) => !validator.isEmpty(input),
+                errorMsg: "Debes indicar si el producto es destacado"
+            }
+        ]
+    },
     {   
         inputName: "stock",
         validations: [
@@ -114,6 +124,25 @@ window.addEventListener("load", function () {
         });
     });
 
+
+     //* valida si el producto es destacado no puede tener descuento
+     const porcentaje = form["porcentaje"];
+     const selectDestacado = form["esDestacado"]
+ 
+     selectDestacado.addEventListener("change", function() {
+         const inputParent = selectDestacado.parentElement;
+         
+         if (selectDestacado.value == 'true' && porcentaje.value != 0) {
+             inputParent.querySelector('.error').innerHTML = 'Los productos con descuento no pueden destacarse'
+         } else {
+             if (selectDestacado.value == '') {
+                 inputParent.querySelector('.error').innerHTML = inputValidations[2].validations[0].errorMsg
+             } else {
+                 inputParent.querySelector('.error').innerHTML = ''
+             }
+         }
+     });
+
     
  //funcion que valida  imagenes
  const extensiones=["jpg","jpeg","png","gif"];
@@ -133,17 +162,17 @@ inputImagenPrincipal.addEventListener("change", function(e) {
     
     const valid = isExtension(inputImagenPrincipal.value);
     if (!valid) {
-        console.log("error")
+        
         container.querySelector(".error").innerHTML = "Las extensiones permitidas son .jpg, .jpg, .png, .gif";
     }else{
-        console.log("muy bien")
+        
         container.querySelector(".error").innerHTML = "";
     }
 })
 
 //capturo las imagenes extras
-const inputImagenesExtra = form["imagenesExtra"];
-const conteiner=inputImagenesExtra.parentElement;
+var inputImagenesExtra = form["imagenesExtra"];
+var conteiner=inputImagenesExtra.parentElement;
 //evento change que se dispara cuando se sube una imagen extra
 inputImagenesExtra.addEventListener("change", function(e) {
     const archivosSubidos = inputImagenesExtra.files;
@@ -165,44 +194,38 @@ inputImagenesExtra.addEventListener("change", function(e) {
 //valido los select
 var selectValores=[];
 //obtengo todos los select con clase caracteristica
-const selects=document.querySelectorAll("select.caracteristica")
-
-
-    
+var selects=document.querySelectorAll("select.caracteristica")
 selects.forEach((select)=>{
      //meto los valores actuales de los select en el array selectValores
     selects.forEach((select)=>{
     selectValores.push(select.value)
 });
-   
     //obtengo el padre del select actual
     const padreSelect=select.parentElement;
     //agrego un evento change que se dispare cuando cambie el valor de la caracteristica
     select.addEventListener("change", function (e) {
-        //determino si el valor al que se cambio la caracteristica ya se encuntra seleccionado
-        const valido= selectValores.includes(select.value);
-      
-        if (valido) {
+            //determino si el valor al que se cambio la caracteristica ya se encuntra seleccionado
+            const valido= selectValores.includes(select.value);
+            if (valido) {
             
-            padreSelect.querySelector(".error").innerHTML ="Las caracteristicas deben ser diferentes";
-        } else {
-            padreSelect.querySelector(".error").innerHTML = "";
-        }
-
+                padreSelect.querySelector(".error").innerHTML ="Las caracteristicas deben ser diferentes";
+            } else {
+                padreSelect.querySelector(".error").innerHTML = "";
+         };
+        
         selectValores=[];
         selects.forEach((select)=>{
             //meto los valores actuales de los select en el array selectValores
            selects.forEach((select)=>{
            selectValores.push(select.value)
        });
-
         
     });
     
     });
-
-    //* VALIDACION EN SUBMIT
- form.addEventListener("submit", function (e) {
+});
+//* VALIDACION EN SUBMIT
+form.addEventListener("submit", function (e) {
     //no se envia formulario
     e.preventDefault();
 
@@ -211,43 +234,79 @@ selects.forEach((select)=>{
 
     //por cada objeto de inputValidations
     inputValidations.forEach((inputToValidate) => {
-        //se obtiene input html
-        const input = form[inputToValidate.inputName];
+            //se obtiene input html
+            const input = form[inputToValidate.inputName];
 
-        //se obtiene padre de input - en este caso seria el div
-        const inputContainer = input.parentElement;
+            //se obtiene padre de input - en este caso seria el div
+            const inputContainer = input.parentElement;
 
-        //por cada objeto de inputValidations, se cicla sobre el array de validaciones
-        for (const validation of inputToValidate.validations) {
-            //se aplica el validador sobre el valor actual del input
-            const isValid = validation.validator(input.value);
+            //por cada objeto de inputValidations, se cicla sobre el array de validaciones
+            for (const validation of inputToValidate.validations) {
+                //se aplica el validador sobre el valor actual del input
+                const isValid = validation.validator(input.value);
 
-            //si es invalido -> muestra error + guarda en array
-            if (!isValid) {
-                errores.push(validation.errorMsg);
-                inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
-                return;
+                //si es invalido -> muestra error + guarda en array
+                if (!isValid) {
+                    errores.push(validation.errorMsg);
+                    inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
+                    return;
+                }
             }
-        }
 
-        inputContainer.querySelector(".error").innerHTML = "";
+            inputContainer.querySelector(".error").innerHTML = "";
+        
     });
+
+    //valido las imagenes
+    //capturo la imagen principal
+    const inputImagenPrincipal = form["imagenPrincipal"];
+    //capturo el padre de la imagen
+    const container =inputImagenPrincipal.parentElement;
+    if(!inputImagenPrincipal.value==""){
+        const valid = isExtension(inputImagenPrincipal.value);
+        if (!valid) {
+            errores.push(1);
+            container.querySelector(".error").innerHTML = "Las extensiones permitidas son .jpg, .jpg, .png, .gif";
+        }else{
+            container.querySelector(".error").innerHTML = "";
+        };
+
+    }
+   
+
+    //valido las imagenes extras
+    const archivosSubidos = inputImagenesExtra.files;
+    for (const archivo of archivosSubidos){
+        const valid = isExtension(archivo.name);
+        if (!valid) {
+            errores.push(1);
+           conteiner.querySelector(".error").innerHTML = "Las extensiones permitidas son .jpg, .jpg, .png, .gif";
+            break;
+        }else{
+        
+            conteiner.querySelector(".error").innerHTML = "";
+        }
+    };
 
     //si no hay errores, envia el form. Si hay errores, muestra mensaje
     if (errores.length == 0) {
         form.submit();
     } else {
         const spanErrorSubmit = document.querySelector("span.errorSubmit");
+
         spanErrorSubmit.innerHTML = "Completa correctamente todos los campos"
         spanErrorSubmit.classList.add("error-submit")
-        document.querySelector("h2").style.marginBottom = "10px"
-    }
+    };
+   });
+    
+   
+
+
 });
 
-     
-   
-});
-});
+    
+
+
 
 
  
