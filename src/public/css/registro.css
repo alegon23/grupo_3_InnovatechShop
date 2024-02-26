@@ -70,7 +70,7 @@ body {
     margin-bottom: 10px;
 }
 
-.caja-registro{
+.caja-registro, .caja-perfil{
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -247,7 +247,7 @@ body {
         margin-left: 5px;
     }
     
-    .caja-registro{
+    .caja-registro, .caja-perfil{
         max-height: 75px;
     }
 

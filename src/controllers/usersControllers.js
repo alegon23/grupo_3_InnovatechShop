@@ -198,27 +198,39 @@ const usersController = {
                 }
 
                 if (nuevaContrasenia) {
-                    if (!confirmarContrasenia) {
+                    if (nuevaContrasenia == contraseniaActual) {
                         return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
                             errors: {
-                                confirmarContrasenia: {
-                                    msg: 'Debes confirmar la contraseña nueva',
+                                nuevaContrasenia: {
+                                    msg: 'La nueva contraseña coincide con la actual',
                                 },
                             },
                             oldData: req.body,
                             foundUser
                         });
                     } else {
-                        if (nuevaContrasenia != confirmarContrasenia) {
+                        if (!confirmarContrasenia) {
                             return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
                                 errors: {
-                                    nuevaContrasenia: {
-                                        msg: 'Las contraseñas no coinciden',
+                                    confirmarContrasenia: {
+                                        msg: 'Debes confirmar la contraseña nueva',
                                     },
                                 },
                                 oldData: req.body,
                                 foundUser
                             });
+                        } else {
+                            if (nuevaContrasenia != confirmarContrasenia) {
+                                return res.render(path.resolve('./', './src/views/users/editarPerfil'), {
+                                    errors: {
+                                        nuevaContrasenia: {
+                                            msg: 'Las contraseñas no coinciden',
+                                        },
+                                    },
+                                    oldData: req.body,
+                                    foundUser
+                                });
+                            }
                         }
                     }
                 };

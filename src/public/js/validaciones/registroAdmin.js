@@ -65,10 +65,11 @@ const inputValidations = [
     },
 ]
 
-//* validacion keyup
+
 window.addEventListener("load", function () {
     const form = document.querySelector("form.contenedor-registro");
 
+    //* validacion keyup
     inputValidations.forEach((inputToValidate) => {
         if(inputToValidate.type.includes("keyup")) {
             const input = form[inputToValidate.inputName];
@@ -92,29 +93,23 @@ window.addEventListener("load", function () {
         }
     });
 
-    //* VALIDACION EN SUBMIT
+    //* validacion submit
     form.addEventListener("submit", function (e) {
-        //no se envia formulario
         e.preventDefault();
 
-        //array de errores
         const errores = [];
 
-        //por cada objeto de inputValidations
         inputValidations.forEach((inputToValidate) => {
             if(inputToValidate.type.includes("submit")) {
-                //se obtiene input html
+
                 const input = form[inputToValidate.inputName];
     
-                //se obtiene padre de input - en este caso seria el div
                 const inputContainer = input.parentElement;
     
-                //por cada objeto de inputValidations, se cicla sobre el array de validaciones
                 for (const validation of inputToValidate.validations) {
-                    //se aplica el validador sobre el valor actual del input
+
                     const isValid = validation.validator(input.value);
     
-                    //si es invalido -> muestra error + guarda en array
                     if (!isValid) {
                         errores.push(validation.errorMsg);
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
@@ -126,7 +121,6 @@ window.addEventListener("load", function () {
             }
         });
 
-        //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
             form.submit();
         } else {
