@@ -354,10 +354,13 @@ window.addEventListener("load", function () {
             }
         }
 
+        
+
         //validacion del porcentaje y producto destacado
         const porcentaje = form["porcentaje"];
         const destacado = form["esDestacado"]
         const porcentajeParent = porcentaje.parentElement;
+
 
         if (porcentaje.value == '') {
             porcentajeParent.querySelector('.error').innerHTML = inputValidations[4].validations[0].errorMsg
