@@ -15,7 +15,8 @@
 
         <div class="iconos-movil">
             <a href="#" id="icono-busqueda"><i class="bi bi-search icono-busqueda"></i></a>
-        
+
+            <!--PARA MOVIL-->
             <% if (locals.usuarioLog) { %>
                 <a href="../../users/perfil/<%= locals.usuarioLog.idUser %>" class="boton-cuenta-movil"><i class="bi bi-person-check"></i></a>
             <% } else {%>
@@ -23,11 +24,14 @@
             <% } %>
 
             <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
-                <a href="../../users/registro-admin" class="boton-cuenta-movil"><i class="bi bi-person-plus"></i></a>
+                <!--<a href="../../users/registro-admin" class="boton-cuenta-movil"><i class="bi bi-person-plus"></i></a>-->
+                <a href="../../users/menu-admin" class="boton-cuenta-movil"><i class="bi bi-three-dots-vertical"></i></a>
             <% } else{%>
                 <a href="../../products/carrito" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
             <% } %>
         </div>
+
+        <!--PARA COMPUTADORA-->
 
         <% if (locals.usuarioLog) { %>
             <a href="../../users/perfil/<%= locals.usuarioLog.idUser %>" class="boton-cuenta"><i class="bi bi-person-check"></i> Hola <%= locals.usuarioLog.firstName.charAt(0).toUpperCase() + locals.usuarioLog.firstName.slice(1) %>! </a>
@@ -36,7 +40,8 @@
         <% } %>
 
         <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) {%>
-            <a href="../../users/registro-admin" class="boton-cuenta"><i class="bi bi-person-plus"></i> Añadir Admin</a>
+            <!-- <a href="../../users/registro-admin" class="boton-cuenta"><i class="bi bi-person-plus"></i> Añadir Admin</a> -->
+            <a href="../../users/menu-admin" class="boton-cuenta" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-person-lines-fill"></i> Menú Admin</a>
         <% } else{%>
             <a href="../../products/carrito" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>
         <% } %>        

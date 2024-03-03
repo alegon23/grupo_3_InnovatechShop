@@ -1,0 +1,283 @@
+body {
+  background: rgb(133, 247, 255);
+  background: radial-gradient(
+    circle,
+    rgba(133, 247, 255, 1) 0%,
+    rgba(158, 143, 255, 0.5) 100%
+  );
+}
+
+#main-menuAdmin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  min-height: 800px;
+}
+
+.logo-menuAdmin {
+  position: absolute;
+  width: 120px;
+  top: -50px;
+  transition: transform 500ms;
+}
+
+.logo-menuAdmin:hover {
+  transform: rotateY(360deg);
+}
+
+.container-menuAdmin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 5px black;
+  border-radius: 60px;
+  width: 90%;
+  padding: 30px;
+  background-color: white;
+  position: relative;
+}
+
+.caja-form-menuAdmin {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+}
+
+.caja-form-menuAdmin h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.caja-form-menuAdmin h3 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+.container-btns-menuAdmin button a{
+    text-decoration: none;
+    color: black;
+}
+
+.divider{
+  border: 1px dashed #9e8fff;
+  width: 90%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.error-submit {
+  color: rgba(255, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
+
+.caja-menuAdmin{
+  display: flex;
+  flex-direction: column;
+}
+
+form input[type="text"] {
+  border: none;
+  border-bottom: solid 1px black;
+  margin: 5px 0;
+  text-align: center;
+}
+
+form input:focus {
+  outline: none;
+  border-bottom: solid 2px #9e8fff;
+}
+
+form input:focus::placeholder {
+  color: transparent;
+}
+
+span.feedback-negativo {
+  color: rgba(255, 0, 0, 0.8);
+  font-size: 11px;
+}
+
+form button {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    background-color: transparent;
+    text-decoration: none;
+    color: black;
+    margin: 5px 0;
+}
+
+.form_caracteristica button:hover {
+  background-color: #e5e1ff;
+  border: 1px solid #e5e1ff;
+  color: black
+}
+
+.form_caracteristica button:active {
+  background-color: white;
+  border: 1px solid white;;
+  color: black
+}
+
+.container-btns-menuAdmin button, .btnCaracteristica, .btnMarca, .btnCategoria {
+  border: none;
+  border-radius: 100px;
+  text-align: center;
+  background-color: #9e8fff;
+  padding: 8px;
+  text-decoration: none;
+  color: black;
+  margin: 10px 0;
+}
+
+.container-btns-menuAdmin button {
+    margin: 10px 0;
+}
+
+form button:hover {
+  background-color: black;
+  color: white;
+}
+
+form button:active {
+  background-color: #85f7ff;
+  color: black;
+}
+
+hr {
+  width: 100%;
+}
+
+.footer-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.footer-form .volver-tienda {
+  text-decoration: none;
+  color: #9e8fff;
+}
+
+.footer-form a {
+  text-decoration: none;
+  color: #007fff;
+}
+
+.footer-form a:hover {
+  text-decoration: underline;
+}
+
+.footer-form p {
+  margin: 0;
+  color: gray;
+  font-style: italic;
+}
+
+.oculto{
+    display: none;
+}
+  
+.form_caracteristica_mostrar, .form_marca_mostrar, .form_categoria_mostrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 480px) {
+  .caja-form-menuAdmin h2{
+    font-size: 21px;
+  }
+
+  .caja-form-menuAdmin h3{
+    font-size: 17px;
+  }
+
+  .caja-form-menuAdmin {
+    font-size: 16px;
+  }
+
+  .footer-form {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 768px) {
+  .caja-form-menuAdmin h2{
+    font-size: 22px;
+  }
+
+  .caja-form-menuAdmin h3{
+    font-size: 18px;
+  }
+
+  .container-menuAdmin {
+    width: 70%;
+    padding: 30px 50px;
+  }
+
+  span.feedback-negativo {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 992px) {
+  .caja-form-menuAdmin h2{
+    font-size: 23px;
+  }
+
+  .caja-form-menuAdmin h3{
+    font-size: 19px;
+  }
+
+  .container-menuAdmin {
+    width: 80%;
+  }
+
+  .caja-form-menuAdmin {
+    font-size: 17px;
+  }
+
+  .footer-form {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .caja-form-menuAdmin {
+    padding: 30px 0 0 0;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .caja-form-menuAdmin h2{
+    font-size: 24px;
+  }
+
+  .caja-form-menuAdmin h3{
+    font-size: 20px;
+  }
+
+  .caja-formulario {
+    font-size: 18px;
+  }
+
+  .footer-form {
+    font-size: 16px;
+  }
+
+  .feedback-negativo {
+    font-size: 14px;
+  }
+}

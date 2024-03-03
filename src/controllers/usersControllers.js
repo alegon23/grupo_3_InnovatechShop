@@ -278,6 +278,10 @@ const usersController = {
         }
     },
 
+    mostrarMenu: (req, res) => {
+        res.render(path.resolve('./', './src/views/users/menuAdmin'))
+    },
+
     registroAdmin: (req, res) =>{
         res.render(path.resolve('./', './src/views/users/registroAdmin'))
     },
