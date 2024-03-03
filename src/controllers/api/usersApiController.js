@@ -5,13 +5,16 @@ const usersApiController = {
     list: async (req, res) => {
 
         try {
-            const users = await db.User.findAll({
+            const usersList = await db.User.findAll({
                 attributes: {exclude: [ 'password', 'birthdate', 'avatar','idRoleFK' ]}
             })
 
-            const userDetail = users.map((user) => {
+            const users = usersList.map((user) => {
                 return {
-                    user,
+                    idUser: user.idUser,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
                     detalle: `/api/users/${user.idUser}`,
                 }
             })
@@ -19,13 +22,10 @@ const usersApiController = {
             res.json({
                 meta: {
                     status: 200,
-                    count: users.length,
+                    count: usersList.length,
                     url: req.originalUrl
                 },
-                data: {
-                    ...userDetail,
-
-                }
+                users,
             })
 
         } catch (error){ 
@@ -48,9 +48,7 @@ const usersApiController = {
                     status: 200,
                     url: req.originalUrl
                 },
-                data: {
-                    user
-                }
+                user
             })
 
         } catch (error) {
