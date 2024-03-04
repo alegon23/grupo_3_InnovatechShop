@@ -25,10 +25,6 @@ module.exports = {
             type: DataTypes.INTEGER(10).UNSIGNED,
             allowNull: false,
         },
-        mainProduct: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
         description: {
             type: DataTypes.TEXT,
             allowNull: false,

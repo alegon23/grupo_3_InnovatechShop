@@ -5,27 +5,28 @@ const usersApiController = {
     list: async (req, res) => {
 
         try {
-            const usersList = await db.User.findAll({
+            const users = await db.User.findAll({
                 attributes: {exclude: [ 'password', 'birthdate', 'avatar','idRoleFK' ]}
             })
 
-            const users = usersList.map((user) => {
+            const userDetail = users.map((user) => {
                 return {
-                    idUser: user.idUser,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.email,
+                    user,
                     detalle: `/api/users/${user.idUser}`,
                 }
             })
 
+
             res.json({
                 meta: {
                     status: 200,
-                    count: usersList.length,
+                    count: users.length,
                     url: req.originalUrl
                 },
-                users,
+                data: {
+                    ...userDetail,
+
+                }
             })
 
         } catch (error){ 
@@ -42,14 +43,21 @@ const usersApiController = {
             const user = await db.User.findByPk(req.params.id, {
                 attributes: {exclude: [ 'password', 'idRoleFK' ]}
             })
+            if(user){
+                res.json({
+                    meta: {
+                        status: 200,
+                        url: req.originalUrl
+                    },
+                    data: {
+                        user
+                    }
+                })
+            }else{
+                throw new Error("Usuario inexistente");
+            }
 
-            res.json({
-                meta: {
-                    status: 200,
-                    url: req.originalUrl
-                },
-                user
-            })
+           
 
         } catch (error) {
             res.json({

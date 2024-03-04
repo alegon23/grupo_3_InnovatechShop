@@ -4,6 +4,22 @@ La retrospectiva se hizo siguiendo la metodología de "Estrella de Mar", que pla
 <img src="https://gustavoveliz.files.wordpress.com/2009/05/startechnique1.gif" alt="retrospectiva de la estrella de mar" width=338px>
 <br>
 
+## Sprint 8
+
+### Comenzar a hacer:
+- Priorizar tareas pendientes no obligatorias, preparándonos para presentación del proyecto
+
+### Seguir haciendo:
+- Comunicación por el grupo
+- Comentar avances y dudas
+- Reuniones cuando sean necesarias + organización de tareas.
+- Realizar comentarios en el código.
+
+### Menos de & Dejar de hacer:
+- Ídem retrospectivas anteriores
+
+<hr>
+
 ## Sprint 7
 
 ### Al comienzo del sprint 6, se realizó un reagrupamiento, por los siguientes motivos:

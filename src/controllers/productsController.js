@@ -200,20 +200,7 @@ const productsController = {
             });
         }
 
-        /*if (porcentaje != 0 && esDestacado === 'true' ) {
-            return res.render(path.resolve('./', './src/views/products/crearProducto'), {
-                errors: {
-                    porcentaje: {
-                        msg: 'Un producto destacado no puede tener descuento'
-                    }
-                },
-                oldData: req.body,
-                categorias,
-                marcas,
-                caracteristicas
-            });
-        }*/
-
+       
         //se da de alta el producto
         let nuevoProducto = {
             productName: nombre,
