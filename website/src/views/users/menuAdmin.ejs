@@ -21,11 +21,11 @@
                     <hr class="divider">
                     <span class="errorSubmit"></span>
                     <button class="btnCaracteristica">Añadir nueva característica</button>
-                    <form action="" class="form_caracteristica oculto">
+                    <form action="/products/nuevaCaracteristica" method="POST" class="form_caracteristica oculto">
                         <div>
                             <div class="caja-menuAdmin">
                                 <label>Nombre de la característica</label>
-                                <input type="text" placeholder="Ej: Memoria RAM"/>
+                                <input type="text" name="nombreCaracteristica" placeholder="Ej: Memoria RAM" value="<%= locals.oldData && oldData.nombreCaracteristica %>"/>
                                 <span class="error feedback-negativo"></span>
                             </div>
                             <% if(locals.errors && errors.nombreCaracteristica) { %>
@@ -33,7 +33,7 @@
                             <% } %>
                             <div class="caja-menuAdmin">
                                 <label>Descripción de la caracteristica</label>
-                                <input type="text" placeholder="Ej: 3 GB"/>
+                                <input type="text" name="descriptCaracteristica" placeholder="Ej: 3 GB" value="<%= locals.oldData && oldData.descriptCaracteristica %>"/>
                                 <span class="error feedback-negativo"></span>
                             </div>
                             <% if(locals.errors && errors.descriptCaracteristica) { %>
@@ -45,27 +45,27 @@
                     </form>
                     
                     <button class="btnMarca">Añadir nueva marca</button>
-                    <form action="" class="form_marca oculto">
+                    <form action="/products/nuevaMarca" method="POST" class="form_marca oculto">
                         <div>  
                             <div class="caja-menuAdmin">
                                 <label>Nombre de la marca</label>
-                                <input type="text" placeholder="Ej: Samsung"/>
+                                <input type="text" name="nombreMarca" placeholder="Ej: Samsung" value="<%= locals.oldData && oldData.nombreMarca %>"/>
                                 <span class="error feedback-negativo"></span>
                             </div>
                             <% if(locals.errors && errors.nombreMarca) { %>
                                 <span class="feedback-negativo"><%= errors.nombreMarca.msg %></span>
                             <% } %>
-                            <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
+                            <button type="submit" class="guardar">Guardar <i class="bi bi-database-check"></i></button>
                         </div>
                         <a href="/users/menu-admin">Atrás</a>
                     </form>
 
                     <button class="btnCategoria">Añadir nueva categoría</button>
-                    <form action="" class="form_categoria oculto">
+                    <form action="/products/nuevaCategoria" method="POST" class="form_categoria oculto">
                         <div>  
                             <div class="caja-menuAdmin">
                                 <label>Nombre de la categoría</label>
-                                <input type="text" placeholder="Ej: Tablets"/>
+                                <input type="text" name="nombreCategoria" placeholder="Ej: Tablets" value="<%= locals.oldData && oldData.nombreCategoria %>"/>
                                 <span class="error feedback-negativo"></span>
                             </div>
                             <% if(locals.errors && errors.nombreCategoria) { %>
@@ -77,6 +77,8 @@
                     </form>
             </div>
 
+            <p class="mensaje"><%= locals.mensaje && locals.mensaje %></p>
+            
             <hr>
 
             <div class="footer-form">

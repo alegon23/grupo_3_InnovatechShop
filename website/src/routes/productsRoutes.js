@@ -4,6 +4,7 @@ const productsController = require('../controllers/productsController');
 const uploadImg = require("../middleware/multer");
 const validacionesProducto = require('../middleware/validatorProd');
 const validacionesProductoEditar = require('../middleware/validatorProdEdit');
+const {validacionesCaracteristicas, validacionesCategoria, validacionesMarca} = require('../middleware/validatorMenuAdmin')
 const guestAdminMiddleware = require('../middleware/guestAdminMiddleware')
 const authAdminMiddleware = require('../middleware/authAdminMiddleware')
 
@@ -34,5 +35,14 @@ router.put('/editarProducto/:id', uploadImgs, validacionesProductoEditar, produc
 
 //Borrar productos
 router.delete('/:id', authAdminMiddleware, productsController.borrar)
+
+//para menu admin -> marca
+router.post('/nuevaMarca', validacionesMarca, productsController.crearMarca)
+
+//para menu admin -> categoria
+router.post('/nuevaCategoria', validacionesCategoria, productsController.crearCategoria)
+
+//para menu admin -> caracteristicas
+router.post('/nuevaCaracteristica', validacionesCaracteristicas, productsController.crearCaracteristica)
 
 module.exports = router;

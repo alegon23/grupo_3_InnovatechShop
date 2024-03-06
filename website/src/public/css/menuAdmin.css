@@ -165,6 +165,10 @@ form a:hover{
   text-decoration: underline;
 }
 
+.mensaje{
+  color: #9e8fff;
+}
+
 hr {
   width: 100%;
 }
@@ -207,6 +211,8 @@ hr {
     justify-content: center;
     align-items: center;
 }
+
+
 
 @media (min-width: 480px) {
   .caja-form-menuAdmin h2{

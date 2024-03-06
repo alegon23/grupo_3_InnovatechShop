@@ -481,6 +481,118 @@ const productsController = {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
+    crearMarca: async (req, res) => {
+        try {
+            const errors = validationResult(req);
+        
+             if (!errors.isEmpty()) {
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {errors: errors.mapped(), oldData: req.body});
+            }
+
+            let { nombreMarca } = req.body;
+
+            const foundBrand = await db.Brand.findOne({
+                where: {brandName: nombreMarca},
+            })
+
+            if (foundBrand != null) {
+               return res.render(path.resolve('./', './src/views/users/menuAdmin'), {
+                    errors: {
+                        nombreMarca: {
+                            msg: 'Esta marca ya existe'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            await db.Brand.create({
+                brandName: nombreMarca
+            })
+
+            return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensaje: `La marca ${nombreMarca} se dió de alta`});
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    crearCategoria: async (req, res) => {
+        try {
+            const errors = validationResult(req);
+        
+             if (!errors.isEmpty()) {
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {errors: errors.mapped(), oldData: req.body});
+            }
+
+            let { nombreCategoria } = req.body;
+
+            const foundCategory = await db.Category.findOne({
+                where: {categoryName: nombreCategoria},
+            })
+
+            if (foundCategory != null) {
+               return res.render(path.resolve('./', './src/views/users/menuAdmin'), {
+                    errors: {
+                        nombreCategoria: {
+                            msg: 'Esta categoria ya existe'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            await db.Category.create({
+                categoryName: nombreCategoria
+            })
+
+            return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensaje: `La categoría ${nombreCategoria} se dió de alta`});
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    crearCaracteristica: async (req, res) => {
+        try {
+            const errors = validationResult(req);
+        
+             if (!errors.isEmpty()) {
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {errors: errors.mapped(), oldData: req.body});
+            }
+
+            let {nombreCaracteristica, descriptCaracteristica} = req.body;
+
+            const caracteristicaCompleta = nombreCaracteristica + ": " + descriptCaracteristica;
+
+            const foundFeature = await db.Feature.findOne({
+                where: {
+                    feature: {
+                        [db.Sequelize.Op.like]: `%${caracteristicaCompleta}%`}
+                    },
+            })
+
+            if (foundFeature != null) {
+               return res.render(path.resolve('./', './src/views/users/menuAdmin'), {
+                    errors: {
+                        descriptCaracteristica: {
+                            msg: 'Esta caracteristica ya existe'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            await db.Feature.create({
+                feature: caracteristicaCompleta
+            })
+
+            return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensaje: `La caracteristica ${caracteristicaCompleta} se dió de alta`});
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
 }
 
 module.exports = productsController;

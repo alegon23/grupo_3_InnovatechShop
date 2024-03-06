@@ -56,6 +56,4 @@ const validacionesProducto = [
     body('caracteristica4').notEmpty().withMessage("Debes seleccionar una caracteristica"),
 ];
 
-//! Faltan validar las imagenes
-
 module.exports = validacionesProducto;
