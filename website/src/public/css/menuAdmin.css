@@ -113,15 +113,17 @@ form button {
     text-decoration: none;
     color: black;
     margin: 5px 0;
+    width: 100%;
+    padding: 3px;
 }
 
-.form_caracteristica button:hover {
+.form_caracteristica button:hover, .form_marca button:hover, .form_categoria button:hover {
   background-color: #e5e1ff;
   border: 1px solid #e5e1ff;
   color: black
 }
 
-.form_caracteristica button:active {
+.form_caracteristica button:active, .form_marca button:active, .form_categoria button:active {
   background-color: white;
   border: 1px solid white;;
   color: black
@@ -142,14 +144,25 @@ form button {
     margin: 10px 0;
 }
 
-form button:hover {
+button.btnCategoria:hover,button.btnCaracteristica:hover, button.btnMarca:hover {
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
-form button:active {
+button:active {
   background-color: #85f7ff;
   color: black;
+}
+
+form a {
+  text-decoration: none;
+  color: #007fff;
+  margin-top: 5px;
+}
+
+form a:hover{
+  text-decoration: underline;
 }
 
 hr {

@@ -22,57 +22,65 @@
                     <span class="errorSubmit"></span>
                     <button class="btnCaracteristica">Añadir nueva característica</button>
                     <form action="" class="form_caracteristica oculto">
-                        <div class="caja-menuAdmin">
-                            <label>Nombre de la característica</label>
-                            <input type="text" placeholder="Ej: Memoria RAM"/>
-                            <span class="error feedback-negativo"></span>
+                        <div>
+                            <div class="caja-menuAdmin">
+                                <label>Nombre de la característica</label>
+                                <input type="text" placeholder="Ej: Memoria RAM"/>
+                                <span class="error feedback-negativo"></span>
+                            </div>
+                            <% if(locals.errors && errors.nombreCaracteristica) { %>
+                                <span class="feedback-negativo"><%= errors.nombreCaracteristica.msg %></span>
+                            <% } %>
+                            <div class="caja-menuAdmin">
+                                <label>Descripción de la caracteristica</label>
+                                <input type="text" placeholder="Ej: 3 GB"/>
+                                <span class="error feedback-negativo"></span>
+                            </div>
+                            <% if(locals.errors && errors.descriptCaracteristica) { %>
+                                <span class="feedback-negativo"><%= errors.descriptCaracteristica.msg %></span>
+                            <% } %>
+                            <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
                         </div>
-                        <% if(locals.errors && errors.nombreCaracteristica) { %>
-                            <span class="feedback-negativo"><%= errors.nombreCaracteristica.msg %></span>
-                        <% } %>
-                        <div class="caja-menuAdmin">
-                            <label>Descripción de la caracteristica</label>
-                            <input type="text" placeholder="Ej: 3 GB"/>
-                            <span class="error feedback-negativo"></span>
-                        </div>
-                        <% if(locals.errors && errors.descriptCaracteristica) { %>
-                            <span class="feedback-negativo"><%= errors.descriptCaracteristica.msg %></span>
-                        <% } %>
-                        <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
-                        <span>Atras</span>
+                        <a href="/users/menu-admin">Atrás</a>
                     </form>
                     
                     <button class="btnMarca">Añadir nueva marca</button>
                     <form action="" class="form_marca oculto">
-                        <div class="caja-menuAdmin">
-                            <label>Nombre de la marca</label>
-                            <input type="text" placeholder="Ej: Samsung"/>
-                            <span class="error feedback-negativo"></span>
+                        <div>  
+                            <div class="caja-menuAdmin">
+                                <label>Nombre de la marca</label>
+                                <input type="text" placeholder="Ej: Samsung"/>
+                                <span class="error feedback-negativo"></span>
+                            </div>
+                            <% if(locals.errors && errors.nombreMarca) { %>
+                                <span class="feedback-negativo"><%= errors.nombreMarca.msg %></span>
+                            <% } %>
+                            <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
                         </div>
-                        <% if(locals.errors && errors.nombreMarca) { %>
-                            <span class="feedback-negativo"><%= errors.nombreMarca.msg %></span>
-                        <% } %>
-                        <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
+                        <a href="/users/menu-admin">Atrás</a>
                     </form>
 
                     <button class="btnCategoria">Añadir nueva categoría</button>
                     <form action="" class="form_categoria oculto">
-                        <div class="caja-menuAdmin">
-                            <label>Nombre de la categoría</label>
-                            <input type="text" placeholder="Ej: Tablets"/>
-                            <span class="error feedback-negativo"></span>
-                        </div>
-                        <% if(locals.errors && errors.nombreCategoria) { %>
-                            <span class="feedback-negativo"><%= errors.nombreCategoria.msg %></span>
-                        <% } %>
-                        <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
+                        <div>  
+                            <div class="caja-menuAdmin">
+                                <label>Nombre de la categoría</label>
+                                <input type="text" placeholder="Ej: Tablets"/>
+                                <span class="error feedback-negativo"></span>
+                            </div>
+                            <% if(locals.errors && errors.nombreCategoria) { %>
+                                <span class="feedback-negativo"><%= errors.nombreCategoria.msg %></span>
+                            <% } %>
+                            <button type="submit">Guardar <i class="bi bi-database-check"></i></button>
+                        </div> 
+                        <a href="/users/menu-admin">Atras</a>
                     </form>
             </div>
 
             <hr>
 
             <div class="footer-form">
-                <a href="/" class="volver-tienda">Volver a la tienda</i></a>
+                <a href="/" class="volver-tienda"><i class="bi bi-caret-left"></i> Volver a la tienda</i></a>
                 <p>Copyright © 2023</p>
             </div>
         </div>
