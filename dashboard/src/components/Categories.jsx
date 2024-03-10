@@ -1,5 +1,25 @@
+import {useState, useEffect} from 'react';
+
 const Categories = () => {
-    const categories = ["Celulares", "Monitores", "Tablets", "Notebooks", "Hardware", "Accesorios"];
+    //const categories = ["Celulares", "Monitores", "Tablets", "Notebooks", "Hardware", "Accesorios"];
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const obtenerCategorias = async () => {
+          try {
+            const res = await fetch(
+              `http://localhost:8080/api/products`
+            );
+            const data = await res.json();
+            //console.log(data.meta.countByCategory)
+            setCategories(data.meta.countByCategory || []);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        obtenerCategorias();
+      }, []);
     
       return (
         <div className="col-lg-6 mb-4">						
@@ -10,11 +30,11 @@ const Categories = () => {
                 <div className="card-body">
                     <div className="row">
     
-                        { categories.map( (genre, index) => 
-                            <div className="col-lg-6 mb-4" key={index}>
+                        { categories.map( (objeto, index) => 
+                            <div className="col-lg-6 mb-4" key={index + objeto.categoria}>
                                 <div className="card bg-dark text-white shadow">
                                     <div className="card-body text-center">
-                                        {genre}
+                                        {objeto.categoria}: {objeto.cantidad}
                                     </div>
                                 </div>
                             </div>

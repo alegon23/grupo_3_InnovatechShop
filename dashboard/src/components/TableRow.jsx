@@ -1,37 +1,28 @@
 import PropTypes from 'prop-types';
 
-const ChartRow = ({Title, Length, Rating, Categories, Awards}) => {
+const ChartRow = ({idProduct, productName, category, detalle}) => {
     return (
                 <tr>
-                    <td>{Title}</td>
-                    <td>{Length}</td>
-                    <td>{Rating}</td>
-                    <td>
-                        <ul>
-                            {Categories.map( (category,i) => 
-                                <li key={`category ${i}`}>{category}</li>
-                            )}
-                        </ul>
-                    </td>
-                    <td>{Awards}</td>
+                    <td>{idProduct}</td>
+                    <td>{productName}</td>
+                    <td>{category}</td>
+                    <td>{detalle}</td>
                 </tr>
             )
     }
     
     ChartRow.propTypes = {
-        Title: PropTypes.string.isRequired,
-        Length: PropTypes.string,
-        Rating: PropTypes.string,
-        Categories: PropTypes.array,
-        Awards: PropTypes.number
+        idProduct: PropTypes.number,
+        productName: PropTypes.string,
+        category: PropTypes.string,
+        detalle: PropTypes.string
     }
     
     ChartRow.defaultProps = {
-        Title: "",
-        Length: "",
-        Rating: "",
-        Categories: [],
-        Awards: 0
+        idProduct: 0,
+        productName: "",
+        category: "",
+        detalle: ""
     }
         
 
