@@ -23,7 +23,6 @@ const inputValidations = [
                     //console.log(data);
                     return data.existe
                     //}, 1500)
-                    
                 },
                 errorMsg: "El email no existe"
             }
@@ -83,7 +82,7 @@ window.addEventListener("load", function () {
         const errores = [];
 
         //por cada objeto de inputValidations
-        inputValidations.forEach((inputToValidate) => {
+        inputValidations.forEach( async (inputToValidate) => {
             //se obtiene input html
             const input = form[inputToValidate.inputName];
 
@@ -93,7 +92,9 @@ window.addEventListener("load", function () {
             //por cada objeto de inputValidations, se cicla sobre el array de validaciones
             for (const validation of inputToValidate.validations) {
                 //se aplica el validador sobre el valor actual del input
-                const isValid = validation.validator(input.value);
+                const isValid = await validation.validator(input.value)
+                
+                console.log(isValid);
 
                 //si es invalido -> muestra error + guarda en array
                 if (!isValid) {
@@ -108,7 +109,7 @@ window.addEventListener("load", function () {
 
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
-            form.submit();
+            // form.submit();
         } else {
             const spanErrorSubmit = document.querySelector("span.errorSubmit");
             spanErrorSubmit.innerHTML = "Completa correctamente todos los campos"

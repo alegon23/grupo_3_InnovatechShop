@@ -39,6 +39,34 @@ const inputValidations = [
     //         }
     //     ]
     // },
+    // {
+    //     inputName: "nombre",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "El nombre es obligatorio"
+    //         },
+    //         {
+    //             validator: (input) => validator.isLength(input, {min: 2}),
+    //             errorMsg: "El nombre es muy corto"
+    //         }
+    //     ]
+    // },
+    // {
+    //     inputName: "apellido",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "El apellido es obligatorio"
+    //         },
+    //         {
+    //             validator: (input) => validator.isLength(input, {min: 2}),
+    //             errorMsg: "El apellido es muy corto"
+    //         }
+    //     ]
+    // },
     {
         inputName: "email",
         type: ["keyup", "submit"],
@@ -115,6 +143,60 @@ const inputValidations = [
     //         },
     //     ]
     // },
+    // {
+    //     inputName: "contrasenia",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "La contraseña es obligatoria"
+    //         },
+    //         {
+    //             validator: (input) => validator.isLength(input, {min: 8}),
+    //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
+    //         },
+    //         {
+    //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
+    //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
+    //         }
+    //     ]
+    // },
+    // {
+    //     inputName: "fecha",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             //por ejemplo poner 31/02
+    //             validator: (input) => validator.isISO8601(input),
+    //             errorMsg: "La fecha no tiene formato valido"
+    //         },
+    //         {
+    //             //controla que no se pongan fechas mayores a las de hoy
+    //             validator: (input) => !validator.isAfter(input),
+    //             errorMsg: "La fecha no es valida"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "confirmarContrasenia",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "Debes confirmar la contraseña"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "avatar",
+    //     type: ["submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => validacionExtension(input),
+    //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
+    //         },
+    //     ]
+    // },
 ]
 
 //* validacion keyup
@@ -127,10 +209,10 @@ window.addEventListener("load", function () {
     
             const inputContainer = input.parentElement;
             
-            input.addEventListener("keyup", async function (e) {
+            input.addEventListener("keyup", function (e) {
                 for (const validation of inputToValidate.validations) {
     
-                    const isValid = await validation.validator(e.target.value);
+                    const isValid = validation.validator(e.target.value);
     
                     if (!isValid) {
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
@@ -165,7 +247,7 @@ window.addEventListener("load", function () {
     })
 
     //* VALIDACION EN SUBMIT
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
         //no se envia formulario
         e.preventDefault();
 
