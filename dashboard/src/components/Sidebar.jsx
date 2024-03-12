@@ -38,6 +38,11 @@ const Sidebar = () => {
             <Icon.Table /> <span>Tables</span></a>
         </li>
 
+        <li className="nav-item">
+            <a className="nav-link" href="http://localhost:8080" target="_blank">
+            <Icon.Cart4 /><span> Innovatech Shop</span></a>
+        </li>
+
         <hr className="sidebar-divider d-none d-md-block" />
         </ul>
     </>

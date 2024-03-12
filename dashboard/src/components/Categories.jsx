@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 
 const Categories = () => {
-    //const categories = ["Celulares", "Monitores", "Tablets", "Notebooks", "Hardware", "Accesorios"];
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -11,7 +10,6 @@ const Categories = () => {
               `http://localhost:8080/api/products`
             );
             const data = await res.json();
-            //console.log(data.meta.countByCategory)
             setCategories(data.meta.countByCategory || []);
           } catch (error) {
             console.log(error);
@@ -29,7 +27,6 @@ const Categories = () => {
                 </div>
                 <div className="card-body">
                     <div className="row">
-    
                         { categories.map( (objeto, index) => 
                             <div className="col-lg-6 mb-4" key={index + objeto.categoria}>
                                 <div className="card bg-dark text-white shadow">
