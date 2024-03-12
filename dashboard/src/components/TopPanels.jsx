@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-
 const TopPanels = ({titulo, cifra, colorBorde, icono}) => {
 
   return (

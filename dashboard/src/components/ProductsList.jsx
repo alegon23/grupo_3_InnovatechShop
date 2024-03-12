@@ -1,25 +1,24 @@
 import TableRow from './TableRow';
-
-let tableRowsData = [
-    {
-        Title: 'Billy Elliot ',
-        Length: '123',
-        Rating: '5',
-        Categories: ['Drama','Comedia'],
-        Awards: 2
-    },
-    {
-        Title: 'Alicia en el país de las maravillas',
-        Length: '142',
-        Rating: '4.8',
-        Categories: ['Drama','Acción','Comedia'],
-        Awards: 3
-    },
-    
-]
-
+import {useState, useEffect} from 'react';
 
 const ProductsList = () => {
+    const [productos, setProductos] = useState([]);
+
+    useEffect(() => {
+        const obtenerProductos = async () => {
+          try {
+            const res = await fetch(
+              `http://localhost:8080/api/products`
+            );
+            const data = await res.json();
+            setProductos(data.products || []);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        obtenerProductos();
+      }, []);
     return (
         <div className="card shadow mb-4">
             <div className="card-body">
@@ -27,26 +26,17 @@ const ProductsList = () => {
                     <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                         <thead>
                             <tr>
-                                <th>Título</th>
-                                <th>Duración</th>
-                                <th>Rating</th>
-                                <th>Género</th>
-                                <th>Premios</th>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Detalle</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Título</th>
-                                <th>Duración</th>
-                                <th>Rating</th>
-                                <th>Género</th>
-                                <th>Premios</th>
-                            </tr>
-                        </tfoot>
+                        
                         <tbody>
                             {
-                            tableRowsData.map( ( row , i) => {
-                                return <TableRow { ...row} key={i}/>
+                            productos.map( ( producto ) => {
+                                return <TableRow idProduct={producto.idProduct} productName={producto.productName} category={producto.category} detalle={producto.detalle} key={producto.idProduct+producto.productName}/>
                             })
                             }
 
