@@ -82,7 +82,7 @@ window.addEventListener("load", function () {
         const errores = [];
 
         //por cada objeto de inputValidations
-        inputValidations.forEach( async (inputToValidate) => {
+        inputValidations.forEach(async (inputToValidate) => {
             //se obtiene input html
             const input = form[inputToValidate.inputName];
 
@@ -109,7 +109,7 @@ window.addEventListener("load", function () {
 
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
-            // form.submit();
+            form.submit();
         } else {
             const spanErrorSubmit = document.querySelector("span.errorSubmit");
             spanErrorSubmit.innerHTML = "Completa correctamente todos los campos"

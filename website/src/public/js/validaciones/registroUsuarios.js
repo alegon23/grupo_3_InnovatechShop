@@ -11,74 +11,74 @@ const validacionExtension = (input) => {
 let timeOutID;
 
 const inputValidations = [
-    // {
-    //     inputName: "nombre",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "El nombre es obligatorio"
-    //         },
-    //         {
-    //             validator: (input) => validator.isLength(input, {min: 2}),
-    //             errorMsg: "El nombre es muy corto"
-    //         }
-    //     ]
-    // },
-    // {
-    //     inputName: "apellido",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "El apellido es obligatorio"
-    //         },
-    //         {
-    //             validator: (input) => validator.isLength(input, {min: 2}),
-    //             errorMsg: "El apellido es muy corto"
-    //         }
-    //     ]
-    // },
-    // {
-    //     inputName: "nombre",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "El nombre es obligatorio"
-    //         },
-    //         {
-    //             validator: (input) => validator.isLength(input, {min: 2}),
-    //             errorMsg: "El nombre es muy corto"
-    //         }
-    //     ]
-    // },
-    // {
-    //     inputName: "apellido",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "El apellido es obligatorio"
-    //         },
-    //         {
-    //             validator: (input) => validator.isLength(input, {min: 2}),
-    //             errorMsg: "El apellido es muy corto"
-    //         }
-    //     ]
-    // },
+    {
+        inputName: "nombre",
+        type: ["keyup", "submit"],
+        validations: [
+            {
+                validator: (input) => !validator.isEmpty(input),
+                errorMsg: "El nombre es obligatorio"
+            },
+            {
+                validator: (input) => validator.isLength(input, {min: 2}),
+                errorMsg: "El nombre es muy corto"
+            }
+        ]
+    },
+    {
+        inputName: "apellido",
+        type: ["keyup", "submit"],
+        validations: [
+            {
+                validator: (input) => !validator.isEmpty(input),
+                errorMsg: "El apellido es obligatorio"
+            },
+            {
+                validator: (input) => validator.isLength(input, {min: 2}),
+                errorMsg: "El apellido es muy corto"
+            }
+        ]
+    },
+    {
+        inputName: "nombre",
+        type: ["keyup", "submit"],
+        validations: [
+            {
+                validator: (input) => !validator.isEmpty(input),
+                errorMsg: "El nombre es obligatorio"
+            },
+            {
+                validator: (input) => validator.isLength(input, {min: 2}),
+                errorMsg: "El nombre es muy corto"
+            }
+        ]
+    },
+    {
+        inputName: "apellido",
+        type: ["keyup", "submit"],
+        validations: [
+            {
+                validator: (input) => !validator.isEmpty(input),
+                errorMsg: "El apellido es obligatorio"
+            },
+            {
+                validator: (input) => validator.isLength(input, {min: 2}),
+                errorMsg: "El apellido es muy corto"
+            }
+        ]
+    },
     {
         inputName: "email",
         type: ["keyup", "submit"],
         validations: [
-            // {
-            //     validator: (input) => !validator.isEmpty(input),
-            //     errorMsg: "El email es obligatorio"
-            // },
-            // {
-            //     validator: (input) => validator.isEmail(input),
-            //     errorMsg: "El email tiene un formato incorrecto"
-            // },
+            {
+                validator: (input) => !validator.isEmpty(input),
+                errorMsg: "El email es obligatorio"
+            },
+            {
+                validator: (input) => validator.isEmail(input),
+                errorMsg: "El email tiene un formato incorrecto"
+            },
             {
                 validator: async (input) => {
                     const res = await fetch(`/users/validate/${input}`)
@@ -89,114 +89,114 @@ const inputValidations = [
             }
         ]
     },
-    // {
-    //     inputName: "contrasenia",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "La contraseña es obligatoria"
-    //         },
-    //         {
-    //             validator: (input) => validator.isLength(input, {min: 8}),
-    //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
-    //         },
-    //         {
-    //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
-    //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
-    //         }
-    //     ]
-    // },
-    // {
-    //     inputName: "fecha",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             //por ejemplo poner 31/02
-    //             validator: (input) => validator.isISO8601(input),
-    //             errorMsg: "La fecha no tiene formato valido"
-    //         },
-    //         {
-    //             //controla que no se pongan fechas mayores a las de hoy
-    //             validator: (input) => !validator.isAfter(input),
-    //             errorMsg: "La fecha no es valida"
-    //         },
-    //     ]
-    // },
-    // {
-    //     inputName: "confirmarContrasenia",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "Debes confirmar la contraseña"
-    //         },
-    //     ]
-    // },
-    // {
-    //     inputName: "avatar",
-    //     type: ["submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => validacionExtension(input),
-    //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
-    //         },
-    //     ]
-    // },
-    // {
-    //     inputName: "contrasenia",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "La contraseña es obligatoria"
-    //         },
-    //         {
-    //             validator: (input) => validator.isLength(input, {min: 8}),
-    //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
-    //         },
-    //         {
-    //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
-    //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
-    //         }
-    //     ]
-    // },
-    // {
-    //     inputName: "fecha",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             //por ejemplo poner 31/02
-    //             validator: (input) => validator.isISO8601(input),
-    //             errorMsg: "La fecha no tiene formato valido"
-    //         },
-    //         {
-    //             //controla que no se pongan fechas mayores a las de hoy
-    //             validator: (input) => !validator.isAfter(input),
-    //             errorMsg: "La fecha no es valida"
-    //         },
-    //     ]
-    // },
-    // {
-    //     inputName: "confirmarContrasenia",
-    //     type: ["keyup", "submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => !validator.isEmpty(input),
-    //             errorMsg: "Debes confirmar la contraseña"
-    //         },
-    //     ]
-    // },
-    // {
-    //     inputName: "avatar",
-    //     type: ["submit"],
-    //     validations: [
-    //         {
-    //             validator: (input) => validacionExtension(input),
-    //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
-    //         },
-    //     ]
-    // },
+//     // {
+//     //     inputName: "contrasenia",
+//     //     type: ["keyup", "submit"],
+//     //     validations: [
+//     //         {
+//     //             validator: (input) => !validator.isEmpty(input),
+//     //             errorMsg: "La contraseña es obligatoria"
+//     //         },
+//     //         {
+//     //             validator: (input) => validator.isLength(input, {min: 8}),
+//     //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
+//     //         },
+//     //         {
+//     //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
+//     //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
+//     //         }
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "fecha",
+//     //     type: ["keyup", "submit"],
+//     //     validations: [
+//     //         {
+//     //             //por ejemplo poner 31/02
+//     //             validator: (input) => validator.isISO8601(input),
+//     //             errorMsg: "La fecha no tiene formato valido"
+//     //         },
+//     //         {
+//     //             //controla que no se pongan fechas mayores a las de hoy
+//     //             validator: (input) => !validator.isAfter(input),
+//     //             errorMsg: "La fecha no es valida"
+//     //         },
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "confirmarContrasenia",
+//     //     type: ["keyup", "submit"],
+//     //     validations: [
+//     //         {
+//     //             validator: (input) => !validator.isEmpty(input),
+//     //             errorMsg: "Debes confirmar la contraseña"
+//     //         },
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "avatar",
+//     //     type: ["submit"],
+//     //     validations: [
+//     //         {
+//     //             validator: (input) => validacionExtension(input),
+//     //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
+//     //         },
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "contrasenia",
+//     //     type: ["keyup", "submit"],
+//     //     validations: [
+//     //         {
+//     //             validator: (input) => !validator.isEmpty(input),
+//     //             errorMsg: "La contraseña es obligatoria"
+//     //         },
+//     //         {
+//     //             validator: (input) => validator.isLength(input, {min: 8}),
+//     //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
+//     //         },
+//     //         {
+//     //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
+//     //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
+//     //         }
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "fecha",
+//     //     type: ["keyup", "submit"],
+//     //     validations: [
+//     //         {
+//     //             //por ejemplo poner 31/02
+//     //             validator: (input) => validator.isISO8601(input),
+//     //             errorMsg: "La fecha no tiene formato valido"
+//     //         },
+//     //         {
+//     //             //controla que no se pongan fechas mayores a las de hoy
+//     //             validator: (input) => !validator.isAfter(input),
+//     //             errorMsg: "La fecha no es valida"
+//     //         },
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "confirmarContrasenia",
+//     //     type: ["keyup", "submit"],
+//     //     validations: [
+//     //         {
+//     //             validator: (input) => !validator.isEmpty(input),
+//     //             errorMsg: "Debes confirmar la contraseña"
+//     //         },
+//     //     ]
+//     // },
+//     // {
+//     //     inputName: "avatar",
+//     //     type: ["submit"],
+//     //     validations: [
+//     //         {
+//     //             validator: (input) => validacionExtension(input),
+//     //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
+//     //         },
+//     //     ]
+//     // },
 ]
 
 //* validacion keyup
@@ -247,7 +247,7 @@ window.addEventListener("load", function () {
     })
 
     //* VALIDACION EN SUBMIT
-    form.addEventListener("submit", async function (e) {
+    form.addEventListener("submit", function (e) {
         //no se envia formulario
         e.preventDefault();
 
@@ -255,7 +255,7 @@ window.addEventListener("load", function () {
         const errores = [];
 
         //por cada objeto de inputValidations
-        inputValidations.forEach(async (inputToValidate) => {
+        inputValidations.forEach((inputToValidate) => {
             if(inputToValidate.type.includes("submit")) {
                 //se obtiene input html
                 const input = form[inputToValidate.inputName];
@@ -266,7 +266,7 @@ window.addEventListener("load", function () {
                 //por cada objeto de inputValidations, se cicla sobre el array de validaciones
                 for (const validation of inputToValidate.validations) {
                     //se aplica el validador sobre el valor actual del input
-                    const isValid = await validation.validator(input.value);
+                    const isValid = validation.validator(input.value);
                     console.log(isValid)
     
                     //si es invalido -> muestra error + guarda en array
@@ -282,10 +282,10 @@ window.addEventListener("load", function () {
         });
 
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
-        console.log(errores)
-        console.log(errores.length)
+        //console.log(errores)
+        //console.log(errores.length)
         if (errores.length === 0) {
-            //form.submit();
+            form.submit();
         } else {
             const spanErrorSubmit = document.querySelector("span.errorSubmit");
             spanErrorSubmit.innerHTML = "Completa correctamente todos los campos"
