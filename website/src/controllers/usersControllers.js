@@ -357,8 +357,6 @@ const usersController = {
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
-        
-
     }
 }
 

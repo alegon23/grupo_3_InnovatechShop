@@ -3,7 +3,7 @@ const path = require('path');
 const calcularMiles = require('../public/js/calcularMiles');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
-const fs = require('fs')
+const fs = require('fs');
 
 const productsController = {
     listado: async (req, res) =>{
@@ -481,11 +481,12 @@ const productsController = {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
+
     crearMarca: async (req, res) => {
         try {
             const errors = validationResult(req);
         
-             if (!errors.isEmpty()) {
+            if (!errors.isEmpty()) {
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {errors: errors.mapped(), oldData: req.body});
             }
 
@@ -557,7 +558,7 @@ const productsController = {
         try {
             const errors = validationResult(req);
         
-             if (!errors.isEmpty()) {
+            if (!errors.isEmpty()) {
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {errors: errors.mapped(), oldData: req.body});
             }
 
@@ -568,8 +569,9 @@ const productsController = {
             const foundFeature = await db.Feature.findOne({
                 where: {
                     feature: {
-                        [db.Sequelize.Op.like]: `%${caracteristicaCompleta}%`}
-                    },
+                        [db.Sequelize.Op.like]: `%${caracteristicaCompleta}%`
+                    }
+                },
             })
 
             if (foundFeature != null) {
@@ -593,6 +595,80 @@ const productsController = {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
+
+    validateMarca: async (req, res) => {
+
+        try {
+            const marca = req.params.marca
+            const respuesta = await db.Brand.findOne({
+                where: {brandName: marca}
+            })
+
+            if (respuesta) {
+                res.json({
+                    existe: true,
+                })
+            } else {
+                res.json({
+                    existe: false,
+                })
+            }
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+        
+    },
+
+    validateCategoria: async (req, res) => {
+
+        try {
+            const categoria = req.params.categoria
+            const respuesta = await db.Category.findOne({
+                where: {categoryName: categoria}
+            })
+
+            if (respuesta) {
+                res.json({
+                    existe: true,
+                })
+            } else {
+                res.json({
+                    existe: false,
+                })
+            }
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+
+    },
+
+    validateCaracteristica: async (req, res) => {
+
+        try {
+            const feature = req.params.feature
+            const respuesta = await db.Feature.findOne({
+                where: {
+                    feature: {
+                        [db.Sequelize.Op.like]: `%${feature}%`
+                    }
+                },
+            })
+
+            if (respuesta) {
+                res.json({
+                    existe: true,
+                })
+            } else {
+                res.json({
+                    existe: false,
+                })
+            }
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    }
 }
 
 module.exports = productsController;

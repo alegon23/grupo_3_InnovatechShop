@@ -321,7 +321,7 @@ selects.forEach((select)=>{
     selects.forEach((select)=>{
     selectValores.push(select.value)
 });    
-            //determino si el valor al que se cambio la caracteristica ya se encuntra seleccionado
+            //determino si el valor al que se cambio la caracteristica ya se encuentra seleccionado
             const valido=tiene_repetidos(selectValores);
             
             if (valido) {

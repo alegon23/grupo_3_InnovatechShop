@@ -354,8 +354,6 @@ window.addEventListener("load", function () {
             }
         }
 
-        
-
         //validacion del porcentaje y producto destacado
         const porcentaje = form["porcentaje"];
         const destacado = form["esDestacado"]
@@ -382,4 +380,3 @@ window.addEventListener("load", function () {
         }
     })
 });
-

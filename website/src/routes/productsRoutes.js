@@ -45,4 +45,14 @@ router.post('/nuevaCategoria', validacionesCategoria, productsController.crearCa
 //para menu admin -> caracteristicas
 router.post('/nuevaCaracteristica', validacionesCaracteristicas, productsController.crearCaracteristica)
 
+
+
+router.get('/validate/brand/:marca', productsController.validateMarca)
+
+router.get('/validate/category/:categoria', productsController.validateCategoria)
+
+router.get('/validate/feature/:feature', productsController.validateCaracteristica)
+
+
+
 module.exports = router;
