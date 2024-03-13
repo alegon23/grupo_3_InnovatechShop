@@ -2,6 +2,8 @@ import Panels from "./Panels"
 import Footer from "./Footer"
 import Topbar from "./Topbar"
 
+
+
 const Contenido = () => {
   return (
     <div id="content-wrapper" className="d-flex flex-column">
@@ -10,6 +12,7 @@ const Contenido = () => {
             <Panels />
         </div>
         <Footer/>
+
     </div>
   )
 }

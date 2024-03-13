@@ -1,6 +1,7 @@
 import logo from "../assets/images/Logo.png";
 import {useState, useEffect} from 'react';
-// import ProductDetail from "./ProductDetail";
+import {Link, Route,Routes} from 'react-router-dom'
+import ProductDetail from "./ProductDetail";
 
 const getImageURL = (name) => {
   return new URL(name, 'http://localhost:8080').href;
@@ -45,11 +46,15 @@ const LastProduct = () => {
               <p className="h4 "><mark><u>{lastProduct.productName}</u></mark></p>
           </div>
           <p>{lastProduct.description}</p>
-          <a className="btn btn-danger" target="_blank" rel="nofollow" href="/">
+          
+          <Link to='/ProductDetail' className="btn btn-danger" target="_blank" rel="nofollow" href="/">
             Ver detalle del producto
-          </a>
+          </Link>
+          
+          
         </div>
       </div>
+      
       {/* <ProductDetail product={lastProduct}/> */}
     </div>
   );
