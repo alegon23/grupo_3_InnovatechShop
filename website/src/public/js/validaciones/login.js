@@ -1,8 +1,8 @@
-//let timeOutID;
 
 const inputValidations = [
     {
         inputName: "email",
+        type: ["onTime", "submit"],
         validations: [
             {
                 validator: (input) => !validator.isEmpty(input),
@@ -14,99 +14,116 @@ const inputValidations = [
             },
             {
                 validator: async (input) => {
-                    //clearTimeout(timeOutID);
-                    
-                    //timeOutID =
-                    //setTimeout(() => {
-                    const res = await fetch(`/users/validate/${input}`)
-                    const data = await res.json()
-                    //console.log(data);
-                    return data.existe
-                    //}, 1500)
+                    try { 
+                        const res = await fetch(`/users/validate/${input}`)
+                        const data = await res.json()
+                    //   console.log(data);
+                        return data.existe
+                    } catch (error) {
+                        console.log(error);
+                    }
                 },
-                errorMsg: "El email no existe"
+                errorMsg: "El email no esta registrado"
             }
         ]
     },
     {
         inputName: "contrasenia",
+        type: ["onTime", "submit"],
         validations: [
             {
                 validator: (input) => !validator.isEmpty(input),
                 errorMsg: "La contraseña es obligatoria"
             }
         ]
-    },
-
+    }
+    
+    
 ]
 
-//* VALIDACION ON-TIME
+const errores = []
+
+//* VALIDACIONES 
 window.addEventListener("load", function () {
     //capturamos el form
     const form = document.querySelector("form.login")
-    
+
+    //* validacion keyup
     //por cada objeto de inputValidations
     inputValidations.forEach((inputToValidate) => {
-        //obtenemos input html
-        const input = form[inputToValidate.inputName];
+        if (inputToValidate.type.includes("onTime")) {
+            const input = form[inputToValidate.inputName];
 
-        //obtenemos padre de input - en este caso seria el div
-        const inputContainer = input.parentElement;
-        
-        //se le agrega un evento "keyup" que detecta cuando el usuario deja de presionar la tecla
-        input.addEventListener("keyup", async function (e) {
-            //por cada objeto de inputValidations, se cicla sobre el array de validaciones
-            for (const validation of inputToValidate.validations) {
+            //obtenemos padre de input - en este caso seria el div
+            const inputContainer = input.parentElement;
+            
+            //se le agrega un evento "keyup" que detecta cuando el usuario deja de presionar la tecla
+            input.addEventListener("keyup", async function (e) {
+                //por cada objeto de inputValidations, se cicla sobre el array de validaciones
+                for (const validation of inputToValidate.validations) {
 
-                //se aplica el validador sobre el valor actual del input
-                const isValid = await validation.validator(e.target.value);
-                //console.log(isValid)
-    
-                //si es invalido muestra error. Sino, no
-                if (!isValid) {
-                    inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
-                    break
-                } else {
-                    inputContainer.querySelector(".error").innerHTML = "";
+                    //se aplica el validador sobre el valor actual del input
+                    const isValid = await validation.validator(e.target.value);
+                    // console.log(isValid);
+                    //si es invalido muestra error. Sino, no
+                    if (!isValid) {
+                        errores.push(validation.errorMsg);
+                        inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
+                        break
+                    } else {
+                        errores.pop();
+                        inputContainer.querySelector(".error").innerHTML = "";
+                    }
+                    
                 }
-            }
-        })
+            })
+        }
     });
 
-    //* VALIDACION EN SUBMIT
+
+    //* validacion submit
     form.addEventListener("submit", function (e) {
         //no se envia formulario
         e.preventDefault();
 
-        //array de errores
-        const errores = [];
-
-        //por cada objeto de inputValidations
-        inputValidations.forEach(async (inputToValidate) => {
-            //se obtiene input html
+        inputValidations.forEach( async (inputToValidate) => {
+            
             const input = form[inputToValidate.inputName];
 
-            //se obtiene padre de input - en este caso seria el div
+            //obtenemos padre de input - en este caso seria el div
             const inputContainer = input.parentElement;
+            
 
-            //por cada objeto de inputValidations, se cicla sobre el array de validaciones
             for (const validation of inputToValidate.validations) {
+                
                 //se aplica el validador sobre el valor actual del input
                 const isValid = await validation.validator(input.value)
-                
                 console.log(isValid);
-
+    
                 //si es invalido -> muestra error + guarda en array
                 if (!isValid) {
                     errores.push(validation.errorMsg);
-                    inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
+                    inputContainer.querySelector(".error").innerHTML = validation.errorMsg
                     return;
+                } else {
+                    errores.pop();
+                    inputContainer.querySelector(".error").innerHTML = "";
                 }
+    
+                inputContainer.querySelector(".error").innerHTML = "";
+    
             }
 
-            inputContainer.querySelector(".error").innerHTML = "";
-        });
-
+        })
+        
+        // console.log(errores);
+        const inputEmail = form["email"];
+        const inputPassword = form["contrasenia"];
+        
+        if (inputEmail.value == '' && inputPassword.value == '') {
+            errores.push('Ambos campos son obligatorios')
+        }  
+        
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
             form.submit();
@@ -117,4 +134,4 @@ window.addEventListener("load", function () {
             document.querySelector("h2").style.marginBottom = "10px"
         }
     })
-});
+})

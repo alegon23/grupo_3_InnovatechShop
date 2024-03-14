@@ -340,7 +340,6 @@ const usersController = {
 
         try {
             const email = req.params.email;
-
             const respuesta = await db.User.findOne({
                 where: {email: email}
             })

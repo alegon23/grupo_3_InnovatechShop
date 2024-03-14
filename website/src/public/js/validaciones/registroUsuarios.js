@@ -89,114 +89,114 @@ const inputValidations = [
             }
         ]
     },
-//     // {
-//     //     inputName: "contrasenia",
-//     //     type: ["keyup", "submit"],
-//     //     validations: [
-//     //         {
-//     //             validator: (input) => !validator.isEmpty(input),
-//     //             errorMsg: "La contraseña es obligatoria"
-//     //         },
-//     //         {
-//     //             validator: (input) => validator.isLength(input, {min: 8}),
-//     //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
-//     //         },
-//     //         {
-//     //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
-//     //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
-//     //         }
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "fecha",
-//     //     type: ["keyup", "submit"],
-//     //     validations: [
-//     //         {
-//     //             //por ejemplo poner 31/02
-//     //             validator: (input) => validator.isISO8601(input),
-//     //             errorMsg: "La fecha no tiene formato valido"
-//     //         },
-//     //         {
-//     //             //controla que no se pongan fechas mayores a las de hoy
-//     //             validator: (input) => !validator.isAfter(input),
-//     //             errorMsg: "La fecha no es valida"
-//     //         },
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "confirmarContrasenia",
-//     //     type: ["keyup", "submit"],
-//     //     validations: [
-//     //         {
-//     //             validator: (input) => !validator.isEmpty(input),
-//     //             errorMsg: "Debes confirmar la contraseña"
-//     //         },
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "avatar",
-//     //     type: ["submit"],
-//     //     validations: [
-//     //         {
-//     //             validator: (input) => validacionExtension(input),
-//     //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
-//     //         },
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "contrasenia",
-//     //     type: ["keyup", "submit"],
-//     //     validations: [
-//     //         {
-//     //             validator: (input) => !validator.isEmpty(input),
-//     //             errorMsg: "La contraseña es obligatoria"
-//     //         },
-//     //         {
-//     //             validator: (input) => validator.isLength(input, {min: 8}),
-//     //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
-//     //         },
-//     //         {
-//     //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
-//     //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
-//     //         }
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "fecha",
-//     //     type: ["keyup", "submit"],
-//     //     validations: [
-//     //         {
-//     //             //por ejemplo poner 31/02
-//     //             validator: (input) => validator.isISO8601(input),
-//     //             errorMsg: "La fecha no tiene formato valido"
-//     //         },
-//     //         {
-//     //             //controla que no se pongan fechas mayores a las de hoy
-//     //             validator: (input) => !validator.isAfter(input),
-//     //             errorMsg: "La fecha no es valida"
-//     //         },
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "confirmarContrasenia",
-//     //     type: ["keyup", "submit"],
-//     //     validations: [
-//     //         {
-//     //             validator: (input) => !validator.isEmpty(input),
-//     //             errorMsg: "Debes confirmar la contraseña"
-//     //         },
-//     //     ]
-//     // },
-//     // {
-//     //     inputName: "avatar",
-//     //     type: ["submit"],
-//     //     validations: [
-//     //         {
-//     //             validator: (input) => validacionExtension(input),
-//     //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
-//     //         },
-//     //     ]
-//     // },
+    // {
+    //     inputName: "contrasenia",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "La contraseña es obligatoria"
+    //         },
+    //         {
+    //             validator: (input) => validator.isLength(input, {min: 8}),
+    //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
+    //         },
+    //         {
+    //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
+    //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
+    //         }
+    //     ]
+    // },
+    // {
+    //     inputName: "fecha",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             //por ejemplo poner 31/02
+    //             validator: (input) => validator.isISO8601(input),
+    //             errorMsg: "La fecha no tiene formato valido"
+    //         },
+    //         {
+    //             //controla que no se pongan fechas mayores a las de hoy
+    //             validator: (input) => !validator.isAfter(input),
+    //             errorMsg: "La fecha no es valida"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "confirmarContrasenia",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "Debes confirmar la contraseña"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "avatar",
+    //     type: ["submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => validacionExtension(input),
+    //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "contrasenia",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "La contraseña es obligatoria"
+    //         },
+    //         {
+    //             validator: (input) => validator.isLength(input, {min: 8}),
+    //             errorMsg: "La contraseña debe tener al menos 8 caracteres"
+    //         },
+    //         {
+    //             validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
+    //             errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
+    //         }
+    //     ]
+    // },
+    // {
+    //     inputName: "fecha",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             //por ejemplo poner 31/02
+    //             validator: (input) => validator.isISO8601(input),
+    //             errorMsg: "La fecha no tiene formato valido"
+    //         },
+    //         {
+    //             //controla que no se pongan fechas mayores a las de hoy
+    //             validator: (input) => !validator.isAfter(input),
+    //             errorMsg: "La fecha no es valida"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "confirmarContrasenia",
+    //     type: ["keyup", "submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => !validator.isEmpty(input),
+    //             errorMsg: "Debes confirmar la contraseña"
+    //         },
+    //     ]
+    // },
+    // {
+    //     inputName: "avatar",
+    //     type: ["submit"],
+    //     validations: [
+    //         {
+    //             validator: (input) => validacionExtension(input),
+    //             errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
+    //         },
+    //     ]
+    // },
 ]
 
 //* validacion keyup

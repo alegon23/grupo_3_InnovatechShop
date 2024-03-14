@@ -92,15 +92,7 @@ const inputValidationsCaracteristicas = [
       {
         validator: (input) => !validator.isEmpty(input),
         errorMsg: "El nombre de la caracteristica es obligatorio"
-      },
-      // {
-      //   validator: async (input) => {
-      //     const res = await fetch(`/products/validate/category/${input}`)
-      //     const data = await res.json()
-      //     return !data.existe
-      //   },
-      //   errorMsg: "La categoria ya esta cargada"
-      // }
+      }
     ]
   },
   {
@@ -110,15 +102,7 @@ const inputValidationsCaracteristicas = [
       {
         validator: (input) => !validator.isEmpty(input),
         errorMsg: "La descripcion de la caracteristica es obligatoria"
-      },
-      // {
-      //   validator: async (input) => {
-      //     const res = await fetch(`/products/validate/category/${input}`)
-      //     const data = await res.json()
-      //     return !data.existe
-      //   },
-      //   errorMsg: "La categoria ya esta cargada"
-      // }
+      }
     ]
   }
 ]
@@ -343,43 +327,7 @@ window.addEventListener("load", function () {
     if (errorsCaracteristicas == '') {
       formCaract.submit();
     } 
-
-    // //por cada objeto de inputValidations
-    // inputValidationsCategoria.forEach( async (inputToValidate) => {
-    //   if (inputToValidate.type.includes("submit")) {
-    //     //se obtiene input html
-    //     const input = formCateg[inputToValidate.inputName];
-
-    //     //se obtiene padre de input - en este caso seria el div
-    //     const inputContainer = input.parentElement;
-
-    //     //por cada objeto de inputValidations, se cicla sobre el array de validaciones
-    //     for (const validation of inputToValidate.validations) {
-    //       //se aplica el validador sobre el valor actual del input
-    //       const isValid = await validation.validator(input.value);
-    //       console.log(isValid);
-
-    //       //si es invalido -> muestra error + guarda en array
-    //       if (!isValid) {
-    //         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
-    //         errorsCategoria = validation.errorMsg
-    //         return;
-    //       }
-    //     }
-
-    //     inputContainer.querySelector(".error").innerHTML = "";
-    //   }
-
-    //si no hay errores, envia el form. Si hay errores, muestra mensaje
-    
-    // else {
-    //   const spanErrorSubmit = document.querySelector("span.errorSubmit");
-    //   spanErrorSubmit.innerHTML = "Completa correctamente todos los campos";
-    //   spanErrorSubmit.classList.add("error-submit");
-    // }
   });
-
-
 });
 
 
