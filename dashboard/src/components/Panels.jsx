@@ -5,14 +5,14 @@ import * as Icon from 'react-bootstrap-icons';
 import ProductsList from "./ProductsList";
 
 import {useState, useEffect} from 'react';
+import Error from "./Error";
 
 
 const Panels = () => {
   const [cantProduct,setCantProduct] = useState(0);
-
   const [cantUser,setCantUser] = useState(0);
-
   const [cantCategory,setCategory] = useState(0);
+  const [error, setError] = useState("");
 
 
     useEffect(() => {
@@ -24,8 +24,8 @@ const Panels = () => {
             const data = await res.json();
             setCantProduct(data.meta.count || 0);
             setCategory(data.meta.countByCategory.length || 0 );
-          } catch (error) {
-            console.log(error);
+          } catch (err) {
+            setError(err.message)
           }
         };
         obtenerCantidadProduct();
@@ -55,6 +55,12 @@ const Panels = () => {
     { titulo: "Total de Usuarios", cifra: cantUser, colorBorde: "danger", icon: <Icon.People size={35} color="rgba(0,0,0,0.2)"/>},
     { titulo: "Total de Categorías", cifra: cantCategory, colorBorde: "warning", icon: <Icon.Grid size={35} color="rgba(0,0,0,0.2)"/>}
   ]
+
+  if(error !== "") {
+    return (
+      <Error msg={error}/>
+    )
+  }
 
   return (
     <div className="container-fluid">

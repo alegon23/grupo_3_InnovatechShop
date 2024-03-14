@@ -5,8 +5,8 @@ import {NavLink} from 'react-router-dom';
 const Sidebar = () => {
   return (
     <>
-        <ul className="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar" >
-        <NavLink className="sidebar-brand d-flex align-items-center justify-content-center"  to='/'>
+        <ul className="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <NavLink className="sidebar-brand d-flex align-items-center justify-content-center" to='/'>
             <div className="sidebar-brand-icon">
                 <img className="w-100" src={logo} alt="InnovatechShop Logo" style={{filter: "drop-shadow(3px 1px 0px black)"}}/>
             </div>
@@ -32,13 +32,13 @@ const Sidebar = () => {
 
         <li className="nav-item">
             <NavLink className="nav-link" to="/categories">
-            <Icon.BarChartFill /> <span>Categorias</span>
+                <Icon.BarChartFill /> <span>Categorias</span>
             </NavLink>
         </li>
 
         <li className="nav-item">
             <NavLink className="nav-link" to="/products">
-            <Icon.Table /> <span>Productos</span>
+                <Icon.Table /> <span>Productos</span>
             </NavLink>
         </li>
 

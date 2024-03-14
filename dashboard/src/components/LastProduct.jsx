@@ -1,7 +1,7 @@
 import logo from "../assets/images/Logo.png";
 import {useState, useEffect} from 'react';
-import {Link, Route,Routes} from 'react-router-dom'
-import ProductDetail from "./ProductDetail";
+import {Link} from 'react-router-dom';
+import Error from './Error';
 
 const getImageURL = (name) => {
   return new URL(name, 'http://localhost:8080').href;
@@ -9,6 +9,7 @@ const getImageURL = (name) => {
 
 const LastProduct = () => {
   const [lastProduct, setLastProduct] = useState({});
+  const [error, setError] = useState("");
 
     useEffect(() => {
         const obtenerLastProduct = async () => {
@@ -20,13 +21,19 @@ const LastProduct = () => {
             const resDetalle = await fetch( `http://localhost:8080/api/products/${last.idProduct}` );
             const dataDetalle = await resDetalle.json();
             setLastProduct(dataDetalle.product || {})
-          } catch (error) {
-            console.log(error);
+          } catch (err) {
+            setError(err.message)
           }
         };
         
         obtenerLastProduct();
       }, []);
+
+      if(error !== "") {
+        return (
+          <Error msg={error}/>
+        )
+      }
 
   return (
     <div className="col-lg-6 mb-4">
@@ -47,15 +54,13 @@ const LastProduct = () => {
           </div>
           <p>{lastProduct.description}</p>
           
-          <Link to='/ProductDetail' className="btn btn-danger" target="_blank" rel="nofollow" href="/">
+          <Link to={`/ProductDetail/${lastProduct.idProduct}`} className="btn btn-danger" rel="nofollow">
             Ver detalle del producto
           </Link>
           
           
         </div>
       </div>
-      
-      {/* <ProductDetail product={lastProduct}/> */}
     </div>
   );
 };
