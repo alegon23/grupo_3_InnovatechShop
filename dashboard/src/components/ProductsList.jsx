@@ -1,8 +1,10 @@
+import Error from './Error';
 import TableRow from './TableRow';
 import {useState, useEffect} from 'react';
 
 const ProductsList = () => {
     const [productos, setProductos] = useState([]);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const obtenerProductos = async () => {
@@ -12,15 +14,22 @@ const ProductsList = () => {
             );
             const data = await res.json();
             setProductos(data.products || []);
-          } catch (error) {
-            console.log(error);
+          } catch (err) {
+            setError(err.message)
           }
         };
 
         obtenerProductos();
       }, []);
+
+      if(error !== "") {
+        return (
+          <Error msg={error}/>
+        )
+      }
+
     return (
-        <div className="card shadow mb-4">
+        <div className="card shadow w-100">
             <div className="card-body">
                 <div className="table-responsive">
                     <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">

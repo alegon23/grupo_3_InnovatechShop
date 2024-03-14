@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react';
+import Error from './Error';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const obtenerCategorias = async () => {
@@ -11,16 +13,22 @@ const Categories = () => {
             );
             const data = await res.json();
             setCategories(data.meta.countByCategory || []);
-          } catch (error) {
-            console.log(error);
+          } catch (err) {
+            setError(err.message)
           }
         };
 
         obtenerCategorias();
       }, []);
+
+      if(error !== "") {
+        return (
+          <Error msg={error}/>
+        )
+      }
     
       return (
-        <div className="col-lg-6 mb-4">						
+        <div className="col-lg-6 mb-4 mx-auto">						
             <div className="card shadow mb-4">
                 <div className="card-header py-3">
                     <h5 className="m-0 font-weight-bold text-gray-800">Categorías en la Base de Datos</h5>
@@ -28,7 +36,7 @@ const Categories = () => {
                 <div className="card-body">
                     <div className="row">
                         { categories.map( (objeto, index) => 
-                            <div className="col-lg-6 mb-4" key={index + objeto.categoria}>
+                            <div className="col-lg-12 mb-4" key={index + objeto.categoria}>
                                 <div className="card bg-dark text-white shadow">
                                     <div className="card-body text-center">
                                         {objeto.categoria}: {objeto.cantidad}

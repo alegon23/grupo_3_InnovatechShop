@@ -1,13 +1,11 @@
 import '../assets/css/App.css'
 import Contenido from './Contenido'
 import Sidebar from './Sidebar'
-import {Link, Route,Routes} from 'react-router-dom'
+import {Route,Routes} from 'react-router-dom'
 import ProductDetail from "./ProductDetail";
 import LastProduct from './LastProduct';
 import Categories from './Categories';
 import ProductsList from './ProductsList';
-
-
 
 function App() {
   return (
@@ -18,10 +16,8 @@ function App() {
           <Route path='/lastProduct' element={<LastProduct/>}/>
           <Route path='/categories' element={<Categories/>}/>
           <Route path='/products' element={<ProductsList/>}/>
-          
-
-          <Route path='/ProductDetail'  element= {<ProductDetail/>}/>
-          </Routes>
+          <Route path='/ProductDetail/:id'  element= {<ProductDetail/>}/>
+        </Routes>
       </div>
   )
 }
