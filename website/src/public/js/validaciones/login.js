@@ -69,7 +69,7 @@ window.addEventListener("load", function () {
                     if (!isValid) {
                         errores.push(validation.errorMsg);
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
-                        break
+                        break;
                     } else {
                         errores.pop();
                         inputContainer.querySelector(".error").innerHTML = "";
@@ -104,16 +104,14 @@ window.addEventListener("load", function () {
                 if (!isValid) {
                     errores.push(validation.errorMsg);
                     inputContainer.querySelector(".error").innerHTML = validation.errorMsg
-                    return;
+                    break;
                 } else {
                     errores.pop();
                     inputContainer.querySelector(".error").innerHTML = "";
                 }
     
                 inputContainer.querySelector(".error").innerHTML = "";
-    
             }
-
         })
         
         // console.log(errores);
