@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import Error from './Error';
+import Error404 from './Error404';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
@@ -23,7 +23,7 @@ const Categories = () => {
 
       if(error !== "") {
         return (
-          <Error msg={error}/>
+          <Error404/>
         )
       }
     
@@ -37,7 +37,7 @@ const Categories = () => {
                     <div className="row">
                         { categories.map( (objeto, index) => 
                             <div className="col-lg-12 mb-4" key={index + objeto.categoria}>
-                                <div className="card bg-dark text-white shadow">
+                                <div className="card text-dark shadow" style={{border: 'solid 3px #9E8FFF'}}>
                                     <div className="card-body text-center">
                                         {objeto.categoria}: {objeto.cantidad}
                                     </div>

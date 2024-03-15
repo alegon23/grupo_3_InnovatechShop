@@ -5,7 +5,7 @@ import * as Icon from 'react-bootstrap-icons';
 import ProductsList from "./ProductsList";
 
 import {useState, useEffect} from 'react';
-import Error from "./Error";
+import Error404 from "./Error404";
 
 
 const Panels = () => {
@@ -22,6 +22,9 @@ const Panels = () => {
               `http://localhost:8080/api/products`
             );
             const data = await res.json();
+            if (data.error) {
+              setError('error')
+            }
             setCantProduct(data.meta.count || 0);
             setCategory(data.meta.countByCategory.length || 0 );
           } catch (err) {
@@ -58,7 +61,7 @@ const Panels = () => {
 
   if(error !== "") {
     return (
-      <Error msg={error}/>
+      <Error404/>
     )
   }
 

@@ -1,7 +1,7 @@
 import logo from "../assets/images/Logo.png";
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import Error from './Error';
+import Error404 from './Error404';
 
 const getImageURL = (name) => {
   return new URL(name, 'http://localhost:8080').href;
@@ -11,32 +11,35 @@ const LastProduct = () => {
   const [lastProduct, setLastProduct] = useState({});
   const [error, setError] = useState("");
 
-    useEffect(() => {
-        const obtenerLastProduct = async () => {
-          try {
-            const res = await fetch( `http://localhost:8080/api/products` );
-            const data = await res.json();
-            const last = data.products[ data.products.length - 1 ];
+  useEffect(() => {
+    const obtenerLastProduct = async () => {
+      try {
+        const res = await fetch( `http://localhost:8080/api/products` );
+        const data = await res.json();
+        const last = data.products[ data.products.length - 1 ];
 
-            const resDetalle = await fetch( `http://localhost:8080/api/products/${last.idProduct}` );
-            const dataDetalle = await resDetalle.json();
-            setLastProduct(dataDetalle.product || {})
-          } catch (err) {
-            setError(err.message)
-          }
-        };
-        
-        obtenerLastProduct();
-      }, []);
-
-      if(error !== "") {
-        return (
-          <Error msg={error}/>
-        )
+        const resDetalle = await fetch( `http://localhost:8080/api/products/${last.idProduct}` );
+        const dataDetalle = await resDetalle.json();
+        if (dataDetalle.error) {
+          setError('error')
+        }
+        setLastProduct(dataDetalle.product || {})
+      } catch (err) {
+        setError(err.message)
       }
+    };
+    
+    obtenerLastProduct();
+  }, []);
+
+  if(error !== "") {
+    return (
+      <Error404/>
+    )
+  }
 
   return (
-    <div className="col-lg-6 mb-4">
+    <div className="col-lg-6 mb-4 mx-auto">
       <div className="card shadow mb-4">
         <div className="card-header py-3">
           <h5 className="m-0 font-weight-bold text-gray-800">

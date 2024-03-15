@@ -1,4 +1,4 @@
-import Error from './Error';
+import Error404 from './Error404';
 import TableRow from './TableRow';
 import {useState, useEffect} from 'react';
 
@@ -13,6 +13,9 @@ const ProductsList = () => {
               `http://localhost:8080/api/products`
             );
             const data = await res.json();
+            if (data.error) {
+              setError('error')
+            }
             setProductos(data.products || []);
           } catch (err) {
             setError(err.message)
@@ -24,7 +27,7 @@ const ProductsList = () => {
 
       if(error !== "") {
         return (
-          <Error msg={error}/>
+          <Error404/>
         )
       }
 

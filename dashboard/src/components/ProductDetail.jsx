@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import logo from "../assets/images/Logo.png";
 import { useState, useEffect } from "react";
-import Error from "./Error";
+import Error404 from "./Error404";
 
 const getImageURL = (name) => {
   return new URL(name, "http://localhost:8080").href;
@@ -19,6 +19,9 @@ const ProductDetail = () => {
           `http://localhost:8080/api/products/${id}`
         );
         const dataDetalle = await resDetalle.json();
+        if (dataDetalle.error) {
+          setError('error')
+        }
         setProduct(dataDetalle.product || {});
       } catch (err) {
         setError(err.message)
@@ -28,9 +31,9 @@ const ProductDetail = () => {
     obtenerProducto();
   }, [id]);
 
-  if(error !== "") {
+  if(error != "") {
     return (
-      <Error msg={error}/>
+      <Error404/>
     )
   }
 
