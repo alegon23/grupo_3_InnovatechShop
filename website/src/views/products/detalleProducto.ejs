@@ -55,13 +55,20 @@
                 <% } %>
                 <h5><a href="#">Ver los medios de pago</a></h5>
                 <p><i class="bi bi-shield-fill-check"></i> Garantia de 12 meses</p>
-                <p><i class="bi bi-check2"></i> Stock disponible: <%= producto.stock %> unidades</p>
+                <% if (producto.stock > 0) {%>
+                    <p> <i class="bi bi-check2"></i> Stock disponible: <%= producto.stock %> unidades</p>
+                <% } else { %>
+                    <p> <i class="bi bi-x-lg"></i> Sin stock disponible</p>
+                <% } %>
+                
                 <p><i class="bi bi-truck"></i> Envios a todo el país</p>
                 <% if (!(locals.usuarioLog && locals.usuarioLog.idRoleFK == 2)) { %>
-                    <div class="botones-detalle-producto">
-                        <a href="/products/carrito" class="boton-comprarAhora">Comprar ahora</a>
-                        <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
-                    </div>
+                    <% if (producto.stock > 0) { %> 
+                        <div class="botones-detalle-producto">
+                            <a href="/products/carrito" class="boton-comprarAhora">Comprar ahora</a>
+                            <a href="#" class="boton-agregarCarrito">Agregar al carrito</a>
+                        </div>
+                    <% } %>
                 <% } %>
                  
                 <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>

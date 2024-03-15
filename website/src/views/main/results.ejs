@@ -25,12 +25,20 @@
               <div class="caja-precio">
                 <h3><%= resultado.productName %></h3>
                 <h4>$<%= calcularMiles(resultado.originalPrice) %></h4>
-                <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
+                <% if (resultado.stock > 0) { %>
+                  <h5>Retiralo HOY! <i class="bi bi-box2-heart"></i></h5>
+                <% } else {%>
+                  <h5 style="color: red;">Sin Stock </h5>
+                <% } %>
               </div>              
               <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
                 <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Ver</a>
               <% } else {%>
-                <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
+                <% if (resultado.stock > 0) { %>
+                  <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Comprar</a>
+                <% } else {%>
+                  <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Ver</a>
+                <% } %>
               <% } %>
             </article>
           <% } else {%>
@@ -44,7 +52,11 @@
                 <h3><%= resultado.productName %></h3>
                 <h4 class="precio-original"> <%= '$' + calcularMiles(resultado.originalPrice) %> </h4>
                 <h3><%= '$' + calcularMiles(precioDescuento) %></h3>
-                <h5>Envío gratis <i class="bi bi-truck"></i></h5>
+                <% if (resultado.stock > 0) { %>
+                  <h5>Envío gratis <i class="bi bi-truck"></i></h5>
+                <% } else {%>
+                  <h5 style="color: red;">Sin Stock </h5>
+                <% } %>
               </div>
               <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
                 <a href="../products/detalleProducto/<%= resultado.idProduct %>" class="boton-compra">Ver</a>
@@ -59,10 +71,6 @@
     <% } else {%>
       <h2> No se encontraron productos para mostrar </h2>
     <% } %>
-
-    <!-- <a href="../products/crearProducto" class="crear-producto">
-      <i class="bi bi-plus-square-fill"></i>
-    </a> -->
   </main>
 
   <!--  !FOOTER   -->

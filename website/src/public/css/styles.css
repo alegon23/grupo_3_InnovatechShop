@@ -518,7 +518,7 @@ footer img {
     }
 
     .tarjeta-articulo:hover, .tarjeta-promocion:hover {
-        box-shadow: 5px 5px 15px #d1cbf7;
+        box-shadow: 0px 0px 25px  #9E8FFF;
     }
 
     .tarjeta-promocion{

@@ -40,34 +40,6 @@ const inputValidations = [
         ]
     },
     {
-        inputName: "nombre",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "El nombre es obligatorio"
-            },
-            {
-                validator: (input) => validator.isLength(input, {min: 2}),
-                errorMsg: "El nombre es muy corto"
-            }
-        ]
-    },
-    {
-        inputName: "apellido",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "El apellido es obligatorio"
-            },
-            {
-                validator: (input) => validator.isLength(input, {min: 2}),
-                errorMsg: "El apellido es muy corto"
-            }
-        ]
-    },
-    {
         inputName: "email",
         type: ["keyup", "submit"],
         validations: [
@@ -200,7 +172,12 @@ const inputValidations = [
 ]
 
 //* validacion keyup
+
+//array de errores
+let errores = [];
+
 window.addEventListener("load", function () {
+    
     const form = document.querySelector("form.contenedor-registro");
 
     inputValidations.forEach((inputToValidate) => {
@@ -215,9 +192,11 @@ window.addEventListener("load", function () {
                     const isValid = await validation.validator(e.target.value);
     
                     if (!isValid) {
+                        errores.push(validation.errorMsg);
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
                         break
                     } else {
+                        errores.pop()
                         inputContainer.querySelector(".error").innerHTML = "";
                     }
                 }
@@ -233,6 +212,10 @@ window.addEventListener("load", function () {
     inputConfirm.addEventListener("keyup", function(e) {
         if (inputPass.value != inputConfirm.value) {
             inputConfirmContainer.querySelector(".error").innerHTML = "No coincide con la contraseña";
+            errores.push("No coincide con la contraseña");
+        } else {
+            errores.pop()
+            inputConfirmContainer.querySelector(".error").innerHTML = "";
         }
     })
 
@@ -243,6 +226,25 @@ window.addEventListener("load", function () {
     inputAvatar.addEventListener("change", function(e) {
         if (!validacionExtension(inputAvatar.value)) {
             inputAvatarContainer.querySelector(".error").innerHTML = "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif";
+            errores.push("Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif");
+        } else {
+            errores.pop()
+            inputAvatarContainer.querySelector(".error").innerHTML = "";
+        }
+    })
+
+    //* validacion de fecha onchange
+    const inputFecha = form["fecha"];
+    const inputFechaContainer = inputFecha.parentElement;
+
+    inputFecha.addEventListener("change", function(e) {
+        
+        if (!validator.isISO8601(inputFecha.value) || validator.isAfter(inputFecha.value)) {
+            errores.push("Fecha inválida");
+            inputFechaContainer.querySelector(".error").innerHTML = "Fecha inválida";
+        }else{
+            errores.pop();
+            inputFechaContainer.querySelector(".error").innerHTML = "";
         }
     })
 
@@ -250,9 +252,6 @@ window.addEventListener("load", function () {
     form.addEventListener("submit", function (e) {
         //no se envia formulario
         e.preventDefault();
-
-        //array de errores
-        const errores = [];
 
         //por cada objeto de inputValidations
         inputValidations.forEach( async (inputToValidate) => {
@@ -274,27 +273,39 @@ window.addEventListener("load", function () {
                         errores.push(validation.errorMsg);
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
                         break;
+                    } else {
+                        errores.pop();
+                        inputContainer.querySelector(".error").innerHTML = ''
                     }
                 }
-    
-                inputContainer.querySelector(".error").innerHTML = "";
             }
         });
 
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
         console.log(errores)
         console.log(errores.length)
-
-        if (validation) {
-    
-        }
+        
+        
+        inputValidations.forEach((inputToValidate) => {
+            const input = form[inputToValidate.inputName];
+            const inputContainer = input.parentElement;
+            
+            if (input.value == '' && input.type != 'file') {
+                inputContainer.querySelector('.error').innerHTML = 'Ambos campos son obligatorios'
+                errores.push('Los campos son obligatorios')
+            } else {
+                errores.pop()
+                inputContainer.querySelector('.error').innerHTML = ''
+            }
+        });
 
         if (errores.length == 0) {
-            // form.submit();
+            form.submit();
         } else {
             const spanErrorSubmit = document.querySelector("span.errorSubmit");
             spanErrorSubmit.innerHTML = "Completa correctamente todos los campos"
             spanErrorSubmit.classList.add("error-submit")
+            errores = []
         }
     })
 });
