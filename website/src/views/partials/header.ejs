@@ -2,19 +2,38 @@
     <div class="navbar-superior">
 
         <div class="menu-y-logo">
-            <a href="#" id="menu-hamburguesa"><i class="bi bi-list"></i></a>
+            <a id="menu-hamburguesa"><i class="bi bi-list"></i></a>
             <a href="/"><img src="/images/Logo-letras.png" alt="Logo" id="logo-letras"></a>
+        </div>
+
+        <div id="contenidoHamburguesa" class="ocultar-menu-hamburguesa">
+            <ul>
+                <li><a href="../../products">Todos los productos</a></li>
+                <hr>
+                <li><a href="../../products/celulares">Celulares</a></li>
+                <hr>
+                <li><a href="../../products/monitores-tvs">Monitores & TVs</a></li>
+                <hr>
+                <li><a href="../../products/tablets">Tablets</a></li>
+                <hr>
+                <li><a href="../../products/notebooks">Notebooks</a></li>
+                <hr>
+                <li><a href="../../products/hardware">Hardware</a></li>
+                <hr>
+                <li><a href="../../products/accesorios">Accesorios</a></li>
+                <hr>
+            </ul>
         </div>
         
         <a href="/"><img src="/images/Logo.png" alt="Logo" class="logo-navbar"></a>
         
-        <form id="caja-busqueda" action="/search" method="GET">
+        <form id="formBusqueda" class="caja-busqueda" action="/search" method="GET">
             <input type="text" id="barra-busqueda" name="keywords" placeholder="Buscar productos...">
             <button class="boton-busqueda"><i class="bi bi-search icono-busqueda"></i></button>
         </form>
 
         <div class="iconos-movil">
-            <a href="#" id="icono-busqueda"><i class="bi bi-search icono-busqueda"></i></a>
+            <a id="icono-busqueda"><i class="bi bi-search icono-busqueda"></i></a>
 
             <!--PARA MOVIL-->
             <% if (locals.usuarioLog) { %>
