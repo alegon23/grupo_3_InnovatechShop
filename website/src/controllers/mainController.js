@@ -32,6 +32,10 @@ const mainController = {
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
+    },
+
+    about: (req, res) => {
+        res.render(path.resolve('./', './src/views/main/about'));
     }
 }
 

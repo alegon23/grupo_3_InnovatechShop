@@ -6,4 +6,6 @@ router.get('/', mainController.index);
 
 router.get('/search', mainController.search);
 
+router.get('/about', mainController.about);
+
 module.exports = router;
