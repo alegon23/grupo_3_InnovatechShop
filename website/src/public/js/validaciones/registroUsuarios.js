@@ -281,17 +281,17 @@ window.addEventListener("load", function () {
             }
         });
 
-        //si no hay errores, envia el form. Si hay errores, muestra mensaje
-        console.log(errores)
-        console.log(errores.length)
         
+        //console.log(errores)
+        //console.log(errores.length)
         
+        //valida si se envia el formulario vacio
         inputValidations.forEach((inputToValidate) => {
             const input = form[inputToValidate.inputName];
             const inputContainer = input.parentElement;
             
             if (input.value == '' && input.type != 'file') {
-                inputContainer.querySelector('.error').innerHTML = 'Ambos campos son obligatorios'
+                inputContainer.querySelector('.error').innerHTML = 'Los campos son obligatorios'
                 errores.push('Los campos son obligatorios')
             } else {
                 errores.pop()
@@ -299,6 +299,7 @@ window.addEventListener("load", function () {
             }
         });
 
+        //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
             form.submit();
         } else {

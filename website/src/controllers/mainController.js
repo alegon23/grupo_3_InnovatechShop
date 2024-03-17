@@ -36,6 +36,10 @@ const mainController = {
 
     about: (req, res) => {
         res.render(path.resolve('./', './src/views/main/about'));
+    },
+
+    help: (req, res) => {
+        res.render(path.resolve('./', './src/views/main/help'));
     }
 }
 

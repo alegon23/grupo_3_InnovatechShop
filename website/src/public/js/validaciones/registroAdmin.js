@@ -65,6 +65,8 @@ const inputValidations = [
     },
 ]
 
+//array de errores
+let errores = [];
 
 window.addEventListener("load", function () {
     const form = document.querySelector("form.contenedor-registro");
@@ -78,14 +80,15 @@ window.addEventListener("load", function () {
             
             input.addEventListener("keyup", async function (e) {
                 for (const validation of inputToValidate.validations) {
-                    console.log(e.target.value)
     
                     const isValid = await validation.validator(e.target.value);
     
                     if (!isValid) {
+                        errores.push(validation.errorMsg);
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
                         break
                     } else {
+                        errores.pop()
                         inputContainer.querySelector(".error").innerHTML = "";
                     }
                 }
@@ -97,9 +100,7 @@ window.addEventListener("load", function () {
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const errores = [];
-
-        inputValidations.forEach((inputToValidate) => {
+        inputValidations.forEach(async (inputToValidate) => {
             if(inputToValidate.type.includes("submit")) {
 
                 const input = form[inputToValidate.inputName];
@@ -108,19 +109,35 @@ window.addEventListener("load", function () {
     
                 for (const validation of inputToValidate.validations) {
 
-                    const isValid = validation.validator(input.value);
+                    const isValid = await validation.validator(input.value);
     
                     if (!isValid) {
                         errores.push(validation.errorMsg);
                         inputContainer.querySelector(".error").innerHTML = validation.errorMsg;
-                        return;
+                        break;
+                    } else {
+                        errores.pop();
+                        inputContainer.querySelector(".error").innerHTML = ''
                     }
                 }
-    
-                inputContainer.querySelector(".error").innerHTML = "";
             }
         });
 
+        //valida si se envia el formulario vacio
+        inputValidations.forEach((inputToValidate) => {
+            const input = form[inputToValidate.inputName];
+            const inputContainer = input.parentElement;
+            
+            if (input.value == '' && input.type != 'password') {
+                inputContainer.querySelector('.error').innerHTML = 'Los campos son obligatorios'
+                errores.push('Los campos son obligatorios')
+            } else {
+                errores.pop()
+                inputContainer.querySelector('.error').innerHTML = ''
+            }
+        });
+
+        //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0) {
             form.submit();
         } else {

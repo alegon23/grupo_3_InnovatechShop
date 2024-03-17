@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../partials/head', {title: "- About", cssFile: "styles", cssHome: ""}) %>
-<body>
-     <!--  !HEADER  -->
-     <%- include('../partials/header.ejs') %>
-     <!--  !FOOTER   -->
+  <%- include('../partials/head', {title: "- About", cssFile: "styles", cssHome: ""}) %>
+  <body>
+    <!--  !HEADER  -->
+    <%- include('../partials/header.ejs') %>
+
+    <!--  !MAIN  -->
+    <main>
+      <h1 style="text-align: center;">Bienvenidos a InnovatechShop!</h1>
+      <h2>Descripción</h2>
+      <p>Venta de productos tecnológicos. Aquí podrás encontrar:</p>
+      <ul>
+        <li>Celulares</li>
+        <li>Tablets</li>
+        <li>Notebooks</li>
+        <li>PCs</li>
+        <li>Monitores & TVs</li>
+        <li>Accesorios</li>
+      </ul>
+      <p>Con esta tienda se apunta a llegar a un público joven-adulto, brindando los más recientes productos en cuanto a calidad-precio, a través de un sitio que sea fácil de usar y, al mismo tiempo, sea estéticamente agradable, para mejorar la experiencia de usuario.</p>
+      
+      <h2>Conoce al equipo IT</h2>
+      Somos un grupo de desarrolladores novatos con muchas ganas de aplicar lo que vamos aprendiendo, para brindarle un mejor servicio a nuestro cliente DH Venture Capitals.
+      
+      <h4>Ver nuestro repositorio en <a href="https://github.com/alegon23/grupo_3_InnovatechShop" target="_blank" style="text-decoration: none;">Github <i class="bi bi-github"></i></a></h4>
+
+    </main>
+
+    <!--  !FOOTER   -->
     <%- include('../partials/footer') %>
-</body>
+  </body>
 </html>

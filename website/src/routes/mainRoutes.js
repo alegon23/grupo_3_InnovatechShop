@@ -8,4 +8,6 @@ router.get('/search', mainController.search);
 
 router.get('/about', mainController.about);
 
+router.get('/help', mainController.help);
+
 module.exports = router;
