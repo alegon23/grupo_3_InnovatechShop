@@ -27,7 +27,7 @@
                         <label for="marca" class="label">Marca del Producto*</label>
                         <div class="caja-edit">
                             <select name="marca">
-                                <option value="">Seleccionar Marca*</option>
+                                <option value="">Seleccionar Marca</option>
                                 <% for (const marca of marcas) { %>
                                     <option value="<%= marca.idBrand %>" <%= locals.oldData && (oldData.marca == marca.idBrand) ? 'selected' : '' %>><%= marca.brandName %></option>
                                 <% } %>
