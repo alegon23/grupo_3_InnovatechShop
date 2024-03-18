@@ -97,6 +97,38 @@ module.exports = {
       {
         idProductFK:6,
         idFeatureFK:10
+      },
+      {
+        idProductFK:7,
+        idFeatureFK:13
+      },
+      {
+        idProductFK:7,
+        idFeatureFK:6
+      },
+      {
+        idProductFK:7,
+        idFeatureFK:2
+      },
+      {
+        idProductFK:7,
+        idFeatureFK:4
+      },
+      {
+        idProductFK:8,
+        idFeatureFK:17
+      },
+      {
+        idProductFK:8,
+        idFeatureFK:6
+      },
+      {
+        idProductFK:8,
+        idFeatureFK:4
+      },
+      {
+        idProductFK:8,
+        idFeatureFK:16
       }
     ]);
   },

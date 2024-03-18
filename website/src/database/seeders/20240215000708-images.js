@@ -122,6 +122,36 @@ module.exports = {
         url:'/images/Smart TV 50 TCL/TVTCL50-lateral (2).png',
         mainImage:0,
         idProductFK:6
+      },
+      {
+        url:'/images/products/img-1570001.png',
+        mainImage:1,
+        idProductFK:7
+      },
+      {
+        url:'/images/products/img-4167943.png',
+        mainImage:0,
+        idProductFK:7
+      },
+      {
+        url:'/images/products/img-8470204.png',
+        mainImage:0,
+        idProductFK:7
+      },
+      {
+        url:'/images/products/img-4784981.png',
+        mainImage:1,
+        idProductFK:8
+      },
+      {
+        url:'/images/products/img-6492933.png',
+        mainImage:0,
+        idProductFK:8
+      },
+      {
+        url:'/images/products/img-9644271.png',
+        mainImage:0,
+        idProductFK:8
       }
     ]);
   },
