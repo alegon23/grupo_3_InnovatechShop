@@ -192,6 +192,7 @@
     background: radial-gradient(circle, rgba(133,247,255,1) 0%, rgba(158,143,255,1) 100%);
     text-align: center;
     font-size: 20px;
+    
 }
 
 .lista-productos, .lista-promociones{
@@ -212,8 +213,7 @@
     justify-content: center;
     align-items: center;
 }
-
-.swiper-slide .tarjeta-articulo-swiper{
+.swiper-slide .tarjeta-articulo-swiper, .swiper-slide .tarjeta-promocion-swiper{
     border: 2px solid black;
     border-radius: 10px;
     margin: 10px 0 20px 0;
@@ -260,8 +260,10 @@
     font-weight: bold;
     font-size: 14px;
     position: absolute;
-    top: -25px;
-    right: -25px;
+    /* modificacion de la trajeta de promocion*/
+    top: -10px;
+    right: -3px;
+   
 }
 
 .precio-original{
@@ -472,19 +474,18 @@ footer img {
 }
 
 /*! --------- SWIPER --------- */
-.swiperDestacado {
+.swiperDestacado, .swiperPromociones {
     max-width: 1200px;
 }
+.swiperPromociones {
+    margin-top: 10px;
+}
 
-.swiperDestacado .swiper-wrapper{
+.swiperDestacado .swiper-wrapper, .swiperPromociones .swiper-wrapper{
     width: 100%;
 }
 
-.swiperDestacado{
-    max-width: 1200px;
-}
-
-.swiperDestacado .swiper-button-prev, .swiperDestacado .swiper-button-next {
+.swiperDestacado .swiper-button-prev, .swiperDestacado .swiper-button-next, .swiperPromociones .swiper-button-prev, .swiperPromociones .swiper-button-next {
     --swiper-navigation-size: 20px;
     --swiper-navigation-color: black;
     background-color: #9E8FFF;
@@ -493,12 +494,12 @@ footer img {
     opacity: 0;
 }
 
-.swiperDestacado .swiper-pagination {
+.swiperDestacado .swiper-pagination, .swiperPromociones .swiper-pagination  {
     --swiper-pagination-color: #9E8FFF;
     --swiper-pagination-bullet-size: 10px;
 }
 
-.swiperDestacado:hover .swiper-button-prev, .swiperDestacado:hover .swiper-button-next{
+.swiperDestacado:hover .swiper-button-prev, .swiperDestacado:hover .swiper-button-next, .swiperPromociones:hover .swiper-button-prev, .swiperPromociones:hover .swiper-button-next{
     opacity: 1
 }
 
@@ -514,7 +515,7 @@ footer img {
         margin: 10px 20px 20px 20px;
     }
 
-    .swiper-slide .tarjeta-articulo-swiper{
+    .swiper-slide .tarjeta-articulo-swiper, .swiper-slide .tarjeta-promocion-swiper{
         margin: 10px 20px 20px 20px;
     }
 
@@ -528,6 +529,7 @@ footer img {
 
     .descuento{
         font-size: 16px;
+        
     }
 
     .crear-producto{
@@ -618,8 +620,8 @@ footer img {
     .tarjeta-articulo, .tarjeta-promocion{
         width: 25%;
     }    
-
-    .tarjeta-articulo:hover, .tarjeta-promocion:hover, .tarjeta-articulo-swiper:hover {
+ 
+    .tarjeta-articulo:hover, .tarjeta-promocion:hover, .tarjeta-articulo-swiper:hover ,.tarjeta-promocion-swiper:hover{
         box-shadow: 0px 0px 25px  #9E8FFF;
     }
 
