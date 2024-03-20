@@ -22,24 +22,7 @@ const productsController = {
         }
     },
 
-    // listadoMonitoresTVs: async (req, res) => {
-    //     try {
-    //         const titulo = "Monitores & TVs";
-
-    //         const data = await db.Product.findAll({
-    //             where: {idCategoryFK: 2},
-    //             include: ["images"],
-    //         });
-
-    //         const categorias = await db.Category.findAll({})
-            
-    //         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
-
-    //     } catch (error) {
-    //         res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
-    //     }
-    // },
-
+    
     listadoCategorias: async (req, res) => {
         try {
             const tituloCaract = req.params.categoria
@@ -50,8 +33,6 @@ const productsController = {
             })
 
             const idCategory = categoria[0].idCategory
-            // console.log(categoria);
-            // console.log(idCategory);
             
             const data = await db.Product.findAll({
                 where: { idCategoryFK: idCategory },
@@ -75,11 +56,6 @@ const productsController = {
         try {
             const data = await db.Product.findByPk(req.params.id, {
                 include: ["images", "category", "brand", "features"], 
-                //attributes: {association: ["features"], exclude: [ "products_features" ]}
-                
-                
-                //attributes: {exclude: [ 'updated_at' ]},
-                //include: [{association: 'movies', attributes: {exclude: [ 'updated_at', 'created_at', 'genre_id' ]}}]
             })
 
             const categorias = await db.Category.findAll({})
@@ -263,7 +239,6 @@ const productsController = {
             function tiene_repetidos(array){
                 return new Set(array).size!==array.length
             }
-
 
             if (tiene_repetidos(caracteristicasBody)) {
                 
@@ -630,8 +605,7 @@ const productsController = {
 
     borrarCaracteristica: async (req, res) => {
         const caracteristica = req.body.caracteristicaSelect;
-        // console.log(marca);
-
+        
         try {
 
             if (!caracteristica) {
@@ -644,14 +618,13 @@ const productsController = {
                 }
             })
 
-            // if (caracteristica == feature.idFeature) {
                 await db.Feature.destroy({
                     where: { idFeature: caracteristica }
                 })
 
 
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La caracteristica ${feature.feature} se dió de baja`});
-            // } 
+             
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -660,8 +633,6 @@ const productsController = {
 
     borrarMarca: async (req, res) => {
         const marca = req.body.marcaSelect;
-        // console.log(marca);
-
         try {
 
             if (!marca) {
@@ -674,13 +645,11 @@ const productsController = {
                 }
             })
 
-            // if (marca == brand.idBrand) {
                 await db.Brand.destroy({
                     where: { idBrand: marca }
                 })
 
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La marca ${brand.brandName} se dió de baja`});
-            // } 
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -689,7 +658,6 @@ const productsController = {
 
     borrarCategoria: async (req, res) => {
         const categoria = req.body.categoriaSelect;
-        // console.log(categoria);
 
         try {
 
@@ -702,15 +670,12 @@ const productsController = {
                     idCategory: categoria
                 }
             })
-            // console.log(category);
 
-            // if (categoria == category.idCategory) {
                 await db.Category.destroy({
                     where: { idCategory: categoria }
                 })
 
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La categoría ${category.categoryName} se dió de baja`});
-            // } 
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
