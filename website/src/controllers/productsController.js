@@ -22,23 +22,23 @@ const productsController = {
         }
     },
 
-    listadoMonitoresTVs: async (req, res) => {
-        try {
-            const titulo = "Monitores & TVs";
+    // listadoMonitoresTVs: async (req, res) => {
+    //     try {
+    //         const titulo = "Monitores & TVs";
 
-            const data = await db.Product.findAll({
-                where: {idCategoryFK: 2},
-                include: ["images"],
-            });
+    //         const data = await db.Product.findAll({
+    //             where: {idCategoryFK: 2},
+    //             include: ["images"],
+    //         });
 
-            const categorias = await db.Category.findAll({})
+    //         const categorias = await db.Category.findAll({})
             
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
+    //         res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
 
-        } catch (error) {
-            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
-        }
-    },
+    //     } catch (error) {
+    //         res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+    //     }
+    // },
 
     listadoCategorias: async (req, res) => {
         try {
@@ -50,8 +50,8 @@ const productsController = {
             })
 
             const idCategory = categoria[0].idCategory
-            console.log(categoria);
-            console.log(idCategory);
+            // console.log(categoria);
+            // console.log(idCategory);
             
             const data = await db.Product.findAll({
                 where: { idCategoryFK: idCategory },
@@ -635,7 +635,7 @@ const productsController = {
         try {
 
             if (!caracteristica) {
-                throw new Error('Debes seleccionar una caracteristica')
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: "Debes seleccionar una caracteristica para darla de baja"});
             }
 
             const feature = await db.Feature.findOne({
@@ -644,13 +644,14 @@ const productsController = {
                 }
             })
 
-            if (caracteristica == feature.idFeature) {
+            // if (caracteristica == feature.idFeature) {
                 await db.Feature.destroy({
                     where: { idFeature: caracteristica }
                 })
 
+
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La caracteristica ${feature.feature} se dió de baja`});
-            } 
+            // } 
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -664,7 +665,7 @@ const productsController = {
         try {
 
             if (!marca) {
-                throw new Error('Debes seleccionar una marca')
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: "Debes seleccionar una marca para darla de baja"});
             }
 
             const brand = await db.Brand.findOne({
@@ -673,13 +674,13 @@ const productsController = {
                 }
             })
 
-            if (marca == brand.idBrand) {
+            // if (marca == brand.idBrand) {
                 await db.Brand.destroy({
                     where: { idBrand: marca }
                 })
 
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La marca ${brand.brandName} se dió de baja`});
-            } 
+            // } 
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -693,7 +694,7 @@ const productsController = {
         try {
 
             if (!categoria) {
-                throw new Error('Debes seleccionar una categoria')
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: "Debes seleccionar una categoria para darla de baja"});
             }
 
             const category = await db.Category.findOne({
@@ -701,15 +702,15 @@ const productsController = {
                     idCategory: categoria
                 }
             })
-            console.log(category);
+            // console.log(category);
 
-            if (categoria == category.idCategory) {
+            // if (categoria == category.idCategory) {
                 await db.Category.destroy({
                     where: { idCategory: categoria }
                 })
 
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La categoría ${category.categoryName} se dió de baja`});
-            } 
+            // } 
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});

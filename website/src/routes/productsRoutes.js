@@ -12,7 +12,7 @@ const uploadImgs = uploadImg.fields([{ name: 'imagenPrincipal', maxCount: 1 }, {
 
 // Listado de productos
 router.get('/', productsController.listado);
-router.get('/monitores-tvs', productsController.listadoMonitoresTVs);
+// router.get('/monitores-tvs', productsController.listadoMonitoresTVs);
 router.get('/:categoria', productsController.listadoCategorias)
 
 //Carrito

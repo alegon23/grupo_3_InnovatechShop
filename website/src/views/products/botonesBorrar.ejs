@@ -14,14 +14,14 @@
                 <% } %>
                 
                 <button class="btnBorrarCaracteristica">Eliminar una característica</button>
-                <form action="/products/feature/<%= caracteristicas.idFeature %>?_method=DELETE" method="POST" class="form_borrar_caracteristica oculto">
+                <form action="/products/feature?_method=DELETE" method="POST" class="form_borrar_caracteristica oculto">
                     <div>  
                         <div class="caja-menuAdmin">
                             <label>Caracteristicas cargadas</label>
                             <select name="caracteristicaSelect" class="caracteristicaSelect">
                                 <option value="">Selecciona la caracteristica</option>
                                 <% for (const caracteristica of caracteristicas) { %>
-                                    <option value="<%= caracteristica.idFeature %>"> <%= caracteristica.feature %></option>
+                                    <option value="<%= caracteristica.id %>"> <%= caracteristica.featureName %></option>
                                 <% } %>
                             </select>
                         </div> 

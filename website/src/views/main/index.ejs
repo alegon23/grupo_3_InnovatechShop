@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/head', {title: "- Home", cssFile: "styles", cssHome:
-  ""}) %>
+  <%- include('../partials/head', {title: "- Home", cssFile: "styles", cssHome: ""}) %>
   <body>
     <!--  !HEADER  -->
     <%- include('../partials/header.ejs') %>
+        <nav class="navbar-inferior">
+          <div class="swiper swiperNav">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                      <a href="../../products">Ver Todo</a>
+                  </div>
+                  <% for (categoria of categorias) { %>
+                      <div class="swiper-slide">
+                          <a href="../../products/<%= categoria.categoryName %>"> <%= categoria.categoryName%></a>
+                      </div>
+                  <% } %>
+              </div>
+          </div>
+      </nav>
+    </header>
 
     <!-- !BANNER -->
     <img src="/images/banner.jpg" alt="Banner" id="banner" />
@@ -141,9 +155,8 @@
     <!--* SCRIPTS -->
     <script src="/js/comportamientoMovil.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/carruselNav.js"></script>
     <script src="/js/carruselDestacados.js"></script>
     <script src="/js/carruselPromociones.js"></script>
   </body>
-  
-
 </html>

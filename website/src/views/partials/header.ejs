@@ -57,16 +57,3 @@
             <a href="../../products/carrito" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>
         <% } %>        
     </div>
-
-    <nav class="navbar-inferior">
-        <ul>
-            <li><a href="../../products">Ver Todo</a></li>
-            <li><a href="../../products/monitores-tvs">Monitores & TVs <i class="bi bi-caret-down"></i></a></li>
-            <% for (categoria of categorias) { %>
-                <% if (!categoria.categoryName.includes('&')) { %>
-                    <li><a href="../../products/<%= categoria.categoryName %>"> <%= categoria.categoryName%> <i class="bi bi-caret-down"></i></a></li>
-                <% } %>
-            <% } %>
-        </ul>
-    </nav>
-</header>

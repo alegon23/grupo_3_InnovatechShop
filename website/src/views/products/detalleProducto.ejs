@@ -6,6 +6,21 @@
 <body>
     <!--  !HEADER  -->
     <%- include('../partials/header') %>
+    <nav class="navbar-inferior">
+        <div class="swiper swiperNav">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="../../products">Ver Todo</a>
+                </div>
+                <% for (categoria of categorias) { %>
+                    <div class="swiper-slide">
+                        <a href="../../products/<%= categoria.categoryName %>"> <%= categoria.categoryName%></a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+  </header>
     <!-- * FIN HEADER -->
 
     <!-- ! MAIN  -->
@@ -119,5 +134,7 @@
     <!-- * FIN FOOTER -->
     <script src="/js/comportamientoMovil.js"></script>
     <script src="/js/alertaProducto.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/carruselNav.js"></script>
 </body>
 </html>

@@ -364,7 +364,8 @@ const usersController = {
     botonesBorrar: async (req, res) => {
         let marca = []
         let categoria = [];
-        // let caracteristica = []
+        let caracteristica = []
+
         try {
             const brandList = await db.Brand.findAll()
             // console.log(brandList);
@@ -402,33 +403,22 @@ const usersController = {
                 }
             }
 
-            const caracteristica = await db.Feature.findAll()
-            // console.log(listaCaracteristica);
+            const featureList = await db.Feature.findAll()
 
+            for (let i = 0; i < featureList.length; i++) {
+                const cantidad = await db.ProductFeature.count({
+                    where: {
+                        idFeatureFK: featureList[i].idFeature
+                    }
+                })
 
-            // for (let i = 0; i < listaCaracteristica.length; i++) {
-            //     if (featureLists.idFeatureFK) {
-            //         caracteristica.push(
-            //             listaCaracteristica[i]
-            //         )
-            //     }
-            
-            // }
-
-            // for (let i = 0; i < featureList.length; i++) {
-            //     const cantidad = await db.ProductFeature.count({
-            //         where: {
-            //             idProductsFeatures: featureList[i].idProductsFeatures
-            //         }
-            //     })
-
-            //     if (cantidad == 0) {
-            //         caracteristica.push({
-            //             id: featureList[i].idFeature,
-            //             feature: featureList[i].feature
-            //         })
-            //     }
-            // }
+                if (cantidad == 0) {
+                    caracteristica.push({
+                        id: featureList[i].idFeature,
+                        featureName: featureList[i].feature,
+                    })
+                }
+            }
 
             return res.render(path.resolve('./', './src/views/products/botonesBorrar'), {caracteristicas: caracteristica, marcas: marca, categorias: categoria});
         } catch (error) {
