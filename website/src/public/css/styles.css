@@ -452,6 +452,8 @@ footer img {
     rgba(133, 247, 255, 1) 0%,
     rgba(158, 143, 255, 0.5) 100%
   );
+  text-align: center;
+  margin: 0 10px;
 }
 
 .main-error{
@@ -463,11 +465,11 @@ footer img {
 }
 
 .main-error h1 {
-    font-size: 40px;
+    /* font-size: 30px; */
     margin-bottom: 0;
 }
 
-.main-error h2 {
+.main-error h3 {
     color: rgba(255, 0, 0, 0.8);
     font-style: italic;
 }
