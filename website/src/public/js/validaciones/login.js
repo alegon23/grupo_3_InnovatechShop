@@ -118,7 +118,7 @@ window.addEventListener("load", function () {
         const inputEmail = form["email"];
         const inputPassword = form["contrasenia"];
         
-        if (inputEmail.value == '' && inputPassword.value == '') {
+        if (inputEmail.value == '' || inputPassword.value == '') {
             errores.push('Ambos campos son obligatorios')
         }  
         

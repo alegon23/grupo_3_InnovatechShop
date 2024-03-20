@@ -41,4 +41,8 @@ router.get('/logout', usersController.logout);
 //para validacion front
 router.get('/validate/:email', usersController.validateEmail)
 
+//Borrar Caract, Categ y Marca
+router.get('/menu-admin/borrar', authAdminMiddleware, usersController.botonesBorrar)
+
+
 module.exports = router;

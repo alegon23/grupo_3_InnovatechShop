@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', {title: "- Menú Admin", cssFile: "menuAdmin", cssHome: "styles"}) %>
+<body>
+    
+    <main id="main-menuAdmin">
+        <div class="container-menuAdmin">
+            <img src="/images/Logo.png" alt="Logo" class="logo-menuAdmin">
+
+            <div class="caja-form-menuAdmin">
+                <h2>Menú Administrador</h2>
+                <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
+                    <h3>¿Qué es lo que deseas hacer, <%= locals.usuarioLog.firstName %>?</h3>
+                <% } %>
+                
+                <button class="btnBorrarCaracteristica">Eliminar una característica</button>
+                <form action="/products/feature/<%= caracteristicas.idFeature %>?_method=DELETE" method="POST" class="form_borrar_caracteristica oculto">
+                    <div>  
+                        <div class="caja-menuAdmin">
+                            <label>Caracteristicas cargadas</label>
+                            <select name="caracteristicaSelect" class="caracteristicaSelect">
+                                <option value="">Selecciona la caracteristica</option>
+                                <% for (const caracteristica of caracteristicas) { %>
+                                    <option value="<%= caracteristica.idFeature %>"> <%= caracteristica.feature %></option>
+                                <% } %>
+                            </select>
+                        </div> 
+                        <button type="submit" style="width: 70%;">Borrar <i class="bi bi-database-x"></i></button>
+                    </div>
+                    <a href="/users/menu-admin/borrar">Atrás</a>
+                </form>
+
+                <button class="btnBorrarMarca">Eliminar una marca</button>
+                <form action="/products/brand?_method=DELETE" method="POST" class="form_borrar_marca oculto">
+                    <div>  
+                        <div class="caja-menuAdmin">
+                            <label>Marcas cargadas</label>
+                            <select name="marcaSelect" class="marcaSelect">
+                                <option value="">Selecciona la marca</option>
+                                <% for (const marca of marcas) { %>
+                                    <option value="<%= marca.id %>"> <%= marca.brandName %></option>
+                                <% } %>
+                            </select>
+                        </div> 
+                        <button type="submit">Borrar <i class="bi bi-database-x"></i></button>
+                    </div>
+                    <a href="/users/menu-admin/borrar">Atrás</a>
+                </form>
+
+                <button class="btnBorrarCategoria">Eliminar una categoría</button>
+                <form action="/products/category/<%= categoria.id %>?_method=DELETE" method="POST" class="form_borrar_categoria oculto">
+                    <div>  
+                        <div class="caja-menuAdmin">
+                            <label>Categorias cargadas</label>
+                            <select name="categoriaSelect" class="categoriaSelect">
+                                <option value="">Selecciona la categoria</option>
+                                <% for (const categoria of categorias) { %>
+                                    <option value="<%= categoria.id %>"> <%= categoria.categoryName %></option>
+                                <% } %>
+                            </select>
+                        </div> 
+                        <button type="submit">Borrar <i class="bi bi-database-x"></i></button>
+                    </div>
+                    <a href="/users/menu-admin/borrar">Atrás</a>
+                </form>
+            </div>
+            
+            <hr>
+            <div class="footer-form">
+                <a href="/" class="volver-tienda"><i class="bi bi-caret-left"></i> Volver a la tienda</i></a>
+                <a class="volver-tienda" href="/users/menu-admin"><i class="bi bi-person-lines-fill"></i> Volver al menu</a>
+                <p>Copyright © 2023</p>
+            </div>
+
+        </div>
+    </main> 
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="/js/botonesMenuAdmin.js"></script>
+</body>
+</html>

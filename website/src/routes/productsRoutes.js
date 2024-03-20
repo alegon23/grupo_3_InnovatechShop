@@ -12,12 +12,8 @@ const uploadImgs = uploadImg.fields([{ name: 'imagenPrincipal', maxCount: 1 }, {
 
 // Listado de productos
 router.get('/', productsController.listado);
-router.get('/celulares', productsController.listadoCelulares);
 router.get('/monitores-tvs', productsController.listadoMonitoresTVs);
-router.get('/tablets', productsController.listadoTablets);
-router.get('/notebooks', productsController.listadoNotebooks);
-router.get('/hardware', productsController.listadoHardware);
-router.get('/accesorios', productsController.listadoAccesorios);
+router.get('/:categoria', productsController.listadoCategorias)
 
 //Carrito
 router.get('/carrito', guestAdminMiddleware, productsController.carrito);
@@ -33,9 +29,6 @@ router.post('/', uploadImgs, validacionesProducto, productsController.guardar);
 router.get('/editarProducto/:id', authAdminMiddleware, productsController.editar);
 router.put('/editarProducto/:id', uploadImgs, validacionesProductoEditar, productsController.actualizar);
 
-//Borrar productos
-router.delete('/:id', authAdminMiddleware, productsController.borrar)
-
 //para menu admin -> marca
 router.post('/nuevaMarca', validacionesMarca, productsController.crearMarca)
 
@@ -46,13 +39,27 @@ router.post('/nuevaCategoria', validacionesCategoria, productsController.crearCa
 router.post('/nuevaCaracteristica', validacionesCaracteristicas, productsController.crearCaracteristica)
 
 
-
+//Validacion del menu admin
 router.get('/validate/brand/:marca', productsController.validateMarca)
 
 router.get('/validate/category/:categoria', productsController.validateCategoria)
 
 router.get('/validate/feature/:feature', productsController.validateCaracteristica)
 
+
+//Borrar caracteristica
+router.delete('/feature', authAdminMiddleware, productsController.borrarCaracteristica)
+
+//Borrar marca
+router.delete('/brand', authAdminMiddleware, productsController.borrarMarca)
+
+//Borrar categoria
+router.delete('/category', authAdminMiddleware, productsController.borrarCategoria)
+
+
+
+//Borrar productos
+router.delete('/:id', authAdminMiddleware, productsController.borrar)
 
 
 module.exports = router;

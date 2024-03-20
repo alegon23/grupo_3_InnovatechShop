@@ -22,7 +22,7 @@
 .mostrar-menu-hamburguesa{
     position: absolute;
     z-index: 999;
-    background-color: rgba(133, 247, 255, 0.95);
+    background-color: #C9B7FF;
     width: 100vw;
     top: 50px;
 }
@@ -119,6 +119,14 @@
     color: gray;
 }
 
+.boton-busqueda:hover {
+    cursor: pointer;
+}
+
+.boton-busqueda i:active {
+   color: #67f5ff;
+}
+
 .iconos-movil{
     display: flex;
     align-items: center;
@@ -213,10 +221,11 @@
     justify-content: center;
     align-items: center;
 }
+
 .swiper-slide .tarjeta-articulo-swiper, .swiper-slide .tarjeta-promocion-swiper{
     border: 2px solid black;
     border-radius: 10px;
-    margin: 10px 0 20px 0;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -473,6 +482,24 @@ footer img {
     text-decoration: underline;
 }
 
+/*! --------- ABOUT Y HELP --------- */
+#main-about, #main-help {
+    padding: 10px;
+    text-align: justify;
+}
+
+#main-about h1, #main-help h1{
+    text-align: center;
+    background: rgb(133,247,255);
+    background: radial-gradient(circle, rgba(133,247,255,1) 0%, rgba(158,143,255,1) 100%);
+    margin: 0;
+    padding: 15px;
+}
+
+#main-about h4{
+    text-decoration: none;
+}
+
 /*! --------- SWIPER --------- */
 .swiperDestacado, .swiperPromociones {
     max-width: 1200px;
@@ -484,6 +511,8 @@ footer img {
 .swiperDestacado .swiper-wrapper, .swiperPromociones .swiper-wrapper{
     width: 100%;
 }
+
+
 
 .swiperDestacado .swiper-button-prev, .swiperDestacado .swiper-button-next, .swiperPromociones .swiper-button-prev, .swiperPromociones .swiper-button-next {
     --swiper-navigation-size: 20px;

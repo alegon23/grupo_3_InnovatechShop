@@ -74,6 +74,10 @@ form {
     border: none;
 }
 
+.boton-borrarPerfil:hover {
+    cursor: pointer;
+}
+
 .datos-usuario a {
     text-decoration: none;
     color: black;

@@ -19,9 +19,12 @@
 
                     <button><a target="_blank" href="http://localhost:5173">Ir al Dashboard <i class="bi bi-box-arrow-up-right"></i></a></button>
                 </div>
+                
+                <p></p>
 
                 <hr class="divider">
                 <!-- <span class="errorSubmit"></span> -->
+
                 <button class="btnCaracteristica">Añadir nueva característica</button>
                 <form action="/products/nuevaCaracteristica" method="POST" class="form_caracteristica oculto">
                     <div>
@@ -77,12 +80,20 @@
                     </div> 
                     <a href="/users/menu-admin">Atras</a>
                 </form>
+
+                <p class="mensaje"><%= locals.mensaje && locals.mensaje %></p>
+                
+                <hr class="divider">
+
+                <button class="btnBorrarCaracteristica"> <a href="/users/menu-admin/borrar">Eliminar una característica, una marca o una categoria</a> </button>
+
+                <p class="mensaje"><%= locals.mensajeBorrar && locals.mensajeBorrar %></p>
+
             </div>
+        
 
-            <p class="mensaje"><%= locals.mensaje && locals.mensaje %></p>
-            
             <hr>
-
+            
             <div class="footer-form">
                 <a href="/" class="volver-tienda"><i class="bi bi-caret-left"></i> Volver a la tienda</i></a>
                 <p>Copyright © 2023</p>

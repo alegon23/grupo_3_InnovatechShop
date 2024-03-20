@@ -52,14 +52,14 @@ body {
 }
 
 .caja-form-menuAdmin h3 {
-    font-size: 16px;
-    font-weight: normal;
-    margin-top: 5px;
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
 }
 
-.container-btns-menuAdmin button a{
-    text-decoration: none;
-    color: black;
+button a{
+  text-decoration: none;
+  color: black;
 }
 
 .divider{
@@ -117,19 +117,19 @@ form button {
     padding: 3px;
 }
 
-.form_caracteristica button:hover, .form_marca button:hover, .form_categoria button:hover {
+.form_caracteristica button:hover, .form_marca button:hover, .form_categoria button:hover, .form_borrar_categoria button:hover{
   background-color: #e5e1ff;
   border: 1px solid #e5e1ff;
   color: black
 }
 
-.form_caracteristica button:active, .form_marca button:active, .form_categoria button:active {
+.form_caracteristica button:active, .form_marca button:active, .form_categoria button:active, .form_borrar_marca:active, .form_borrar_categoria button:active {
   background-color: white;
   border: 1px solid white;;
   color: black
 }
 
-.container-btns-menuAdmin button, .btnCaracteristica, .btnMarca, .btnCategoria {
+.container-btns-menuAdmin button, .btnCaracteristica, .btnMarca, .btnCategoria , .btnBorrarMarca, .btnBorrarCategoria, .btnBorrarCaracteristica{
   border: none;
   border-radius: 100px;
   text-align: center;
@@ -164,6 +164,24 @@ form a {
 form a:hover{
   text-decoration: underline;
 }
+
+.marcaSelect, .categoriaSelect, .caracteristicaSelect {
+  background-color: white;
+  border: solid 1px #222222;
+  border-radius: 5px;
+  padding: 1px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.marcaSelect:focus, .categoriaSelect:focus, .caracteristicaSelect:focus {
+  border: none;
+  outline: solid 2px #9e8fff;
+}
+
+button a:hover {
+  color: white;
+}  
 
 .mensaje{
   color: #9e8fff;
@@ -203,15 +221,14 @@ hr {
 }
 
 .oculto{
-    display: none;
+  display: none;
 }
   
-.form_caracteristica_mostrar, .form_marca_mostrar, .form_categoria_mostrar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form_caracteristica_mostrar, .form_marca_mostrar, .form_categoria_mostrar, .form_borrar_marca_mostrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 
 
 @media (min-width: 480px) {

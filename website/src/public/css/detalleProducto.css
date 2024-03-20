@@ -105,6 +105,10 @@
     border: none;
 }
 
+.boton-borrar:hover {
+    cursor: pointer;
+}
+
 .form-detalle .boton-editar {
     width: 50%;
     text-decoration: none;

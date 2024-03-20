@@ -115,7 +115,10 @@ const usersController = {
             const data = await db.User.findOne({
                 where: { idUser: idUser }
             })
-            res.render(path.resolve('./', './src/views/users/perfil'), {user: data})
+
+            const categorias = await db.Category.findAll({})
+
+            res.render(path.resolve('./', './src/views/users/perfil'), {user: data, categorias: categorias})
          
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -278,7 +281,7 @@ const usersController = {
         }
     },
 
-    mostrarMenu: (req, res) => {
+    mostrarMenu:  (req, res) => {
         res.render(path.resolve('./', './src/views/users/menuAdmin'))
     },
 
@@ -353,6 +356,81 @@ const usersController = {
                     existe: false,
                 })
             }
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    botonesBorrar: async (req, res) => {
+        let marca = []
+        let categoria = [];
+        // let caracteristica = []
+        try {
+            const brandList = await db.Brand.findAll()
+            // console.log(brandList);
+            
+            for (let i = 0; i < brandList.length; i++) {
+                const cantidad = await db.Product.count({
+                    where: {
+                        idBrandFK: brandList[i].idBrand
+                    }
+                })
+
+                if (cantidad == 0) {
+                    marca.push({
+                        id: brandList[i].idBrand,
+                        brandName: brandList[i].brandName
+                    })
+                }
+            }
+
+            const categoryList = await db.Category.findAll()
+            // console.log(categoria);
+
+            for (let i = 0; i < categoryList.length; i++) {
+                const cantidad = await db.Product.count({
+                    where: {
+                        idCategoryFK: categoryList[i].idCategory
+                    }
+                })
+
+                if (cantidad == 0) {
+                    categoria.push({
+                        id: categoryList[i].idCategory,
+                        categoryName: categoryList[i].categoryName
+                    })
+                }
+            }
+
+            const caracteristica = await db.Feature.findAll()
+            // console.log(listaCaracteristica);
+
+
+            // for (let i = 0; i < listaCaracteristica.length; i++) {
+            //     if (featureLists.idFeatureFK) {
+            //         caracteristica.push(
+            //             listaCaracteristica[i]
+            //         )
+            //     }
+            
+            // }
+
+            // for (let i = 0; i < featureList.length; i++) {
+            //     const cantidad = await db.ProductFeature.count({
+            //         where: {
+            //             idProductsFeatures: featureList[i].idProductsFeatures
+            //         }
+            //     })
+
+            //     if (cantidad == 0) {
+            //         caracteristica.push({
+            //             id: featureList[i].idFeature,
+            //             feature: featureList[i].feature
+            //         })
+            //     }
+            // }
+
+            return res.render(path.resolve('./', './src/views/products/botonesBorrar'), {caracteristicas: caracteristica, marcas: marca, categorias: categoria});
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }

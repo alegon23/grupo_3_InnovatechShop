@@ -10,18 +10,10 @@
             <ul>
                 <li><a href="../../products">Todos los productos</a></li>
                 <hr>
-                <li><a href="../../products/celulares">Celulares</a></li>
-                <hr>
-                <li><a href="../../products/monitores-tvs">Monitores & TVs</a></li>
-                <hr>
-                <li><a href="../../products/tablets">Tablets</a></li>
-                <hr>
-                <li><a href="../../products/notebooks">Notebooks</a></li>
-                <hr>
-                <li><a href="../../products/hardware">Hardware</a></li>
-                <hr>
-                <li><a href="../../products/accesorios">Accesorios</a></li>
-                <hr>
+                <% for (categoria of categorias) { %>
+                    <li><a href="../../products/<%= categoria.categoryName %>"><%= categoria.categoryName %></a></li>
+                    <hr>
+                <% } %>
             </ul>
         </div>
         
@@ -29,7 +21,7 @@
         
         <form id="formBusqueda" class="caja-busqueda" action="/search" method="GET">
             <input type="text" id="barra-busqueda" name="keywords" placeholder="Buscar productos...">
-            <button class="boton-busqueda"><i class="bi bi-search icono-busqueda"></i></button>
+            <button class="boton-busqueda"> <i class="bi bi-search icono-busqueda"></i> </button>
         </form>
 
         <div class="iconos-movil">
@@ -69,12 +61,12 @@
     <nav class="navbar-inferior">
         <ul>
             <li><a href="../../products">Ver Todo</a></li>
-            <li><a href="../../products/celulares">Celulares <i class="bi bi-caret-down"></i></a></li>
             <li><a href="../../products/monitores-tvs">Monitores & TVs <i class="bi bi-caret-down"></i></a></li>
-            <li><a href="../../products/tablets">Tablets <i class="bi bi-caret-down"></i></a></li>
-            <li><a href="../../products/notebooks">Notebooks <i class="bi bi-caret-down"></i></a></li>
-            <li><a href="../../products/hardware">Hardware <i class="bi bi-caret-down"></i></a></li>
-            <li><a href="../../products/accesorios">Accesorios <i class="bi bi-caret-down"></i></a></li>
+            <% for (categoria of categorias) { %>
+                <% if (!categoria.categoryName.includes('&')) { %>
+                    <li><a href="../../products/<%= categoria.categoryName %>"> <%= categoria.categoryName%> <i class="bi bi-caret-down"></i></a></li>
+                <% } %>
+            <% } %>
         </ul>
     </nav>
 </header>

@@ -7,9 +7,12 @@ const mainController = {
     index: async (req, res) => {
         try {
             const data = await db.Product.findAll({
-                include: ["images"],
+                include: ["images", "category"],
             })
-            res.render(path.resolve('./', './src/views/main/index'), {productos: data, calcularDescuento: calcularDescuento, calcularMiles});
+
+            const categorias = await db.Category.findAll({})
+
+            res.render(path.resolve('./', './src/views/main/index'), {productos: data, categorias: categorias, calcularDescuento: calcularDescuento, calcularMiles});
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -27,19 +30,38 @@ const mainController = {
                     }
                 }
             });
+
+            const categorias = await db.Category.findAll({})
+
             const titulo = "Resultados de la búsqueda: \"" + busqueda + "\"";
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
 
-    about: (req, res) => {
-        res.render(path.resolve('./', './src/views/main/about'));
+    about: async (req, res) => {
+        try {
+            
+            const categorias = await db.Category.findAll({})
+
+            res.render(path.resolve('./', './src/views/main/about'), {categorias: categorias});  
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+        
+        
     },
 
-    help: (req, res) => {
-        res.render(path.resolve('./', './src/views/main/help'));
+    help: async (req, res) => {
+        try {
+
+            const categorias = await db.Category.findAll({})
+            
+            res.render(path.resolve('./', './src/views/main/help'), {categorias: categorias});
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
     }
 }
 

@@ -13,23 +13,9 @@ const productsController = {
                 include: ["images"],
             })
 
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            const categorias = await db.Category.findAll({})
 
-        } catch (error) {
-            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
-        }
-        
-        
-    },
-    listadoCelulares: async (req, res) => {
-        try {
-            const titulo = "Celulares";
-            const data = await db.Product.findAll({
-                where: {idCategoryFK: 1},
-                include: ["images"],
-            });
-
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -44,68 +30,37 @@ const productsController = {
                 where: {idCategoryFK: 2},
                 include: ["images"],
             });
+
+            const categorias = await db.Category.findAll({})
             
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
     },
 
-    listadoTablets: async (req, res) => {
+    listadoCategorias: async (req, res) => {
         try {
-            const titulo = "Tablets";
-            const data = await db.Product.findAll({
-                where: {idCategoryFK: 3},
-                include: ["images"],
-            });
+            const tituloCaract = req.params.categoria
+            const titulo = tituloCaract;
 
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            const categoria = await db.Category.findAll({
+                where: { categoryName: titulo }
+            })
 
-        } catch (error) {
-            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
-        }
-    },
-
-    listadoNotebooks: async (req, res) => {
-        try {
-            const titulo = "Notebooks";
-            const data = await db.Product.findAll({
-                where: {idCategoryFK: 4},
-                include: ["images"],
-            });
-
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            const idCategory = categoria[0].idCategory
+            console.log(categoria);
+            console.log(idCategory);
             
-        } catch (error) {
-            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
-        }
-    },
-
-    listadoHardware: async (req, res) => {
-        try {
-            const titulo = "Hardware";
             const data = await db.Product.findAll({
-                where: {idCategoryFK: 5},
+                where: { idCategoryFK: idCategory },
                 include: ["images"],
-            });
+            })
 
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            const categorias = await db.Category.findAll()
 
-        } catch (error) {
-            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
-        }
-    },
-
-    listadoAccesorios: async (req, res) => {
-        try {
-            const titulo = "Accesorios";
-            const data = await db.Product.findAll({
-                where: {idCategoryFK: 6},
-                include: ["images"],
-            });
-            
-            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, calcularMiles});
+            res.render(path.resolve('./', './src/views/main/results'), {titulo, resultados: data, categorias: categorias, calcularMiles});
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -126,8 +81,10 @@ const productsController = {
                 //attributes: {exclude: [ 'updated_at' ]},
                 //include: [{association: 'movies', attributes: {exclude: [ 'updated_at', 'created_at', 'genre_id' ]}}]
             })
+
+            const categorias = await db.Category.findAll({})
             
-            res.render(path.resolve('./', './src/views/products/detalleProducto'), {producto: data, calcularDescuento, calcularMiles});
+            res.render(path.resolve('./', './src/views/products/detalleProducto'), {producto: data, categorias: categorias, calcularDescuento, calcularMiles});
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
@@ -422,26 +379,26 @@ const productsController = {
                 }
             }
 
-        //se editan las caracteristicas
-        const idsProductsFeatures = await db.ProductFeature.findAll({
-            where: {
-                idProductFK: req.params.id
-            },
-            attributes: {exclude: [ 'idProductFK', 'idFeatureFK' ]},
-        })
-
-
-        for (let i = 0; i < caracteristicasBody.length; i++) {
-           
-            await db.ProductFeature.update({
-                idProductFK: req.params.id,
-                idFeatureFK: caracteristicasBody[i]
-            }, {
+            //se editan las caracteristicas
+            const idsProductsFeatures = await db.ProductFeature.findAll({
                 where: {
-                    idProductsFeatures: idsProductsFeatures[i].idProductsFeatures
-                }
+                    idProductFK: req.params.id
+                },
+                attributes: {exclude: [ 'idProductFK', 'idFeatureFK' ]},
             })
-        }
+
+
+            for (let i = 0; i < caracteristicasBody.length; i++) {
+            
+                await db.ProductFeature.update({
+                    idProductFK: req.params.id,
+                    idFeatureFK: caracteristicasBody[i]
+                }, {
+                    where: {
+                        idProductsFeatures: idsProductsFeatures[i].idProductsFeatures
+                    }
+                })
+            }
 
             res.redirect('/products');
             
@@ -496,8 +453,9 @@ const productsController = {
                 where: {brandName: nombreMarca},
             })
 
+            
             if (foundBrand != null) {
-               return res.render(path.resolve('./', './src/views/users/menuAdmin'), {
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {
                     errors: {
                         nombreMarca: {
                             msg: 'Esta marca ya existe'
@@ -506,7 +464,7 @@ const productsController = {
                     oldData: req.body
                 });
             }
-
+            
             await db.Brand.create({
                 brandName: nombreMarca
             })
@@ -665,6 +623,94 @@ const productsController = {
                     existe: false,
                 })
             }
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    borrarCaracteristica: async (req, res) => {
+        const caracteristica = req.body.caracteristicaSelect;
+        // console.log(marca);
+
+        try {
+
+            if (!caracteristica) {
+                throw new Error('Debes seleccionar una caracteristica')
+            }
+
+            const feature = await db.Feature.findOne({
+                where: {
+                    idFeature: caracteristica
+                }
+            })
+
+            if (caracteristica == feature.idFeature) {
+                await db.Feature.destroy({
+                    where: { idFeature: caracteristica }
+                })
+
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La caracteristica ${feature.feature} se dió de baja`});
+            } 
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    borrarMarca: async (req, res) => {
+        const marca = req.body.marcaSelect;
+        // console.log(marca);
+
+        try {
+
+            if (!marca) {
+                throw new Error('Debes seleccionar una marca')
+            }
+
+            const brand = await db.Brand.findOne({
+                where: {
+                    idBrand: marca
+                }
+            })
+
+            if (marca == brand.idBrand) {
+                await db.Brand.destroy({
+                    where: { idBrand: marca }
+                })
+
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La marca ${brand.brandName} se dió de baja`});
+            } 
+
+        } catch (error) {
+            res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
+        }
+    },
+
+    borrarCategoria: async (req, res) => {
+        const categoria = req.body.categoriaSelect;
+        // console.log(categoria);
+
+        try {
+
+            if (!categoria) {
+                throw new Error('Debes seleccionar una categoria')
+            }
+
+            const category = await db.Category.findOne({
+                where: {
+                    idCategory: categoria
+                }
+            })
+            console.log(category);
+
+            if (categoria == category.idCategory) {
+                await db.Category.destroy({
+                    where: { idCategory: categoria }
+                })
+
+                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La categoría ${category.categoryName} se dió de baja`});
+            } 
+
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
