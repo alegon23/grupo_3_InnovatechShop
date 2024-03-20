@@ -72,22 +72,14 @@ const validarCaract = async (caracteristica) => {
   try { 
     const res = await fetch(`/products/validate/feature/${caracteristica}`)
     const data = await res.json()
-    console.log(data);
     return !data.existe
   } catch (error) {
-    console.log(error);
+    return false
   }
 }
 
-
-
-
-
-console.log('dsadas');
-
 window.addEventListener("load", function () {
-  //* COMPORTAMIENTO
-  
+    //* COMPORTAMIENTO
     const formCaract = document.querySelector("form.form_caracteristica");
     const formMarca = document.querySelector("form.form_marca");
     const formCateg = document.querySelector("form.form_categoria");
@@ -96,10 +88,7 @@ window.addEventListener("load", function () {
     const buttonMarca = document.querySelector("button.btnMarca");
     const buttonCateg = document.querySelector("button.btnCategoria");
   
-    // const buttonGuardar = document.querySelector("button.guardar");
-  
     buttonCaract.addEventListener("click", function (e) {
-      //e.preventDefault();
       formCaract.classList.add("form_caracteristica_mostrar");
       formMarca.classList.remove("form_marca_mostrar");
       formCateg.classList.remove("form_categoria_mostrar");
@@ -108,7 +97,6 @@ window.addEventListener("load", function () {
     });
   
     buttonMarca.addEventListener("click", function (e) {
-      //e.preventDefault();
       formMarca.classList.add("form_marca_mostrar");
       formCaract.classList.remove("form_caracteristica_mostrar");
       formCateg.classList.remove("form_categoria_mostrar");
@@ -117,7 +105,6 @@ window.addEventListener("load", function () {
     });
   
     buttonCateg.addEventListener("click", function (e) {
-      //e.preventDefault();
       formCateg.classList.add("form_categoria_mostrar");
       formMarca.classList.remove("form_marca_mostrar");
       formCaract.classList.remove("form_caracteristica_mostrar");
@@ -133,12 +120,10 @@ window.addEventListener("load", function () {
     if(inputToValidate.type.includes("onTime")) {
       
       const input = formMarca[inputToValidate.inputName];
-      console.log(input);
       const inputContainer = input.parentElement;
       
       input.addEventListener("keyup", async function (e) {
         for (const validation of inputToValidate.validations) {
-          console.log(e.target.value);
           const isValid = await validation.validator(e.target.value);
 
           if (!isValid) {
@@ -172,7 +157,6 @@ window.addEventListener("load", function () {
         for (const validation of inputToValidate.validations) {
           //se aplica el validador sobre el valor actual del input
           const isValid = await validation.validator(input.value);
-          console.log(isValid);
 
           //si es invalido -> muestra error + guarda en array
           if (!isValid) {
@@ -188,15 +172,9 @@ window.addEventListener("load", function () {
     });
 
     //si no hay errores, envia el form. Si hay errores, muestra mensaje
-    console.log(errorsMarca); 
     if (errorsMarca == '') {
       formMarca.submit();
-    } 
-    // else {
-    //   const spanErrorSubmit = document.querySelector("span.errorSubmit");
-    //   spanErrorSubmit.innerHTML = "Completa correctamente todos los campos";
-    //   spanErrorSubmit.classList.add("error-submit");
-    // }
+    }
   });
 
 
@@ -208,12 +186,10 @@ window.addEventListener("load", function () {
     if(inputToValidate.type.includes("onTime")) {
       
       const input = formCateg[inputToValidate.inputName];
-      console.log(input);
       const inputContainer = input.parentElement;
         
       input.addEventListener("keyup", async function (e) {
         for (const validation of inputToValidate.validations) {
-          console.log(e.target.value);
           const isValid = await validation.validator(e.target.value);
 
           if (!isValid) {
@@ -247,7 +223,6 @@ window.addEventListener("load", function () {
         for (const validation of inputToValidate.validations) {
           //se aplica el validador sobre el valor actual del input
           const isValid = await validation.validator(input.value);
-          console.log(isValid);
 
           //si es invalido -> muestra error + guarda en array
           if (!isValid) {
@@ -267,12 +242,7 @@ window.addEventListener("load", function () {
     //si no hay errores, envia el form. Si hay errores, muestra mensaje
     if (errorsCategoria == '') {
       formCateg.submit();
-    } 
-    // else {
-    //   const spanErrorSubmit = document.querySelector("span.errorSubmit");
-    //   spanErrorSubmit.innerHTML = "Completa correctamente todos los campos";
-    //   spanErrorSubmit.classList.add("error-submit");
-    // }
+    }
   });
 
 
@@ -284,12 +254,10 @@ window.addEventListener("load", function () {
     if(inputToValidate.type.includes("onTime")) {
       
       const input = formCaract[inputToValidate.inputName];
-      console.log(input);
       const inputContainer = input.parentElement;
         
       input.addEventListener("keyup", function (e) {
         for (const validation of inputToValidate.validations) {
-          // console.log(e.target.value);
           const isValid =  validation.validator(e.target.value);
 
           if (!isValid) {
@@ -304,22 +272,19 @@ window.addEventListener("load", function () {
     }
   });
 
-  // //* VALIDACION EN SUBMIT
+  //* VALIDACION EN SUBMIT
   formCaract.addEventListener("submit", async function (e) {
     //no se envia formulario
     e.preventDefault();
 
     const inputNombre = formCaract["nombreCaracteristica"]
     const inputDescrip = formCaract["descriptCaracteristica"]
-    console.log(inputNombre.value );
-    // console.log(inputDescrip.value );
 
     const inputContainer = inputDescrip.parentElement
 
     if (inputNombre.value != '' && inputDescrip.value != '') {
       
       const isValid = await validarCaract(`${inputNombre.value}: ${inputDescrip.value}`)
-      console.log('entro al if ' + isValid);
 
       if (!isValid) {
         inputContainer.querySelector(".error").innerHTML = 'Esta caracteristica ya existe';
@@ -333,7 +298,6 @@ window.addEventListener("load", function () {
       errorsCaracteristicas = 'Ambos campos son obligatorios'
     }
 
-    console.log(errorsCaracteristicas);
     if (errorsCaracteristicas == '') {
       formCaract.submit();
     } 

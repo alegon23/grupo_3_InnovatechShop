@@ -1,4 +1,3 @@
-
 const inputValidations = [
     {
         inputName: "nombre",
@@ -348,7 +347,8 @@ window.addEventListener("load", function () {
         const errorPadre = document.querySelector('div.caracteristicas-del-producto')
 
         for (const select of selects) {
-            if (select.value == '') {
+            if (select.value === '') {
+                errores.push('Todas las caracteristicas son obligatorias')
                 errorPadre.querySelector('.error').innerHTML = 'Todas las caracteristicas son obligatorias'
                 break
             }

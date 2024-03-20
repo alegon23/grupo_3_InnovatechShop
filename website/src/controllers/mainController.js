@@ -42,22 +42,16 @@ const mainController = {
 
     about: async (req, res) => {
         try {
-            
             const categorias = await db.Category.findAll({})
-
             res.render(path.resolve('./', './src/views/main/about'), {categorias: categorias});  
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
-        
-        
     },
 
     help: async (req, res) => {
         try {
-
             const categorias = await db.Category.findAll({})
-            
             res.render(path.resolve('./', './src/views/main/help'), {categorias: categorias});
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});

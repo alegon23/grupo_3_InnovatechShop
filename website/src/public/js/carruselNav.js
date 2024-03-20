@@ -7,5 +7,5 @@ window.addEventListener("load", function(){
             delay: 1500,
             disableOnInteraction: false
         },
-      });
+    });
 })

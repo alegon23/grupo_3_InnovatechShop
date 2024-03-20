@@ -1,4 +1,3 @@
-
 const inputValidations = [
     {
         inputName: "email",
@@ -17,10 +16,9 @@ const inputValidations = [
                     try { 
                         const res = await fetch(`/users/validate/${input}`)
                         const data = await res.json()
-                    //   console.log(data);
                         return data.existe
                     } catch (error) {
-                        console.log(error);
+                        return false
                     }
                 },
                 errorMsg: "El email no esta registrado"
@@ -64,7 +62,6 @@ window.addEventListener("load", function () {
 
                     //se aplica el validador sobre el valor actual del input
                     const isValid = await validation.validator(e.target.value);
-                    // console.log(isValid);
                     //si es invalido muestra error. Sino, no
                     if (!isValid) {
                         errores.push(validation.errorMsg);
@@ -93,12 +90,10 @@ window.addEventListener("load", function () {
             //obtenemos padre de input - en este caso seria el div
             const inputContainer = input.parentElement;
             
-
             for (const validation of inputToValidate.validations) {
                 
                 //se aplica el validador sobre el valor actual del input
                 const isValid = await validation.validator(input.value)
-                console.log(isValid);
     
                 //si es invalido -> muestra error + guarda en array
                 if (!isValid) {
@@ -114,7 +109,6 @@ window.addEventListener("load", function () {
             }
         })
         
-        // console.log(errores);
         const inputEmail = form["email"];
         const inputPassword = form["contrasenia"];
         

@@ -245,8 +245,7 @@ const productsController = {
                 return res.render(path.resolve('./', './src/views/products/editarProducto'), {
                     errors: {
                         caracteristica1: {
-                            msg: 'Las características deben ser diferentes entre sí'
-                            
+                            msg: 'Las características deben ser diferentes entre sí' 
                         },
                         caracteristica2: {
                             msg: 'Las características deben ser diferentes entre sí'
@@ -530,7 +529,6 @@ const productsController = {
     },
 
     validateMarca: async (req, res) => {
-
         try {
             const marca = req.params.marca
             const respuesta = await db.Brand.findOne({
@@ -554,7 +552,6 @@ const productsController = {
     },
 
     validateCategoria: async (req, res) => {
-
         try {
             const categoria = req.params.categoria
             const respuesta = await db.Category.findOne({
@@ -578,7 +575,6 @@ const productsController = {
     },
 
     validateCaracteristica: async (req, res) => {
-
         try {
             const feature = req.params.feature
             const respuesta = await db.Feature.findOne({
@@ -607,7 +603,6 @@ const productsController = {
         const caracteristica = req.body.caracteristicaSelect;
         
         try {
-
             if (!caracteristica) {
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: "Debes seleccionar una caracteristica para darla de baja"});
             }
@@ -618,12 +613,11 @@ const productsController = {
                 }
             })
 
-                await db.Feature.destroy({
-                    where: { idFeature: caracteristica }
-                })
+            await db.Feature.destroy({
+                where: { idFeature: caracteristica }
+            })
 
-
-                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La caracteristica ${feature.feature} se dió de baja`});
+            return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La caracteristica ${feature.feature} se dió de baja`});
              
 
         } catch (error) {
@@ -633,8 +627,8 @@ const productsController = {
 
     borrarMarca: async (req, res) => {
         const marca = req.body.marcaSelect;
-        try {
 
+        try {
             if (!marca) {
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: "Debes seleccionar una marca para darla de baja"});
             }
@@ -645,11 +639,11 @@ const productsController = {
                 }
             })
 
-                await db.Brand.destroy({
-                    where: { idBrand: marca }
-                })
+            await db.Brand.destroy({
+                where: { idBrand: marca }
+            })
 
-                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La marca ${brand.brandName} se dió de baja`});
+            return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La marca ${brand.brandName} se dió de baja`});
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
@@ -660,7 +654,6 @@ const productsController = {
         const categoria = req.body.categoriaSelect;
 
         try {
-
             if (!categoria) {
                 return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: "Debes seleccionar una categoria para darla de baja"});
             }
@@ -671,11 +664,11 @@ const productsController = {
                 }
             })
 
-                await db.Category.destroy({
-                    where: { idCategory: categoria }
-                })
+            await db.Category.destroy({
+                where: { idCategory: categoria }
+            })
 
-                return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La categoría ${category.categoryName} se dió de baja`});
+            return res.render(path.resolve('./', './src/views/users/menuAdmin'), {mensajeBorrar: `La categoría ${category.categoryName} se dió de baja`});
 
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});

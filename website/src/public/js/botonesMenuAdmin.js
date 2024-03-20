@@ -8,21 +8,18 @@ window.addEventListener("load",function(){
     const borrarCategoria = document.querySelector("button.btnBorrarCategoria");
 
     borrarMarca.addEventListener("click", function(e) {
-        //e.preventDefault();
         formBorrarMarca.classList.add("form_marca_mostrar");
         borrarCaracteristica.classList.add("oculto");
         borrarCategoria.classList.add("oculto");
     })
 
     borrarCategoria.addEventListener("click", function(e) {
-        //e.preventDefault();
         formBorrarCategoria.classList.add("form_categoria_mostrar");
         borrarCaracteristica.classList.add("oculto");
         borrarMarca.classList.add("oculto");
     })
 
     borrarCaracteristica.addEventListener("click", function(e) {
-        //e.preventDefault();
         formBorrarCaracteristica.classList.add("form_categoria_mostrar");
         borrarCategoria.classList.add("oculto");
         borrarMarca.classList.add("oculto");

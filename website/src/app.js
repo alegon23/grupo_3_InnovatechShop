@@ -34,11 +34,6 @@ app.listen(PORT, () => {
     console.log('Servidor corriendo en el puerto '+PORT);
 });
 
-// app.use(function(req, res, next) {
-//     console.log('paso por mid');
-//     next()
-// })
-
 //rutas
 app.use('/', mainRoutes)
 app.use('/users', usersRoutes);

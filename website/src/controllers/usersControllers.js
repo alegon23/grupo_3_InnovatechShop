@@ -368,7 +368,6 @@ const usersController = {
 
         try {
             const brandList = await db.Brand.findAll()
-            // console.log(brandList);
             
             for (let i = 0; i < brandList.length; i++) {
                 const cantidad = await db.Product.count({
@@ -386,7 +385,6 @@ const usersController = {
             }
 
             const categoryList = await db.Category.findAll()
-            // console.log(categoria);
 
             for (let i = 0; i < categoryList.length; i++) {
                 const cantidad = await db.Product.count({
@@ -421,6 +419,7 @@ const usersController = {
             }
 
             return res.render(path.resolve('./', './src/views/products/botonesBorrar'), {caracteristicas: caracteristica, marcas: marca, categorias: categoria});
+            
         } catch (error) {
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }

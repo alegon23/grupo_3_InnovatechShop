@@ -57,14 +57,14 @@ body {
     margin-bottom: 0;
 }
 
-.contenedor-producto {
+.contenedor-producto, .producto {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
 }
 
-.contenedor-producto label {
+.contenedor-producto label, .producto label {
     font-weight: bold;
 }
 
@@ -305,7 +305,7 @@ label {
         width: 60%;
     }
 
-    .contenedor-producto{
+    .contenedor-producto, .producto{
         font-size: 17px;
     }
 
