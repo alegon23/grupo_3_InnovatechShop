@@ -115,7 +115,7 @@ const inputValidations = [
             },
             {
                 validator: (input) => !validator.isEmpty(input),
-                errorMsg: "La imagen principal es obligartoria"
+                errorMsg: "La imagen principal es obligatoria"
             }
         ]
     },
@@ -222,7 +222,7 @@ window.addEventListener("load", function () {
                 // errorSelect.pop()
                 padreError.querySelector(".error").innerHTML = "";
             }
-            console.log(errorSelect);
+            //console.log(errorSelect);
             //meto los valores actuales de los select en el array selectValores
             selects.forEach((select)=>{
                 selectValores.push(select.value)
@@ -375,8 +375,8 @@ window.addEventListener("load", function () {
             }
         }
 
-        console.log(errorSelect.length);
-        console.log(errores);
+        //console.log(errorSelect.length);
+        //console.log(errores);
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
         if (errores.length == 0 && errorSelect.length == 0) {
             form.submit();
