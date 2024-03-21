@@ -386,6 +386,12 @@ footer img {
     text-align: center;
 }
 
+.section-footer-copy p {
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0;
+    font-size: 15px;
+}
+
 .section-footer nav ul {
     list-style: none;
     padding: 0;
@@ -430,6 +436,7 @@ footer img {
 }
 
 .Copyright{
+    margin: 25px 0 10px 0;
     font-style: italic;
     color: #222222;
 }
@@ -781,8 +788,13 @@ footer img {
     .section-footer-copy {
         text-align: end;
     }
+    
+    .section-footer-copy p {
+        margin: 0 11px 0 0;
+    }
+
     .Copyright{
-        margin-right: 11px;
+        margin: 0 11px 8px 0;
     }
 
     .boton-creditos:hover{
