@@ -1,6 +1,8 @@
 // creamos una funcion para validar las extensiones de las imagenes
 const validacionExtension = (input) => {
+    // cortamos el nombre para obtener solo la extension
     const fileExtension = input.split(".")[1];
+    //preguntamos si viene ya que es opcional
     if (fileExtension) {
         const acceptedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
         return acceptedExtensions.includes(fileExtension)
@@ -9,7 +11,7 @@ const validacionExtension = (input) => {
     }
 }
 
-// creamos un array con el nombre del input, el tipo de evento que utilizara y sus validaciones (libreria validator)
+// creamos un array de validaciones(tal cual como en clase), que contiene el nombre del imput, el tipo de evento que utilizara y sus validaciones (libreria validator)
 const inputValidations = [
     {
         inputName: "nombre",
@@ -52,7 +54,9 @@ const inputValidations = [
                 errorMsg: "El email tiene un formato incorrecto"
             },
             {
+                // creamos una func asincronica para busca en la base de datos
                 validator: async (input) => {
+                    // luego creamos un endpoint que lo llamamos utulizando el metodo fetch
                     const res = await fetch(`/users/validate/${input}`)
                     const data = await res.json()
                     return !data.existe
@@ -136,6 +140,7 @@ window.addEventListener("load", function () {
     
             const inputContainer = input.parentElement;
             
+            // Es una func asincronica porque al utilizar el fetch tmb espera una promesa y se resulven mediante un async await
             input.addEventListener("keyup", async function (e) {
                 // por cada objeto de inputValidations, se cicla sobre el array de validaciones
                 for (const validation of inputToValidate.validations) {
