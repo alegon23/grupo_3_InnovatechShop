@@ -35,7 +35,6 @@
             <% } %>
 
             <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) { %>
-                <!--<a href="../../users/registro-admin" class="boton-cuenta-movil"><i class="bi bi-person-plus"></i></a>-->
                 <a href="../../users/menu-admin" class="boton-cuenta-movil"><i class="bi bi-three-dots-vertical"></i></a>
             <% } else{%>
                 <a href="../../products/carrito" id="boton-carrito-movil"><i class="bi bi-cart2"></i></a>
@@ -51,7 +50,6 @@
         <% } %>
 
         <% if (locals.usuarioLog && locals.usuarioLog.idRoleFK == 2) {%>
-            <!-- <a href="../../users/registro-admin" class="boton-cuenta"><i class="bi bi-person-plus"></i> Añadir Admin</a> -->
             <a href="../../users/menu-admin" class="boton-cuenta" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-person-lines-fill"></i> Menú Admin</a>
         <% } else{%>
             <a href="../../products/carrito" id="boton-carrito"><i class="bi bi-cart2"></i> Carrito</a>

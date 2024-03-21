@@ -12,8 +12,6 @@ const uploadImgs = uploadImg.fields([{ name: 'imagenPrincipal', maxCount: 1 }, {
 
 // Listado de productos
 router.get('/', productsController.listado);
-// router.get('/monitores-tvs', productsController.listadoMonitoresTVs);
-router.get('/:categoria', productsController.listadoCategorias)
 
 //Carrito
 router.get('/carrito', guestAdminMiddleware, productsController.carrito);
@@ -38,14 +36,12 @@ router.post('/nuevaCategoria', validacionesCategoria, productsController.crearCa
 //para menu admin -> caracteristicas
 router.post('/nuevaCaracteristica', validacionesCaracteristicas, productsController.crearCaracteristica)
 
-
 //Validacion del menu admin
 router.get('/validate/brand/:marca', productsController.validateMarca)
 
 router.get('/validate/category/:categoria', productsController.validateCategoria)
 
 router.get('/validate/feature/:feature', productsController.validateCaracteristica)
-
 
 //Borrar caracteristica
 router.delete('/feature', authAdminMiddleware, productsController.borrarCaracteristica)
@@ -56,10 +52,11 @@ router.delete('/brand', authAdminMiddleware, productsController.borrarMarca)
 //Borrar categoria
 router.delete('/category', authAdminMiddleware, productsController.borrarCategoria)
 
-
-
 //Borrar productos
 router.delete('/:id', authAdminMiddleware, productsController.borrar)
+
+//listado de productos por categoria
+router.get('/:categoria', productsController.listadoCategorias)
 
 
 module.exports = router;

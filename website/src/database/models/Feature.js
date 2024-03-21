@@ -22,12 +22,6 @@ module.exports = (sequelize, dataTypes) => {
     const Feature = sequelize.define(alias, cols, config);
 
     Feature.associate = function(models) {
-        
-        //Feature.belongsTo(models.ProductFeature, {
-        //    as: 'productFeature',
-        //    foreignKey: 'idFeatureFK'
-        //});
-
         Feature.belongsToMany(models.Product, {
             as: 'products',
             through: 'products_features',

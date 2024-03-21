@@ -8,8 +8,6 @@ const validacionExtension = (input) => {
     }
 }
 
-let timeOutID;
-
 const inputValidations = [
     {
         inputName: "nombre",
@@ -133,42 +131,6 @@ const inputValidations = [
             }
         ]
     },
-    {
-        inputName: "fecha",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                //por ejemplo poner 31/02
-                validator: (input) => validator.isISO8601(input),
-                errorMsg: "La fecha no tiene formato valido"
-            },
-            {
-                //controla que no se pongan fechas mayores a las de hoy
-                validator: (input) => !validator.isAfter(input),
-                errorMsg: "La fecha no es valida"
-            },
-        ]
-    },
-    {
-        inputName: "confirmarContrasenia",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "Debes confirmar la contraseña"
-            },
-        ]
-    },
-    {
-        inputName: "avatar",
-        type: ["submit"],
-        validations: [
-            {
-                validator: (input) => validacionExtension(input),
-                errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
-            },
-        ]
-    },
 ]
 
 //* validacion keyup
@@ -266,7 +228,6 @@ window.addEventListener("load", function () {
                 for (const validation of inputToValidate.validations) {
                     //se aplica el validador sobre el valor actual del input
                     const isValid = await validation.validator(input.value);
-                    // console.log(isValid)
     
                     //si es invalido -> muestra error + guarda en array
                     if (!isValid) {
@@ -280,10 +241,6 @@ window.addEventListener("load", function () {
                 }
             }
         });
-
-        
-        //console.log(errores)
-        //console.log(errores.length)
         
         //valida si se envia el formulario vacio
         inputValidations.forEach((inputToValidate) => {

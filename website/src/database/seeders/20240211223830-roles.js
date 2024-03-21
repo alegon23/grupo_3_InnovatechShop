@@ -3,15 +3,10 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     const roles = [
-      {
-       
-        roleName: 'user'
-      },
-      {
-       
-        roleName: 'admin'
-      }
-  ];
+      { roleName: 'user' },
+      { roleName: 'admin' }
+    ];
+    
     await queryInterface.bulkInsert('roles', roles);
   },
 

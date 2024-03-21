@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 
 const ChartRow = ({idProduct, productName, category, detalle}) => {
     return (
-                <tr>
-                    <td>{idProduct}</td>
-                    <td>{productName}</td>
-                    <td>{category}</td>
-                    <td>
-                        <Link to={`/ProductDetail/${idProduct}`} className="btn btn-info" rel="nofollow">
-                            {detalle}
-                        </Link>
-                    </td>
-                </tr>
-            )
-    }
+        <tr>
+            <td>{idProduct}</td>
+            <td>{productName}</td>
+            <td>{category}</td>
+            <td>
+                <Link to={`/ProductDetail/${idProduct}`} className="btn btn-info" rel="nofollow">
+                    {detalle}
+                </Link>
+            </td>
+        </tr>
+    )
+}
     
     ChartRow.propTypes = {
         idProduct: PropTypes.number,

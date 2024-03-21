@@ -3,7 +3,6 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    //! crear carpeta con el nombre del producto
     cb(null, "./src/public/images/products");
   },
   filename: function (req, file, cb) {

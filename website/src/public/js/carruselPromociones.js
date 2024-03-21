@@ -3,14 +3,14 @@ const crearSwiperPromo = (nroSlides) => {
     slidesPerView: nroSlides,
     direction: 'horizontal',
   
-    // If we need pagination
+    // paginacion
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
       dynamicBullets: true,
     },
   
-    // Navigation arrows
+    // flechas de navegacion
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -20,7 +20,6 @@ const crearSwiperPromo = (nroSlides) => {
 
 window.addEventListener("load", function() {
     const width = window.screen.width;
-
 
     if(width < 480) {
         crearSwiperPromo(1)
