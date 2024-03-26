@@ -284,8 +284,8 @@ window.addEventListener("load", function () {
     for (const archivo of archivosSubidos) {
       const valid = isExtension(archivo.name);
       if (!valid) {
-        errores.push("Las extensiones permitidas son .jpg, .jpg, .png, .gif");
-        conteiner.querySelector(".error").innerHTML = "Las extensiones permitidas son .jpg, .jpg, .png, .gif";
+        errores.push("Las extensiones permitidas son .jpg, .jpeg, .png, .gif");
+        conteiner.querySelector(".error").innerHTML = "Las extensiones permitidas son .jpg, .jpeg, .png, .gif";
         break;
       } else {
         conteiner.querySelector(".error").innerHTML = "";

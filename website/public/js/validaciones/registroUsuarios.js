@@ -1,13 +1,17 @@
+// creamos una funcion para validar las extensiones de las imagenes
 const validacionExtension = (input) => {
+    // cortamos el nombre para obtener solo la extension
     const fileExtension = input.split(".")[1];
+    //preguntamos si viene ya que es opcional
     if (fileExtension) {
         const acceptedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
         return acceptedExtensions.includes(fileExtension)
-    } else{ 
+    } else { 
         return true
     }
 }
 
+// creamos un array de validaciones, que contiene el nombre del imput, el tipo de evento que utilizara y sus validaciones (libreria validator)
 const inputValidations = [
     {
         inputName: "nombre",
@@ -50,7 +54,9 @@ const inputValidations = [
                 errorMsg: "El email tiene un formato incorrecto"
             },
             {
+                // creamos una func asincronica para busca en la base de datos
                 validator: async (input) => {
+                    // luego creamos un endpoint que lo llamamos utulizando el metodo fetch
                     const res = await fetch(`/users/validate/${input}`)
                     const data = await res.json()
                     return !data.existe
@@ -112,43 +118,31 @@ const inputValidations = [
                 errorMsg: "Las extensiones de archivo permitidas son .jpg, .jpeg, .png, .gif"
             },
         ]
-    },
-    {
-        inputName: "contrasenia",
-        type: ["keyup", "submit"],
-        validations: [
-            {
-                validator: (input) => !validator.isEmpty(input),
-                errorMsg: "La contraseña es obligatoria"
-            },
-            {
-                validator: (input) => validator.isLength(input, {min: 8}),
-                errorMsg: "La contraseña debe tener al menos 8 caracteres"
-            },
-            {
-                validator: (input) => validator.isStrongPassword(input, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0, returnScore: false }),
-                errorMsg: "La contraseña debe al menos 1 mayúscula, 1 minúscula y 1 número"
-            }
-        ]
-    },
+    }
 ]
 
-//* validacion keyup
 
+//! VALIDACIONES
+
+//* validacion keyup 
 //array de errores
 let errores = [];
 
 window.addEventListener("load", function () {
     
+    // capturamos el formulario 
     const form = document.querySelector("form.contenedor-registro");
 
+    // hacemos un forEach por cada objeto de inputValidations
     inputValidations.forEach((inputToValidate) => {
         if(inputToValidate.type.includes("keyup")) {
             const input = form[inputToValidate.inputName];
     
             const inputContainer = input.parentElement;
             
+            // Es una func asincronica porque al utilizar el fetch tmb espera una promesa y se resulven mediante un async await
             input.addEventListener("keyup", async function (e) {
+                // por cada objeto de inputValidations, se cicla sobre el array de validaciones
                 for (const validation of inputToValidate.validations) {
     
                     const isValid = await validation.validator(e.target.value);
@@ -210,12 +204,13 @@ window.addEventListener("load", function () {
         }
     })
 
+
     //* VALIDACION EN SUBMIT
     form.addEventListener("submit", function (e) {
         //no se envia formulario
         e.preventDefault();
 
-        //por cada objeto de inputValidations
+        //hacemos un forEach por cada objeto de inputValidations
         inputValidations.forEach( async (inputToValidate) => {
             if(inputToValidate.type.includes("submit")) {
                 //se obtiene input html

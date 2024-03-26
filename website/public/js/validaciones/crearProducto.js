@@ -115,7 +115,7 @@ const inputValidations = [
             },
             {
                 validator: (input) => !validator.isEmpty(input),
-                errorMsg: "La imagen principal es obligartoria"
+                errorMsg: "La imagen principal es obligatoria"
             }
         ]
     },
@@ -196,6 +196,8 @@ window.addEventListener("load", function () {
     //* valida que las caracteristicas no vengan vacias y sean distintas
     //valido los select
     let selectValores=[];
+
+    let errorSelect = []
     //obtengo todos los select con clase caracteristica
     const selects = document.querySelectorAll("select.caracteristica")
 
@@ -204,7 +206,7 @@ window.addEventListener("load", function () {
         selects.forEach((select)=>{
             selectValores.push(select.value)
         });
-
+    
         //obtengo el padre del select actual
         const padreError = select.parentElement
         //agrego un evento change que se dispare cuando cambie el valor de la caracteristica
@@ -213,11 +215,14 @@ window.addEventListener("load", function () {
             const valido= selectValores.includes(select.value);
             selectValores=[];
             if (valido) {
-                padreError.querySelector(".error").innerHTML ="Las caracteristicas deben ser diferentes";
+                errorSelect.push("Esta caracteristica debe ser diferente")
+                padreError.querySelector(".error").innerHTML ="Esta caracteristica debe ser diferente";
                 document.querySelector("div.caracteristicas-del-producto span.error").innerHTML = ""
             } else {
+                // errorSelect.pop()
                 padreError.querySelector(".error").innerHTML = "";
             }
+            //console.log(errorSelect);
             //meto los valores actuales de los select en el array selectValores
             selects.forEach((select)=>{
                 selectValores.push(select.value)
@@ -370,13 +375,16 @@ window.addEventListener("load", function () {
             }
         }
 
+        //console.log(errorSelect.length);
+        //console.log(errores);
         //si no hay errores, envia el form. Si hay errores, muestra mensaje
-        if (errores.length == 0) {
+        if (errores.length == 0 && errorSelect.length == 0) {
             form.submit();
         } else {
             const spanErrorSubmit = document.querySelector("span.errorSubmit");
             spanErrorSubmit.innerHTML = "Completa correctamente todos los campos"
             spanErrorSubmit.classList.add("error-submit")
+            errorSelect = []
         }
     })
 });

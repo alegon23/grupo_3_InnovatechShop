@@ -57,8 +57,9 @@
     color: white;
 }
 
-form {
+#main-perfil form{
     width: 100%;
+    max-width: 437px;
 }
 
 .boton-borrarPerfil {

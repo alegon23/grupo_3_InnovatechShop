@@ -206,42 +206,56 @@ const productsController = {
 
     actualizar: async (req, res) => {
         try {
+            //obtenemos errores de express validation
             const errors = validationResult(req);
 
+            //se trae de BD toda la info de los productos
             const data = await db.Product.findByPk(req.params.id, {
                 include: ["images", "category", "brand", "features"]
             })
 
+            //se trae de BD todas las categorias, marcas y caracteristicas
             const categorias = await db.Category.findAll();
             const marcas = await db.Brand.findAll();
             const caracteristicas = await db.Feature.findAll();
 
+            //se pregunta si hay algun error
             if (!errors.isEmpty()) {
+                //si es cierto -> pregunta si hay imagenes subidas
                 if(Object.keys(req.files).length){
+                    //si es cierto -> pregunta si se subio una imagen principal
                     if (req.files['imagenPrincipal']){
+                        //si es cierto -> la elimina
                         fs.unlinkSync(req.files['imagenPrincipal'][0].path)
                     }
             
+                    //luego pregunta si se subieron imagenes extra
                     if (req.files['imagenesExtra']){
+                        //si es cierto -> se las elimina
                         for(let i = 0; i < req.files['imagenesExtra'].length; i++){
                             fs.unlinkSync(req.files['imagenesExtra'][i].path)
                         }
                     }
                 }
                 
+                //se retorna a la vista informando de los errores, junto con la info de la BD necesaria
                 return res.render(path.resolve('./', './src/views/products/editarProducto'), {errors: errors.mapped(), oldData: req.body, productID: data, categorias, marcas, caracteristicas});
             }
 
+            //si no hay errores -> se obtiene la info del req.body
             let { nombre, marca, categoria, precio, descripcion, stock, porcentaje, esDestacado, caracteristica1, caracteristica2, caracteristica3, caracteristica4 } = req.body;
 
+            //se crea un array con los IDs de las caracteristicas para manipularlas más comodamente
             const caracteristicasBody = [parseInt(caracteristica1), parseInt(caracteristica2), parseInt(caracteristica3), parseInt(caracteristica4)];
 
+            //se crea una funcion que nos permite saber si hay elementos repetidos en un array
             function tiene_repetidos(array){
                 return new Set(array).size!==array.length
             }
 
+            //si tiene repetidos el array de caracteristicas
             if (tiene_repetidos(caracteristicasBody)) {
-                
+                //se retorna a la vista indicando el error + su info necesaria
                 return res.render(path.resolve('./', './src/views/products/editarProducto'), {
                     errors: {
                         caracteristica1: {
@@ -265,8 +279,8 @@ const productsController = {
                 });
             }
 
-            
-            //se edita el producto
+            //si no hay errores en las caracteristicas -> todo esta bien y se procede a editar los datos correspondientes
+            //PRIMERO -> se crea un objeto con la informacion del producto
             let productoEditado = {
                 productName: nombre,
                 originalPrice: precio,
@@ -279,25 +293,29 @@ const productsController = {
                 idBrandFK: marca,
             }
             
+            //y se lo actualiza en la BD
             await db.Product.update(productoEditado, {
                 where: {
                     idProduct: req.params.id
                 }
             })
             
-            //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
-            //se editan imagenes si es que hay
+            //SEGUNDO -> se editan las imagenes si es que hay
             let newImagenPrincipal = '';
             let imagesArray = [];
+            //se pregunta si se recibieron imagenes preguntando si el objeto tiene alguna key. Si tiene, se recibieron imagenes, sino no
             if(Object.keys(req.files).length){
-                
+                //se busca las imagenes en la BD segun el producto
                 const imagenes = await db.Image.findAll({
                     where: {idProductFK: req.params.id}
                 })
 
+                //se pregunta si se edito la imagen principal
                 if (req.files['imagenPrincipal']){
+                    //si es cierto -> se crea la URL correspondiente
                     newImagenPrincipal = "/images/products/" + req.files['imagenPrincipal'][0].filename;
 
+                    //se elimina la imagen principal guardada en el servidor con la info de la URL de la BD
                     for (const imagen of imagenes) {
                         if (imagen.mainImage) {
                             const url = 'public' + imagen.url.replace('/', '\\')
@@ -307,11 +325,14 @@ const productsController = {
                     }                   
                 }
         
+                //se pregunta si se editaron las imagenes extra
                 if (req.files['imagenesExtra']){
+                    //si es cierto -> se crea un array con las URLs correspondientes
                     for(let i = 0; i < req.files['imagenesExtra'].length; i++){
                         imagesArray.push("/images/products/" + req.files['imagenesExtra'][i].filename);
                     }
 
+                    //se eliminan las imagenes extra guardadas en el servidor con la info de las URLs de la BD
                     for (const imagen of imagenes) {
                         if (!imagen.mainImage) {
                             const url = 'public' + imagen.url.replace('/', '\\')
@@ -321,7 +342,9 @@ const productsController = {
                 }
             }
 
+            //si hay una imagen principal
             if (newImagenPrincipal != '') {
+                //se elimina el registro correspondiente de la BD
                 await db.Image.destroy({
                     where: {
                         idProductFK: req.params.id,
@@ -329,6 +352,7 @@ const productsController = {
                     }
                 })
 
+                //y se da de alta la nueva en BD
                 await db.Image.create({
                     url: newImagenPrincipal,
                     mainImage: 1,
@@ -336,7 +360,9 @@ const productsController = {
                 })
             }
 
+            //si hay imagenes extra
             if (imagesArray.length != 0) {
+                //se eliminan los registros correspondientes de la BD
                 await db.Image.destroy({
                     where: {
                         idProductFK: req.params.id,
@@ -344,6 +370,7 @@ const productsController = {
                     }
                 })
 
+                //y se dan de alta las nuevas en BD
                 for (let i = 0; i < imagesArray.length; i++) {
                     await db.Image.create({
                         url: imagesArray[i],
@@ -353,7 +380,8 @@ const productsController = {
                 }
             }
 
-            //se editan las caracteristicas
+            //TERCERO -> se editan las caracteristicas
+            //se traen las caracteristicas asociadas a los productos de la tabla pivot
             const idsProductsFeatures = await db.ProductFeature.findAll({
                 where: {
                     idProductFK: req.params.id
@@ -361,9 +389,9 @@ const productsController = {
                 attributes: {exclude: [ 'idProductFK', 'idFeatureFK' ]},
             })
 
-
+            //por cada caracteristica del array creado al principio
             for (let i = 0; i < caracteristicasBody.length; i++) {
-            
+                //se actualizan a los nuevos IDs de las caracteristicas
                 await db.ProductFeature.update({
                     idProductFK: req.params.id,
                     idFeatureFK: caracteristicasBody[i]
@@ -374,9 +402,11 @@ const productsController = {
                 })
             }
 
+            //finalmente, se redirige a la lista de todos los productos
             res.redirect('/products');
             
         } catch (error) {
+            //si sucede algun error durante el proceso, se manda un mensaje a la vista de error
             res.render(path.resolve('./', './src/views/main/error'), {mensaje: error});
         }
 
