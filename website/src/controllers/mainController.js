@@ -1,6 +1,6 @@
-const calcularDescuento = require('../public/js/calcularDescuento');
+const calcularDescuento = require('../../public/js/calcularDescuento');
 const path = require('path');
-const calcularMiles = require('../public/js/calcularMiles');
+const calcularMiles = require('../../public/js/calcularMiles');
 const db = require('../database/models');
 
 const mainController = {

@@ -1,6 +1,6 @@
-const calcularDescuento = require('../public/js/calcularDescuento');
+const calcularDescuento = require('../../public/js/calcularDescuento');
 const path = require('path');
-const calcularMiles = require('../public/js/calcularMiles');
+const calcularMiles = require('../../public/js/calcularMiles');
 const { validationResult } = require("express-validator");
 const db = require('../database/models');
 const fs = require('fs');
@@ -300,7 +300,7 @@ const productsController = {
 
                     for (const imagen of imagenes) {
                         if (imagen.mainImage) {
-                            const url = 'src\\public' + imagen.url.replace('/', '\\')
+                            const url = 'public' + imagen.url.replace('/', '\\')
                             fs.unlinkSync(url)
                             break;
                         }
@@ -314,7 +314,7 @@ const productsController = {
 
                     for (const imagen of imagenes) {
                         if (!imagen.mainImage) {
-                            const url = 'src\\public' + imagen.url.replace('/', '\\')
+                            const url = 'public' + imagen.url.replace('/', '\\')
                             fs.unlinkSync(url)
                         }
                     }
@@ -391,7 +391,7 @@ const productsController = {
             })
             
             for(const imagen of imagenes){
-                const url = 'src\\public' + imagen.url.replace('/', '\\')
+                const url = 'public' + imagen.url.replace('/', '\\')
                 fs.unlinkSync(url)
             }
 

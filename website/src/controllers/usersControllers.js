@@ -137,17 +137,17 @@ const usersController = {
                 })
             
                 if (user.avatar != "/images/users/default.png") {
-                    const url = 'src\\public' + user.avatar.replace('/', '\\')
-                    fs.unlinkSync(url)
+                    const url = 'public' + user.avatar.replace('/', '\\')
+                    console.log(url)
+                   fs.unlinkSync(url)
                 }
 
-                await db.User.destroy({
+            await db.User.destroy({
                     where: { idUser: idUser }
                 })
                 req.session.destroy();
                 res.clearCookie('usuarioEmail')
-                res.redirect('/')
-            } else {
+                res.redirect('/')            }else {
                 res.redirect('/')
             }
 
@@ -243,12 +243,14 @@ const usersController = {
 
                     if (req.file && req.file != foundUser.avatar) {
                         if (foundUser.avatar != "/images/users/default.png") {
-                            const url = 'src\\public' + foundUser.avatar.replace('/', '\\')
-                            fs.unlinkSync(url)
+                            
+                            const url = 'public' + foundUser.avatar.replace('/', '\\')
+                            
+                           fs.unlinkSync(url)
                         }
                     }
 
-                    db.User.update({
+                   db.User.update({
                         firstName : nombre,
                         lastName : apellido,
                         birthdate : fecha,
