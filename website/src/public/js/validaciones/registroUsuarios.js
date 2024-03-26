@@ -11,7 +11,7 @@ const validacionExtension = (input) => {
     }
 }
 
-// creamos un array de validaciones(tal cual como en clase), que contiene el nombre del imput, el tipo de evento que utilizara y sus validaciones (libreria validator)
+// creamos un array de validaciones, que contiene el nombre del imput, el tipo de evento que utilizara y sus validaciones (libreria validator)
 const inputValidations = [
     {
         inputName: "nombre",
